@@ -1,11 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { AgeGate } from '@/components/common/age-gate'
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   title: 'VapeStore — Premium Vaping Products',
@@ -15,8 +12,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-[#0a0a0a] antialiased">
+    <html lang="en" className="h-full">
+      <body className="min-h-full flex flex-col bg-[#0a0a0a] antialiased font-sans">
         <AgeGate />
         <Header />
         <main className="flex-1">{children}</main>
