@@ -6,24 +6,15 @@ import { AgeGate } from '@/components/common/age-gate'
 import { AnnouncementBar } from '@/components/layout/announcement-bar'
 
 export const metadata: Metadata = {
-  title: 'Aussie Vape — Premium Vapes & E-Cigarettes',
+  title: "Aussie Vapes — Australia's #1 Online Vape Store",
   description:
-    "Australia's best online vape store. Shop disposables, mods, e-liquids and accessories with fast shipping.",
+    "Australia's leading online vape wholesale store. Shop disposables, pod systems, nicotine salts, e-liquids and accessories with fast AU-wide shipping.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Rajdhani for headings, Inter for body — loaded async so build never blocks */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        />
-      </head>
-      <body className="flex min-h-full flex-col bg-[#0a0a0f] antialiased">
+      <body className="flex min-h-full flex-col bg-white antialiased">
         <AgeGate />
         <AnnouncementBar />
         <Header />
