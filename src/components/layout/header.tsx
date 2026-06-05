@@ -29,6 +29,7 @@ const NAV = [
   { href: '/products',                      label: 'Packs' },
   { href: '/products',                      label: 'Sale', highlight: true },
   { href: '#',                              label: 'Contact' },
+  { href: '/login',                         label: 'Login' },
 ]
 
 export function Header() {

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowRight, Star, Truck, RotateCcw, ShieldCheck, Headphones } from 'lucide-react'
 import { ProductCard } from '@/components/shop/product-card'
 import { NewsletterForm } from '@/components/common/newsletter-form'
-import { getFeaturedProducts, products } from '@/data/products'
+import { products } from '@/data/products'
 
 const BRANDS = [
   { name: 'IGET',      href: '/products?brand=IGET' },
@@ -21,14 +21,14 @@ const BRANDS = [
 
 const CATEGORIES = [
   { label: 'Disposable Vapes', href: '/products?category=disposables', count: '1,698 products', emoji: '💨' },
-  { label: 'Pod Systems',      href: '/products?category=mods',         count: '33 products',   emoji: '🔋' },
-  { label: 'Nicotine Salts',   href: '/products?category=e-liquids',   count: '173 products',  emoji: '🧪' },
-  { label: 'E-Liquids',        href: '/products?category=e-liquids',   count: '173 flavours',  emoji: '💧' },
-  { label: 'Accessories',      href: '/products?category=accessories', count: '124 products',  emoji: '🎒' },
+  { label: 'Pod Systems',      href: '/products?category=mods',        count: '33 products',    emoji: '🔋' },
+  { label: 'Nicotine Salts',   href: '/products?category=e-liquids',   count: '173 products',   emoji: '🧪' },
+  { label: 'E-Liquids',        href: '/products?category=e-liquids',   count: '173 flavours',   emoji: '💧' },
+  { label: 'Accessories',      href: '/products?category=accessories', count: '124 products',   emoji: '🎒' },
 ]
 
 const TRUST_BADGES = [
-  { icon: Truck,       label: 'Free AU Shipping',   sub: 'On orders over $300' },
+  { icon: Truck,       label: 'Free AU Shipping',   sub: 'Orders over $300' },
   { icon: ShieldCheck, label: 'Age-Verified Store', sub: '18+ only' },
   { icon: RotateCcw,   label: '30-Day Returns',     sub: 'Hassle-free' },
   { icon: Headphones,  label: 'AU-Based Support',   sub: 'AEST business hours' },
@@ -36,11 +36,27 @@ const TRUST_BADGES = [
 ]
 
 export default function HomePage() {
-  const featured  = getFeaturedProducts()
-  const bestSellers = products.filter(p => p.category === 'disposables').slice(0, 8)
-  const newArrivals = products.filter(p => p.category !== 'accessories').slice(20, 28)
-  const onSale      = products.filter(p => p.originalPrice).slice(0, 8)
-  const featured1   = products.find(p => p.brand === 'IGET') ?? products[0]
+  // Featured spotlight: IGET BAR 3500 PUFFS (as shown on real site)
+  const featuredProduct =
+    products.find(p => p.brand === 'IGET' && p.puffCount === 3500) ??
+    products.find(p => p.brand === 'IGET') ??
+    products[0]
+
+  // Best sellers: ADALYA 16000 + ALFAKHER 15000 single units (no packs)
+  const bestSellers = products
+    .filter(p =>
+      (p.brand === 'ADALYA') ||
+      (p.brand === 'ALFAKHER' && p.puffCount === 15000 && !p.name.toLowerCase().includes('pack'))
+    )
+    .slice(0, 8)
+
+  // New arrivals: ALFAKHER CROWN BAR 8000 PUFFS + 15000 packs
+  const newArrivals = products
+    .filter(p =>
+      p.brand === 'ALFAKHER' &&
+      (p.puffCount === 8000 || (p.puffCount === 15000 && p.name.toLowerCase().includes('pack')))
+    )
+    .slice(0, 8)
 
   return (
     <div className="bg-white">
@@ -50,12 +66,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid min-h-[400px] grid-cols-1 items-center gap-8 py-16 lg:grid-cols-2">
             <div>
-              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-[#1B7A3E]">
-                ⚡ Featured Disposable
-              </span>
               <h1 className="mb-4 text-4xl font-black leading-tight text-gray-900 sm:text-5xl">
-                Australia&apos;s #1<br />
-                <span className="text-[#1B7A3E]">Online Vape Store</span>
+                Australia&apos;s #1 Online<br />
+                <span className="text-[#1B7A3E]">Vape Store</span>
               </h1>
               <p className="mb-8 max-w-md text-lg text-gray-500">
                 Premium vapes at wholesale prices. Trusted by 10,000+ customers across Australia.
@@ -76,14 +89,15 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
+
             {/* Featured product spotlight */}
             <div className="flex justify-center lg:justify-end">
-              <div className="relative w-72">
+              <div className="w-72">
                 <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
                   <div className="relative aspect-square bg-gray-50">
                     <img
-                      src={featured1.image}
-                      alt={featured1.name}
+                      src={featuredProduct.image}
+                      alt={featuredProduct.name}
                       className="h-full w-full object-contain p-6"
                     />
                     <span className="absolute left-3 top-3 rounded-full bg-[#1B7A3E] px-2.5 py-0.5 text-xs font-bold text-white">
@@ -91,11 +105,17 @@ export default function HomePage() {
                     </span>
                   </div>
                   <div className="border-t border-gray-100 p-4">
-                    <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400">{featured1.brand}</p>
-                    <p className="mt-0.5 line-clamp-1 text-sm font-semibold text-gray-900">{featured1.name}</p>
-                    <p className="mt-1 font-bold text-[#1B7A3E]">from ${featured1.price.toFixed(2)}</p>
+                    <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400">
+                      {featuredProduct.brand}
+                    </p>
+                    <p className="mt-0.5 line-clamp-2 text-sm font-semibold text-gray-900">
+                      {featuredProduct.name}
+                    </p>
+                    <p className="mt-1 font-bold text-[#1B7A3E]">
+                      from ${featuredProduct.price.toFixed(2)}
+                    </p>
                     <Link
-                      href={`/products/${featured1.slug}`}
+                      href={`/products/${featuredProduct.slug}`}
                       className="mt-3 flex w-full items-center justify-center gap-1 rounded-lg bg-[#1B7A3E] py-2 text-sm font-semibold text-white hover:bg-[#156331]"
                     >
                       Shop <ArrowRight className="h-3.5 w-3.5" />
@@ -147,7 +167,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Top Brands ───────────────────────────────────────── */}
+      {/* ── Top Aussie Vapes Brands ───────────────────────────── */}
       <section className="border-y border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
@@ -203,30 +223,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ── On Sale ──────────────────────────────────────────── */}
-      {onSale.length > 0 && (
-        <section className="py-14">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="flex items-center gap-2 text-2xl font-bold text-gray-900">
-                On Sale
-                <span className="rounded-full bg-red-100 px-3 py-0.5 text-sm font-semibold text-red-600">
-                  {onSale.length} deals
-                </span>
-              </h2>
-              <Link href="/products" className="flex items-center gap-1 text-sm font-medium text-[#1B7A3E] hover:underline">
-                View all <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-              {onSale.map(product => (
-                <ProductCard key={product.id} product={product} badge="sale" />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ── Newsletter ───────────────────────────────────────── */}
       <section className="border-t border-gray-100 bg-[#1a3a2a] py-14">
