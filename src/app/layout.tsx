@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { AgeGate } from '@/components/common/age-gate'
 import { AnnouncementBar } from '@/components/layout/announcement-bar'
+import { WishlistSync } from '@/components/common/wishlist-sync'
 
 export const metadata: Metadata = {
   title: "Aussie Vapes — Australia's #1 Online Vape Store",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="h-full">
       <body className="flex min-h-full flex-col bg-white antialiased">
         <AgeGate />
+        <WishlistSync />
         <AnnouncementBar />
         <Header />
         <main className="flex-1">{children}</main>

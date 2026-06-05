@@ -38,31 +38,50 @@ export interface Database {
           last_name: string | null
           created_at: string
         }
-        Insert: Omit<Database['public']['Tables']['profiles']['Row'], 'created_at'>
+        Insert: { id: string; email?: string | null; first_name?: string | null; last_name?: string | null }
         Update: Partial<Database['public']['Tables']['profiles']['Insert']>
       }
       orders: {
         Row: {
           id: string
-          user_id: string
+          user_id: string | null
           status: string
           total: number
+          email: string | null
+          address: Json | null
+          stripe_id: string | null
           created_at: string
         }
-        Insert: Omit<Database['public']['Tables']['orders']['Row'], 'id' | 'created_at'>
+        Insert: {
+          user_id?: string | null
+          status?: string
+          total: number
+          email?: string | null
+          address?: Json | null
+          stripe_id?: string | null
+        }
         Update: Partial<Database['public']['Tables']['orders']['Insert']>
       }
       order_items: {
         Row: {
           id: string
           order_id: string
-          product_id: string
+          product_id: string | null
+          product_name: string
           quantity: number
           price: number
           selected_flavor: string | null
           selected_nicotine: number | null
         }
-        Insert: Omit<Database['public']['Tables']['order_items']['Row'], 'id'>
+        Insert: {
+          order_id: string
+          product_id?: string | null
+          product_name: string
+          quantity: number
+          price: number
+          selected_flavor?: string | null
+          selected_nicotine?: number | null
+        }
         Update: Partial<Database['public']['Tables']['order_items']['Insert']>
       }
       wishlist_items: {
@@ -72,7 +91,7 @@ export interface Database {
           product_id: string
           created_at: string
         }
-        Insert: Omit<Database['public']['Tables']['wishlist_items']['Row'], 'id' | 'created_at'>
+        Insert: { user_id: string; product_id: string }
         Update: Partial<Database['public']['Tables']['wishlist_items']['Insert']>
       }
     }
