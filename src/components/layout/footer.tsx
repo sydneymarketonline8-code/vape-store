@@ -61,10 +61,10 @@ export function Footer() {
               {[
                 { href: '/products?category=disposables', label: 'Disposable Vapes' },
                 { href: '/products?category=mods',        label: 'Pod Systems' },
-                { href: '/products?category=e-liquids',   label: 'Nicotine Salts' },
-                { href: '/products?category=e-liquids',   label: 'E-Liquids' },
-                { href: '/products',                      label: 'Aussie Vape Packs' },
-                { href: '/products',                      label: 'Sale' },
+                { href: '/products?category=e-liquids',   label: 'E-Liquids & Salts' },
+                { href: '/products?category=accessories', label: 'Accessories' },
+                { href: '/products?packs=true',           label: 'Aussie Vape Packs' },
+                { href: '/products?sale=true',            label: 'Sale' },
               ].map(l => (
                 <li key={l.label}>
                   <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#1B7A3E]">
@@ -80,12 +80,16 @@ export function Footer() {
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-gray-900">Support</h3>
             <ul className="space-y-2.5">
               {[
-                'Contact Us', 'Order Tracking', 'Shipping Policy',
-                'Returns & Refunds', 'Beginners Guide', 'FAQ',
+                { href: '/contact',         label: 'Contact Us' },
+                { href: '/order-tracking',  label: 'Order Tracking' },
+                { href: '/shipping',        label: 'Shipping Policy' },
+                { href: '/returns',         label: 'Returns & Refunds' },
+                { href: '/beginners-guide', label: 'Beginners Guide' },
+                { href: '/faq',             label: 'FAQ' },
               ].map(l => (
-                <li key={l}>
-                  <Link href="#" className="text-sm text-gray-500 transition-colors hover:text-[#1B7A3E]">
-                    {l}
+                <li key={l.label}>
+                  <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#1B7A3E]">
+                    {l.label}
                   </Link>
                 </li>
               ))}
@@ -97,12 +101,12 @@ export function Footer() {
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-gray-900">Account</h3>
             <ul className="space-y-2.5">
               {[
-                { href: '/login',    label: 'My Account' },
-                { href: '#',         label: 'Wishlist' },
-                { href: '#',         label: 'About' },
-                { href: '#',         label: 'Vaping Laws' },
-                { href: '#',         label: 'Bulk & Wholesale' },
-                { href: '#',         label: 'Blog' },
+                { href: '/account',      label: 'My Account' },
+                { href: '/wishlist',     label: 'Wishlist' },
+                { href: '/about',        label: 'About' },
+                { href: '/vaping-laws',  label: 'Vaping Laws' },
+                { href: '/wholesale',    label: 'Bulk & Wholesale' },
+                { href: '/blog',         label: 'Blog' },
               ].map(l => (
                 <li key={l.label}>
                   <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#1B7A3E]">

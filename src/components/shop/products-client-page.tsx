@@ -14,14 +14,28 @@ interface Filters {
   inStockOnly: boolean
 }
 
-export function ProductsClientPage({ initialCategory }: { initialCategory?: string }) {
+interface ProductsClientPageProps {
+  initialCategory?: string
+  initialBrand?: string
+  initialSale?: boolean
+  initialPacks?: boolean
+}
+
+export function ProductsClientPage({
+  initialCategory,
+  initialBrand,
+  initialSale,
+  initialPacks,
+}: ProductsClientPageProps) {
   const [filters, setFilters] = useState<Filters>({
     category:    initialCategory || 'all',
-    brands:      [],
+    brands:      initialBrand ? [initialBrand.toUpperCase()] : [],
     minPrice:    0,
     maxPrice:    400,
     inStockOnly: false,
   })
+  const [saleOnly]  = useState(!!initialSale)
+  const [packsOnly] = useState(!!initialPacks)
   const [sort,        setSort]       = useState('featured')
   const [search,      setSearch]     = useState('')
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -30,6 +44,8 @@ export function ProductsClientPage({ initialCategory }: { initialCategory?: stri
     let r = [...allProducts]
     if (filters.category !== 'all') r = r.filter(p => p.category === filters.category)
     if (filters.brands.length)      r = r.filter(p => filters.brands.includes(p.brand))
+    if (saleOnly)                   r = r.filter(p => p.originalPrice != null)
+    if (packsOnly)                  r = r.filter(p => p.tags.includes('bundle'))
     if (filters.inStockOnly)        r = r.filter(p => p.inStock)
     r = r.filter(p => p.price <= filters.maxPrice)
     if (search) {
@@ -46,11 +62,15 @@ export function ProductsClientPage({ initialCategory }: { initialCategory?: stri
       case 'rating':     return r.sort((a, b) => b.rating - a.rating)
       default:           return r.sort((a, b) => Number(b.featured) - Number(a.featured))
     }
-  }, [filters, sort, search])
+  }, [filters, sort, search, saleOnly, packsOnly])
 
   const heading =
+    filters.brands.length === 1      ? filters.brands[0] :
+    saleOnly                         ? 'Sale & Clearance' :
+    packsOnly                        ? 'Bulk Vape Packs' :
     filters.category === 'all'       ? 'All Products' :
-    filters.category === 'e-liquids' ? 'E-Liquids'    :
+    filters.category === 'e-liquids' ? 'E-Liquids & Salts' :
+    filters.category === 'mods'      ? 'Pod Systems' :
     filters.category.charAt(0).toUpperCase() + filters.category.slice(1)
 
   return (

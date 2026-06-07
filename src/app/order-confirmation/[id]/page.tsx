@@ -2,6 +2,13 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { CheckCircle, Package, ArrowRight } from 'lucide-react'
 import { formatPrice } from '@/lib/utils'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Order Confirmation',
+  description: 'Thank you for your Aussie Vapes order.',
+  robots: { index: false },
+}
 
 export default async function OrderConfirmationPage({
   params,

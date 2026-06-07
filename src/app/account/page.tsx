@@ -3,6 +3,12 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { formatPrice } from '@/lib/utils'
 import { Package, LogOut, User } from 'lucide-react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'My Account',
+  description: 'View your Aussie Vapes orders and account details.',
+}
 
 function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, string> = {

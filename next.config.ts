@@ -7,14 +7,6 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'placehold.co',
       },
-      {
-        protocol: 'http',
-        hostname: 'aussievapes.com.au',
-      },
-      {
-        protocol: 'https',
-        hostname: 'aussievapes.com.au',
-      },
     ],
   },
 };

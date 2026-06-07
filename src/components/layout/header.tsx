@@ -22,13 +22,12 @@ const NAV = [
     ],
   },
   { href: '/products?category=mods',        label: 'Pod Systems' },
-  { href: '/products?category=e-liquids',   label: 'Nicotine Salts' },
-  { href: '/products?category=e-liquids',   label: 'E-Liquids' },
+  { href: '/products?category=e-liquids',   label: 'E-Liquids & Salts' },
   { href: '/products?category=accessories', label: 'Accessories' },
-  { href: '/products',                      label: 'Brands' },
-  { href: '/products',                      label: 'Packs' },
-  { href: '/products',                      label: 'Sale', highlight: true },
-  { href: '#',                              label: 'Contact' },
+  { href: '/brands',                        label: 'Brands' },
+  { href: '/products?packs=true',           label: 'Packs' },
+  { href: '/products?sale=true',            label: 'Sale', highlight: true },
+  { href: '/contact',                       label: 'Contact' },
   { href: '/login',                         label: 'Login' },
 ]
 
@@ -68,7 +67,7 @@ export function Header() {
                 <Search className="h-4 w-4" />
               </button>
               <Link
-                href="#"
+                href="/wishlist"
                 aria-label="Wishlist"
                 className="relative flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
               >
