@@ -20,11 +20,11 @@ const BRANDS = [
 ]
 
 const CATEGORIES = [
-  { label: 'Disposable Vapes', href: '/products?category=disposables', count: '1,698 products', emoji: '💨' },
-  { label: 'Pod Systems',      href: '/products?category=mods',        count: '33 products',    emoji: '🔋' },
-  { label: 'Nicotine Salts',   href: '/products?category=e-liquids',   count: '173 products',   emoji: '🧪' },
-  { label: 'E-Liquids',        href: '/products?category=e-liquids',   count: '173 flavours',   emoji: '💧' },
-  { label: 'Accessories',      href: '/products?category=accessories', count: '124 products',   emoji: '🎒' },
+  { label: 'Disposable Vapes',   href: '/products?category=disposables', count: '1,697 products', emoji: '💨' },
+  { label: 'Pod Systems & Kits', href: '/products?category=mods',        count: '29 products',    emoji: '🔋' },
+  { label: 'E-Liquids & Salts',  href: '/products?category=e-liquids',   count: '173 flavours',   emoji: '💧' },
+  { label: 'Nicotine Pouches',   href: '/products?category=pouches',     count: '105 products',   emoji: '🟢' },
+  { label: 'Accessories',        href: '/products?category=accessories', count: '23 products',    emoji: '🎒' },
 ]
 
 const TRUST_BADGES = [

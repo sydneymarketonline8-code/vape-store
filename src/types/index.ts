@@ -1,4 +1,4 @@
-export type ProductCategory = 'disposables' | 'mods' | 'e-liquids' | 'accessories'
+export type ProductCategory = 'disposables' | 'mods' | 'e-liquids' | 'pouches' | 'accessories'
 
 export interface Product {
   id: string

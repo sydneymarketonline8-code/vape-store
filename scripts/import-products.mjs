@@ -214,21 +214,31 @@ function extractPuffCount(name) {
   return m ? parseInt(m[1].replace(/,/g, ''), 10) : undefined
 }
 
-function mapCategory(cat) {
-  const c = cat.toLowerCase()
-  if (c.includes('e-liquid') || c.includes('vape juice')) return 'e-liquids'
-  if (
-    c.includes('vape kit') || c.includes('vaporizer') ||
-    c.includes('refillable') || c.includes('pod kit') || c.includes('vape tank')
-  ) return 'mods'
-  if (
-    c.includes('pouch') || c.includes('cigarette') ||
-    c.includes('cream charger') || c.includes('caffeine') ||
-    c.includes('accessories > killa') || c.includes('accessories,')
-  ) return 'accessories'
-  // Accessories top-level only (not sub-categories that are vape-related)
-  if (cat.trim() === 'Accessories') return 'accessories'
+// Classify into one of five shopping categories using the WooCommerce category
+// paths (the `Categories` column holds one or more comma-separated "A > B > C"
+// paths). Brand-named pseudo-categories (e.g. "IGET vape") fall through to
+// disposables, which is what they are.
+function mapCategory(categoriesStr) {
+  const paths = categoriesStr.split(',').map(s => s.trim().toLowerCase()).filter(Boolean)
+  const has = re => paths.some(p => re.test(p))
+  if (has(/pouch/))                                              return 'pouches'
+  if (has(/e-liquid|vape juice|juice flavou?r|nic\s*salt/))      return 'e-liquids'
+  if (has(/vape kit|pod kit|refillable|vape tank|\bcoil\b/))     return 'mods'
+  if (has(/cream charger|vaporiz|cigarette/))                    return 'accessories'
+  if (has(/^accessories(\s*>|\s*$)/))                            return 'accessories'
   return 'disposables'
+}
+
+// Cross-cutting nicotine attributes → tags (a nicotine-free disposable is still
+// a disposable, so these are filterable collections rather than categories).
+function nicotineTags(categoriesStr, name) {
+  const c = categoriesStr.toLowerCase()
+  const n = name.toLowerCase()
+  const tags = []
+  if (/nicotine[\s-]*free/.test(c) || /nicotine[\s-]*free|zero nicotine|\b0\s*mg\b/.test(n))
+    tags.push('nicotine-free')
+  if (/lower nicotine/.test(c)) tags.push('lower-nicotine')
+  return tags
 }
 
 const NON_VAPE_NAMES = ['Brown Cap', 'Quartz Watch', 'Retro Sunglasses', 'Snapback Cap']
@@ -285,6 +295,7 @@ for (const row of rows) {
   if (brand && brand !== 'OTHER') tags.push(brand.toLowerCase().replace(/\s+/g, '-'))
   if (puffCount) tags.push(`${puffCount}-puffs`)
   if (extractPackCount(name)) tags.push('bundle')
+  tags.push(...nicotineTags(row['Categories'] || '', name))
 
   // Featured: first product from each priority brand
   const featured = FEATURED_BRANDS.has(brand) && !featuredBy.has(brand)
@@ -348,6 +359,6 @@ console.log(`✓ ${products.length} products written to ${OUT_PATH}`)
 console.log(`  ${brandBySlug.size} brand placeholders written to ${PH_DIR}`)
 console.log(`  Featured brands: ${[...featuredBy].join(', ')}`)
 
-const cats = { disposables: 0, mods: 0, 'e-liquids': 0, accessories: 0 }
+const cats = { disposables: 0, mods: 0, 'e-liquids': 0, pouches: 0, accessories: 0 }
 products.forEach(p => cats[p.category]++)
 console.log('  Category breakdown:', cats)

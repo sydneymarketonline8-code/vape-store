@@ -60,8 +60,9 @@ export function Footer() {
             <ul className="space-y-2.5">
               {[
                 { href: '/products?category=disposables', label: 'Disposable Vapes' },
-                { href: '/products?category=mods',        label: 'Pod Systems' },
+                { href: '/products?category=mods',        label: 'Pod Systems & Kits' },
                 { href: '/products?category=e-liquids',   label: 'E-Liquids & Salts' },
+                { href: '/products?category=pouches',     label: 'Nicotine Pouches' },
                 { href: '/products?category=accessories', label: 'Accessories' },
                 { href: '/products?packs=true',           label: 'Aussie Vape Packs' },
                 { href: '/products?sale=true',            label: 'Sale' },

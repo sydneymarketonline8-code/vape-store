@@ -17,13 +17,20 @@ interface Filters {
 interface ProductsClientPageProps {
   initialCategory?: string
   initialBrand?: string
+  initialTag?: string
   initialSale?: boolean
   initialPacks?: boolean
+}
+
+const TAG_LABELS: Record<string, string> = {
+  'nicotine-free': 'Nicotine-Free Vapes',
+  'lower-nicotine': 'Lower Nicotine Vapes',
 }
 
 export function ProductsClientPage({
   initialCategory,
   initialBrand,
+  initialTag,
   initialSale,
   initialPacks,
 }: ProductsClientPageProps) {
@@ -34,6 +41,7 @@ export function ProductsClientPage({
     maxPrice:    400,
     inStockOnly: false,
   })
+  const [tag]       = useState(initialTag || '')
   const [saleOnly]  = useState(!!initialSale)
   const [packsOnly] = useState(!!initialPacks)
   const [sort,        setSort]       = useState('featured')
@@ -44,6 +52,7 @@ export function ProductsClientPage({
     let r = [...allProducts]
     if (filters.category !== 'all') r = r.filter(p => p.category === filters.category)
     if (filters.brands.length)      r = r.filter(p => filters.brands.includes(p.brand))
+    if (tag)                        r = r.filter(p => p.tags.includes(tag))
     if (saleOnly)                   r = r.filter(p => p.originalPrice != null)
     if (packsOnly)                  r = r.filter(p => p.tags.includes('bundle'))
     if (filters.inStockOnly)        r = r.filter(p => p.inStock)
@@ -62,15 +71,17 @@ export function ProductsClientPage({
       case 'rating':     return r.sort((a, b) => b.rating - a.rating)
       default:           return r.sort((a, b) => Number(b.featured) - Number(a.featured))
     }
-  }, [filters, sort, search, saleOnly, packsOnly])
+  }, [filters, sort, search, tag, saleOnly, packsOnly])
 
   const heading =
-    filters.brands.length === 1      ? filters.brands[0] :
-    saleOnly                         ? 'Sale & Clearance' :
-    packsOnly                        ? 'Bulk Vape Packs' :
-    filters.category === 'all'       ? 'All Products' :
-    filters.category === 'e-liquids' ? 'E-Liquids & Salts' :
-    filters.category === 'mods'      ? 'Pod Systems' :
+    filters.brands.length === 1       ? filters.brands[0] :
+    tag && TAG_LABELS[tag]            ? TAG_LABELS[tag] :
+    saleOnly                          ? 'Sale & Clearance' :
+    packsOnly                         ? 'Bulk Vape Packs' :
+    filters.category === 'all'        ? 'All Products' :
+    filters.category === 'e-liquids'  ? 'E-Liquids & Salts' :
+    filters.category === 'mods'       ? 'Pod Systems & Kits' :
+    filters.category === 'pouches'    ? 'Nicotine Pouches' :
     filters.category.charAt(0).toUpperCase() + filters.category.slice(1)
 
   return (

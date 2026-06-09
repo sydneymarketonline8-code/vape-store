@@ -18,14 +18,15 @@ interface SidebarFiltersProps {
 const CATEGORIES: { value: ProductCategory | 'all'; label: string }[] = [
   { value: 'all',         label: 'All Products' },
   { value: 'disposables', label: 'Disposable Vapes' },
-  { value: 'mods',        label: 'Pod Systems' },
-  { value: 'e-liquids',   label: 'E-Liquids / Salts' },
+  { value: 'mods',        label: 'Pod Systems & Kits' },
+  { value: 'e-liquids',   label: 'E-Liquids & Salts' },
+  { value: 'pouches',     label: 'Nicotine Pouches' },
   { value: 'accessories', label: 'Accessories' },
 ]
 
 const TOP_BRANDS = [
-  'IGET', 'ALFAKHER', 'ALIBARBAR', 'GUNNPOD', 'HQD',
-  'JNR', 'RELX', 'ADALYA', 'BIMO', 'Kuz',
+  'IGET', 'HQD', 'GUNNPOD', 'LOST MARY', 'ALIBARBAR',
+  'FASTA', 'JNR', 'KUZ', 'ALFAKHER', 'X-QLUSIVE',
 ]
 
 export function SidebarFilters({ filters, onChange }: SidebarFiltersProps) {
