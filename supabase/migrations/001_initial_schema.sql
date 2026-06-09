@@ -9,7 +9,7 @@ create table if not exists public.products (
   slug             text        unique not null,
   name             text        not null,
   brand            text        not null,
-  category         text        not null check (category in ('disposables','mods','e-liquids','accessories')),
+  category         text        not null check (category in ('disposables','mods','e-liquids','pouches','accessories')),
   price            numeric(10,2) not null,
   original_price   numeric(10,2),
   image            text        not null,
