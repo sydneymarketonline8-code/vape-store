@@ -198,7 +198,8 @@ drop policy if exists "profiles_admin_all" on public.profiles;
 create policy "profiles_admin_all"
   on public.profiles for all using (public.is_admin(auth.uid()));
 
-create index if not exists idx_profiles_role on public.profiles (role);
+-- Note: idx_profiles_role is created after the reconciliation block below, since
+-- `role` may not exist on a pre-existing profiles table until it is added there.
 
 -- Auto-create a profile on signup.
 create or replace function public.handle_new_user()
@@ -448,13 +449,10 @@ alter table public.products add constraint products_category_check
 alter table public.profiles add column if not exists phone text;
 alter table public.profiles add column if not exists role  public.user_role not null default 'customer';
 
--- orders: add order_number (+ backfill/uniqueness/default) and the new money/fulfilment columns
-alter table public.orders add column if not exists order_number text;
-update public.orders set order_number = 'AV-' || nextval('public.order_number_seq') where order_number is null;
-alter table public.orders alter column order_number set default ('AV-' || nextval('public.order_number_seq'));
-do $$ begin
-  alter table public.orders add constraint orders_order_number_key unique (order_number);
-exception when duplicate_object or duplicate_table then null; end $$;
+-- orders: add the new money/fulfilment columns. Add every column FIRST (incl.
+-- updated_at) before the order_number backfill UPDATE — that UPDATE fires the
+-- set_updated_at trigger, which references updated_at.
+alter table public.orders add column if not exists order_number    text;
 alter table public.orders add column if not exists subtotal        numeric(10,2) not null default 0;
 alter table public.orders add column if not exists shipping_amount numeric(10,2) not null default 0;
 alter table public.orders add column if not exists discount_amount numeric(10,2) not null default 0;
@@ -465,6 +463,12 @@ alter table public.orders add column if not exists tracking_number text;
 alter table public.orders add column if not exists carrier         text;
 alter table public.orders add column if not exists notes           text;
 alter table public.orders add column if not exists updated_at      timestamptz not null default now();
+-- now backfill order_number + add default/uniqueness
+update public.orders set order_number = 'AV-' || nextval('public.order_number_seq') where order_number is null;
+alter table public.orders alter column order_number set default ('AV-' || nextval('public.order_number_seq'));
+do $$ begin
+  alter table public.orders add constraint orders_order_number_key unique (order_number);
+exception when duplicate_object or duplicate_table then null; end $$;
 -- convert legacy text status → order_status enum (safe: old check values are a subset)
 do $$
 begin
@@ -486,6 +490,7 @@ alter table public.order_items add column if not exists sku           text;
 
 -- Indexes on the new columns (created here so they exist on both fresh and
 -- already-provisioned databases — see the reconciliation block above).
+create index if not exists idx_profiles_role        on public.profiles (role);
 create index if not exists idx_products_category_id on public.products (category_id);
 create index if not exists idx_products_status      on public.products (status);
 create index if not exists idx_products_sku         on public.products (sku);
