@@ -1,15 +1,38 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { X } from 'lucide-react'
+
+const STORAGE_KEY = 'announcementDismissed'
+
+/** Thin dismissible promo bar above the header. Dismissal persists in localStorage. */
 export function AnnouncementBar() {
+  // Start hidden to avoid a flash before we can read localStorage on the client;
+  // reveal after mount unless previously dismissed.
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    if (localStorage.getItem(STORAGE_KEY) !== 'true') setVisible(true)
+  }, [])
+
+  if (!visible) return null
+
   return (
-    <div className="bg-[#1a3a2a] py-2 text-center text-sm text-white">
-      $250 minimum order &middot;{' '}
-      <strong>Free shipping over $300</strong> — Australia-wide
-      <span className="mx-3 hidden opacity-40 sm:inline">|</span>
-      <a
-        href="tel:+61480831679"
-        className="hidden text-green-300 transition-colors hover:text-white sm:inline"
+    <div className="relative bg-primary px-8 py-2 text-center text-sm text-white">
+      <span>
+        🚚 <strong>FREE Shipping</strong> on all orders over $300 — Australia-wide
+      </span>
+      <button
+        type="button"
+        aria-label="Dismiss announcement"
+        onClick={() => {
+          localStorage.setItem(STORAGE_KEY, 'true')
+          setVisible(false)
+        }}
+        className="absolute right-2 top-1/2 -translate-y-1/2 rounded p-1 transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
-        +61 480 831 679
-      </a>
+        <X className="h-4 w-4" />
+      </button>
     </div>
   )
 }
