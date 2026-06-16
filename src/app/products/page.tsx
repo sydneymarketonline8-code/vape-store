@@ -37,7 +37,7 @@ export async function generateMetadata({
     'Shop All Vapes'
   return {
     title,
-    description: `Shop ${title.toLowerCase()} at Aussie Vapes — fast AU-wide shipping, age-verified, and 30-day returns.`,
+    description: `Shop ${title.toLowerCase()} at Aussie Vape — fast AU-wide shipping, age-verified, and 30-day returns.`,
   }
 }
 

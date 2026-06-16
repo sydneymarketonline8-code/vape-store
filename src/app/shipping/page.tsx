@@ -3,7 +3,7 @@ import { InfoPage, Section, L } from '@/components/common/info-page'
 
 export const metadata: Metadata = {
   title: 'Shipping Policy',
-  description: 'Shipping times, costs, and dispatch information for Aussie Vapes orders across Australia.',
+  description: 'Shipping times, costs, and dispatch information for Aussie Vape orders across Australia.',
 }
 
 export default function ShippingPage() {

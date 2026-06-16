@@ -4,7 +4,7 @@ import { products } from '@/data/products'
 
 export const metadata: Metadata = {
   title: 'Shop by Brand',
-  description: 'Browse all vape brands stocked at Aussie Vapes — IGET, HQD, Gunnpod, Alfakher, Lost Mary and many more.',
+  description: 'Browse all vape brands stocked at Aussie Vape — IGET, HQD, Gunnpod, Alfakher, Lost Mary and many more.',
 }
 
 function getBrands() {

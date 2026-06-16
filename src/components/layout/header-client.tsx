@@ -15,8 +15,8 @@ import { MobileMenu } from './mobile-menu'
 
 function Logo({ className = '' }: { className?: string }) {
   return (
-    <Link href="/" className={`flex flex-col leading-none ${className}`} aria-label="Aussie Vapes home">
-      <span className="text-xl font-black tracking-tight text-primary sm:text-2xl">AUSSIE VAPES</span>
+    <Link href="/" className={`flex flex-col leading-none ${className}`} aria-label="Aussie Vape home">
+      <span className="text-xl font-black tracking-tight text-primary sm:text-2xl">AUSSIE VAPE</span>
       <span className="hidden text-[10px] font-medium uppercase tracking-widest text-gray-400 sm:block">
         Australia&apos;s #1 Online Vape Store
       </span>

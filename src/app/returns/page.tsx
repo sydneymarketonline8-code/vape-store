@@ -3,7 +3,7 @@ import { InfoPage, Section } from '@/components/common/info-page'
 
 export const metadata: Metadata = {
   title: 'Returns & Refunds',
-  description: 'Our 30-day returns policy, eligibility, and how to request a refund or replacement at Aussie Vapes.',
+  description: 'Our 30-day returns policy, eligibility, and how to request a refund or replacement at Aussie Vape.',
 }
 
 export default function ReturnsPage() {

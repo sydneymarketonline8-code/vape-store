@@ -3,7 +3,7 @@ import { InfoPage, Section, L } from '@/components/common/info-page'
 
 export const metadata: Metadata = {
   title: 'FAQ',
-  description: 'Frequently asked questions about ordering, shipping, payment, and age verification at Aussie Vapes.',
+  description: 'Frequently asked questions about ordering, shipping, payment, and age verification at Aussie Vape.',
 }
 
 export default function FaqPage() {

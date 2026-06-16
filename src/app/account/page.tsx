@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'My Account',
-  description: 'View your Aussie Vapes orders and account details.',
+  description: 'View your Aussie Vape orders and account details.',
 }
 
 function StatusBadge({ status }: { status: string }) {

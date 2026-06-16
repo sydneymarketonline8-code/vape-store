@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Order Confirmation',
-  description: 'Thank you for your Aussie Vapes order.',
+  description: 'Thank you for your Aussie Vape order.',
   robots: { index: false },
 }
 

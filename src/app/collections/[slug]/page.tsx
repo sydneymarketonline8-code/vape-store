@@ -30,13 +30,13 @@ export async function generateMetadata({
   if (!collection) return { title: 'Collection Not Found' }
 
   return {
-    title: `${collection.name} | Aussie Vapes`,
+    title: `${collection.name} | Aussie Vape`,
     description: collection.description,
     // Canonical points at the clean URL (no query params) to avoid duplicate
     // indexing of every filter/sort/page combination.
     alternates: { canonical: `/collections/${slug}` },
     openGraph: {
-      title: `${collection.name} | Aussie Vapes`,
+      title: `${collection.name} | Aussie Vape`,
       description: collection.description,
       type: 'website',
       url: `${SITE_URL}/collections/${slug}`,

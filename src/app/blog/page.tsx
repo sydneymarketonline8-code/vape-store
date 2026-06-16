@@ -3,7 +3,7 @@ import { InfoPage, Section, L } from '@/components/common/info-page'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Guides, product spotlights, and news from the Aussie Vapes team.',
+  description: 'Guides, product spotlights, and news from the Aussie Vape team.',
 }
 
 export default function BlogPage() {

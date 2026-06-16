@@ -3,7 +3,7 @@ import { WishlistClient } from '@/components/shop/wishlist-client'
 
 export const metadata: Metadata = {
   title: 'Wishlist',
-  description: 'Your saved Aussie Vapes products.',
+  description: 'Your saved Aussie Vape products.',
 }
 
 export default function WishlistPage() {

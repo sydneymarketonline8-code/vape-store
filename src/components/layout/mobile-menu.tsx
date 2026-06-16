@@ -63,7 +63,7 @@ export function MobileMenu({
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4">
-              <span className="text-lg font-black tracking-tight text-primary">AUSSIE VAPES</span>
+              <span className="text-lg font-black tracking-tight text-primary">AUSSIE VAPE</span>
               <button
                 type="button"
                 aria-label="Close menu"

@@ -29,7 +29,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex flex-col leading-none">
-              <span className="text-lg font-black tracking-tight text-[#1B7A3E]">AUSSIE VAPES</span>
+              <span className="text-lg font-black tracking-tight text-[#1B7A3E]">AUSSIE VAPE</span>
               <span className="text-[10px] font-medium uppercase tracking-widest text-gray-400">
                 Australia&apos;s #1 Online Vape Store
               </span>
@@ -141,7 +141,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-6 sm:flex-row">
           <p className="text-xs text-gray-400">
-            © {new Date().getFullYear()} Aussie Vapes. All rights reserved. For adults 18+ only.
+            © {new Date().getFullYear()} Aussie Vape. All rights reserved. For adults 18+ only.
           </p>
           <p className="text-xs text-gray-400">
             WARNING: Nicotine is an addictive chemical.

@@ -167,11 +167,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Top Aussie Vapes Brands ───────────────────────────── */}
+      {/* ── Top Aussie Vape Brands ───────────────────────────── */}
       <section className="border-y border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-gray-900">Top Aussie Vapes Brands</h2>
+            <h2 className="text-2xl font-bold text-gray-900">Top Aussie Vape Brands</h2>
             <Link href="/products" className="flex items-center gap-1 text-sm font-medium text-[#1B7A3E] hover:underline">
               View all <ArrowRight className="h-3.5 w-3.5" />
             </Link>

@@ -9,8 +9,8 @@ import { WishlistSync } from '@/components/common/wishlist-sync'
 export const metadata: Metadata = {
   metadataBase: new URL('https://aussievapes.example'),
   title: {
-    default: "Aussie Vapes — Australia's #1 Online Vape Store",
-    template: '%s — Aussie Vapes',
+    default: "Aussie Vape — Australia's #1 Online Vape Store",
+    template: '%s — Aussie Vape',
   },
   description:
     "Australia's leading online vape wholesale store. Shop disposables, pod systems, nicotine salts, e-liquids and accessories with fast AU-wide shipping.",

@@ -3,7 +3,7 @@ import { InfoPage, Section, L } from '@/components/common/info-page'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with the Aussie Vapes team — support hours, email, and order enquiries.',
+  description: 'Get in touch with the Aussie Vape team — support hours, email, and order enquiries.',
 }
 
 export default function ContactPage() {

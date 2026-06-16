@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Checkout',
-  description: 'Securely complete your Aussie Vapes order.',
+  description: 'Securely complete your Aussie Vape order.',
   robots: { index: false },
 }
 
