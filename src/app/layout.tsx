@@ -7,7 +7,7 @@ import { AnnouncementBar } from '@/components/layout/announcement-bar'
 import { WishlistSync } from '@/components/common/wishlist-sync'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://aussievapes.example'),
+  metadataBase: new URL('https://www.aussievape.com.au'),
   title: {
     default: "Aussie Vape — Australia's #1 Online Vape Store",
     template: '%s — Aussie Vape',
