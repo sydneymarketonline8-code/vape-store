@@ -21,6 +21,25 @@ export interface Product {
   tags: string[]
   puffCount?: number
   mlSize?: number
+  // Forward-looking optional fields (present once products are sourced from the
+  // Supabase schema; undefined for the current local-JSON catalogue).
+  sku?: string
+  inventoryQty?: number
+  status?: 'active' | 'draft' | 'pre_order' | 'sold_out'
+  videoUrl?: string
+  manualUrl?: string
+  specs?: Record<string, string>
+}
+
+export interface ProductReview {
+  id: string
+  productId: string
+  reviewerName: string
+  rating: number
+  title?: string | null
+  body: string
+  createdAt: string
+  verified?: boolean
 }
 
 export interface CartItem {
