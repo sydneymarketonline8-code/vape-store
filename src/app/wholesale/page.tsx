@@ -19,7 +19,7 @@ export default function WholesalePage() {
         <p>Many of our best-sellers are available in multi-unit packs at a lower per-unit price. Browse current <L href="/products?packs=true">bulk vape packs</L>.</p>
       </Section>
       <Section heading="Request Trade Pricing">
-        <p>Email <a href="mailto:wholesale@aussievapes.example" className="text-[#1B7A3E] hover:underline">wholesale@aussievapes.example</a> with your business details and the products you&apos;re interested in, and our team will be in touch with a quote.</p>
+        <p>Email <a href="mailto:wholesale@aussievape.com.au" className="text-[#1B7A3E] hover:underline">wholesale@aussievape.com.au</a> with your business details and the products you&apos;re interested in, and our team will be in touch with a quote.</p>
       </Section>
     </InfoPage>
   )

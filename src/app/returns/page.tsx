@@ -16,7 +16,7 @@ export default function ReturnsPage() {
         <p>If your order arrives damaged, faulty, or incorrect, contact us within 7 days of delivery and we&apos;ll arrange a replacement or refund at no cost to you.</p>
       </Section>
       <Section heading="How to Request a Return">
-        <p>Email <a href="mailto:support@aussievapes.example" className="text-[#1B7A3E] hover:underline">support@aussievapes.example</a> with your order number and reason for return. We&apos;ll respond with return instructions within one business day.</p>
+        <p>Email <a href="mailto:support@aussievape.com.au" className="text-[#1B7A3E] hover:underline">support@aussievape.com.au</a> with your order number and reason for return. We&apos;ll respond with return instructions within one business day.</p>
       </Section>
       <Section heading="Refund Processing">
         <p>Approved refunds are issued to your original payment method within 5–10 business days of us receiving the returned item.</p>

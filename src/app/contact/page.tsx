@@ -13,7 +13,7 @@ export default function ContactPage() {
       intro="Questions about an order, a product, or wholesale? Our Australia-based team is here to help during AEST business hours."
     >
       <Section heading="Customer Support">
-        <p>Email: <a href="mailto:support@aussievapes.example" className="text-[#1B7A3E] hover:underline">support@aussievapes.example</a></p>
+        <p>Email: <a href="mailto:support@aussievape.com.au" className="text-[#1B7A3E] hover:underline">support@aussievape.com.au</a></p>
         <p>Hours: Monday–Friday, 9:00am–5:00pm AEST</p>
         <p>We aim to respond to all enquiries within one business day.</p>
       </Section>
