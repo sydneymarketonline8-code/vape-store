@@ -151,8 +151,7 @@ export default async function OrderConfirmationPage({
               {order.status}
             </span>
             <p className="mt-2 text-xs text-gray-400">
-              You&apos;ll receive a confirmation email at{' '}
-              <span className="text-gray-600">{order.email}</span>
+              We&apos;ll confirm your order on WhatsApp once payment is received.
             </p>
           </div>
         </div>
