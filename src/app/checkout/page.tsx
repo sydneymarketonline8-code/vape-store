@@ -4,9 +4,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { ChevronLeft, Lock, Loader2, AlertCircle } from 'lucide-react'
+import { ChevronLeft, Lock, Loader2, AlertCircle, Landmark, Bitcoin, MessageCircle } from 'lucide-react'
 import { useCartStore } from '@/lib/store'
 import { formatPrice } from '@/lib/utils'
+import { PAYMENT_METHODS, type PaymentMethod } from '@/lib/site'
 
 const AU_STATES = ['NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT']
 const MIN_ORDER  = 250
@@ -27,6 +28,7 @@ export default function CheckoutPage() {
   })
   const [loading, setLoading] = useState(false)
   const [error,   setError]   = useState('')
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('payid')
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm(f => ({ ...f, [k]: e.target.value }))
@@ -44,6 +46,7 @@ export default function CheckoutPage() {
         items,
         total,
         email:   form.email,
+        paymentMethod,
         address: {
           name:     `${form.firstName} ${form.lastName}`,
           phone:    form.phone,
@@ -142,17 +145,44 @@ export default function CheckoutPage() {
               </div>
             </section>
 
-            {/* Payment placeholder */}
+            {/* Payment method */}
             <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-base font-bold text-gray-900">Payment</h2>
-              <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 p-5 text-center text-sm text-gray-500">
-                Add your{' '}
-                <code className="rounded bg-gray-200 px-1.5 py-0.5 text-xs text-gray-700">STRIPE_SECRET_KEY</code>{' '}
-                and{' '}
-                <code className="rounded bg-gray-200 px-1.5 py-0.5 text-xs text-gray-700">NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code>{' '}
-                to <code className="text-xs">.env.local</code> to enable card payments.
-                <br />
-                <span className="mt-1 block text-xs text-gray-400">Orders will save to Supabase immediately.</span>
+              <h2 className="mb-1 text-base font-bold text-gray-900">Payment Method</h2>
+              <p className="mb-4 text-sm text-gray-500">
+                Choose how you&apos;d like to pay. After you place your order we&apos;ll send the
+                payment details over WhatsApp to lock it in.
+              </p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {PAYMENT_METHODS.map(m => {
+                  const Icon = m.id === 'payid' ? Landmark : Bitcoin
+                  const selected = paymentMethod === m.id
+                  return (
+                    <button
+                      key={m.id}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() => setPaymentMethod(m.id)}
+                      className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all ${
+                        selected
+                          ? 'border-[#1B7A3E] bg-green-50 ring-1 ring-[#1B7A3E]'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${selected ? 'text-[#1B7A3E]' : 'text-gray-400'}`} />
+                      <span>
+                        <span className={`block text-sm font-semibold ${selected ? 'text-[#1B7A3E]' : 'text-gray-900'}`}>
+                          {m.label}
+                        </span>
+                        <span className="block text-xs text-gray-500">{m.blurb}</span>
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+              <div className="mt-4 flex items-start gap-2 rounded-xl bg-gray-50 p-3 text-xs text-gray-500">
+                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#1B7A3E]" />
+                No card needed. Your order is reserved as <strong>pending</strong>, and we confirm
+                payment with you directly on WhatsApp.
               </div>
             </section>
 

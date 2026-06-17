@@ -234,7 +234,8 @@ create table if not exists public.orders (
   tax_amount       numeric(10,2) not null default 0,
   total            numeric(10,2) not null,
   coupon_code      text,
-  -- Addresses (jsonb: { name, line1, line2, city, state, postcode, country, phone })
+  -- Addresses (jsonb: { name, line1, line2, city, state, postcode, country, phone }).
+  -- The shipping address jsonb also carries `paymentMethod` ('payid' | 'crypto').
   address          jsonb,            -- shipping address (kept name for back-compat)
   billing_address  jsonb,
   -- Fulfilment

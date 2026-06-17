@@ -9,15 +9,25 @@ export async function POST(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
 
   const body = await request.json()
-  const { items, total, email, address } = body
+  const { items, total, email, address, paymentMethod } = body
 
   if (!items?.length) {
     return NextResponse.json({ error: 'Cart is empty' }, { status: 400 })
   }
 
+  const payment = paymentMethod === 'crypto' || paymentMethod === 'payid' ? paymentMethod : null
+
   const { data: order, error: orderError } = await db
     .from('orders')
-    .insert({ user_id: user?.id ?? null, status: 'pending', total, email, address })
+    .insert({
+      user_id: user?.id ?? null,
+      status: 'pending',
+      total,
+      email,
+      // Payment method rides inside the address jsonb so checkout never depends
+      // on a dedicated column existing (manual PayID/crypto, settled via WhatsApp).
+      address: { ...(address ?? {}), paymentMethod: payment },
+    })
     .select()
     .single()
 

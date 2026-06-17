@@ -1,7 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { CheckCircle, Package, ArrowRight } from 'lucide-react'
+import { CheckCircle, Package, ArrowRight, MessageCircle } from 'lucide-react'
 import { formatPrice } from '@/lib/utils'
+import { whatsappLink, paymentMethodLabel } from '@/lib/site'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default async function OrderConfirmationPage({
 
   type OrderRow = {
     id: string; status: string; total: number; email: string
-    created_at: string; address: unknown
+    created_at: string; address: unknown; order_number?: string
     order_items: { id: string; product_name: string; quantity: number; price: number; selected_flavor?: string }[]
   }
 
@@ -45,7 +46,14 @@ export default async function OrderConfirmationPage({
 
   const address = order.address as {
     name?: string; line1?: string; suburb?: string; state?: string; postcode?: string
+    paymentMethod?: string
   } | null
+
+  const orderRef = order.order_number ?? id.slice(0, 8).toUpperCase()
+  const methodLabel = paymentMethodLabel(address?.paymentMethod)
+  const waHref = whatsappLink(
+    `Hi Aussie Vape, I'd like to pay for order ${orderRef} (${formatPrice(order.total)}) via ${methodLabel}. Please send me the payment details to lock my order in.`
+  )
 
   return (
     <div className="mx-auto max-w-2xl px-4 sm:px-6 py-16">
@@ -57,17 +65,38 @@ export default async function OrderConfirmationPage({
             <CheckCircle className="h-10 w-10 text-[#1B7A3E]" />
           </div>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900">Order Placed!</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Order Reserved!</h1>
         <p className="mt-2 text-gray-500">
-          Thanks for your order. We&apos;ll get it on its way shortly.
+          One last step — complete payment via {methodLabel} to lock your order in.
         </p>
         <p className="mt-1 text-sm text-gray-400">
-          Order ID: <span className="font-mono text-gray-600">{id.slice(0, 8).toUpperCase()}</span>
+          Order: <span className="font-mono text-gray-600">{orderRef}</span>
         </p>
       </div>
 
       {/* Order card */}
       <div className="space-y-5">
+
+        {/* Payment — WhatsApp follow-up */}
+        <div className="rounded-2xl border-2 border-[#1B7A3E] bg-green-50/60 p-6 text-center shadow-sm">
+          <h2 className="text-lg font-bold text-gray-900">Complete Your Payment</h2>
+          <p className="mx-auto mt-1 max-w-md text-sm text-gray-600">
+            You chose <strong>{methodLabel}</strong>. Message us on WhatsApp and we&apos;ll send your
+            payment details and confirm your order right away.
+          </p>
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 font-semibold text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <MessageCircle className="h-5 w-5" />
+            Get Payment Details on WhatsApp
+          </a>
+          <p className="mt-3 text-xs text-gray-400">
+            Your order is held as <strong>pending</strong> until payment is confirmed.
+          </p>
+        </div>
 
         {/* Items */}
         <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
