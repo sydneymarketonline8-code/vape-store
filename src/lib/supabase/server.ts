@@ -26,3 +26,19 @@ export async function createClient() {
     }
   )
 }
+
+/** True if the given user (defaults to the current session user) is an admin. */
+export async function isAdmin(userId?: string): Promise<boolean> {
+  const supabase = await createClient()
+  let id = userId
+  if (!id) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+    id = user?.id
+  }
+  if (!id) return false
+  const { data } = await supabase.from('profiles').select('role').eq('id', id).maybeSingle()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (data as any)?.role === 'admin'
+}

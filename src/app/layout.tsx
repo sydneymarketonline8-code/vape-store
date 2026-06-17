@@ -6,6 +6,7 @@ import { AgeGate } from '@/components/common/age-gate'
 import { AnnouncementBar } from '@/components/layout/announcement-bar'
 import { WishlistSync } from '@/components/common/wishlist-sync'
 import { WhatsAppFab } from '@/components/common/whatsapp-fab'
+import { ChromeGate } from '@/components/layout/chrome-gate'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.aussievape.com.au'),
@@ -23,11 +24,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-full flex-col bg-white antialiased">
         <AgeGate />
         <WishlistSync />
-        <AnnouncementBar />
-        <Header />
+        <ChromeGate>
+          <AnnouncementBar />
+          <Header />
+        </ChromeGate>
         <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppFab />
+        <ChromeGate>
+          <Footer />
+          <WhatsAppFab />
+        </ChromeGate>
       </body>
     </html>
   )
