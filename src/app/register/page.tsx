@@ -25,11 +25,17 @@ export default function RegisterPage() {
     setLoading(true)
     setError('')
     const supabase = createClient()
+    // Capture a referral code from /register?ref=CODE (resolved to referred_by
+    // by the handle_new_user DB trigger).
+    const ref =
+      typeof window !== 'undefined'
+        ? new URLSearchParams(window.location.search).get('ref')
+        : null
     const { error: authError } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: { first_name: firstName, last_name: lastName },
+        data: { first_name: firstName, last_name: lastName, ...(ref ? { ref } : {}) },
       },
     })
 

@@ -175,13 +175,17 @@ create index if not exists idx_products_featured on public.products (featured) w
 
 -- ── Profiles ─────────────────────────────────────────────────────────────────
 create table if not exists public.profiles (
-  id          uuid primary key references auth.users on delete cascade,
-  email       text,
-  first_name  text,
-  last_name   text,
-  phone       text,
-  role        public.user_role not null default 'customer',
-  created_at  timestamptz not null default now()
+  id            uuid primary key references auth.users on delete cascade,
+  email         text,
+  first_name    text,
+  last_name     text,
+  phone         text,
+  role          public.user_role not null default 'customer',
+  avatar_url    text,
+  -- 8-char referral code, auto-generated; shared as /register?ref=CODE
+  referral_code text unique default upper(substr(replace(gen_random_uuid()::text, '-', ''), 1, 8)),
+  referred_by   uuid references auth.users on delete set null,
+  created_at    timestamptz not null default now()
 );
 
 alter table public.profiles enable row level security;
@@ -201,12 +205,26 @@ create policy "profiles_admin_all"
 -- Note: idx_profiles_role is created after the reconciliation block below, since
 -- `role` may not exist on a pre-existing profiles table until it is added there.
 
--- Auto-create a profile on signup.
+-- Auto-create a profile on signup. Captures name from signup metadata and, if
+-- the user registered via /register?ref=CODE, links referred_by to the referrer.
 create or replace function public.handle_new_user()
 returns trigger language plpgsql security definer set search_path = public as $$
+declare
+  ref_code text := nullif(new.raw_user_meta_data->>'ref', '');
+  ref_id   uuid;
 begin
-  insert into public.profiles (id, email)
-  values (new.id, new.email)
+  if ref_code is not null then
+    select id into ref_id from public.profiles where referral_code = upper(ref_code) limit 1;
+  end if;
+
+  insert into public.profiles (id, email, first_name, last_name, referred_by)
+  values (
+    new.id,
+    new.email,
+    new.raw_user_meta_data->>'first_name',
+    new.raw_user_meta_data->>'last_name',
+    ref_id
+  )
   on conflict (id) do nothing;
   return new;
 end;
@@ -308,6 +326,7 @@ create table if not exists public.coupons (
   uses_count      integer not null default 0,
   expires_at      timestamptz,
   is_active       boolean not null default true,
+  user_id         uuid references auth.users on delete cascade, -- null = public coupon
   created_at      timestamptz not null default now()
 );
 
@@ -317,6 +336,11 @@ alter table public.coupons enable row level security;
 drop policy if exists "coupons_public_read_active" on public.coupons;
 create policy "coupons_public_read_active"
   on public.coupons for select using (is_active = true);
+
+-- Users can always see coupons issued specifically to them (incl. used/expired).
+drop policy if exists "coupons_own_read" on public.coupons;
+create policy "coupons_own_read"
+  on public.coupons for select using (auth.uid() = user_id);
 
 drop policy if exists "coupons_admin_all" on public.coupons;
 create policy "coupons_admin_all"
@@ -446,9 +470,20 @@ alter table public.products drop constraint if exists products_category_check;
 alter table public.products add constraint products_category_check
   check (category in ('disposables','mods','e-liquids','pouches','accessories'));
 
--- profiles: add role + phone
-alter table public.profiles add column if not exists phone text;
-alter table public.profiles add column if not exists role  public.user_role not null default 'customer';
+-- profiles: add role + phone + account-dashboard fields
+alter table public.profiles add column if not exists phone         text;
+alter table public.profiles add column if not exists role          public.user_role not null default 'customer';
+alter table public.profiles add column if not exists avatar_url    text;
+alter table public.profiles add column if not exists referred_by   uuid references auth.users on delete set null;
+alter table public.profiles add column if not exists referral_code text;
+update public.profiles set referral_code = upper(substr(replace(gen_random_uuid()::text, '-', ''), 1, 8)) where referral_code is null;
+alter table public.profiles alter column referral_code set default upper(substr(replace(gen_random_uuid()::text, '-', ''), 1, 8));
+do $$ begin
+  alter table public.profiles add constraint profiles_referral_code_key unique (referral_code);
+exception when duplicate_object or duplicate_table then null; end $$;
+
+-- coupons: add per-user ownership
+alter table public.coupons add column if not exists user_id uuid references auth.users on delete cascade;
 
 -- orders: add the new money/fulfilment columns. Add every column FIRST (incl.
 -- updated_at) before the order_number backfill UPDATE — that UPDATE fires the
@@ -492,11 +527,40 @@ alter table public.order_items add column if not exists sku           text;
 -- Indexes on the new columns (created here so they exist on both fresh and
 -- already-provisioned databases — see the reconciliation block above).
 create index if not exists idx_profiles_role        on public.profiles (role);
+create index if not exists idx_profiles_referred_by on public.profiles (referred_by);
+create index if not exists idx_coupons_user_id      on public.coupons (user_id);
 create index if not exists idx_products_category_id on public.products (category_id);
 create index if not exists idx_products_status      on public.products (status);
 create index if not exists idx_products_sku         on public.products (sku);
 create index if not exists idx_products_low_stock   on public.products (inventory_qty) where inventory_qty < 5;
 create index if not exists idx_products_fts         on public.products using gin (fts);
+
+-- ── Avatar storage bucket ────────────────────────────────────────────────────
+-- Public bucket for profile avatars; users may write only inside their own
+-- {userId}/ folder. (If your project restricts DDL on the storage schema, create
+-- the bucket + policies from the Supabase Storage dashboard instead.)
+insert into storage.buckets (id, name, public)
+values ('avatars', 'avatars', true)
+on conflict (id) do nothing;
+
+drop policy if exists "avatars_public_read" on storage.objects;
+create policy "avatars_public_read"
+  on storage.objects for select using (bucket_id = 'avatars');
+
+drop policy if exists "avatars_user_insert" on storage.objects;
+create policy "avatars_user_insert"
+  on storage.objects for insert to authenticated
+  with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "avatars_user_update" on storage.objects;
+create policy "avatars_user_update"
+  on storage.objects for update to authenticated
+  using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "avatars_user_delete" on storage.objects;
+create policy "avatars_user_delete"
+  on storage.objects for delete to authenticated
+  using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Notes

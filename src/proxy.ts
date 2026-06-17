@@ -24,7 +24,17 @@ export async function proxy(request: NextRequest) {
   )
 
   // Refresh session so it doesn't expire mid-browse
-  await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  // Protect /account/* — redirect anonymous visitors to login.
+  if (!user && request.nextUrl.pathname.startsWith('/account')) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/login'
+    url.searchParams.set('redirect', request.nextUrl.pathname)
+    return NextResponse.redirect(url)
+  }
 
   return supabaseResponse
 }
