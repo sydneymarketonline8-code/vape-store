@@ -1,32 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { products } from '@/data/products'
+import { parseSearchParams, searchProducts, matchCategory } from '@/lib/search'
 
 /**
- * Autocomplete search. Products currently live in local JSON, so this filters
- * that in-memory. When products move to Supabase, swap the body for a full-text
- * query against the products.fts tsvector column (added in 001_init.sql):
+ * Product search / autocomplete. Runs over the local JSON catalogue (the
+ * storefront's source of truth). When products move to Supabase, swap
+ * searchProducts() for a `.textSearch('fts', q, { type: 'websearch' })` query.
  *
- *   const { data } = await supabase
- *     .from('products')
- *     .select('id, slug, name, price, image')
- *     .textSearch('fts', q, { type: 'websearch' })
- *     .limit(limit)
+ * Params: q, limit (default 6), page, category, sort, minPrice, maxPrice, status.
+ * Returns: { products, totalCount, query, categoryMatch }
+ *
+ * (Search analytics are logged from the /search page, not here, to avoid
+ * flooding search_logs on every autocomplete keystroke.)
  */
 export async function GET(req: NextRequest) {
-  const q = (req.nextUrl.searchParams.get('q') ?? '').trim().toLowerCase()
-  const limit = Math.min(Math.max(Number(req.nextUrl.searchParams.get('limit')) || 6, 1), 24)
+  const sp = req.nextUrl.searchParams
+  const params = parseSearchParams(Object.fromEntries(sp.entries()))
+  const limit = Math.min(Math.max(Number(sp.get('limit')) || 6, 1), 48)
 
-  if (q.length < 2) return NextResponse.json({ products: [] })
+  const { items, total } = searchProducts(params, limit)
 
-  const matches = products
-    .filter(
-      p =>
-        p.name.toLowerCase().includes(q) ||
-        p.brand.toLowerCase().includes(q) ||
-        p.tags?.some(t => t.toLowerCase().includes(q))
-    )
-    .slice(0, limit)
-    .map(p => ({ id: p.id, slug: p.slug, name: p.name, price: p.price, image: p.image }))
+  const products = items.map(p => ({
+    id: p.id,
+    name: p.name,
+    slug: p.slug,
+    sku: p.sku ?? p.id,
+    price: p.price,
+    compareAtPrice: p.originalPrice ?? null,
+    status: p.inStock ? 'active' : 'sold_out',
+    image: p.image,
+    images: [{ url: p.image, is_primary: true }],
+  }))
 
-  return NextResponse.json({ products: matches })
+  return NextResponse.json({
+    products,
+    totalCount: total,
+    query: params.q,
+    categoryMatch: params.q ? matchCategory(params.q) : null,
+  })
 }

@@ -139,14 +139,14 @@ create table if not exists public.products (
   -- Social proof (denormalized from reviews)
   rating             numeric(3,1)  not null default 4.5,
   review_count       integer       not null default 0,
-  -- Full-text search vector (used by GET /api/search once products live in DB)
+  -- Weighted full-text search vector (used by GET /api/search once products
+  -- live in DB). name/sku/brand = A, description = B, tags = C.
   fts                tsvector generated always as (
-                       to_tsvector('english',
-                         coalesce(name, '') || ' ' ||
-                         coalesce(brand, '') || ' ' ||
-                         coalesce(short_description, '') || ' ' ||
-                         array_to_string(tags, ' ')
-                       )
+                       setweight(to_tsvector('english', coalesce(name, '')), 'A') ||
+                       setweight(to_tsvector('english', coalesce(sku, '')), 'A') ||
+                       setweight(to_tsvector('english', coalesce(brand, '')), 'A') ||
+                       setweight(to_tsvector('english', coalesce(description, '')), 'B') ||
+                       setweight(to_tsvector('english', coalesce(array_to_string(tags, ' '), '')), 'C')
                      ) stored,
   created_at         timestamptz   not null default now(),
   updated_at         timestamptz   not null default now()
@@ -437,6 +437,29 @@ drop policy if exists "wishlist_own_all" on public.wishlist_items;
 create policy "wishlist_own_all"
   on public.wishlist_items for all using (auth.uid() = user_id);
 
+-- ── Search logs (analytics; powers "Popular Searches" reporting) ─────────────
+create table if not exists public.search_logs (
+  id            uuid primary key default gen_random_uuid(),
+  query         text not null,
+  results_count integer not null default 0,
+  user_id       uuid references auth.users on delete set null,
+  created_at    timestamptz not null default now()
+);
+
+alter table public.search_logs enable row level security;
+
+-- Anyone (incl. anonymous shoppers) may record a search; only admins can read.
+drop policy if exists "search_logs_insert" on public.search_logs;
+create policy "search_logs_insert"
+  on public.search_logs for insert with check (true);
+
+drop policy if exists "search_logs_admin_read" on public.search_logs;
+create policy "search_logs_admin_read"
+  on public.search_logs for select using (public.is_admin(auth.uid()));
+
+create index if not exists idx_search_logs_query   on public.search_logs (query);
+create index if not exists idx_search_logs_created on public.search_logs (created_at desc);
+
 -- ── Reconcile pre-existing installs ──────────────────────────────────────────
 -- If an earlier schema was already applied (the now-removed 001_initial_schema.sql
 -- + 002_add_pouches_category.sql), the `create table if not exists` blocks above
@@ -457,10 +480,16 @@ alter table public.products add column if not exists specs            jsonb not 
 alter table public.products add column if not exists meta_title       text;
 alter table public.products add column if not exists meta_description text;
 alter table public.products add column if not exists updated_at       timestamptz not null default now();
-alter table public.products add column if not exists fts tsvector generated always as (
-  to_tsvector('english',
-    coalesce(name, '') || ' ' || coalesce(brand, '') || ' ' ||
-    coalesce(short_description, '') || ' ' || array_to_string(tags, ' '))
+-- (Re)create the weighted fts column. Generated-column expressions can't be
+-- ALTERed, so drop + recreate to pick up the current definition. Cheap on an
+-- empty/small products table; the GIN index is recreated in the index block.
+alter table public.products drop column if exists fts;
+alter table public.products add column fts tsvector generated always as (
+  setweight(to_tsvector('english', coalesce(name, '')), 'A') ||
+  setweight(to_tsvector('english', coalesce(sku, '')), 'A') ||
+  setweight(to_tsvector('english', coalesce(brand, '')), 'A') ||
+  setweight(to_tsvector('english', coalesce(description, '')), 'B') ||
+  setweight(to_tsvector('english', coalesce(array_to_string(tags, ' '), '')), 'C')
 ) stored;
 do $$ begin
   alter table public.products add constraint products_sku_key unique (sku);

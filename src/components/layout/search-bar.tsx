@@ -15,23 +15,32 @@ interface SearchResult {
   image: string
 }
 
+interface CategoryMatch {
+  slug: string
+  label: string
+}
+
 interface SearchBarProps {
   /** full-width styling for the mobile expanded state */
   expanded?: boolean
   autoFocus?: boolean
   className?: string
+  /** pre-fill the input (e.g. the /search page) */
+  initialQuery?: string
   /** called after the user navigates to a result (e.g. to collapse mobile search) */
   onNavigate?: () => void
 }
 
-export function SearchBar({ expanded = false, autoFocus = false, className = '', onNavigate }: SearchBarProps) {
+export function SearchBar({ expanded = false, autoFocus = false, className = '', initialQuery = '', onNavigate }: SearchBarProps) {
   const router = useRouter()
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(initialQuery)
   const [results, setResults] = useState<SearchResult[]>([])
+  const [categoryMatch, setCategoryMatch] = useState<CategoryMatch | null>(null)
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(-1) // keyboard-highlighted index (-1 = none)
   const rootRef = useRef<HTMLDivElement>(null)
+  const userTyped = useRef(false) // don't auto-open the popover for a prefilled query
 
   // Debounced fetch (300ms) with abort on re-type. All state updates happen
   // inside the async callback so none run synchronously in the effect body.
@@ -41,6 +50,7 @@ export function SearchBar({ expanded = false, autoFocus = false, className = '',
     const t = setTimeout(async () => {
       if (q.length < 2) {
         setResults([])
+        setCategoryMatch(null)
         setLoading(false)
         return
       }
@@ -51,7 +61,8 @@ export function SearchBar({ expanded = false, autoFocus = false, className = '',
         })
         const data = await res.json()
         setResults(data.products ?? [])
-        setOpen(true)
+        setCategoryMatch(data.categoryMatch ?? null)
+        if (userTyped.current) setOpen(true)
         setActive(-1)
       } catch (err) {
         if (!(err instanceof DOMException && err.name === 'AbortError')) setResults([])
@@ -119,7 +130,10 @@ export function SearchBar({ expanded = false, autoFocus = false, className = '',
           aria-autocomplete="list"
           autoFocus={autoFocus}
           value={query}
-          onChange={e => setQuery(e.target.value)}
+          onChange={e => {
+            userTyped.current = true
+            setQuery(e.target.value)
+          }}
           onFocus={() => query.trim().length >= 2 && setOpen(true)}
           onKeyDown={onKeyDown}
           placeholder="Search disposables, brands, e-liquids…"
@@ -134,6 +148,7 @@ export function SearchBar({ expanded = false, autoFocus = false, className = '',
             onClick={() => {
               setQuery('')
               setResults([])
+              setCategoryMatch(null)
             }}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
           >
@@ -144,10 +159,25 @@ export function SearchBar({ expanded = false, autoFocus = false, className = '',
 
       {showPopover && (
         <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl">
+          {categoryMatch && (
+            <Link
+              href={`/search?q=${encodeURIComponent(query.trim())}&category=${categoryMatch.slug}`}
+              onClick={() => {
+                setOpen(false)
+                onNavigate?.()
+              }}
+              className="flex items-center gap-2 border-b border-gray-100 px-4 py-2.5 text-sm font-medium text-primary hover:bg-primary/5"
+            >
+              <Search className="h-4 w-4 shrink-0" />
+              Search &ldquo;{query.trim()}&rdquo; in {categoryMatch.label}
+            </Link>
+          )}
           {results.length === 0 && !loading ? (
-            <p className="px-4 py-6 text-center text-sm text-gray-500">
-              No products found for &ldquo;{query.trim()}&rdquo;
-            </p>
+            categoryMatch ? null : (
+              <p className="px-4 py-6 text-center text-sm text-gray-500">
+                No products found for &ldquo;{query.trim()}&rdquo;
+              </p>
+            )
           ) : (
             <>
               <ul id="search-suggestions" role="listbox" className="max-h-[60vh] overflow-y-auto py-1">
