@@ -65,6 +65,19 @@ begin
 end;
 $$;
 
+-- Build the weighted product search vector. Declared IMMUTABLE so it can be used
+-- in a generated column — inlining to_tsvector('english', …) directly trips
+-- Postgres's "generation expression is not immutable" check (42P17).
+create or replace function public.products_search_doc(
+  p_name text, p_sku text, p_brand text, p_description text, p_tags text[]
+) returns tsvector language sql immutable as $$
+  select setweight(to_tsvector('english', coalesce(p_name, '')), 'A')
+      || setweight(to_tsvector('english', coalesce(p_sku, '')), 'A')
+      || setweight(to_tsvector('english', coalesce(p_brand, '')), 'A')
+      || setweight(to_tsvector('english', coalesce(p_description, '')), 'B')
+      || setweight(to_tsvector('english', coalesce(array_to_string(p_tags, ' '), '')), 'C');
+$$;
+
 -- ── Categories ─────────────────────────────────────────────────────────────────
 create table if not exists public.categories (
   id          uuid primary key default gen_random_uuid(),
@@ -142,11 +155,7 @@ create table if not exists public.products (
   -- Weighted full-text search vector (used by GET /api/search once products
   -- live in DB). name/sku/brand = A, description = B, tags = C.
   fts                tsvector generated always as (
-                       setweight(to_tsvector('english', coalesce(name, '')), 'A') ||
-                       setweight(to_tsvector('english', coalesce(sku, '')), 'A') ||
-                       setweight(to_tsvector('english', coalesce(brand, '')), 'A') ||
-                       setweight(to_tsvector('english', coalesce(description, '')), 'B') ||
-                       setweight(to_tsvector('english', coalesce(array_to_string(tags, ' '), '')), 'C')
+                       public.products_search_doc(name, sku, brand, description, tags)
                      ) stored,
   created_at         timestamptz   not null default now(),
   updated_at         timestamptz   not null default now()
@@ -480,16 +489,12 @@ alter table public.products add column if not exists specs            jsonb not 
 alter table public.products add column if not exists meta_title       text;
 alter table public.products add column if not exists meta_description text;
 alter table public.products add column if not exists updated_at       timestamptz not null default now();
--- (Re)create the weighted fts column. Generated-column expressions can't be
--- ALTERed, so drop + recreate to pick up the current definition. Cheap on an
--- empty/small products table; the GIN index is recreated in the index block.
+-- (Re)create the weighted fts column via the IMMUTABLE helper. Generated-column
+-- expressions can't be ALTERed, so drop + recreate to pick up the definition.
+-- Cheap on an empty/small products table; the GIN index is recreated below.
 alter table public.products drop column if exists fts;
 alter table public.products add column fts tsvector generated always as (
-  setweight(to_tsvector('english', coalesce(name, '')), 'A') ||
-  setweight(to_tsvector('english', coalesce(sku, '')), 'A') ||
-  setweight(to_tsvector('english', coalesce(brand, '')), 'A') ||
-  setweight(to_tsvector('english', coalesce(description, '')), 'B') ||
-  setweight(to_tsvector('english', coalesce(array_to_string(tags, ' '), '')), 'C')
+  public.products_search_doc(name, sku, brand, description, tags)
 ) stored;
 do $$ begin
   alter table public.products add constraint products_sku_key unique (sku);
