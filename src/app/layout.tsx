@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/footer'
 import { AgeGate } from '@/components/common/age-gate'
 import { AnnouncementBar } from '@/components/layout/announcement-bar'
 import { WishlistSync } from '@/components/common/wishlist-sync'
+import { WhatsAppFab } from '@/components/common/whatsapp-fab'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.aussievape.com.au'),
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppFab />
       </body>
     </html>
   )
