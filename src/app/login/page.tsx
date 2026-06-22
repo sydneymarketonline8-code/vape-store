@@ -25,7 +25,10 @@ export default function LoginPage() {
       setError(authError.message)
       setLoading(false)
     } else {
-      router.push('/')
+      // Honor ?redirect (e.g. the /admin or /account guard), but only for
+      // internal paths to avoid an open-redirect.
+      const redirect = new URLSearchParams(window.location.search).get('redirect')
+      router.push(redirect && redirect.startsWith('/') ? redirect : '/')
       router.refresh()
     }
   }
