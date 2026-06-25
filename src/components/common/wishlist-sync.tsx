@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useWishlistStore } from '@/lib/wishlist-store'
-import { products as allProducts } from '@/data/products'
+import type { Product } from '@/types'
 
 export function WishlistSync() {
   const { items, isWishlisted, toggle } = useWishlistStore()
@@ -25,11 +25,20 @@ export function WishlistSync() {
       if (!dbRows) return
       const dbIds = new Set(dbRows.map(r => r.product_id))
 
-      // Add DB items not yet in local store
-      for (const { product_id } of dbRows) {
-        if (!isWishlisted(product_id)) {
-          const product = allProducts.find(p => p.id === product_id)
-          if (product) toggle(product)
+      // Add DB items not yet in local store. Resolve them via the server so this
+      // root-layout component never bundles the full catalogue into every page.
+      const missing = [...dbIds].filter(id => !isWishlisted(id))
+      if (missing.length) {
+        try {
+          const res = await fetch(`/api/products/resolve?ids=${encodeURIComponent(missing.join(','))}`)
+          if (res.ok) {
+            const body = (await res.json()) as { data?: { products?: Product[] } }
+            for (const product of body.data?.products ?? []) {
+              if (!isWishlisted(product.id)) toggle(product)
+            }
+          }
+        } catch {
+          /* offline / transient — local store is still intact */
         }
       }
 

@@ -7,9 +7,9 @@ import {
   COLLECTIONS,
   getCollection,
   parseCollectionParams,
-  queryCollection,
   buildCollectionHref,
 } from '@/lib/collections'
+import { queryCollection } from '@/lib/collections-query'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 

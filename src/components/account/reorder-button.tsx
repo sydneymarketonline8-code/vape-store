@@ -1,27 +1,29 @@
 'use client'
 
 import { RotateCcw } from 'lucide-react'
-import { products } from '@/data/products'
+import type { Product } from '@/types'
 import { useCartStore } from '@/lib/store'
 
-interface ReorderItem {
-  productId: string | null
+interface ReorderLine {
+  product: Product
   quantity: number
   flavor?: string | null
   nicotine?: number | null
 }
 
-/** Adds every still-available line item from a past order back into the cart. */
-export function ReorderButton({ items }: { items: ReorderItem[] }) {
+/**
+ * Adds every still-available line item from a past order back into the cart.
+ * Products are resolved server-side and passed in, so this client component
+ * doesn't bundle the catalogue.
+ */
+export function ReorderButton({ items }: { items: ReorderLine[] }) {
   const { addItem, setOpen } = useCartStore()
 
   function reorder() {
     let added = 0
     for (const it of items) {
-      const product = products.find(p => p.id === it.productId)
-      if (!product) continue
       for (let i = 0; i < it.quantity; i++) {
-        addItem(product, { flavor: it.flavor || undefined, nicotine: it.nicotine ?? undefined })
+        addItem(it.product, { flavor: it.flavor || undefined, nicotine: it.nicotine ?? undefined })
       }
       added++
     }

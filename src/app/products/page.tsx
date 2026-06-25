@@ -1,59 +1,41 @@
 import type { Metadata } from 'next'
-import { ProductsClientPage } from '@/components/shop/products-client-page'
+import { ProductsBrowser } from '@/components/shop/products-browser'
+import { parseProductsQuery, productsHeading } from '@/lib/products-params'
+import { queryAllProducts } from '@/lib/products-query'
 
-const CATEGORY_LABELS: Record<string, string> = {
-  disposables: 'Disposable Vapes',
-  mods: 'Pod Systems & Kits',
-  'e-liquids': 'E-Liquids & Salts',
-  pouches: 'Nicotine Pouches',
-  accessories: 'Accessories',
-}
-
-const TAG_LABELS: Record<string, string> = {
-  'nicotine-free': 'Nicotine-Free Vapes',
-  'lower-nicotine': 'Lower Nicotine Vapes',
-}
-
-type ProductsSearchParams = {
-  category?: string
-  brand?: string
-  tag?: string
-  sale?: string
-  packs?: string
-}
+type RawParams = Record<string, string | string[] | undefined>
 
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams: Promise<ProductsSearchParams>
+  searchParams: Promise<RawParams>
 }): Promise<Metadata> {
-  const { category, brand, tag, sale, packs } = await searchParams
-  const title =
-    brand ? `${brand} Vapes` :
-    sale ? 'Sale & Clearance' :
-    packs ? 'Bulk Vape Packs' :
-    tag && TAG_LABELS[tag] ? TAG_LABELS[tag] :
-    category && CATEGORY_LABELS[category] ? CATEGORY_LABELS[category] :
-    'Shop All Vapes'
+  const q = parseProductsQuery(await searchParams)
+  const title = productsHeading(q)
   return {
     title,
     description: `Shop ${title.toLowerCase()} at Aussie Vape — fast AU-wide shipping, age-verified, and 30-day returns.`,
+    alternates: { canonical: '/products' },
   }
 }
 
 export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: Promise<ProductsSearchParams>
+  searchParams: Promise<RawParams>
 }) {
-  const { category, brand, tag, sale, packs } = await searchParams
+  const query = parseProductsQuery(await searchParams)
+  const result = queryAllProducts(query)
+  const heading = productsHeading(query)
+
   return (
-    <ProductsClientPage
-      initialCategory={category}
-      initialBrand={brand}
-      initialTag={tag}
-      initialSale={sale === 'true'}
-      initialPacks={packs === 'true'}
+    <ProductsBrowser
+      query={query}
+      heading={heading}
+      total={result.total}
+      page={result.page}
+      totalPages={result.totalPages}
+      items={result.items}
     />
   )
 }

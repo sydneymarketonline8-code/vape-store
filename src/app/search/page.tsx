@@ -7,11 +7,11 @@ import { SearchBar } from '@/components/layout/search-bar'
 import { SearchView } from '@/components/shop/search-view'
 import {
   parseSearchParams,
-  searchProducts,
   didYouMean,
   POPULAR_SEARCHES,
   buildSearchHref,
 } from '@/lib/search'
+import { searchProducts } from '@/lib/search-query'
 
 export async function generateMetadata({
   searchParams,

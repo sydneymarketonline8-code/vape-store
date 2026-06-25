@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { parseSearchParams, searchProducts, matchCategory } from '@/lib/search'
+import { parseSearchParams, matchCategory } from '@/lib/search'
+import { searchProducts } from '@/lib/search-query'
 
 /**
  * Product search / autocomplete. Runs over the local JSON catalogue (the

@@ -96,12 +96,19 @@ export default async function OrderDetailPage({
         <div className="flex items-center gap-3">
           <OrderStatusBadge status={order.status} />
           <ReorderButton
-            items={order.order_items.map(i => ({
-              productId: i.product_id,
-              quantity: i.quantity,
-              flavor: i.selected_flavor,
-              nicotine: i.selected_nicotine,
-            }))}
+            items={order.order_items
+              .map(i => {
+                const product = i.product_id ? products.find(p => p.id === i.product_id) : undefined
+                return product
+                  ? {
+                      product,
+                      quantity: i.quantity,
+                      flavor: i.selected_flavor,
+                      nicotine: i.selected_nicotine,
+                    }
+                  : null
+              })
+              .filter((l): l is NonNullable<typeof l> => l !== null)}
           />
         </div>
       </div>
