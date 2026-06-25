@@ -64,6 +64,7 @@ export function Footer() {
                 { href: '/products?category=e-liquids',   label: 'E-Liquids & Salts' },
                 { href: '/products?category=pouches',     label: 'Nicotine Pouches' },
                 { href: '/products?category=accessories', label: 'Accessories' },
+                { href: '/categories',                    label: 'All Categories' },
                 { href: '/deals',                         label: 'Package Deals' },
                 { href: '/products?sale=true',            label: 'Sale' },
               ].map(l => (

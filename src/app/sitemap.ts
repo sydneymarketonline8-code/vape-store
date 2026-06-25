@@ -7,7 +7,7 @@ const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 
 // Public, indexable routes only (admin/account/checkout/search are excluded).
 const STATIC_PATHS = [
-  '', '/products', '/deals', '/about', '/affiliate', '/where-to-buy', '/brands',
+  '', '/products', '/categories', '/deals', '/about', '/affiliate', '/where-to-buy', '/brands',
   '/blog', '/faq', '/shipping', '/returns', '/contact', '/wholesale',
   '/beginners-guide', '/vaping-laws', '/order-tracking', '/login', '/register',
 ]
