@@ -95,7 +95,7 @@ export const SHOP_CATEGORIES: ShopCategory[] = [
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Shop', href: '/products', mega: true },
   { label: 'Sale', href: '/products?sale=true', highlight: true },
-  { label: 'Combo Packs', href: '/products?packs=true' },
+  { label: 'Deals', href: '/deals' },
   { label: 'New Arrivals', href: '/products?sort=new' },
   { label: 'Brands', href: '/brands' },
   { label: 'Affiliate', href: '/affiliate' },
