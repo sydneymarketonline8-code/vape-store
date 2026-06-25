@@ -1,5 +1,6 @@
 import { createClient, isAdmin } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidateTag } from 'next/cache'
 
 // Upsert a product into Supabase. NOTE: the storefront currently reads products
 // from local JSON, so saved changes won't appear there until the catalogue is
@@ -57,5 +58,8 @@ export async function POST(request: NextRequest) {
   const db = supabase as any
   const { data, error } = await db.from('products').upsert(row).select().single()
   if (error) return NextResponse.json({ error: error.message }, { status: 400 })
+  // Bust any cached product data so the change shows up (Next 16 requires a
+  // cache-life profile as the 2nd arg).
+  revalidateTag('products', 'max')
   return NextResponse.json({ ok: true, product: data })
 }

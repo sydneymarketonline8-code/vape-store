@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Star, Truck, RotateCcw, ShieldCheck, Headphones } from 'lucide-react'
 import { ProductCard } from '@/components/shop/product-card'
+import { HeroIntro } from '@/components/common/hero-intro'
 import { NewsletterForm } from '@/components/common/newsletter-form'
 import { products } from '@/data/products'
 
@@ -65,30 +66,7 @@ export default function HomePage() {
       <section className="border-b border-gray-100 bg-gradient-to-br from-green-50 via-white to-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid min-h-[400px] grid-cols-1 items-center gap-8 py-16 lg:grid-cols-2">
-            <div>
-              <h1 className="mb-4 text-4xl font-black leading-tight text-gray-900 sm:text-5xl">
-                Australia&apos;s #1 Online<br />
-                <span className="text-[#1B7A3E]">Vape Store</span>
-              </h1>
-              <p className="mb-8 max-w-md text-lg text-gray-500">
-                Premium vapes at wholesale prices. Trusted by 10,000+ customers across Australia.
-                Fast dispatch, nation-wide.
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/products?category=disposables"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1B7A3E] px-8 py-3.5 font-semibold text-white transition-colors hover:bg-[#156331]"
-                >
-                  Shop Disposables <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/products"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#1B7A3E] px-8 py-3.5 font-semibold text-[#1B7A3E] transition-colors hover:bg-green-50"
-                >
-                  Browse All Products
-                </Link>
-              </div>
-            </div>
+            <HeroIntro />
 
             {/* Featured product spotlight */}
             <div className="flex justify-center lg:justify-end">
