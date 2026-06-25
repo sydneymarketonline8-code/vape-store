@@ -1,6 +1,21 @@
 import { createServerClient } from '@supabase/ssr'
+import { createClient as createSupabaseJsClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 import type { Database } from './database.types'
+
+/**
+ * Service-role client — bypasses RLS. Use ONLY in trusted server code (never
+ * expose to the browser) for operations the anon/auth policies don't cover,
+ * e.g. creating orders at checkout. The caller is responsible for validation
+ * and for setting fields like user_id correctly.
+ */
+export function createServiceClient() {
+  return createSupabaseJsClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { auth: { autoRefreshToken: false, persistSession: false } }
+  )
+}
 
 export async function createClient() {
   const cookieStore = await cookies()

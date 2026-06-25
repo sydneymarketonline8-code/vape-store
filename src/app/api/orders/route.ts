@@ -1,10 +1,12 @@
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient()
+  // Order creation runs with the service role (RLS would otherwise block guest
+  // inserts). user_id is taken from the authenticated session, not the client.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const db = supabase as any
+  const db = createServiceClient() as any
 
   const { data: { user } } = await supabase.auth.getUser()
 
