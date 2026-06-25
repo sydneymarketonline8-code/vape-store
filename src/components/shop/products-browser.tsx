@@ -132,6 +132,7 @@ export function ProductsBrowser({ query, heading, total, page, totalPages, items
                   className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-[#1B7A3E] focus:outline-none"
                 >
                   <option value="featured">Featured</option>
+                  <option value="new">Newest</option>
                   <option value="price-asc">Price: Low → High</option>
                   <option value="price-desc">Price: High → Low</option>
                   <option value="rating">Top Rated</option>

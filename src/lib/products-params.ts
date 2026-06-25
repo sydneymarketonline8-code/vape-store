@@ -4,7 +4,7 @@
 
 export const PRODUCTS_PAGE_SIZE = 24
 
-export type ProductsSort = 'featured' | 'price-asc' | 'price-desc' | 'rating'
+export type ProductsSort = 'featured' | 'new' | 'price-asc' | 'price-desc' | 'rating'
 
 export interface ProductsQuery {
   category: string // 'all' or a category slug
@@ -24,7 +24,7 @@ export const TAG_LABELS: Record<string, string> = {
   'lower-nicotine': 'Lower Nicotine Vapes',
 }
 
-const SORTS: ProductsSort[] = ['featured', 'price-asc', 'price-desc', 'rating']
+const SORTS: ProductsSort[] = ['featured', 'new', 'price-asc', 'price-desc', 'rating']
 type Raw = Record<string, string | string[] | undefined>
 
 function first(v: string | string[] | undefined): string | undefined {

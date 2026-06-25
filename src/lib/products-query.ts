@@ -36,6 +36,8 @@ export function queryAllProducts(q: ProductsQuery): ProductsResult {
 
   const sorted = [...r]
   switch (q.sort) {
+    // No created_at in local data — id descending is a reasonable "newest" proxy.
+    case 'new': sorted.sort((a, b) => Number(b.id) - Number(a.id)); break
     case 'price-asc': sorted.sort((a, b) => a.price - b.price); break
     case 'price-desc': sorted.sort((a, b) => b.price - a.price); break
     case 'rating': sorted.sort((a, b) => b.rating - a.rating); break
