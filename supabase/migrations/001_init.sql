@@ -661,6 +661,61 @@ create policy "avatars_user_delete"
   on storage.objects for delete to authenticated
   using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
 
+-- ── Denormalized product ratings ─────────────────────────────────────────────
+-- Keep products.rating + review_count in sync with APPROVED reviews so grids,
+-- sorting and APIs can read real ratings cheaply (no per-card subqueries) — and
+-- never expose fabricated numbers. security definer so a customer's review write
+-- can update the product row past RLS.
+create or replace function public.refresh_product_rating(p_product_id text)
+returns void language plpgsql security definer set search_path = public as $$
+begin
+  update public.products p
+  set review_count = sub.cnt,
+      rating       = coalesce(sub.avg_rating, 0)
+  from (
+    select count(*)::int as cnt,
+           round(avg(rating)::numeric, 1) as avg_rating
+    from public.reviews
+    where product_id = p_product_id and status = 'approved'
+  ) sub
+  where p.id = p_product_id;
+end;
+$$;
+
+create or replace function public.reviews_sync_product_rating()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  if tg_op = 'DELETE' then
+    perform public.refresh_product_rating(old.product_id);
+    return old;
+  end if;
+  perform public.refresh_product_rating(new.product_id);
+  if tg_op = 'UPDATE' and new.product_id is distinct from old.product_id then
+    perform public.refresh_product_rating(old.product_id);
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists reviews_sync_rating on public.reviews;
+create trigger reviews_sync_rating
+  after insert or update or delete on public.reviews
+  for each row execute procedure public.reviews_sync_product_rating();
+
+-- One-time (idempotent) backfill: recompute every product's rating/count from
+-- approved reviews. Resets the scraped placeholder values to reality (0 where
+-- there are no real reviews yet).
+update public.products p
+set review_count = coalesce(sub.cnt, 0),
+    rating       = coalesce(sub.avg_rating, 0)
+from (
+  select pr.id,
+    (select count(*) from public.reviews r where r.product_id = pr.id and r.status = 'approved')::int as cnt,
+    (select round(avg(r.rating)::numeric, 1) from public.reviews r where r.product_id = pr.id and r.status = 'approved') as avg_rating
+  from public.products pr
+) sub
+where p.id = sub.id;
+
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Notes
 -- • The service role key bypasses RLS entirely, so admin server components that
