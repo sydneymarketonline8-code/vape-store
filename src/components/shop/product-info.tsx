@@ -105,9 +105,13 @@ export function ProductInfo({
         <p className="mt-1 text-xs text-neutral-400">SKU: {sku}</p>
       </div>
 
-      {/* Rating → scrolls to reviews */}
-      <button type="button" onClick={scrollToReviews} className="flex w-fit items-center gap-2 hover:opacity-80">
-        <StarRating value={rating} count={reviewCount} />
+      {/* Rating → scrolls to reviews. Only shown once there are real reviews. */}
+      <button type="button" onClick={scrollToReviews} className="flex w-fit items-center gap-2 text-sm hover:opacity-80">
+        {reviewCount > 0 ? (
+          <StarRating value={rating} count={reviewCount} />
+        ) : (
+          <span className="text-gray-400">No reviews yet — be the first to review</span>
+        )}
       </button>
 
       {/* Price */}

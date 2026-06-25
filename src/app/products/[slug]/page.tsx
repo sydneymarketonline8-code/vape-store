@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { products, getProductBySlug, getProductsByCategory } from '@/data/products'
+import { createServiceClient } from '@/lib/supabase/server'
 import { ProductGallery } from '@/components/shop/product-gallery'
 import { ProductInfo } from '@/components/shop/product-info'
 import { ProductTabs } from '@/components/shop/product-tabs'
@@ -60,8 +61,28 @@ export default async function ProductPage({
   const product = getProductBySlug(slug)
   if (!product) notFound()
 
-  const rating = product.rating
-  const reviewCount = product.reviewCount
+  // Use ONLY real, approved customer reviews for the rating — never the scraped
+  // placeholder numbers in the catalogue JSON (fabricated aggregateRating risks a
+  // Google structured-data manual action). Service client = cookie-free, so the
+  // page stays statically rendered. 0 reviews → no rating shown, no schema rating.
+  let rating = 0
+  let reviewCount = 0
+  try {
+    const supabase = createServiceClient()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: rows } = await (supabase as any)
+      .from('reviews')
+      .select('rating')
+      .eq('product_id', product.id)
+      .eq('status', 'approved')
+    const ratings = (rows ?? []) as { rating: number }[]
+    reviewCount = ratings.length
+    rating = reviewCount ? Math.round((ratings.reduce((s, r) => s + r.rating, 0) / reviewCount) * 10) / 10 : 0
+  } catch {
+    rating = 0
+    reviewCount = 0
+  }
+
   const categoryLabel = CATEGORY_LABELS[product.category] ?? product.category
 
   const breadcrumbs = [

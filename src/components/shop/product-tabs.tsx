@@ -163,9 +163,18 @@ function ReviewsTab({ product, rating, reviewCount }: { product: Product; rating
       {/* Aggregate */}
       <div className="grid gap-6 border-b border-gray-100 pb-6 sm:grid-cols-[200px_1fr]">
         <div className="flex flex-col items-center justify-center text-center">
-          <span className="text-5xl font-black text-gray-900">{rating.toFixed(1)}</span>
-          <StarRating value={rating} showCount={false} className="mt-1" />
-          <span className="mt-1 text-sm text-gray-400">{reviewCount} review{reviewCount === 1 ? '' : 's'}</span>
+          {reviewCount > 0 ? (
+            <>
+              <span className="text-5xl font-black text-gray-900">{rating.toFixed(1)}</span>
+              <StarRating value={rating} showCount={false} className="mt-1" />
+              <span className="mt-1 text-sm text-gray-400">{reviewCount} review{reviewCount === 1 ? '' : 's'}</span>
+            </>
+          ) : (
+            <>
+              <span className="text-3xl font-bold text-gray-300">—</span>
+              <span className="mt-1 text-sm text-gray-400">No ratings yet</span>
+            </>
+          )}
         </div>
         <div className="flex flex-col justify-center gap-1.5">
           {dist.map(({ stars, n }) => {
