@@ -281,6 +281,11 @@ drop policy if exists "orders_own_read" on public.orders;
 create policy "orders_own_read"
   on public.orders for select using (auth.uid() = user_id);
 
+-- Customers create orders for themselves; guests create with a null user_id.
+drop policy if exists "orders_insert" on public.orders;
+create policy "orders_insert"
+  on public.orders for insert with check (auth.uid() = user_id or user_id is null);
+
 drop policy if exists "orders_admin_all" on public.orders;
 create policy "orders_admin_all"
   on public.orders for all using (public.is_admin(auth.uid()));
@@ -315,6 +320,16 @@ drop policy if exists "order_items_own_read" on public.order_items;
 create policy "order_items_own_read"
   on public.order_items for select using (
     auth.uid() = (select user_id from public.orders where id = order_id)
+  );
+
+-- Insert items only for an order the caller could create (own or guest order).
+drop policy if exists "order_items_insert" on public.order_items;
+create policy "order_items_insert"
+  on public.order_items for insert with check (
+    exists (
+      select 1 from public.orders o
+      where o.id = order_id and (o.user_id = auth.uid() or o.user_id is null)
+    )
   );
 
 drop policy if exists "order_items_admin_all" on public.order_items;
