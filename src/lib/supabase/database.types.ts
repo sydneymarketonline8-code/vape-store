@@ -342,6 +342,11 @@ export interface Database {
         }
         Update: Partial<Database['public']['Tables']['blog_posts']['Insert']>
       }
+      newsletter_subscribers: {
+        Row: { id: string; email: string; created_at: string }
+        Insert: { email: string }
+        Update: Partial<{ email: string }>
+      }
     }
     Enums: {
       product_status: ProductStatus

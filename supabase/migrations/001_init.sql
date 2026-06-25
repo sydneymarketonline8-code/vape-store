@@ -516,6 +516,24 @@ create trigger blog_posts_set_updated_at
 
 create index if not exists idx_blog_published on public.blog_posts (published_at desc);
 
+-- ── Newsletter subscribers ───────────────────────────────────────────────────
+create table if not exists public.newsletter_subscribers (
+  id         uuid primary key default gen_random_uuid(),
+  email      text unique not null,
+  created_at timestamptz not null default now()
+);
+
+alter table public.newsletter_subscribers enable row level security;
+
+-- Anyone may subscribe; only admins can read the list.
+drop policy if exists "newsletter_insert" on public.newsletter_subscribers;
+create policy "newsletter_insert"
+  on public.newsletter_subscribers for insert with check (true);
+
+drop policy if exists "newsletter_admin_read" on public.newsletter_subscribers;
+create policy "newsletter_admin_read"
+  on public.newsletter_subscribers for select using (public.is_admin(auth.uid()));
+
 -- ── Reconcile pre-existing installs ──────────────────────────────────────────
 -- If an earlier schema was already applied (the now-removed 001_initial_schema.sql
 -- + 002_add_pouches_category.sql), the `create table if not exists` blocks above
