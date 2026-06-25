@@ -1,14 +1,27 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { products as allProducts } from '@/data/products'
+import { createClient } from '@/lib/supabase/server'
 import { formatPrice } from '@/lib/utils'
 import { SEARCH_CATEGORIES } from '@/lib/search'
+import { DeleteProductButton } from '@/components/admin/delete-product-button'
 import { Plus, Search, Pencil, Info } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Products' }
 
 const PAGE_SIZE = 20
+
+const STATUS_STYLES: Record<string, string> = {
+  active: 'bg-green-50 text-green-700',
+  draft: 'bg-neutral-100 text-neutral-500',
+  pre_order: 'bg-blue-50 text-blue-700',
+  sold_out: 'bg-red-50 text-red-600',
+}
+
+type ProductRow = {
+  id: string; name: string; sku: string | null; category: string
+  price: number; inventory_qty: number; status: string; image: string
+}
 
 export default async function AdminProductsPage({
   searchParams,
@@ -17,15 +30,20 @@ export default async function AdminProductsPage({
 }) {
   const { q = '', category = '', page: pageParam } = await searchParams
   const page = Math.max(1, Number(pageParam) || 1)
-  const ql = q.trim().toLowerCase()
+  const ql = q.trim()
 
-  let list = allProducts
-  if (category) list = list.filter(p => p.category === category)
-  if (ql) list = list.filter(p => p.name.toLowerCase().includes(ql) || p.id.toLowerCase().includes(ql) || p.brand.toLowerCase().includes(ql))
+  const supabase = await createClient()
+  let query = supabase
+    .from('products')
+    .select('id, name, sku, category, price, inventory_qty, status, image', { count: 'exact' })
+  if (category) query = query.eq('category', category)
+  if (ql) query = query.or(`name.ilike.%${ql}%,sku.ilike.%${ql}%,brand.ilike.%${ql}%`)
+  query = query.order('updated_at', { ascending: false }).range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1)
 
-  const total = list.length
+  const { data, count } = await query
+  const products = (data ?? []) as ProductRow[]
+  const total = count ?? 0
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
-  const pageItems = list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
   const buildHref = (next: Record<string, string | number>) => {
     const sp = new URLSearchParams()
@@ -45,10 +63,10 @@ export default async function AdminProductsPage({
         </Link>
       </div>
 
-      <div className="mb-4 flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2.5 text-xs text-amber-800">
+      <div className="mb-4 flex items-start gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2.5 text-xs text-blue-800">
         <Info className="mt-0.5 h-4 w-4 shrink-0" />
-        Products are served from the static catalogue ({allProducts.length} items). The editor saves to Supabase
-        and won’t change the live storefront until the catalogue is migrated to the database.
+        Live from Supabase ({total} products). Edits and new products here are saved to the database.
+        The public storefront still reads the static catalogue until it&apos;s switched to the DB.
       </div>
 
       {/* Search + category */}
@@ -67,39 +85,46 @@ export default async function AdminProductsPage({
       </form>
 
       <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="border-b border-neutral-100 bg-neutral-50 text-left text-xs uppercase tracking-wide text-neutral-500">
-              <tr><th className="px-4 py-3 font-medium">Image</th><th className="px-4 py-3 font-medium">Name</th><th className="px-4 py-3 font-medium">SKU</th><th className="px-4 py-3 font-medium">Category</th><th className="px-4 py-3 font-medium">Price</th><th className="px-4 py-3 font-medium">Inventory</th><th className="px-4 py-3 font-medium">Status</th><th className="px-4 py-3 text-right font-medium">Actions</th></tr>
-            </thead>
-            <tbody className="divide-y divide-neutral-100">
-              {pageItems.map(p => (
-                <tr key={p.id} className="hover:bg-neutral-50">
-                  <td className="px-4 py-2">
-                    <div className="relative h-10 w-10 overflow-hidden rounded border border-neutral-100 bg-neutral-50">
-                      <Image src={p.image} alt="" fill sizes="40px" className="object-contain p-0.5" unoptimized />
-                    </div>
-                  </td>
-                  <td className="max-w-xs px-4 py-2"><p className="line-clamp-1 text-neutral-900">{p.name}</p></td>
-                  <td className="px-4 py-2 font-mono text-xs text-neutral-500">{p.id}</td>
-                  <td className="px-4 py-2 capitalize text-neutral-600">{p.category}</td>
-                  <td className="px-4 py-2 font-medium text-neutral-900">{formatPrice(p.price)}</td>
-                  <td className="px-4 py-2 text-neutral-600">{p.inStock ? 'In stock' : '0'}</td>
-                  <td className="px-4 py-2">
-                    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${p.inStock ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
-                      {p.inStock ? 'active' : 'sold out'}
-                    </span>
-                  </td>
-                  <td className="px-4 py-2 text-right">
-                    <Link href={`/admin/products/${p.id}`} className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline">
-                      <Pencil className="h-3.5 w-3.5" /> Edit
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {products.length === 0 ? (
+          <p className="p-8 text-center text-sm text-neutral-400">No products found.</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="border-b border-neutral-100 bg-neutral-50 text-left text-xs uppercase tracking-wide text-neutral-500">
+                <tr><th className="px-4 py-3 font-medium">Image</th><th className="px-4 py-3 font-medium">Name</th><th className="px-4 py-3 font-medium">SKU</th><th className="px-4 py-3 font-medium">Category</th><th className="px-4 py-3 font-medium">Price</th><th className="px-4 py-3 font-medium">Inventory</th><th className="px-4 py-3 font-medium">Status</th><th className="px-4 py-3 text-right font-medium">Actions</th></tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-100">
+                {products.map(p => (
+                  <tr key={p.id} className="hover:bg-neutral-50">
+                    <td className="px-4 py-2">
+                      <div className="relative h-10 w-10 overflow-hidden rounded border border-neutral-100 bg-neutral-50">
+                        {p.image && <Image src={p.image} alt="" fill sizes="40px" className="object-contain p-0.5" unoptimized />}
+                      </div>
+                    </td>
+                    <td className="max-w-xs px-4 py-2"><p className="line-clamp-1 text-neutral-900">{p.name}</p></td>
+                    <td className="px-4 py-2 font-mono text-xs text-neutral-500">{p.sku ?? '—'}</td>
+                    <td className="px-4 py-2 capitalize text-neutral-600">{p.category}</td>
+                    <td className="px-4 py-2 font-medium text-neutral-900">{formatPrice(p.price)}</td>
+                    <td className={`px-4 py-2 ${p.inventory_qty < 5 ? 'font-semibold text-amber-600' : 'text-neutral-600'}`}>{p.inventory_qty}</td>
+                    <td className="px-4 py-2">
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-semibold capitalize ${STATUS_STYLES[p.status] ?? STATUS_STYLES.draft}`}>
+                        {p.status.replace('_', ' ')}
+                      </span>
+                    </td>
+                    <td className="px-4 py-2">
+                      <div className="flex items-center justify-end gap-3">
+                        <Link href={`/admin/products/${p.id}`} className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline">
+                          <Pencil className="h-3.5 w-3.5" /> Edit
+                        </Link>
+                        <DeleteProductButton id={p.id} name={p.name} />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
 
       <div className="mt-4 flex items-center justify-between text-sm text-neutral-500">
