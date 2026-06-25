@@ -37,6 +37,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: orderError.message }, { status: 500 })
   }
 
+  // Which cart product ids actually exist in the products table? Any that don't
+  // (stale cart, deleted product, catalogue not yet in DB) get a null product_id
+  // — order_items still snapshots the name + price, so the FK never breaks checkout.
+  const cartIds = [...new Set(items.map((i: { product: { id: string } }) => i.product.id))] as string[]
+  const { data: existing } = await db.from('products').select('id').in('id', cartIds)
+  const validIds = new Set((existing ?? []).map((r: { id: string }) => r.id))
+
   const orderItems = items.map((item: {
     product: { id: string; name: string; price: number }
     quantity: number
@@ -44,7 +51,7 @@ export async function POST(request: NextRequest) {
     selectedNicotine?: number
   }) => ({
     order_id:          order.id,
-    product_id:        item.product.id,
+    product_id:        validIds.has(item.product.id) ? item.product.id : null,
     product_name:      item.product.name,
     quantity:          item.quantity,
     price:             item.product.price,
