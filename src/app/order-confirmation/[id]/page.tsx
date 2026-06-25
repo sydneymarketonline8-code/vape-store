@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { CheckCircle, Package, ArrowRight, MessageCircle } from 'lucide-react'
 import { formatPrice } from '@/lib/utils'
@@ -16,10 +16,11 @@ export default async function OrderConfirmationPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  const { id }   = await params
-  const supabase = await createClient()
+  const { id } = await params
+  // Read with the service role, keyed by the unguessable order id in the URL,
+  // so guest orders (no user_id / no session) display on the confirmation page.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const db = supabase as any
+  const db = createServiceClient() as any
 
   type OrderRow = {
     id: string; status: string; total: number; email: string
