@@ -318,6 +318,30 @@ export interface Database {
         }
         Update: Partial<Database['public']['Tables']['search_logs']['Insert']>
       }
+      blog_posts: {
+        Row: {
+          id: string
+          slug: string
+          title: string
+          excerpt: string | null
+          content: string
+          cover_image: string | null
+          author: string | null
+          published_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          slug: string
+          title: string
+          excerpt?: string | null
+          content?: string
+          cover_image?: string | null
+          author?: string | null
+          published_at?: string | null
+        }
+        Update: Partial<Database['public']['Tables']['blog_posts']['Insert']>
+      }
     }
     Enums: {
       product_status: ProductStatus

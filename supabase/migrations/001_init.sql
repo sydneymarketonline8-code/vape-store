@@ -484,6 +484,38 @@ create policy "search_logs_admin_read"
 create index if not exists idx_search_logs_query   on public.search_logs (query);
 create index if not exists idx_search_logs_created on public.search_logs (created_at desc);
 
+-- ── Blog posts ───────────────────────────────────────────────────────────────
+create table if not exists public.blog_posts (
+  id           uuid primary key default gen_random_uuid(),
+  slug         text unique not null,
+  title        text not null,
+  excerpt      text,
+  content      text not null default '',   -- HTML authored in the admin editor
+  cover_image  text,
+  author       text,
+  published_at timestamptz,                 -- null = draft (hidden from the public)
+  created_at   timestamptz not null default now(),
+  updated_at   timestamptz not null default now()
+);
+
+alter table public.blog_posts enable row level security;
+
+-- Public sees only published posts; admins manage everything.
+drop policy if exists "blog_public_read" on public.blog_posts;
+create policy "blog_public_read"
+  on public.blog_posts for select using (published_at is not null and published_at <= now());
+
+drop policy if exists "blog_admin_all" on public.blog_posts;
+create policy "blog_admin_all"
+  on public.blog_posts for all using (public.is_admin(auth.uid()));
+
+drop trigger if exists blog_posts_set_updated_at on public.blog_posts;
+create trigger blog_posts_set_updated_at
+  before update on public.blog_posts
+  for each row execute procedure public.set_updated_at();
+
+create index if not exists idx_blog_published on public.blog_posts (published_at desc);
+
 -- ── Reconcile pre-existing installs ──────────────────────────────────────────
 -- If an earlier schema was already applied (the now-removed 001_initial_schema.sql
 -- + 002_add_pouches_category.sql), the `create table if not exists` blocks above
