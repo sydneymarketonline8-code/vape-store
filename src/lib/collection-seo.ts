@@ -67,6 +67,49 @@ export function buildCollectionSeo(slug: string, name: string, s: Stats): Collec
   return { metaTitle, metaDescription, intro, whyBuy, faqs }
 }
 
+/** Honest, data-driven SEO content for a Tier-3 series page (brand + exact puff count). */
+export function buildSeriesSeo(
+  brand: string,
+  categoryName: string,
+  puff: number,
+  count: number,
+  minPrice: number,
+  slug: string
+): CollectionSeo {
+  const note = NOTE[slug] ?? { noun: categoryName.toLowerCase(), trait: 'genuine products at fair prices' }
+  const fromPrice = minPrice ? money(minPrice) : ''
+  const countStr = count.toLocaleString()
+  const puffStr = `${puff.toLocaleString()}-puff`
+  const label = `${brand} ${puff.toLocaleString()} Puffs`
+
+  const metaTitle = `Buy ${brand} ${puff.toLocaleString()} Puffs Online Australia | Aussie Vape`.slice(0, 60)
+  const metaDescription =
+    `Shop ${countStr} ${brand} ${puffStr} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} at Aussie Vape. Fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
+
+  const intro =
+    `Shop the ${label} range at Aussie Vape — ${countStr} ${puffStr} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''}, in a choice of flavours. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+
+  const whyBuy =
+    `The ${label} line is rated for around ${puff.toLocaleString()} puffs per device. We stock ${countStr} flavours with fast dispatch from Australia and free shipping on orders over $300, every order age-verified (18+) and backed by 30-day returns on unopened products.`
+
+  const faqs: Faq[] = [
+    {
+      q: `How many puffs does the ${brand} ${puff.toLocaleString()} have?`,
+      a: `The ${label} is rated for up to around ${puff.toLocaleString()} puffs per device. Real-world usage depends on how often and how long you draw.`,
+    },
+    {
+      q: `Where can I buy the ${brand} ${puff.toLocaleString()} in Australia?`,
+      a: `The ${label} range is available at Aussie Vape — ${countStr} flavours${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free.`,
+    },
+    {
+      q: `How much is the ${brand} ${puff.toLocaleString()}?`,
+      a: `It starts${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, with multi-pack bundles bringing the price per device down further. The current price is on each product page.`,
+    },
+  ]
+
+  return { metaTitle, metaDescription, intro, whyBuy, faqs }
+}
+
 /** Honest, data-driven SEO content for a brand cluster page (/collections/[slug]/[brand]). */
 export function buildBrandCategorySeo(
   brand: string,

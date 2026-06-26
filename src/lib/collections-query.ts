@@ -60,7 +60,17 @@ export interface BrandCategoryData {
   count: number
   minPrice: number
   puffCounts: number[]
+  puffSeries: { puff: number; count: number }[]
   otherBrands: { name: string; slug: string; count: number }[]
+}
+
+export interface SeriesData {
+  brand: string
+  puff: number
+  list: Product[]
+  count: number
+  minPrice: number
+  otherSeries: { puff: number; count: number }[]
 }
 
 /** Brand×category combos with at least `min` products — for generateStaticParams + sitemap. */
@@ -87,7 +97,12 @@ export function resolveBrandInCategory(slug: string, brandParam: string): BrandC
     .filter(p => p.brand === brand)
     .sort((a, b) => Number(b.featured) - Number(a.featured) || (b.reviewCount ?? 0) - (a.reviewCount ?? 0))
   const minPrice = Math.min(...list.map(p => p.price))
-  const puffCounts = [...new Set(list.map(p => p.puffCount).filter((n): n is number => !!n))].sort((a, b) => b - a)
+
+  // Per-puff series counts (sorted by puff desc) for the brand in this category.
+  const puffMap = new Map<number, number>()
+  for (const p of list) if (p.puffCount) puffMap.set(p.puffCount, (puffMap.get(p.puffCount) ?? 0) + 1)
+  const puffSeries = [...puffMap.entries()].map(([puff, count]) => ({ puff, count })).sort((a, b) => b.puff - a.puff)
+  const puffCounts = puffSeries.map(s => s.puff)
 
   const counts = new Map<string, number>()
   for (const p of inCat) counts.set(p.brand, (counts.get(p.brand) ?? 0) + 1)
@@ -97,7 +112,50 @@ export function resolveBrandInCategory(slug: string, brandParam: string): BrandC
     .slice(0, 6)
     .map(([name, count]) => ({ name, slug: brandSlug(name), count }))
 
-  return { brand, list, count: list.length, minPrice, puffCounts, otherBrands }
+  return { brand, list, count: list.length, minPrice, puffCounts, puffSeries, otherBrands }
+}
+
+/** Series slug helpers: a series is a brand's exact puff count, e.g. "15000-puffs". */
+export const seriesSlug = (puff: number) => `${puff}-puffs`
+
+/** Series combos (category × brand × puff, ≥min products, brand has ≥2 puff counts). */
+export function seriesParams(min = 5): { slug: string; brand: string; series: string }[] {
+  const combo = new Map<string, number>()
+  const brandPuffs = new Map<string, Set<number>>()
+  for (const p of allProducts) {
+    if (!p.brand || p.brand === 'OTHER' || !p.puffCount) continue
+    combo.set(`${p.category}::${p.brand}::${p.puffCount}`, (combo.get(`${p.category}::${p.brand}::${p.puffCount}`) ?? 0) + 1)
+    const bk = `${p.category}::${p.brand}`
+    if (!brandPuffs.has(bk)) brandPuffs.set(bk, new Set())
+    brandPuffs.get(bk)!.add(p.puffCount)
+  }
+  const out: { slug: string; brand: string; series: string }[] = []
+  for (const [key, n] of combo) {
+    const [cat, brand, puff] = key.split('::')
+    if (n >= min && (brandPuffs.get(`${cat}::${brand}`)?.size ?? 0) >= 2) {
+      out.push({ slug: cat, brand: brandSlug(brand), series: seriesSlug(Number(puff)) })
+    }
+  }
+  return out
+}
+
+/** Resolve a series page (category + brand slug + "{puff}-puffs") to its products. */
+export function resolveSeries(slug: string, brandParam: string, seriesParam: string): SeriesData | null {
+  const puff = parseInt(seriesParam, 10)
+  if (!Number.isFinite(puff) || puff <= 0) return null
+  const inCat = allProducts.filter(p => p.category === slug && p.brand && p.brand !== 'OTHER')
+  const brand = [...new Set(inCat.map(p => p.brand))].find(b => brandSlug(b) === brandParam)
+  if (!brand) return null
+  const brandProducts = inCat.filter(p => p.brand === brand)
+  const list = brandProducts
+    .filter(p => p.puffCount === puff)
+    .sort((a, b) => Number(b.featured) - Number(a.featured) || (b.reviewCount ?? 0) - (a.reviewCount ?? 0))
+  if (!list.length) return null
+  const minPrice = Math.min(...list.map(p => p.price))
+  const otherMap = new Map<number, number>()
+  for (const p of brandProducts) if (p.puffCount && p.puffCount !== puff) otherMap.set(p.puffCount, (otherMap.get(p.puffCount) ?? 0) + 1)
+  const otherSeries = [...otherMap.entries()].map(([puff, count]) => ({ puff, count })).sort((a, b) => b.puff - a.puff)
+  return { brand, puff, list, count: list.length, minPrice, otherSeries }
 }
 
 /** Filter → sort → paginate a collection, returning the page slice + facets. */

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { products } from '@/data/products'
 import { COLLECTIONS } from '@/lib/collections'
-import { brandCategoryParams } from '@/lib/collections-query'
+import { brandCategoryParams, seriesParams } from '@/lib/collections-query'
 import { createServiceClient } from '@/lib/supabase/server'
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
@@ -38,6 +38,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
+  // Tier-3 series pages (brand × category × puff count, ≥5 products).
+  const seriesEntries: MetadataRoute.Sitemap = seriesParams(5).map(({ slug, brand, series }) => ({
+    url: `${SITE}/collections/${slug}/${brand}/${series}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.6,
+  }))
+
   const productEntries: MetadataRoute.Sitemap = products.map(p => ({
     url: `${SITE}/products/${p.slug}`,
     lastModified: now,
@@ -65,5 +73,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     blogEntries = []
   }
 
-  return [...staticEntries, ...collectionEntries, ...brandClusterEntries, ...blogEntries, ...productEntries]
+  return [...staticEntries, ...collectionEntries, ...brandClusterEntries, ...seriesEntries, ...blogEntries, ...productEntries]
 }

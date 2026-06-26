@@ -28,6 +28,7 @@ export function queryAllProducts(q: ProductsQuery): ProductsResult {
     const re = new RegExp(`\\b${q.pack}\\s*PACK\\b`, 'i')
     r = r.filter(p => re.test(p.name))
   }
+  if (q.puffs) r = r.filter(p => p.puffCount === q.puffs)
   r = r.filter(p => p.price <= q.maxPrice)
   if (q.search) {
     const s = q.search.toLowerCase()
