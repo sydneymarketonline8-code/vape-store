@@ -2,6 +2,7 @@ import 'server-only'
 import { products as allProducts } from '@/data/products'
 import type { Product } from '@/types'
 import { PRODUCTS_PAGE_SIZE, type ProductsQuery } from '@/lib/products-params'
+import { flavourCategory } from '@/lib/flavour-classify'
 
 // Server-only filtering/sort/pagination for /products over the local catalogue.
 
@@ -29,6 +30,7 @@ export function queryAllProducts(q: ProductsQuery): ProductsResult {
     r = r.filter(p => re.test(p.name))
   }
   if (q.puffs) r = r.filter(p => p.puffCount === q.puffs)
+  if (q.flavour) r = r.filter(p => flavourCategory(p.name) === q.flavour)
   r = r.filter(p => p.price <= q.maxPrice)
   if (q.search) {
     const s = q.search.toLowerCase()

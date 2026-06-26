@@ -1,6 +1,7 @@
 import 'server-only'
 import { products as allProducts } from '@/data/products'
 import type { Product } from '@/types'
+import { FLAVOUR_FILTERS, flavourCategory } from '@/lib/flavour-classify'
 import {
   PAGE_SIZE,
   type SortKey,
@@ -156,6 +157,17 @@ export function resolveSeries(slug: string, brandParam: string, seriesParam: str
   for (const p of brandProducts) if (p.puffCount && p.puffCount !== puff) otherMap.set(p.puffCount, (otherMap.get(p.puffCount) ?? 0) + 1)
   const otherSeries = [...otherMap.entries()].map(([puff, count]) => ({ puff, count })).sort((a, b) => b.puff - a.puff)
   return { brand, puff, list, count: list.length, minPrice, otherSeries }
+}
+
+/** Flavour-category counts within a collection (keyword-classified from names). */
+export function flavourCounts(slug: string): { id: string; label: string; count: number }[] {
+  const base = allProducts.filter(p => p.category === slug)
+  const m = new Map<string, number>()
+  for (const p of base) {
+    const c = flavourCategory(p.name)
+    m.set(c, (m.get(c) ?? 0) + 1)
+  }
+  return FLAVOUR_FILTERS.map(f => ({ ...f, count: m.get(f.id) ?? 0 })).filter(f => f.count > 0)
 }
 
 /** Filter → sort → paginate a collection, returning the page slice + facets. */

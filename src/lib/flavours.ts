@@ -1,6 +1,7 @@
 import 'server-only'
 import { products } from '@/data/products'
 import type { Product } from '@/types'
+import { flavourCategory, significantFlavourTokens } from '@/lib/flavour-classify'
 
 // Each flavour is its own product (the catalogue has no flavour-variant data), so
 // the "flavour range" for a product = its sibling SKUs: same brand + category +
@@ -83,4 +84,42 @@ export function flavourRange(product: Product): FlavourRange | null {
 
   if (!siblings.length) return null
   return { rangeName: rangeName || product.brand, currentLabel: extract(product.name), siblings }
+}
+
+/**
+ * "You might also like" — the same flavour from OTHER brands. Matched on shared
+ * significant flavour tokens (e.g. "grape", "mango"), then flavour category.
+ * Keyword-derived, so best-effort — returns null when there's no clear match.
+ */
+export function crossBrandFlavours(product: Product): { label: string; items: Product[] } | null {
+  const brandWords = new Set(product.brand.toLowerCase().split(/\s+/))
+  const key = significantFlavourTokens(product.name).filter(t => !brandWords.has(t))
+  const cat = flavourCategory(product.name)
+  if (!key.length && cat === 'other') return null
+
+  const scored = products
+    .filter(p => p.brand !== product.brand && p.category === product.category && p.id !== product.id && !/\bpack\b/i.test(p.name))
+    .map(p => {
+      const ptoks = new Set(significantFlavourTokens(p.name))
+      const overlap = key.filter(t => ptoks.has(t)).length
+      const sameCat = flavourCategory(p.name) === cat ? 1 : 0
+      return { p, score: overlap * 3 + sameCat }
+    })
+    // Require a real flavour-keyword overlap (score >= 3); fall back to none.
+    .filter(x => x.score >= 3)
+    .sort((a, b) => b.score - a.score || popularity(b.p) - popularity(a.p))
+
+  // De-dupe by brand so the row shows variety, cap at 6.
+  const seen = new Set<string>()
+  const items: Product[] = []
+  for (const { p } of scored) {
+    if (seen.has(p.brand)) continue
+    seen.add(p.brand)
+    items.push(p)
+    if (items.length >= 6) break
+  }
+  if (items.length < 2) return null
+
+  const flavourWord = key[0] ? key[0][0].toUpperCase() + key[0].slice(1) : 'this flavour'
+  return { label: `Love ${flavourWord}? Try these from other brands`, items }
 }

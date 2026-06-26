@@ -2,6 +2,8 @@
 // import here, so client components can build hrefs without bundling the JSON.
 // Query execution lives in '@/lib/products-query' (server-only).
 
+import { isFlavourFilter, flavourFilterLabel } from '@/lib/flavour-classify'
+
 export const PRODUCTS_PAGE_SIZE = 24
 
 export type ProductsSort = 'featured' | 'new' | 'price-asc' | 'price-desc' | 'rating'
@@ -16,6 +18,7 @@ export interface ProductsQuery {
   maxPrice: number // 0..400 (400 = slider max)
   pack: number | null // pack size, e.g. 3/5/10/20 (matches "N PACK" in the name)
   puffs: number | null // exact puff count, e.g. 15000
+  flavour: string // flavour category id (ice/fruit/mint/…), classified from the name
   search: string
   sort: ProductsSort
   page: number
@@ -59,6 +62,7 @@ export function parseProductsQuery(raw: Raw): ProductsQuery {
     maxPrice: Number.isFinite(maxNum) && maxNum >= 0 && maxNum <= 400 ? maxNum : 400,
     pack: Number.isFinite(packNum) && packNum > 1 ? Math.floor(packNum) : null,
     puffs: Number.isFinite(puffsNum) && puffsNum > 0 ? Math.floor(puffsNum) : null,
+    flavour: isFlavourFilter(first(raw.flavour) ?? '') ? (first(raw.flavour) as string) : '',
     search: (first(raw.q) ?? '').trim(),
     sort,
     page: Number.isFinite(pageNum) && pageNum > 0 ? Math.floor(pageNum) : 1,
@@ -76,6 +80,7 @@ export function buildProductsHref(q: Partial<ProductsQuery>): string {
   if (q.inStock) p.set('status', 'in_stock')
   if (q.pack) p.set('pack', String(q.pack))
   if (q.puffs) p.set('puffs', String(q.puffs))
+  if (q.flavour) p.set('flavour', q.flavour)
   if (q.maxPrice != null && q.maxPrice < 400) p.set('maxPrice', String(q.maxPrice))
   if (q.search) p.set('q', q.search)
   if (q.sort && q.sort !== 'featured') p.set('sort', q.sort)
@@ -89,6 +94,10 @@ export function productsHeading(q: ProductsQuery): string {
   if (q.puffs) {
     const p = `${q.puffs.toLocaleString()}-Puff`
     return q.brands.length === 1 ? `${q.brands[0]} ${p} Vapes` : `${p} Vapes`
+  }
+  if (q.flavour) {
+    const fl = flavourFilterLabel(q.flavour)
+    return q.brands.length === 1 ? `${q.brands[0]} — ${fl}` : `${fl} Vapes`
   }
   if (q.brands.length === 1) return q.brands[0]
   if (q.tag && TAG_LABELS[q.tag]) return TAG_LABELS[q.tag]

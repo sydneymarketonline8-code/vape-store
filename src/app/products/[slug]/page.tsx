@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { products, getProductBySlug, getProductsByCategory } from '@/data/products'
 import { createServiceClient } from '@/lib/supabase/server'
 import { buildProductDescription } from '@/lib/product-copy'
-import { flavourRange } from '@/lib/flavours'
+import { flavourRange, crossBrandFlavours } from '@/lib/flavours'
 import { FlavourRange } from '@/components/shop/flavour-range'
 import { ProductGallery } from '@/components/shop/product-gallery'
 import { ProductInfo } from '@/components/shop/product-info'
@@ -113,6 +113,8 @@ export default async function ProductPage({
 
   // Sibling flavour SKUs (same brand + puff range) — the data-true "flavour range".
   const range = flavourRange(product)
+  // Same flavour from other brands (keyword-matched).
+  const crossBrand = crossBrandFlavours(product)
 
   // Related: same category, deterministic pseudo-shuffle (SSG-safe), 4 items.
   const related = getProductsByCategory(product.category)
@@ -171,6 +173,17 @@ export default async function ProductPage({
         <ProductTabs product={displayProduct} rating={rating} reviewCount={reviewCount} />
 
         {range && <FlavourRange rangeName={range.rangeName} currentLabel={range.currentLabel} siblings={range.siblings} />}
+
+        {crossBrand && (
+          <section className="mt-14" aria-label="You might also like">
+            <h2 className="mb-5 text-xl font-bold text-gray-900">{crossBrand.label}</h2>
+            <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+              {crossBrand.items.slice(0, 4).map(p => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          </section>
+        )}
 
         {related.length > 0 && (
           <section className="mt-16">

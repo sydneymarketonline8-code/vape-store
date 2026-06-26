@@ -11,7 +11,7 @@ import {
   parseCollectionParams,
   buildCollectionHref,
 } from '@/lib/collections'
-import { queryCollection, categoryStats, brandSlug } from '@/lib/collections-query'
+import { queryCollection, categoryStats, brandSlug, flavourCounts } from '@/lib/collections-query'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 
@@ -65,6 +65,7 @@ export default async function CollectionPage({
   const result = queryCollection(slug, parsed)
   const stats = categoryStats(slug)
   const seo = buildCollectionSeo(slug, collection.name, stats)
+  const flavours = flavourCounts(slug)
 
   // Breadcrumb chain: Home → Shop → Category (categories are flat, no grandparent).
   const crumbs = [
@@ -160,6 +161,26 @@ export default async function CollectionPage({
                   className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
                 >
                   {b.name} <span className="text-xs text-gray-400">{b.count}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Shop by flavour (keyword-classified) ── */}
+      {flavours.length > 1 && (
+        <section aria-label={`Shop ${collection.name} by flavour`} className="py-10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-4 text-lg font-bold text-gray-900">Shop {collection.name} by flavour</h2>
+            <div className="flex flex-wrap gap-2">
+              {flavours.map(f => (
+                <Link
+                  key={f.id}
+                  href={`/products?category=${slug}&flavour=${f.id}`}
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                >
+                  {f.label} <span className="text-xs text-gray-400">{f.count}</span>
                 </Link>
               ))}
             </div>
