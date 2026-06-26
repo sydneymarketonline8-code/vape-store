@@ -23,12 +23,37 @@ const CATEGORY_BLURB: Record<string, string> = {
   accessories: 'A practical addition to round out your vaping setup.',
 }
 
+// "Brands" that are really product-type labels — don't render "from X".
+const GENERIC_BRANDS = new Set(['OTHER', 'CIGARETTES', 'CREAM CHARGERS'])
+
+// The `accessories` category is a grab-bag: some items are cigarettes, cream
+// chargers, dab devices or mis-filed nicotine pouches. Classify by brand/tag/name
+// so the copy describes them accurately instead of "a vaping accessory".
+function classify(p: Product): { noun: string; blurb: string } {
+  const tags = (p.tags ?? []).map(t => t.toLowerCase())
+  const brand = (p.brand ?? '').toUpperCase()
+  const name = p.name.toLowerCase()
+
+  if (brand === 'CIGARETTES' || tags.includes('cigarettes')) {
+    return { noun: 'tobacco product', blurb: '' }
+  }
+  if (brand === 'CREAM CHARGERS' || tags.includes('cream-chargers')) {
+    return { noun: 'cream charger', blurb: 'Nitrous oxide (N2O) chargers for use with whipped-cream dispensers.' }
+  }
+  if (tags.includes('lookah-seahorse') || /puffco|lookah|seahorse/.test(name)) {
+    return { noun: 'concentrate vaporiser', blurb: 'A device built for concentrates and extracts.' }
+  }
+  if (brand === 'KILLA') {
+    return { noun: 'nicotine pouch', blurb: CATEGORY_BLURB.pouches }
+  }
+  return { noun: CATEGORY_NOUN[p.category] ?? 'vape product', blurb: CATEGORY_BLURB[p.category] ?? '' }
+}
+
 export function buildProductDescription(p: Product): string {
-  const noun = CATEGORY_NOUN[p.category] ?? 'vape product'
-  const blurb = CATEGORY_BLURB[p.category] ?? ''
+  const { noun, blurb } = classify(p)
   const isPack = /\bpack\b/i.test(p.name)
   const brandPrefix =
-    p.brand && p.brand !== 'OTHER' && !p.name.toUpperCase().startsWith(p.brand.toUpperCase())
+    p.brand && !GENERIC_BRANDS.has(p.brand.toUpperCase()) && !p.name.toUpperCase().startsWith(p.brand.toUpperCase())
       ? ` from ${p.brand}`
       : ''
   const puffs = p.puffCount ? ` rated for ${p.puffCount.toLocaleString()} puffs` : ''
