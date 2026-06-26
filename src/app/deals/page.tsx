@@ -118,11 +118,15 @@ export default function DealsPage() {
           {tiers.length > 0 && (
             <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {tiers.map(t => (
-                <div key={t.n} className="rounded-xl border border-white/15 bg-white/10 p-4 text-center">
+                <Link
+                  key={t.n}
+                  href={`/products?pack=${t.n}`}
+                  className="rounded-xl border border-white/15 bg-white/10 p-4 text-center transition-colors hover:border-white/40 hover:bg-white/20"
+                >
                   <p className="text-xs font-medium text-white/70">{t.n}-Pack</p>
                   <p className="mt-1 text-2xl font-bold text-white">~{t.avg}%</p>
                   <p className="text-[11px] text-white/60">avg saving · {t.count} deals</p>
-                </div>
+                </Link>
               ))}
             </div>
           )}

@@ -23,6 +23,11 @@ export function queryAllProducts(q: ProductsQuery): ProductsResult {
   if (q.sale) r = r.filter(p => p.originalPrice != null)
   if (q.packs) r = r.filter(p => p.tags.includes('bundle'))
   if (q.inStock) r = r.filter(p => p.inStock)
+  // Pack size: match "N PACK" in the name (won't false-match puff counts like 3500).
+  if (q.pack) {
+    const re = new RegExp(`\\b${q.pack}\\s*PACK\\b`, 'i')
+    r = r.filter(p => re.test(p.name))
+  }
   r = r.filter(p => p.price <= q.maxPrice)
   if (q.search) {
     const s = q.search.toLowerCase()

@@ -14,6 +14,7 @@ export interface ProductsQuery {
   packs: boolean
   inStock: boolean
   maxPrice: number // 0..400 (400 = slider max)
+  pack: number | null // pack size, e.g. 3/5/10/20 (matches "N PACK" in the name)
   search: string
   sort: ProductsSort
   page: number
@@ -44,6 +45,7 @@ export function parseProductsQuery(raw: Raw): ProductsQuery {
 
   const pageNum = Number(first(raw.page))
   const maxNum = Number(first(raw.maxPrice))
+  const packNum = Number(first(raw.pack))
 
   return {
     category: first(raw.category) || 'all',
@@ -53,6 +55,7 @@ export function parseProductsQuery(raw: Raw): ProductsQuery {
     packs: first(raw.packs) === 'true',
     inStock: first(raw.status) === 'in_stock',
     maxPrice: Number.isFinite(maxNum) && maxNum >= 0 && maxNum <= 400 ? maxNum : 400,
+    pack: Number.isFinite(packNum) && packNum > 1 ? Math.floor(packNum) : null,
     search: (first(raw.q) ?? '').trim(),
     sort,
     page: Number.isFinite(pageNum) && pageNum > 0 ? Math.floor(pageNum) : 1,
@@ -68,6 +71,7 @@ export function buildProductsHref(q: Partial<ProductsQuery>): string {
   if (q.sale) p.set('sale', 'true')
   if (q.packs) p.set('packs', 'true')
   if (q.inStock) p.set('status', 'in_stock')
+  if (q.pack) p.set('pack', String(q.pack))
   if (q.maxPrice != null && q.maxPrice < 400) p.set('maxPrice', String(q.maxPrice))
   if (q.search) p.set('q', q.search)
   if (q.sort && q.sort !== 'featured') p.set('sort', q.sort)
@@ -77,6 +81,7 @@ export function buildProductsHref(q: Partial<ProductsQuery>): string {
 }
 
 export function productsHeading(q: ProductsQuery): string {
+  if (q.pack) return `${q.pack}-Pack Vape Deals`
   if (q.brands.length === 1) return q.brands[0]
   if (q.tag && TAG_LABELS[q.tag]) return TAG_LABELS[q.tag]
   if (q.sale) return 'Sale & Clearance'
