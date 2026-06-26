@@ -126,8 +126,8 @@ export function Footer() {
             { icon: '🚚', label: 'Free AU Shipping', sub: 'Orders over $300' },
             { icon: '✅', label: 'Age-Verified Store', sub: '18+ only' },
             { icon: '↩️', label: '30-Day Returns',    sub: 'Hassle-free' },
-            { icon: '🇦🇺', label: 'AU-Based Support', sub: 'AEST business hours' },
-            { icon: '⭐', label: '4.8/5 Rated',       sub: '10,000+ reviews' },
+            { icon: '🇦🇺', label: 'AU-Based Support', sub: 'WhatsApp & email' },
+            { icon: '📦', label: '2,000+ Products',   sub: 'In stock now' },
           ].map(b => (
             <div key={b.label} className="flex items-center gap-3">
               <span className="text-xl">{b.icon}</span>
