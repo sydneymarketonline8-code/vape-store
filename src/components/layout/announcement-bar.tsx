@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X } from 'lucide-react'
+import { X, Truck } from 'lucide-react'
 
 const STORAGE_KEY = 'announcementDismissed'
 
@@ -27,8 +27,9 @@ export function AnnouncementBar() {
           className="overflow-hidden bg-primary"
         >
           <div className="relative px-8 py-2 text-center text-sm text-white">
-            <span>
-              🚚 <strong>FREE Shipping</strong> on all orders over $300 — Australia-wide
+            <span className="inline-flex items-center gap-1.5">
+              <Truck className="h-4 w-4" />
+              <span><strong>FREE Shipping</strong> on all orders over $300 — Australia-wide</span>
             </span>
             <button
               type="button"

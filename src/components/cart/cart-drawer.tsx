@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ShoppingBag, Trash2, Plus, Minus } from 'lucide-react'
+import { X, ShoppingBag, Trash2, Plus, Minus, Check } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCartStore } from '@/lib/store'
@@ -127,7 +127,11 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                 <div className="flex justify-between text-sm text-gray-500">
                   <span>Minimum order</span>
                   <span className={total >= 250 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'}>
-                    {total >= 250 ? '✓ Met' : `$${(250 - total).toFixed(2)} to go`}
+                    {total >= 250 ? (
+                      <span className="inline-flex items-center gap-1"><Check className="h-3.5 w-3.5" /> Met</span>
+                    ) : (
+                      `$${(250 - total).toFixed(2)} to go`
+                    )}
                   </span>
                 </div>
                 <div className="flex justify-between font-bold">

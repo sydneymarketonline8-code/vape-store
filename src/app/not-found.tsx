@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Home, Search } from 'lucide-react'
+import { DisposableVapeIcon } from '@/components/icons/category-icons'
 
 export default function NotFound() {
   return (
@@ -7,7 +8,7 @@ export default function NotFound() {
       <p className="bg-gradient-to-br from-emerald-500 to-green-800 bg-clip-text text-7xl font-black tracking-tighter text-transparent sm:text-9xl">
         404
       </p>
-      <div className="mt-2 text-5xl" aria-hidden>💨</div>
+      <DisposableVapeIcon className="mx-auto mt-3 h-16 w-16" aria-hidden />
       <h1 className="mt-4 text-2xl font-bold text-gray-900">This page went up in vapour</h1>
       <p className="mt-2 max-w-md text-gray-500">
         The page you&apos;re looking for doesn&apos;t exist or has moved. Let&apos;s get you back on track.

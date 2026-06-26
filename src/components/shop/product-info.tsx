@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
   ChevronRight, ShoppingCart, Heart, Zap, Minus, Plus,
-  Truck, Lock, ShieldCheck, RotateCcw, FileText, Link2, Mail, Check,
+  Truck, Lock, ShieldCheck, RotateCcw, FileText, Link2, Mail, Check, AlertTriangle,
 } from 'lucide-react'
 import type { Product } from '@/types'
 import { useCartStore } from '@/lib/store'
@@ -290,7 +290,7 @@ function InventoryBadge({ product, soldOut }: { product: Product; soldOut: boole
     return <span className={`${base} bg-red-50 text-red-600`}>Out of Stock</span>
   }
   if (product.inventoryQty != null && product.inventoryQty <= 5) {
-    return <span className={`${base} bg-amber-50 text-amber-700`}>⚠ Only {product.inventoryQty} left!</span>
+    return <span className={`${base} bg-amber-50 text-amber-700`}><AlertTriangle className="h-4 w-4" /> Only {product.inventoryQty} left!</span>
   }
-  return <span className={`${base} bg-green-50 text-green-700`}>✓ In Stock</span>
+  return <span className={`${base} bg-green-50 text-green-700`}><Check className="h-4 w-4" /> In Stock</span>
 }

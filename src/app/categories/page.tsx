@@ -6,6 +6,7 @@ import type { Product } from '@/types'
 import { COLLECTIONS } from '@/lib/collections'
 import { ProductCard } from '@/components/shop/product-card'
 import { BrandQuickNav } from '@/components/shop/brand-quick-nav'
+import { CategoryIcon } from '@/components/icons/category-icons'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 
@@ -117,15 +118,20 @@ export default function CategoriesPage() {
             className="scroll-mt-16 overflow-hidden rounded-2xl border border-gray-200"
           >
             {/* Gradient band */}
-            <Link href={`/collections/${c.slug}`} className={`block bg-gradient-to-br ${c.gradient} px-6 py-7 sm:px-8`}>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-white/60">
-                {c.count.toLocaleString()} products{c.min ? ` · from $${c.min.toFixed(2)}` : ''}
-              </p>
-              <div className="mt-1 flex items-end justify-between gap-4">
-                <h2 className="text-2xl font-bold text-white sm:text-3xl">{c.name}</h2>
-                <span className="flex shrink-0 items-center gap-1 text-sm font-semibold text-white/90">
-                  View all <ArrowRight className="h-4 w-4" />
-                </span>
+            <Link href={`/collections/${c.slug}`} className={`flex items-center gap-4 bg-gradient-to-br ${c.gradient} px-6 py-7 sm:px-8`}>
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/90 shadow-sm">
+                <CategoryIcon slug={c.slug} className="h-9 w-9" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-white/60">
+                  {c.count.toLocaleString()} products{c.min ? ` · from $${c.min.toFixed(2)}` : ''}
+                </p>
+                <div className="mt-1 flex items-end justify-between gap-4">
+                  <h2 className="text-2xl font-bold text-white sm:text-3xl">{c.name}</h2>
+                  <span className="flex shrink-0 items-center gap-1 text-sm font-semibold text-white/90">
+                    View all <ArrowRight className="h-4 w-4" />
+                  </span>
+                </div>
               </div>
             </Link>
 

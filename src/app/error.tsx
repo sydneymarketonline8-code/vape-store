@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { RefreshCw, Home } from 'lucide-react'
+import { RefreshCw, Home, AlertTriangle } from 'lucide-react'
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 py-20 text-center">
-      <div className="text-5xl" aria-hidden>⚠️</div>
+      <AlertTriangle className="h-12 w-12 text-amber-500" aria-hidden />
       <h1 className="mt-4 text-2xl font-bold text-gray-900">Something went wrong</h1>
       <p className="mt-2 max-w-md text-gray-500">
         An unexpected error occurred. You can try again, or head back to the homepage.

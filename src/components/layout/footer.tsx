@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Truck, ShieldCheck, RotateCcw, Headphones, Boxes } from 'lucide-react'
 import { SITE_TAGLINE } from '@/lib/site'
 
 const SocialIcons = {
@@ -124,17 +125,19 @@ export function Footer() {
         {/* Trust badges */}
         <div className="mt-10 grid grid-cols-2 gap-3 border-t border-gray-200 pt-8 sm:grid-cols-3 lg:grid-cols-5">
           {[
-            { icon: '🚚', label: 'Free AU Shipping', sub: 'Orders over $300' },
-            { icon: '✅', label: 'Age-Verified Store', sub: '18+ only' },
-            { icon: '↩️', label: '30-Day Returns',    sub: 'Hassle-free' },
-            { icon: '🇦🇺', label: 'AU-Based Support', sub: 'WhatsApp & email' },
-            { icon: '📦', label: '2,000+ Products',   sub: 'In stock now' },
-          ].map(b => (
-            <div key={b.label} className="flex items-center gap-3">
-              <span className="text-xl">{b.icon}</span>
+            { Icon: Truck,       label: 'Free AU Shipping',   sub: 'Orders over $300' },
+            { Icon: ShieldCheck, label: 'Age-Verified Store', sub: '18+ only' },
+            { Icon: RotateCcw,   label: '30-Day Returns',     sub: 'Hassle-free' },
+            { Icon: Headphones,  label: 'AU-Based Support',   sub: 'WhatsApp & email' },
+            { Icon: Boxes,       label: '2,000+ Products',    sub: 'In stock now' },
+          ].map(({ Icon, label, sub }) => (
+            <div key={label} className="flex items-center gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green-50">
+                <Icon className="h-4 w-4 text-[#1B7A3E]" />
+              </span>
               <div>
-                <p className="text-xs font-semibold text-gray-800">{b.label}</p>
-                <p className="text-[11px] text-gray-400">{b.sub}</p>
+                <p className="text-xs font-semibold text-gray-800">{label}</p>
+                <p className="text-[11px] text-gray-400">{sub}</p>
               </div>
             </div>
           ))}

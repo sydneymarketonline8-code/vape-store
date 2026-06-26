@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones, Boxes, Mail, Tag } from 'lucide-react'
 import { ProductCard } from '@/components/shop/product-card'
+import { CategoryIcon } from '@/components/icons/category-icons'
 import { HeroIntro } from '@/components/common/hero-intro'
 import { NewsletterForm } from '@/components/common/newsletter-form'
 import { products } from '@/data/products'
@@ -10,12 +11,12 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com
 
 // Category tiles link to the canonical /collections/[slug] pages (not the legacy
 // /products?category= filter). Counts are computed from the catalogue, not hardcoded.
-const CATEGORY_META: { slug: string; label: string; emoji: string; unit: string }[] = [
-  { slug: 'disposables', label: 'Disposable Vapes',   emoji: '💨', unit: 'products' },
-  { slug: 'mods',        label: 'Pod Systems & Kits', emoji: '🔋', unit: 'products' },
-  { slug: 'e-liquids',   label: 'E-Liquids & Salts',  emoji: '💧', unit: 'flavours' },
-  { slug: 'pouches',     label: 'Nicotine Pouches',   emoji: '🟢', unit: 'products' },
-  { slug: 'accessories', label: 'Accessories',        emoji: '🎒', unit: 'products' },
+const CATEGORY_META: { slug: string; label: string; unit: string }[] = [
+  { slug: 'disposables', label: 'Disposable Vapes',   unit: 'products' },
+  { slug: 'mods',        label: 'Pod Systems & Kits', unit: 'products' },
+  { slug: 'e-liquids',   label: 'E-Liquids & Salts',  unit: 'flavours' },
+  { slug: 'pouches',     label: 'Nicotine Pouches',   unit: 'products' },
+  { slug: 'accessories', label: 'Accessories',        unit: 'products' },
 ]
 
 const TRUST_BADGES = [
@@ -167,7 +168,7 @@ export default function HomePage() {
                 href={`/collections/${cat.slug}`}
                 className="group flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-white p-5 text-center transition-all hover:border-[#1B7A3E] hover:shadow-sm"
               >
-                <span className="text-3xl">{cat.emoji}</span>
+                <CategoryIcon slug={cat.slug} className="h-11 w-11 transition-transform group-hover:scale-110" />
                 <p className="text-sm font-semibold text-gray-900 group-hover:text-[#1B7A3E]">{cat.label}</p>
                 <p className="text-xs text-gray-400">
                   {(categoryCounts[cat.slug] ?? 0).toLocaleString()} {cat.unit}

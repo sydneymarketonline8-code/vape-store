@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Eye, EyeOff, Loader2 } from 'lucide-react'
+import { Eye, EyeOff, Loader2, Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { SITE_TAGLINE } from '@/lib/site'
 
@@ -53,7 +53,9 @@ export default function RegisterPage() {
       <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center px-4 py-12">
         <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
           <div className="mb-4 flex justify-center">
-            <span className="text-5xl">📧</span>
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50">
+              <Mail className="h-8 w-8 text-[#1B7A3E]" />
+            </span>
           </div>
           <h2 className="text-xl font-bold text-gray-900">Check your email</h2>
           <p className="mt-2 text-gray-500">
