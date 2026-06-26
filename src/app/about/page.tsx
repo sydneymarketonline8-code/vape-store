@@ -1,11 +1,34 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ShieldCheck, Truck, Sparkles, MessageCircle, ArrowRight } from 'lucide-react'
-import { SITE_TAGLINE } from '@/lib/site'
+import { SITE_TAGLINE, SITE_URL } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'About Us',
   description: 'Aussie Vape is an Australian-owned online vape store — curated range, fast dispatch, and friendly support for adult vapers.',
+  alternates: { canonical: '/about' },
+}
+
+const aboutJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Aussie Vape',
+  url: `${SITE_URL}/about`,
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Aussie Vape',
+    url: SITE_URL,
+    description:
+      'An Australian-owned online vape store — multi-pack bundles and bulk vape deals across disposables, pods, e-liquids and nicotine pouches, with fast AU-wide shipping.',
+    areaServed: { '@type': 'Country', name: 'Australia' },
+  },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${SITE_URL}/about` },
+    ],
+  },
 }
 
 const VALUES = [
@@ -17,6 +40,7 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }} />
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-emerald-600 to-green-800">
         <div className="absolute inset-0 bg-black/20" />
