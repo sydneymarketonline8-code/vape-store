@@ -2,10 +2,10 @@
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 
-// WhatsApp number in international format. Stripped to digits only so wa.me
-// always gets a valid number even if the env var has spaces/+/dashes
-// (e.g. "+61 480 803 761" → "61480803761"). Override with NEXT_PUBLIC_WHATSAPP_NUMBER.
-export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '61480803761').replace(/\D/g, '')
+// WhatsApp number in international format, digits only (for wa.me links).
+// Hardcoded (no env override) so a stale NEXT_PUBLIC_WHATSAPP_NUMBER in the
+// host can't bring back a previous/banned number. To change it, edit here.
+export const WHATSAPP_NUMBER = '61468228364'
 
 export type PaymentMethod = 'payid' | 'crypto'
 
