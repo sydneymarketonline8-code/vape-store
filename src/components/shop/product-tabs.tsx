@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Star, X, Loader2, BadgeCheck } from 'lucide-react'
 import type { Product, ProductReview } from '@/types'
-import { buildProductDescription } from '@/lib/product-copy'
+import { buildProductDescription, buildProductSpecs } from '@/lib/product-copy'
 import { StarRating } from './star-rating'
 
 const TABS = ['Description', 'Specifications', 'Shipping & Returns', 'Reviews'] as const
@@ -80,31 +80,29 @@ function DescriptionTab({ product }: { product: Product }) {
 
 // ── Specifications ────────────────────────────────────────────────────────────
 function SpecsTab({ product }: { product: Product }) {
-  const entries: [string, string][] = product.specs
-    ? Object.entries(product.specs)
-    : ([
-        ['Brand', product.brand],
-        ['Category', product.category],
-        ...(product.puffCount ? [['Puff Count', `${product.puffCount.toLocaleString()} puffs`]] : []),
-        ...(product.mlSize ? [['E-Liquid Volume', `${product.mlSize}ml`]] : []),
-        ...(product.flavors?.length ? [['Flavours', product.flavors.join(', ')]] : []),
-        ...(product.nicotineStrengths?.length
-          ? [['Nicotine Strengths', product.nicotineStrengths.map(n => `${n}mg`).join(', ')]]
-          : []),
-      ] as [string, string][])
+  const entries = buildProductSpecs(product)
+  const derived = !(product.specs && Object.keys(product.specs).length)
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200">
-      <table className="w-full text-sm">
-        <tbody>
-          {entries.map(([k, v], i) => (
-            <tr key={k} className={i % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-              <th scope="row" className="w-1/3 px-4 py-3 text-left font-medium text-gray-500">{k}</th>
-              <td className="px-4 py-3 text-gray-900">{v}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div>
+      <div className="overflow-hidden rounded-xl border border-gray-200">
+        <table className="w-full text-sm">
+          <tbody>
+            {entries.map(([k, v], i) => (
+              <tr key={k} className={i % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                <th scope="row" className="w-1/3 px-4 py-3 text-left font-medium text-gray-500">{k}</th>
+                <td className="px-4 py-3 text-gray-900">{v}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {derived && (
+        <p className="mt-2 text-xs text-gray-400">
+          Specifications shown are typical for this product type. Exact figures (battery capacity, coil resistance,
+          e-liquid volume) can vary by model — contact us if you need confirmation for a specific device.
+        </p>
+      )}
     </div>
   )
 }
