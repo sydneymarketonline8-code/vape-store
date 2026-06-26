@@ -3,13 +3,15 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ChevronRight } from 'lucide-react'
 import { CollectionView } from '@/components/shop/collection-view'
+import { FaqList } from '@/components/common/page-schema'
+import { buildCollectionSeo } from '@/lib/collection-seo'
 import {
   COLLECTIONS,
   getCollection,
   parseCollectionParams,
   buildCollectionHref,
 } from '@/lib/collections'
-import { queryCollection } from '@/lib/collections-query'
+import { queryCollection, categoryStats } from '@/lib/collections-query'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 
@@ -29,15 +31,17 @@ export async function generateMetadata({
   const collection = getCollection(slug)
   if (!collection) return { title: 'Collection Not Found' }
 
+  const seo = buildCollectionSeo(slug, collection.name, categoryStats(slug))
   return {
-    title: `${collection.name} | Aussie Vape`,
-    description: collection.description,
+    // `absolute` avoids the root template appending a second "— Aussie Vape".
+    title: { absolute: seo.metaTitle },
+    description: seo.metaDescription,
     // Canonical points at the clean URL (no query params) to avoid duplicate
     // indexing of every filter/sort/page combination.
     alternates: { canonical: `/collections/${slug}` },
     openGraph: {
-      title: `${collection.name} | Aussie Vape`,
-      description: collection.description,
+      title: seo.metaTitle,
+      description: seo.metaDescription,
       type: 'website',
       url: `${SITE_URL}/collections/${slug}`,
     },
@@ -59,6 +63,8 @@ export default async function CollectionPage({
 
   const parsed = parseCollectionParams(await searchParams)
   const result = queryCollection(slug, parsed)
+  const stats = categoryStats(slug)
+  const seo = buildCollectionSeo(slug, collection.name, stats)
 
   // Breadcrumb chain: Home → Shop → Category (categories are flat, no grandparent).
   const crumbs = [
@@ -78,6 +84,25 @@ export default async function CollectionPage({
     })),
   }
 
+  const collectionPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: seo.metaTitle,
+    description: seo.metaDescription,
+    url: `${SITE_URL}/collections/${slug}`,
+    isPartOf: { '@type': 'WebSite', name: 'Aussie Vape', url: SITE_URL },
+  }
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: seo.faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+
   return (
     <>
       {/* rel=prev / rel=next for paginated views (React 19 hoists these to <head>) */}
@@ -87,10 +112,9 @@ export default async function CollectionPage({
       {result.page < result.totalPages && (
         <link rel="next" href={`${SITE_URL}${buildCollectionHref(slug, { ...parsed, page: result.page + 1 })}`} />
       )}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* ── Hero ── */}
       <section className={`relative bg-gradient-to-br ${collection.gradient}`}>
@@ -113,15 +137,48 @@ export default async function CollectionPage({
             </ol>
           </nav>
           <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
-            {collection.name}
+            Buy {collection.name} Online Australia
           </h1>
-          <p className="mt-2 max-w-2xl text-sm text-white/85 sm:text-base">
-            {collection.description}
+          <p className="mt-2 max-w-3xl text-sm text-white/85 sm:text-base">
+            {seo.intro}
           </p>
         </div>
       </section>
 
       <CollectionView slug={slug} params={parsed} result={result} />
+
+      {/* ── Shop by brand (Tier-2 internal links) ── */}
+      {result.brands.length > 0 && (
+        <section aria-label={`Shop ${collection.name} by brand`} className="border-t border-gray-100 bg-gray-50 py-10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-4 text-lg font-bold text-gray-900">Shop {collection.name} by brand</h2>
+            <div className="flex flex-wrap gap-2">
+              {result.brands.slice(0, 14).map(b => (
+                <Link
+                  key={b.name}
+                  href={`/products?category=${slug}&brand=${encodeURIComponent(b.name)}`}
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                >
+                  {b.name} <span className="text-xs text-gray-400">{b.count}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Why buy + FAQ ── */}
+      <section aria-label={`About ${collection.name}`} className="py-12">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-xl font-bold text-gray-900">Why buy {collection.name.toLowerCase()} at Aussie Vape?</h2>
+          <p className="mt-3 text-sm leading-relaxed text-gray-600">{seo.whyBuy}</p>
+
+          <h2 className="mb-4 mt-10 text-xl font-bold text-gray-900">{collection.name} — FAQ</h2>
+          <FaqList items={seo.faqs} />
+
+          <p className="mt-6 text-xs text-gray-400">For adults 18+ only. Nicotine is an addictive chemical.</p>
+        </div>
+      </section>
     </>
   )
 }

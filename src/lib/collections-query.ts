@@ -37,6 +37,19 @@ function sortProducts(list: Product[], sort: SortKey): Product[] {
   }
 }
 
+/** Lightweight category stats for SEO copy/metadata (count, from-price, top brands). */
+export function categoryStats(slug: string): { count: number; minPrice: number; topBrands: string[] } {
+  const base = allProducts.filter(p => p.category === slug)
+  const counts = new Map<string, number>()
+  let min = Infinity
+  for (const p of base) {
+    if (p.brand && p.brand !== 'OTHER') counts.set(p.brand, (counts.get(p.brand) ?? 0) + 1)
+    if (p.price < min) min = p.price
+  }
+  const topBrands = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6).map(([b]) => b)
+  return { count: base.length, minPrice: Number.isFinite(min) ? min : 0, topBrands }
+}
+
 /** Filter → sort → paginate a collection, returning the page slice + facets. */
 export function queryCollection(slug: string, params: CollectionParams): CollectionResult {
   const base = allProducts.filter(p => p.category === slug)
