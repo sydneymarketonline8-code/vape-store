@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { products, getProductBySlug, getProductsByCategory } from '@/data/products'
 import { createServiceClient } from '@/lib/supabase/server'
 import { buildProductDescription } from '@/lib/product-copy'
+import { flavourRange } from '@/lib/flavours'
+import { FlavourRange } from '@/components/shop/flavour-range'
 import { ProductGallery } from '@/components/shop/product-gallery'
 import { ProductInfo } from '@/components/shop/product-info'
 import { ProductTabs } from '@/components/shop/product-tabs'
@@ -109,6 +111,9 @@ export default async function ProductPage({
     { name: product.name, href: `/products/${slug}` },
   ]
 
+  // Sibling flavour SKUs (same brand + puff range) — the data-true "flavour range".
+  const range = flavourRange(product)
+
   // Related: same category, deterministic pseudo-shuffle (SSG-safe), 4 items.
   const related = getProductsByCategory(product.category)
     .filter(p => p.id !== product.id)
@@ -164,6 +169,8 @@ export default async function ProductPage({
         </div>
 
         <ProductTabs product={displayProduct} rating={rating} reviewCount={reviewCount} />
+
+        {range && <FlavourRange rangeName={range.rangeName} currentLabel={range.currentLabel} siblings={range.siblings} />}
 
         {related.length > 0 && (
           <section className="mt-16">
