@@ -110,6 +110,56 @@ export function buildSeriesSeo(
   return { metaTitle, metaDescription, intro, whyBuy, faqs }
 }
 
+/** Honest, data-driven SEO content for a brand hub page (/brands/[brand]). */
+export function buildBrandSeo(
+  brand: string,
+  count: number,
+  minPrice: number,
+  categoryNames: string[],
+  puffCounts: number[]
+): CollectionSeo {
+  const fromPrice = minPrice ? money(minPrice) : ''
+  const countStr = count.toLocaleString()
+  const catList = categoryNames.map(n => n.toLowerCase()).join(', ')
+  const puffNote =
+    puffCounts.length >= 2
+      ? ` in ${puffCounts.slice(0, 4).map(p => `${p.toLocaleString()}-puff`).join(', ')} options`
+      : puffCounts.length === 1
+        ? ` rated for up to ${puffCounts[0].toLocaleString()} puffs`
+        : ''
+
+  const metaTitle = `Buy ${brand} Vapes Online Australia | Aussie Vape`.slice(0, 60)
+  const metaDescription =
+    `Shop the full ${brand} range at Aussie Vape — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
+
+  const intro =
+    `Shop the full ${brand} range at Aussie Vape — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} across ${catList || 'our catalogue'}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+
+  const whyBuy =
+    `We stock ${countStr} ${brand} products with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. ${brand} multi-packs lower the price per device if you buy a few at once.`
+
+  const faqs: Faq[] = [
+    {
+      q: `Where can I buy ${brand} in Australia?`,
+      a: `${brand} is available at Aussie Vape (aussievape.com.au) — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free, and checkout is age-verified (18+).`,
+    },
+    {
+      q: `What does ${brand} make?`,
+      a: `At Aussie Vape, ${brand} covers ${catList || 'a range of products'}. Browse the full ${brand} range on this page, or filter by category below.`,
+    },
+    {
+      q: `How much do ${brand} products cost?`,
+      a: `${brand} products at Aussie Vape start${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, with multi-pack bundles bringing the price per device down further. The current price is on each product page.`,
+    },
+    {
+      q: `Are ${brand} products genuine?`,
+      a: `Yes. We source ${brand} from established suppliers. If you ever receive an item you believe is not genuine, contact us on WhatsApp and we'll make it right.`,
+    },
+  ]
+
+  return { metaTitle, metaDescription, intro, whyBuy, faqs }
+}
+
 /** Honest, data-driven SEO content for a brand cluster page (/collections/[slug]/[brand]). */
 export function buildBrandCategorySeo(
   brand: string,

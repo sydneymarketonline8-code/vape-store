@@ -5,6 +5,7 @@ import { products } from '@/data/products'
 import type { Product } from '@/types'
 import { ProductCard } from '@/components/shop/product-card'
 import { BrandQuickNav } from '@/components/shop/brand-quick-nav'
+import { brandSlug } from '@/lib/collections-query'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 const FEATURED_COUNT = 12
@@ -111,7 +112,7 @@ export default function BrandsPage() {
           >
             {/* Gradient band */}
             <Link
-              href={`/products?brand=${encodeURIComponent(b.brand)}`}
+              href={`/brands/${brandSlug(b.brand)}`}
               className={`block bg-gradient-to-br ${GRADIENTS[i % GRADIENTS.length]} px-6 py-7 sm:px-8`}
             >
               <p className="text-[11px] font-semibold uppercase tracking-widest text-white/60">
@@ -167,7 +168,7 @@ export default function BrandsPage() {
             {az.map(({ brand, count }) => (
               <Link
                 key={brand}
-                href={`/products?brand=${encodeURIComponent(brand)}`}
+                href={`/brands/${brandSlug(brand)}`}
                 className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
               >
                 <span className="text-sm font-semibold uppercase tracking-wide text-gray-800">{brand}</span>

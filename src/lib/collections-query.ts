@@ -1,7 +1,10 @@
 import 'server-only'
 import { products as allProducts } from '@/data/products'
 import type { Product } from '@/types'
+import { COLLECTIONS } from '@/lib/collections'
 import { FLAVOUR_FILTERS, flavourCategory } from '@/lib/flavour-classify'
+
+const pop = (p: Product) => (p.featured ? 1_000_000 : 0) + (p.reviewCount ?? 0)
 import {
   PAGE_SIZE,
   type SortKey,
@@ -54,6 +57,45 @@ export function categoryStats(slug: string): { count: number; minPrice: number; 
 // ── Tier-2 brand cluster pages: /collections/[slug]/[brand] ──────────────────
 
 export const brandSlug = (b: string) => b.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+
+// ── Brand hub pages: /brands/[brand] (cross-category brand landing) ──────────
+
+export interface BrandHubData {
+  brand: string
+  count: number
+  minPrice: number
+  puffCounts: number[]
+  categories: { slug: string; name: string; count: number }[]
+  topProducts: Product[]
+}
+
+/** All brands with ≥min products — for the brand-hub generateStaticParams + sitemap. */
+export function brandHubParams(min = 4): { brand: string }[] {
+  const counts = new Map<string, number>()
+  for (const p of allProducts) {
+    if (!p.brand || p.brand === 'OTHER') continue
+    counts.set(p.brand, (counts.get(p.brand) ?? 0) + 1)
+  }
+  return [...counts.entries()].filter(([, n]) => n >= min).map(([b]) => ({ brand: brandSlug(b) }))
+}
+
+/** Resolve a brand slug to its cross-category hub data (null if unknown). */
+export function resolveBrand(brandParam: string): BrandHubData | null {
+  const brand = [...new Set(allProducts.map(p => p.brand).filter((b): b is string => !!b && b !== 'OTHER'))].find(
+    b => brandSlug(b) === brandParam
+  )
+  if (!brand) return null
+  const list = allProducts.filter(p => p.brand === brand)
+  const minPrice = Math.min(...list.map(p => p.price))
+  const catCounts = new Map<string, number>()
+  for (const p of list) catCounts.set(p.category, (catCounts.get(p.category) ?? 0) + 1)
+  const categories = [...catCounts.entries()]
+    .map(([slug, count]) => ({ slug, name: COLLECTIONS.find(c => c.slug === slug)?.name ?? slug, count }))
+    .sort((a, b) => b.count - a.count)
+  const puffCounts = [...new Set(list.map(p => p.puffCount).filter((n): n is number => !!n))].sort((a, b) => b - a)
+  const topProducts = [...list].sort((a, b) => pop(b) - pop(a)).slice(0, 8)
+  return { brand, count: list.length, minPrice, puffCounts, categories, topProducts }
+}
 
 export interface BrandCategoryData {
   brand: string

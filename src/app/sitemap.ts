@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { products } from '@/data/products'
 import { COLLECTIONS } from '@/lib/collections'
-import { brandCategoryParams, seriesParams } from '@/lib/collections-query'
+import { brandCategoryParams, seriesParams, brandHubParams } from '@/lib/collections-query'
 import { createServiceClient } from '@/lib/supabase/server'
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
@@ -33,6 +33,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Tier-2 brand cluster pages (brand × category, ≥5 products).
   const brandClusterEntries: MetadataRoute.Sitemap = brandCategoryParams(5).map(({ slug, brand }) => ({
     url: `${SITE}/collections/${slug}/${brand}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }))
+
+  // Brand hub pages (/brands/[brand], ≥4 products).
+  const brandHubEntries: MetadataRoute.Sitemap = brandHubParams(4).map(({ brand }) => ({
+    url: `${SITE}/brands/${brand}`,
     lastModified: now,
     changeFrequency: 'weekly',
     priority: 0.7,
@@ -73,5 +81,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     blogEntries = []
   }
 
-  return [...staticEntries, ...collectionEntries, ...brandClusterEntries, ...seriesEntries, ...blogEntries, ...productEntries]
+  return [...staticEntries, ...collectionEntries, ...brandHubEntries, ...brandClusterEntries, ...seriesEntries, ...blogEntries, ...productEntries]
 }
