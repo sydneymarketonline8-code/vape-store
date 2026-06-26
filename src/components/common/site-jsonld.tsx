@@ -10,8 +10,9 @@ export function SiteJsonLd() {
     '@type': 'OnlineStore',
     name: 'Aussie Vape',
     url: SITE_URL,
+    slogan: 'Vape deals, bundles & bulk packs',
     description:
-      "Australia's online vape store. Shop disposables, pod systems, e-liquids, nicotine pouches and accessories with fast AU-wide shipping.",
+      'Multi-pack bundles and bulk vape deals across disposables, pods, e-liquids and nicotine pouches, with fast AU-wide shipping.',
     areaServed: { '@type': 'Country', name: 'Australia' },
     contactPoint: {
       '@type': 'ContactPoint',

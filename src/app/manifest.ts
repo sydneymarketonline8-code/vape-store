@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Aussie Vape — Online Vape Store',
+    name: 'Aussie Vape — Vape Deals & Bulk Packs',
     short_name: 'Aussie Vape',
-    description: "Australia's online vape store — disposables, pods, e-liquids, pouches & accessories.",
+    description: 'Multi-pack bundles and bulk vape deals — disposables, pods, e-liquids & pouches with fast AU shipping.',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',

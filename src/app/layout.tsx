@@ -14,9 +14,12 @@ import { SiteJsonLd } from '@/components/common/site-jsonld'
 const inter = Inter({ subsets: ['latin'], display: 'swap', preload: true, variable: '--font-inter' })
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
-const DEFAULT_TITLE = "Aussie Vape — Australia's #1 Online Vape Store"
+// Positioning is deliberately differentiated from the sibling site aussievapes.com.au
+// (which owns the "Australia's #1 / largest range" angle) to avoid SEO cannibalisation.
+// This site leads with deals / bundles / bulk packs.
+const DEFAULT_TITLE = 'Aussie Vape — Vape Deals, Bundles & Bulk Packs Australia'
 const DEFAULT_DESC =
-  "Australia's leading online vape store. Shop disposables, pod systems, nicotine salts, e-liquids and accessories with fast AU-wide shipping."
+  'Save more with multi-pack bundles and bulk vape deals at Aussie Vape — disposables, pods, e-liquids and nicotine pouches. Buy more, save more, with fast AU-wide shipping.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

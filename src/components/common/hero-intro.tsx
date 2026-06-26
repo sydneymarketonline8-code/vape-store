@@ -15,24 +15,24 @@ export function HeroIntro() {
   return (
     <motion.div variants={container} initial="hidden" animate="show">
       <motion.h1 variants={item} className="mb-4 text-4xl font-black leading-tight text-gray-900 sm:text-5xl">
-        Australia&apos;s #1 Online<br />
-        <span className="text-[#1B7A3E]">Vape Store</span>
+        Vape Deals, Bundles &amp;<br />
+        <span className="text-[#1B7A3E]">Bulk Packs</span>
       </motion.h1>
       <motion.p variants={item} className="mb-8 max-w-md text-lg text-gray-500">
-        Premium vapes at wholesale prices. Trusted by thousands of customers across Australia. Fast dispatch, nation-wide.
+        Buy more, save more — multi-pack bundles on Australia&apos;s favourite disposables, pods, e-liquids and pouches. Fast AU-wide dispatch.
       </motion.p>
       <motion.div variants={item} className="flex flex-col gap-3 sm:flex-row">
         <Link
-          href="/products?category=disposables"
+          href="/deals"
           className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1B7A3E] px-8 py-3.5 font-semibold text-white transition-colors hover:bg-[#156331]"
         >
-          Shop Disposables <ArrowRight className="h-4 w-4" />
+          Shop Pack Deals <ArrowRight className="h-4 w-4" />
         </Link>
         <Link
           href="/products"
           className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#1B7A3E] px-8 py-3.5 font-semibold text-[#1B7A3E] transition-colors hover:bg-green-50"
         >
-          Browse All Products
+          Browse All Vapes
         </Link>
       </motion.div>
     </motion.div>

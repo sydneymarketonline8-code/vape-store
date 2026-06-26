@@ -37,13 +37,18 @@ export async function generateMetadata({
   const product = getProductBySlug(slug)
   if (!product) return { title: 'Product Not Found' }
 
-  const description = product.shortDescription || product.description.slice(0, 155)
+  // Unique, deals-angled metadata that doesn't duplicate the sibling site's
+  // scraped product copy (differentiation vs aussievapes.com.au). Distinct title
+  // structure ("…— Buy Online Australia") + price/bundle-led description.
+  const price = `$${product.price.toFixed(2)}`
+  const title = `${product.name} — Buy Online Australia | Aussie Vape`
+  const description = `Buy ${product.name} online at Aussie Vape — ${price}, with fast AU-wide shipping and multi-pack deals. Age-verified (18+).`
   return {
-    title: product.name,
+    title: { absolute: title },
     description,
     alternates: { canonical: `/products/${slug}` },
     openGraph: {
-      title: product.name,
+      title,
       description,
       type: 'website',
       url: `${SITE_URL}/products/${slug}`,
