@@ -11,7 +11,7 @@ import {
   parseCollectionParams,
   buildCollectionHref,
 } from '@/lib/collections'
-import { queryCollection, categoryStats } from '@/lib/collections-query'
+import { queryCollection, categoryStats, brandSlug } from '@/lib/collections-query'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 
@@ -156,7 +156,7 @@ export default async function CollectionPage({
               {result.brands.slice(0, 14).map(b => (
                 <Link
                   key={b.name}
-                  href={`/products?category=${slug}&brand=${encodeURIComponent(b.name)}`}
+                  href={`/collections/${slug}/${brandSlug(b.name)}`}
                   className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
                 >
                   {b.name} <span className="text-xs text-gray-400">{b.count}</span>

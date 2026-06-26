@@ -50,6 +50,56 @@ export function categoryStats(slug: string): { count: number; minPrice: number; 
   return { count: base.length, minPrice: Number.isFinite(min) ? min : 0, topBrands }
 }
 
+// ── Tier-2 brand cluster pages: /collections/[slug]/[brand] ──────────────────
+
+export const brandSlug = (b: string) => b.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+
+export interface BrandCategoryData {
+  brand: string
+  list: Product[]
+  count: number
+  minPrice: number
+  puffCounts: number[]
+  otherBrands: { name: string; slug: string; count: number }[]
+}
+
+/** Brand×category combos with at least `min` products — for generateStaticParams + sitemap. */
+export function brandCategoryParams(min = 5): { slug: string; brand: string }[] {
+  const counts = new Map<string, { slug: string; brand: string; n: number }>()
+  for (const p of allProducts) {
+    if (!p.brand || p.brand === 'OTHER') continue
+    const key = `${p.category}::${p.brand}`
+    const e = counts.get(key) ?? { slug: p.category, brand: p.brand, n: 0 }
+    e.n++
+    counts.set(key, e)
+  }
+  return [...counts.values()].filter(e => e.n >= min).map(e => ({ slug: e.slug, brand: brandSlug(e.brand) }))
+}
+
+/** Resolve a brand slug within a category to its products + cross-link data (null if unknown). */
+export function resolveBrandInCategory(slug: string, brandParam: string): BrandCategoryData | null {
+  const inCat = allProducts.filter(p => p.category === slug && p.brand && p.brand !== 'OTHER')
+  if (!inCat.length) return null
+  const brand = [...new Set(inCat.map(p => p.brand))].find(b => brandSlug(b) === brandParam)
+  if (!brand) return null
+
+  const list = inCat
+    .filter(p => p.brand === brand)
+    .sort((a, b) => Number(b.featured) - Number(a.featured) || (b.reviewCount ?? 0) - (a.reviewCount ?? 0))
+  const minPrice = Math.min(...list.map(p => p.price))
+  const puffCounts = [...new Set(list.map(p => p.puffCount).filter((n): n is number => !!n))].sort((a, b) => b - a)
+
+  const counts = new Map<string, number>()
+  for (const p of inCat) counts.set(p.brand, (counts.get(p.brand) ?? 0) + 1)
+  const otherBrands = [...counts.entries()]
+    .filter(([b]) => b !== brand)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 6)
+    .map(([name, count]) => ({ name, slug: brandSlug(name), count }))
+
+  return { brand, list, count: list.length, minPrice, puffCounts, otherBrands }
+}
+
 /** Filter → sort → paginate a collection, returning the page slice + facets. */
 export function queryCollection(slug: string, params: CollectionParams): CollectionResult {
   const base = allProducts.filter(p => p.category === slug)

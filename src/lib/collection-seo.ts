@@ -66,3 +66,50 @@ export function buildCollectionSeo(slug: string, name: string, s: Stats): Collec
 
   return { metaTitle, metaDescription, intro, whyBuy, faqs }
 }
+
+/** Honest, data-driven SEO content for a brand cluster page (/collections/[slug]/[brand]). */
+export function buildBrandCategorySeo(
+  brand: string,
+  categoryName: string,
+  count: number,
+  minPrice: number,
+  puffCounts: number[],
+  slug: string
+): CollectionSeo {
+  const note = NOTE[slug] ?? { noun: categoryName.toLowerCase(), trait: 'genuine products at fair prices' }
+  const fromPrice = minPrice ? money(minPrice) : ''
+  const countStr = count.toLocaleString()
+  const puffNote =
+    puffCounts.length >= 2
+      ? ` available in ${puffCounts.slice(0, 4).map(p => `${p.toLocaleString()}-puff`).join(', ')} options`
+      : puffCounts.length === 1
+        ? ` rated for up to ${puffCounts[0].toLocaleString()} puffs`
+        : ''
+
+  const metaTitle = `Buy ${brand} ${categoryName} Online Australia | Aussie Vape`.slice(0, 60)
+  const metaDescription =
+    `Shop ${countStr} ${brand} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} at Aussie Vape. Fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
+
+  const intro =
+    `Shop the ${brand} range of ${note.noun} at Aussie Vape — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+
+  const whyBuy =
+    `We stock ${countStr} ${brand} ${note.noun} with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. ${brand} multi-packs lower the price per device if you buy a few at once.`
+
+  const faqs: Faq[] = [
+    {
+      q: `Where can I buy ${brand} ${note.noun} in Australia?`,
+      a: `${brand} ${note.noun} are available at Aussie Vape (aussievape.com.au) — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free.`,
+    },
+    {
+      q: `How much do ${brand} ${note.noun} cost?`,
+      a: `${brand} ${note.noun} at Aussie Vape start${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, and multi-pack bundles bring the price per device down further. The current price is on each product page.`,
+    },
+    {
+      q: `Is ${brand} available in Australia?`,
+      a: `Yes — Aussie Vape stocks ${countStr} ${brand} ${note.noun}, with new stock added regularly. See the full ${brand} range on this page or our brands page.`,
+    },
+  ]
+
+  return { metaTitle, metaDescription, intro, whyBuy, faqs }
+}
