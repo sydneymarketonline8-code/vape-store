@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { products, getProductBySlug, getProductsByCategory } from '@/data/products'
 import { createServiceClient } from '@/lib/supabase/server'
+import { buildProductDescription } from '@/lib/product-copy'
 import { ProductGallery } from '@/components/shop/product-gallery'
 import { ProductInfo } from '@/components/shop/product-info'
 import { ProductTabs } from '@/components/shop/product-tabs'
@@ -109,7 +110,7 @@ export default async function ProductPage({
     name: product.name,
     sku: product.sku ?? product.id,
     image: product.images?.length ? product.images : [product.image],
-    description: product.shortDescription || product.description.slice(0, 200),
+    description: buildProductDescription(product),
     brand: { '@type': 'Brand', name: product.brand },
     ...(reviewCount > 0 && {
       aggregateRating: {

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Star, X, Loader2, BadgeCheck } from 'lucide-react'
 import type { Product, ProductReview } from '@/types'
+import { buildProductDescription } from '@/lib/product-copy'
 import { StarRating } from './star-rating'
 
 const TABS = ['Description', 'Specifications', 'Shipping & Returns', 'Reviews'] as const
@@ -72,7 +73,7 @@ function DescriptionTab({ product }: { product: Product }) {
   // dangerouslySetInnerHTML.
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6">
-      <p className="whitespace-pre-line leading-relaxed text-gray-600">{product.description}</p>
+      <p className="leading-relaxed text-gray-600">{buildProductDescription(product)}</p>
     </div>
   )
 }
