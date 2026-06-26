@@ -1,4 +1,5 @@
 import { Resend } from 'resend'
+import { SITE_TAGLINE } from '@/lib/site'
 
 // Transactional email via Resend. Templates are plain HTML strings (kept
 // dependency-light instead of @react-email/components). All functions no-op
@@ -44,7 +45,7 @@ function layout(heading: string, body: string): string {
       ${body}
     </div>
     <p style="text-align:center;color:#9ca3af;font-size:12px;margin:18px 0 0">
-      Aussie Vape · Australia's #1 Online Vape Store · For adults 18+ only
+      Aussie Vape · ${SITE_TAGLINE} · For adults 18+ only
     </p>
   </div></body></html>`
 }

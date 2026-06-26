@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { SITE_TAGLINE } from '@/lib/site'
 
 export default function LoginPage() {
   const router            = useRouter()
@@ -39,7 +40,7 @@ export default function LoginPage() {
         <div className="mb-8 text-center">
           <Link href="/" className="mb-4 inline-flex flex-col items-center">
             <span className="text-2xl font-black tracking-tight text-[#1B7A3E]">AUSSIE VAPE</span>
-            <span className="text-xs text-gray-400">Australia&apos;s #1 Online Vape Store</span>
+            <span className="text-xs text-gray-400">{SITE_TAGLINE}</span>
           </Link>
           <h1 className="mt-4 text-2xl font-bold text-gray-900">Welcome back</h1>
           <p className="mt-1 text-sm text-gray-500">Sign in to your account</p>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ShieldCheck, Truck, Sparkles, MessageCircle, ArrowRight } from 'lucide-react'
+import { SITE_TAGLINE } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -20,7 +21,7 @@ export default function AboutPage() {
       <section className="relative bg-gradient-to-br from-emerald-600 to-green-800">
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
-          <p className="text-sm font-semibold uppercase tracking-widest text-white/70">Australia&apos;s #1 Online Vape Store</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-white/70">{SITE_TAGLINE}</p>
           <h1 className="mt-2 text-4xl font-black tracking-tight text-white sm:text-5xl">About Aussie Vape</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-white/85 sm:text-lg">
             An Australian-owned online vape store built for adult vapers who want a reliable range, fair prices, and fast dispatch.

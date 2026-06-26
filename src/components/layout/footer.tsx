@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SITE_TAGLINE } from '@/lib/site'
 
 const SocialIcons = {
   Instagram: () => (
@@ -31,7 +32,7 @@ export function Footer() {
             <Link href="/" className="flex flex-col leading-none">
               <span className="text-lg font-black tracking-tight text-[#1B7A3E]">AUSSIE VAPE</span>
               <span className="text-[10px] font-medium uppercase tracking-widest text-gray-400">
-                Australia&apos;s #1 Online Vape Store
+                {SITE_TAGLINE}
               </span>
             </Link>
             <p className="text-sm text-gray-500 leading-relaxed max-w-xs">

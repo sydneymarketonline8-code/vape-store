@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Menu, Search as SearchIcon, X } from 'lucide-react'
 import { useCartStore } from '@/lib/store'
 import { useUser } from '@/lib/use-user'
+import { SITE_TAGLINE } from '@/lib/site'
 import { CartDrawer } from '@/components/cart/cart-drawer'
 import { SearchBar } from './search-bar'
 import { CartIcon } from './cart-icon'
@@ -18,7 +19,7 @@ function Logo({ className = '' }: { className?: string }) {
     <Link href="/" className={`flex flex-col leading-none ${className}`} aria-label="Aussie Vape home">
       <span className="text-xl font-black tracking-tight text-primary sm:text-2xl">AUSSIE VAPE</span>
       <span className="hidden text-[10px] font-medium uppercase tracking-widest text-gray-400 sm:block">
-        Australia&apos;s #1 Online Vape Store
+        {SITE_TAGLINE}
       </span>
     </Link>
   )

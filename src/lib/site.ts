@@ -2,6 +2,10 @@
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 
+// Brand tagline / logo strapline. Deliberately differentiated from the sibling
+// site aussievapes.com.au (see memory) — do NOT use "Australia's #1 / largest".
+export const SITE_TAGLINE = 'Vape Deals, Bundles & Bulk Packs'
+
 // WhatsApp number in international format, digits only (for wa.me links).
 // Hardcoded (no env override) so a stale NEXT_PUBLIC_WHATSAPP_NUMBER in the
 // host can't bring back a previous/banned number. To change it, edit here.
