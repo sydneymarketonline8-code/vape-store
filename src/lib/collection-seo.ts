@@ -116,7 +116,8 @@ export function buildBrandSeo(
   count: number,
   minPrice: number,
   categoryNames: string[],
-  puffCounts: number[]
+  puffCounts: number[],
+  descriptor?: string | null
 ): CollectionSeo {
   const fromPrice = minPrice ? money(minPrice) : ''
   const countStr = count.toLocaleString()
@@ -133,10 +134,10 @@ export function buildBrandSeo(
     `Shop the full ${brand} range at Aussie Vape — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
 
   const intro =
-    `Shop the full ${brand} range at Aussie Vape — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} across ${catList || 'our catalogue'}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+    `${descriptor ? descriptor + ' ' : ''}Shop the full ${brand} range at Aussie Vape — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} across ${catList || 'our catalogue'}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
 
   const whyBuy =
-    `We stock ${countStr} ${brand} products with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. ${brand} multi-packs lower the price per device if you buy a few at once.`
+    `${descriptor ? descriptor + ' ' : ''}We stock ${countStr} ${brand} products with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. ${brand} multi-packs lower the price per device if you buy a few at once.`
 
   const faqs: Faq[] = [
     {
@@ -167,7 +168,8 @@ export function buildBrandCategorySeo(
   count: number,
   minPrice: number,
   puffCounts: number[],
-  slug: string
+  slug: string,
+  descriptor?: string | null
 ): CollectionSeo {
   const note = NOTE[slug] ?? { noun: categoryName.toLowerCase(), trait: 'genuine products at fair prices' }
   const fromPrice = minPrice ? money(minPrice) : ''
@@ -184,10 +186,10 @@ export function buildBrandCategorySeo(
     `Shop ${countStr} ${brand} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} at Aussie Vape. Fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
 
   const intro =
-    `Shop the ${brand} range of ${note.noun} at Aussie Vape — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+    `${descriptor ? descriptor + ' ' : ''}Shop the ${brand} range of ${note.noun} at Aussie Vape — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
 
   const whyBuy =
-    `We stock ${countStr} ${brand} ${note.noun} with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. ${brand} multi-packs lower the price per device if you buy a few at once.`
+    `${descriptor ? descriptor + ' ' : ''}We stock ${countStr} ${brand} ${note.noun} with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. ${brand} multi-packs lower the price per device if you buy a few at once.`
 
   const faqs: Faq[] = [
     {

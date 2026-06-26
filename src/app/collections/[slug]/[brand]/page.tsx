@@ -8,6 +8,7 @@ import { FaqList } from '@/components/common/page-schema'
 import { getCollection } from '@/lib/collections'
 import { resolveBrandInCategory, brandCategoryParams, seriesSlug } from '@/lib/collections-query'
 import { buildBrandCategorySeo } from '@/lib/collection-seo'
+import { brandDescriptor } from '@/lib/brand-descriptors'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 const PAGE_SIZE = 24
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const data = collection && resolveBrandInCategory(slug, brand)
   if (!collection || !data) return { title: 'Not Found' }
 
-  const seo = buildBrandCategorySeo(data.brand, collection.name, data.count, data.minPrice, data.puffCounts, slug)
+  const seo = buildBrandCategorySeo(data.brand, collection.name, data.count, data.minPrice, data.puffCounts, slug, brandDescriptor(data.brand))
   return {
     title: { absolute: seo.metaTitle },
     description: seo.metaDescription,
@@ -59,7 +60,7 @@ export default async function BrandCategoryPage({
   const page = Number.isFinite(pageRaw) && pageRaw > 0 ? Math.min(Math.floor(pageRaw), totalPages) : 1
   const items = data.list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
-  const seo = buildBrandCategorySeo(data.brand, collection.name, data.count, data.minPrice, data.puffCounts, slug)
+  const seo = buildBrandCategorySeo(data.brand, collection.name, data.count, data.minPrice, data.puffCounts, slug, brandDescriptor(data.brand))
 
   const crumbs = [
     { name: 'Home', href: '/' },

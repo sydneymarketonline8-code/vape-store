@@ -6,6 +6,7 @@ import { ProductCard } from '@/components/shop/product-card'
 import { FaqList } from '@/components/common/page-schema'
 import { resolveBrand, brandHubParams, brandSlug } from '@/lib/collections-query'
 import { buildBrandSeo } from '@/lib/collection-seo'
+import { brandDescriptor } from '@/lib/brand-descriptors'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
 
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { brand } = await params
   const data = resolveBrand(brand)
   if (!data) return { title: 'Brand Not Found' }
-  const seo = buildBrandSeo(data.brand, data.count, data.minPrice, data.categories.map(c => c.name), data.puffCounts)
+  const seo = buildBrandSeo(data.brand, data.count, data.minPrice, data.categories.map(c => c.name), data.puffCounts, brandDescriptor(data.brand))
   return {
     title: { absolute: seo.metaTitle },
     description: seo.metaDescription,
@@ -35,7 +36,7 @@ export default async function BrandHubPage({ params }: { params: Params }) {
   const data = resolveBrand(brand)
   if (!data) notFound()
 
-  const seo = buildBrandSeo(data.brand, data.count, data.minPrice, data.categories.map(c => c.name), data.puffCounts)
+  const seo = buildBrandSeo(data.brand, data.count, data.minPrice, data.categories.map(c => c.name), data.puffCounts, brandDescriptor(data.brand))
 
   const crumbs = [
     { name: 'Home', href: '/' },
