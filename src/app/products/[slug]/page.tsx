@@ -73,10 +73,13 @@ export default async function ProductPage({
   // page stays statically rendered. 0 reviews → no rating shown, no schema rating.
   let rating = 0
   let reviewCount = 0
+  // Real admin-entered specs (DB) override the derived ones — see buildProductSpecs.
+  let dbSpecs: Record<string, string> | null = null
   try {
     const supabase = createServiceClient()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: rows } = await (supabase as any)
+    const db = supabase as any
+    const { data: rows } = await db
       .from('reviews')
       .select('rating')
       .eq('product_id', product.id)
@@ -84,10 +87,18 @@ export default async function ProductPage({
     const ratings = (rows ?? []) as { rating: number }[]
     reviewCount = ratings.length
     rating = reviewCount ? Math.round((ratings.reduce((s, r) => s + r.rating, 0) / reviewCount) * 10) / 10 : 0
+
+    const { data: prow } = await db.from('products').select('specs').eq('id', product.id).maybeSingle()
+    if (prow?.specs && typeof prow.specs === 'object' && Object.keys(prow.specs).length) {
+      dbSpecs = prow.specs as Record<string, string>
+    }
   } catch {
     rating = 0
     reviewCount = 0
   }
+
+  // Overlay real DB specs onto the JSON product (don't mutate the shared array).
+  const displayProduct = dbSpecs ? { ...product, specs: dbSpecs } : product
 
   const categoryLabel = CATEGORY_LABELS[product.category] ?? product.category
 
@@ -152,7 +163,7 @@ export default async function ProductPage({
           <ProductInfo product={product} rating={rating} reviewCount={reviewCount} breadcrumbs={breadcrumbs} />
         </div>
 
-        <ProductTabs product={product} rating={rating} reviewCount={reviewCount} />
+        <ProductTabs product={displayProduct} rating={rating} reviewCount={reviewCount} />
 
         {related.length > 0 && (
           <section className="mt-16">

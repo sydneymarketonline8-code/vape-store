@@ -85,8 +85,9 @@ export function AdminProductForm({ initial, isNew }: { initial: ProductFormValue
     <div>
       <div className="mb-4 flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2.5 text-xs text-amber-800">
         <Info className="mt-0.5 h-4 w-4 shrink-0" />
-        Saving writes to Supabase. The storefront reads the static catalogue, so changes won’t show live until products
-        are migrated. Image &amp; variant editing are not built yet.
+        Saving writes to Supabase. <strong>Specifications now show on the live product page</strong> (on next visit, or
+        within ~an hour). Other catalogue fields (name, price, image) still read from the static catalogue until it’s
+        migrated.
       </div>
 
       <div className="mb-5 flex flex-wrap gap-1 border-b border-neutral-200">
