@@ -125,13 +125,13 @@ export function Footer() {
         {/* Trust badges */}
         <div className="mt-10 grid grid-cols-2 gap-3 border-t border-gray-200 pt-8 sm:grid-cols-3 lg:grid-cols-5">
           {[
-            { Icon: Truck,       label: 'Free AU Shipping',   sub: 'Orders over $300' },
-            { Icon: ShieldCheck, label: 'Age-Verified Store', sub: '18+ only' },
-            { Icon: RotateCcw,   label: '30-Day Returns',     sub: 'Hassle-free' },
-            { Icon: Headphones,  label: 'AU-Based Support',   sub: 'WhatsApp & email' },
-            { Icon: Boxes,       label: '2,000+ Products',    sub: 'In stock now' },
-          ].map(({ Icon, label, sub }) => (
-            <div key={label} className="flex items-center gap-3">
+            { Icon: Truck,       label: 'Free AU Shipping',   sub: 'Orders over $300', href: '/shipping',    aria: 'Free Australia-wide shipping on orders over $300' },
+            { Icon: ShieldCheck, label: 'Age-Verified Store', sub: '18+ only',         href: '/vaping-laws', aria: 'Age-verified store for adults 18 and over' },
+            { Icon: RotateCcw,   label: '30-Day Returns',     sub: 'Unopened items',   href: '/returns',     aria: '30-day hassle-free returns on unopened Aussie Vape products' },
+            { Icon: Headphones,  label: 'AU-Based Support',   sub: 'WhatsApp & email', href: '/contact',     aria: 'Australian-based customer support via WhatsApp and email' },
+            { Icon: Boxes,       label: '2,000+ Products',    sub: 'In stock now',     href: '/products',    aria: 'Over 2,000 vape products in stock and ready to ship Australia-wide' },
+          ].map(({ Icon, label, sub, href, aria }) => (
+            <Link key={label} href={href} aria-label={aria} title={aria} className="-m-1 flex items-center gap-3 rounded-lg p-1 transition-colors hover:bg-gray-50">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green-50">
                 <Icon className="h-4 w-4 text-[#1B7A3E]" />
               </span>
@@ -139,8 +139,25 @@ export function Footer() {
                 <p className="text-xs font-semibold text-gray-800">{label}</p>
                 <p className="text-[11px] text-gray-400">{sub}</p>
               </div>
-            </div>
+            </Link>
           ))}
+        </div>
+
+        {/* SEO text block */}
+        <div className="mt-10 border-t border-gray-200 pt-8">
+          <h2 className="text-sm font-bold text-gray-800">Buy Vapes &amp; Vape Deals Online in Australia</h2>
+          <p className="mt-2 max-w-4xl text-xs leading-relaxed text-gray-400">
+            Aussie Vape is an Australian online vape store specialising in vape deals, multi-pack bundles and bulk packs. Shop{' '}
+            <Link href="/collections/disposables" className="hover:text-[#1B7A3E]">disposable vapes</Link>,{' '}
+            <Link href="/collections/mods" className="hover:text-[#1B7A3E]">pod systems</Link>,{' '}
+            <Link href="/collections/e-liquids" className="hover:text-[#1B7A3E]">e-liquids and nicotine salts</Link> and{' '}
+            <Link href="/collections/pouches" className="hover:text-[#1B7A3E]">nicotine pouches</Link> from brands like{' '}
+            <Link href="/products?brand=ALFAKHER" className="hover:text-[#1B7A3E]">ALFAKHER Crown Bar</Link> and{' '}
+            <Link href="/products?brand=IGET" className="hover:text-[#1B7A3E]">IGET</Link>, with fast AU-wide shipping and free delivery on orders over $300. Buying for a store? See{' '}
+            <Link href="/wholesale" className="hover:text-[#1B7A3E]">wholesale vapes</Link>. New to vaping or checking the rules? Read our{' '}
+            <Link href="/beginners-guide" className="hover:text-[#1B7A3E]">beginners guide</Link> and{' '}
+            <Link href="/vaping-laws" className="hover:text-[#1B7A3E]">vaping laws</Link> pages.
+          </p>
         </div>
 
         {/* Bottom bar */}
