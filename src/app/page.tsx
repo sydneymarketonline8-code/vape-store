@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones, Boxes, Mail } from 'lucide-react'
+import { ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones, Boxes, Mail, Tag } from 'lucide-react'
 import { ProductCard } from '@/components/shop/product-card'
 import { HeroIntro } from '@/components/common/hero-intro'
 import { NewsletterForm } from '@/components/common/newsletter-form'
@@ -62,6 +62,16 @@ export default function HomePage() {
         .sort((a, b) => popularity(b) - popularity(a))
         .slice(0, 4),
     }))
+
+  // Package deals: bundle/multi-pack products, real max saving, available pack sizes.
+  const discountPct = (p: (typeof products)[number]) =>
+    p.originalPrice ? Math.round((1 - p.price / p.originalPrice) * 100) : 0
+  const bundles = products.filter(p => p.tags?.includes('bundle'))
+  const maxDiscount = bundles.length ? Math.max(...bundles.map(discountPct)) : 0
+  const topDeals = [...bundles].sort((a, b) => discountPct(b) - discountPct(a)).slice(0, 4)
+  const packSizes = [3, 5, 10, 20].filter(n =>
+    bundles.some(p => new RegExp(`\\b${n}\\s*PACK\\b`, 'i').test(p.name))
+  )
 
   // ItemList JSON-LD for the best-seller carousel (links only — no fabricated ratings).
   const itemListJsonLd = {
@@ -184,6 +194,51 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── Package Deals ────────────────────────────────────── */}
+      {topDeals.length > 0 && (
+        <section className="py-14" aria-label="Vape package deals">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="overflow-hidden rounded-2xl border border-gray-200">
+              <div className="grid gap-6 bg-gradient-to-br from-rose-600 to-red-900 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white">
+                    <Tag className="h-3.5 w-3.5" /> Buy More, Save More
+                  </span>
+                  <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Save up to {maxDiscount}% on Vape Packs</h2>
+                  <p className="mt-2 max-w-xl text-sm text-white/80">
+                    Multi-pack bundles on Australia&apos;s favourite vapes — the bigger the pack, the less you pay per device.
+                  </p>
+                  {packSizes.length > 0 && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {packSizes.map(n => (
+                        <Link
+                          key={n}
+                          href={`/products?pack=${n}`}
+                          className="rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-white/20"
+                        >
+                          {n}-Pack
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <Link
+                  href="/deals"
+                  className="inline-flex h-fit items-center gap-1.5 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-red-700 hover:bg-white/90"
+                >
+                  Shop all deals <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 gap-4 bg-white p-6 sm:gap-5 sm:p-8 lg:grid-cols-4">
+                {topDeals.map(product => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Shop by Brand (real top brands, top 4 each) ──────── */}
       {brandShowcase.map(({ brand, count, products: brandProducts }) => (
