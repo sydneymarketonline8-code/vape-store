@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones, Boxes, Mail, Tag } from 'lucide-react'
 import { ProductCard } from '@/components/shop/product-card'
 import { CategoryIcon } from '@/components/icons/category-icons'
 import { HeroIntro } from '@/components/common/hero-intro'
+import { HeroDeals, type HeroSlide } from '@/components/common/hero-deals'
 import { NewsletterForm } from '@/components/common/newsletter-form'
 import { products } from '@/data/products'
 
@@ -35,12 +35,6 @@ export default function HomePage() {
     categoryCounts[p.category] = (categoryCounts[p.category] ?? 0) + 1
     if (p.brand) brandCounts[p.brand] = (brandCounts[p.brand] ?? 0) + 1
   }
-
-  // Featured spotlight: IGET BAR 3500 (matches the real storefront), fallback safe.
-  const featuredProduct =
-    products.find(p => p.brand === 'IGET' && p.puffCount === 3500) ??
-    products.find(p => p.brand === 'IGET') ??
-    products[0]
 
   // Best sellers: in-stock, ranked by popularity proxy (featured, then review volume).
   const popularity = (p: (typeof products)[number]) =>
@@ -74,6 +68,22 @@ export default function HomePage() {
     bundles.some(p => new RegExp(`\\b${n}\\s*PACK\\b`, 'i').test(p.name))
   )
 
+  // Hero deals carousel: genuine markdowns (real originalPrice) ranked by discount,
+  // padded with best sellers if there are fewer than 5. Serialisable slides only.
+  const markdowns = products
+    .filter(p => p.inStock && p.originalPrice)
+    .sort((a, b) => discountPct(b) - discountPct(a))
+  const heroPool = markdowns.length >= 5 ? markdowns : [...markdowns, ...bestSellers.filter(p => !markdowns.includes(p))]
+  const heroDeals: HeroSlide[] = heroPool.slice(0, 5).map(p => ({
+    slug: p.slug,
+    brand: p.brand,
+    name: p.name,
+    image: p.image,
+    price: p.price,
+    originalPrice: p.originalPrice ?? null,
+    discountPct: discountPct(p) || null,
+  }))
+
   // ItemList JSON-LD for the best-seller carousel (links only — no fabricated ratings).
   const itemListJsonLd = {
     '@context': 'https://schema.org',
@@ -97,43 +107,8 @@ export default function HomePage() {
           <div className="grid min-h-[400px] grid-cols-1 items-center gap-8 py-16 lg:grid-cols-2">
             <HeroIntro />
 
-            {/* Featured product spotlight */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="w-72">
-                <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
-                  <div className="relative aspect-square bg-gray-50">
-                    <Image
-                      src={featuredProduct.image}
-                      alt={`${featuredProduct.brand} ${featuredProduct.name} — buy online Australia | Aussie Vape`}
-                      fill
-                      priority
-                      sizes="288px"
-                      className="object-contain p-6"
-                    />
-                    <span className="absolute left-3 top-3 rounded-full bg-[#1B7A3E] px-2.5 py-0.5 text-xs font-bold text-white">
-                      Top
-                    </span>
-                  </div>
-                  <div className="border-t border-gray-100 p-4">
-                    <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400">
-                      {featuredProduct.brand}
-                    </p>
-                    <p className="mt-0.5 line-clamp-2 text-sm font-semibold text-gray-900">
-                      {featuredProduct.name}
-                    </p>
-                    <p className="mt-1 font-bold text-[#1B7A3E]">
-                      from ${featuredProduct.price.toFixed(2)}
-                    </p>
-                    <Link
-                      href={`/products/${featuredProduct.slug}`}
-                      className="mt-3 flex w-full items-center justify-center gap-1 rounded-lg bg-[#1B7A3E] py-2 text-sm font-semibold text-white hover:bg-[#156331]"
-                    >
-                      Shop <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Rotating deals carousel (data computed server-side, above) */}
+            <HeroDeals slides={heroDeals} />
           </div>
         </div>
       </section>
