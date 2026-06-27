@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
@@ -38,6 +38,20 @@ export function ProductInfo({
   const [nicotine, setNicotine] = useState(product.nicotineStrengths?.[0])
   const [qty, setQty] = useState(1)
   const [copied, setCopied] = useState(false)
+
+  // Sticky mobile bar appears only once the main add-to-cart block scrolls off.
+  const actionsRef = useRef<HTMLDivElement>(null)
+  const [showSticky, setShowSticky] = useState(false)
+  useEffect(() => {
+    const el = actionsRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => setShowSticky(!entry.isIntersecting),
+      { rootMargin: '0px 0px -64px 0px' },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
   const sku = product.sku ?? product.id
   const discountPct = product.originalPrice
@@ -183,7 +197,7 @@ export function ProductInfo({
       <InventoryBadge product={product} soldOut={soldOut} />
 
       {/* Quantity + actions */}
-      <div className="flex flex-col gap-3">
+      <div ref={actionsRef} className="flex flex-col gap-3">
         <div className="flex gap-3">
           <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5">
             <button type="button" aria-label="Decrease quantity" disabled={qty <= 1}
@@ -279,8 +293,8 @@ export function ProductInfo({
       </div>
     </div>
 
-    {/* Sticky mobile add-to-cart bar */}
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 p-3 backdrop-blur lg:hidden">
+    {/* Sticky mobile add-to-cart bar — slides up once the main button scrolls off */}
+    <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 p-3 backdrop-blur transition-transform duration-300 lg:hidden ${showSticky ? 'translate-y-0' : 'translate-y-full'}`}>
       <div className="mx-auto flex max-w-3xl items-center gap-3">
         <div className="shrink-0 leading-none">
           <p className="text-lg font-bold text-primary">{formatPrice(product.price)}</p>

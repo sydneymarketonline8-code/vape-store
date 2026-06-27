@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ShoppingBag, Trash2, Plus, Minus, Check, Truck } from 'lucide-react'
 import Image from 'next/image'
@@ -7,11 +8,27 @@ import Link from 'next/link'
 import { useCartStore } from '@/lib/store'
 import { formatPrice } from '@/lib/utils'
 import { productImage } from '@/lib/product-image'
+import type { Product } from '@/types'
 
 export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { items, removeItem, updateQuantity } = useCartStore()
+  const { items, removeItem, updateQuantity, addItem } = useCartStore()
   const total = items.reduce((s, i) => s + i.product.price * i.quantity, 0)
   const count = items.reduce((s, i) => s + i.quantity, 0)
+
+  // Cross-sell suggestions — fetched once the drawer first opens.
+  const [suggestions, setSuggestions] = useState<Product[]>([])
+  useEffect(() => {
+    if (!open || suggestions.length) return
+    let active = true
+    fetch('/api/cross-sell')
+      .then(r => r.json())
+      .then(d => { if (active) setSuggestions(d.products ?? []) })
+      .catch(() => {})
+    return () => { active = false }
+  }, [open, suggestions.length])
+
+  const inCart = new Set(items.map(i => i.product.id))
+  const crossSell = suggestions.filter(p => !inCart.has(p.id)).slice(0, 6)
 
   return (
     <AnimatePresence>
@@ -121,6 +138,36 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                 ))
               )}
             </div>
+
+            {/* Cross-sell — honest "you might also like", popular in-stock items */}
+            {items.length > 0 && crossSell.length > 0 && (
+              <div className="border-t border-gray-100 px-6 py-4">
+                <p className="mb-2 text-xs font-semibold text-gray-700">You might also like</p>
+                <div className="scrollbar-hide flex gap-3 overflow-x-auto pb-1">
+                  {crossSell.map(p => (
+                    <div key={p.id} className="w-28 shrink-0">
+                      <Link href={`/products/${p.slug}`} onClick={onClose} className="block">
+                        <div className="relative aspect-square overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
+                          <Image src={productImage(p)} alt={p.name} fill sizes="112px" className="object-contain p-2" unoptimized />
+                        </div>
+                        <p className="mt-1 line-clamp-2 text-[11px] leading-snug text-gray-700">{p.name}</p>
+                      </Link>
+                      <div className="mt-1 flex items-center justify-between gap-1">
+                        <span className="text-xs font-bold text-gray-900">{formatPrice(p.price)}</span>
+                        <button
+                          type="button"
+                          aria-label={`Add ${p.name} to cart`}
+                          onClick={() => addItem(p)}
+                          className="rounded-md bg-[#1B7A3E] px-2 py-1 text-[11px] font-semibold text-white transition-colors hover:bg-[#156331]"
+                        >
+                          + Add
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Footer */}
             {items.length > 0 && (
