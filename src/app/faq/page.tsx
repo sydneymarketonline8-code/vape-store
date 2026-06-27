@@ -31,8 +31,37 @@ export default function FaqPage() {
       </nav>
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Help &amp; FAQs</h1>
       <p className="mt-3 leading-relaxed text-gray-500">Answers to the questions we hear most often. Still stuck? Message us on WhatsApp.</p>
-      <div className="mt-8">
-        <FaqClient />
+
+      {/* FAQ with a very faint diagonal-line backdrop */}
+      <div className="relative mt-8">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: 'repeating-linear-gradient(45deg, #111827 0, #111827 1px, transparent 1px, transparent 11px)' }}
+        />
+        <div className="relative">
+          <FaqClient />
+        </div>
+      </div>
+
+      {/* Still have questions? CTA */}
+      <div className="mt-12 border-t border-neutral-200 py-16 text-center">
+        <h2 className="text-xl font-bold uppercase tracking-wider text-neutral-900">Still Have Questions?</h2>
+        <p className="mt-2 text-sm text-neutral-500">Our Australian-based team is here to help via WhatsApp and email.</p>
+        <div className="mt-6 flex flex-wrap justify-center gap-4">
+          <Link
+            href="/contact"
+            className="bg-neutral-900 px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-neutral-700"
+          >
+            Contact Support
+          </Link>
+          <Link
+            href="/products"
+            className="border-2 border-neutral-900 bg-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-neutral-900 transition-colors hover:bg-neutral-100"
+          >
+            Browse All Products
+          </Link>
+        </div>
       </div>
     </div>
   )

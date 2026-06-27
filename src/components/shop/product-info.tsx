@@ -101,7 +101,7 @@ export function ProductInfo({
         >
           {product.brand}
         </Link>
-        <h1 className="text-2xl font-bold leading-tight text-gray-900">{product.name}</h1>
+        <h1 className="text-xl font-bold leading-tight text-gray-900 sm:text-2xl">{product.name}</h1>
         <p className="mt-1 text-xs text-neutral-400">SKU: {sku}</p>
       </div>
 

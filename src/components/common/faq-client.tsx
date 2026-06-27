@@ -1,11 +1,13 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Search, ChevronDown } from 'lucide-react'
+import { Search, Plus } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { FAQ_SECTIONS } from '@/data/faqs'
 
 export function FaqClient() {
   const [query, setQuery] = useState('')
+  const [openId, setOpenId] = useState<string | null>(null)
   const q = query.trim().toLowerCase()
 
   const sections = useMemo(() => {
@@ -37,17 +39,43 @@ export function FaqClient() {
         <div className="space-y-10">
           {sections.map(section => (
             <section key={section.title}>
-              <h2 className="mb-3 text-lg font-bold text-gray-900">{section.title}</h2>
-              <div className="divide-y divide-gray-100 overflow-hidden rounded-xl border border-gray-200 bg-white">
-                {section.items.map(item => (
-                  <details key={item.q} className="group" open={!!q}>
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-gray-900 [&::-webkit-details-marker]:hidden">
-                      {item.q}
-                      <ChevronDown className="h-4 w-4 shrink-0 text-gray-400 transition-transform group-open:rotate-180" />
-                    </summary>
-                    <div className="px-5 pb-4 text-sm leading-relaxed text-gray-600">{item.a}</div>
-                  </details>
-                ))}
+              <h2 className="mb-2 text-sm font-bold uppercase tracking-wider text-neutral-500">{section.title}</h2>
+              <div>
+                {section.items.map(item => {
+                  const id = `${section.title}::${item.q}`
+                  const open = openId === id
+                  return (
+                    <div key={id} className="border-b border-neutral-200">
+                      <button
+                        type="button"
+                        onClick={() => setOpenId(open ? null : id)}
+                        aria-expanded={open ? 'true' : 'false'}
+                        className="group flex w-full cursor-pointer items-center justify-between gap-4 py-5 text-left"
+                      >
+                        <span className={`text-base font-medium transition-colors ${open ? 'text-primary' : 'text-neutral-800 group-hover:text-primary'}`}>
+                          {item.q}
+                        </span>
+                        <Plus
+                          aria-hidden
+                          className={`h-5 w-5 shrink-0 text-primary transition-transform duration-200 ${open ? 'rotate-45' : 'rotate-0'}`}
+                        />
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {open && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: 'easeInOut' }}
+                            className="overflow-hidden"
+                          >
+                            <p className="pb-5 pt-1 text-sm leading-relaxed text-neutral-600">{item.a}</p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                })}
               </div>
             </section>
           ))}
