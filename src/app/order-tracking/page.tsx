@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
-import { InfoPage, Section, L } from '@/components/common/info-page'
+import Link from 'next/link'
+import { PackageSearch, ListOrdered } from 'lucide-react'
 import { PageSchema, FaqList, HowToSteps, type Faq, type HowToStep } from '@/components/common/page-schema'
+import { Crumb, H2, IconCard } from '@/components/common/page-ui'
 
 export const metadata: Metadata = {
   title: 'Order Tracking',
@@ -46,33 +48,44 @@ const faqs: Faq[] = [
 
 export default function OrderTrackingPage() {
   return (
-    <InfoPage title="Order Tracking" intro="Keep an eye on your delivery from dispatch to doorstep.">
+    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Order Tracking" slug="/order-tracking" faqs={faqs} howTo={{ name: 'How to track your Aussie Vape order', steps }} />
+      <Crumb name="Order Tracking" />
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Order Tracking</h1>
+      <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">Keep an eye on your delivery from dispatch to doorstep.</p>
 
-      <Section heading="How to track your order">
+      <H2>How to track your order</H2>
+      <div className="rounded-2xl border border-gray-200 bg-white p-5">
         <HowToSteps steps={steps} />
-      </Section>
+      </div>
 
-      <Section heading="What the delivery statuses mean">
-        <dl className="overflow-hidden rounded-xl border border-gray-200 divide-y divide-gray-100">
-          {STATUSES.map(s => (
-            <div key={s.label} className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-[140px_1fr]">
-              <dt className="text-sm font-semibold text-gray-900">{s.label}</dt>
-              <dd className="text-sm text-gray-600">{s.desc}</dd>
+      <H2>What the delivery statuses mean</H2>
+      <div className="space-y-2">
+        {STATUSES.map((s, i) => (
+          <div key={s.label} className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-50 text-xs font-bold text-[#1B7A3E]">{i + 1}</span>
+            <div>
+              <p className="text-sm font-semibold text-gray-900">{s.label}</p>
+              <p className="mt-0.5 text-sm text-gray-500">{s.desc}</p>
             </div>
-          ))}
-        </dl>
-      </Section>
+          </div>
+        ))}
+      </div>
 
-      <Section heading="Order history">
-        <p>Signed-in customers can view all orders and their status any time from <L href="/account/orders">My Orders</L>.</p>
-      </Section>
+      <H2>More help</H2>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <IconCard icon={ListOrdered} title="Order history" href="/account/orders" cta="My Orders">
+          Signed-in customers can view all orders and their status any time.
+        </IconCard>
+        <IconCard icon={PackageSearch} title="Order delayed?" href="/contact" cta="Contact us">
+          Check the tracking link and your spam folder first, then message us with your order number.
+        </IconCard>
+      </div>
 
-      <Section heading="Tracking FAQ">
-        <FaqList items={faqs} />
-      </Section>
+      <H2>Tracking FAQ</H2>
+      <FaqList items={faqs} />
 
       <p className="mt-8 text-xs text-gray-400">For adults 18+ only. Nicotine is an addictive chemical.</p>
-    </InfoPage>
+    </div>
   )
 }

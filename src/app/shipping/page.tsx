@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import { InfoPage, Section, L } from '@/components/common/info-page'
+import { Truck, Clock, MapPin, DollarSign, PackageCheck, ShieldCheck, Globe } from 'lucide-react'
 import { PageSchema, FaqList, type Faq } from '@/components/common/page-schema'
+import { Crumb, H2, IconCard, StatCard, Callout } from '@/components/common/page-ui'
 
 export const metadata: Metadata = {
   title: 'Shipping Policy',
@@ -34,35 +35,55 @@ const faqs: Faq[] = [
 
 export default function ShippingPage() {
   return (
-    <InfoPage title="Shipping Policy" intro="Fast, tracked delivery to every Australian state and territory.">
+    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Shipping" slug="/shipping" faqs={faqs} />
+      <Crumb name="Shipping" />
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Shipping Policy</h1>
+      <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">
+        Fast, tracked delivery to every Australian state and territory.
+      </p>
 
-      <Section heading="Shipping Costs">
-        <p>A flat-rate shipping fee applies to orders under $300. Orders <strong>over $300 ship free</strong>, Australia-wide. A minimum order of $250 applies to all purchases.</p>
-      </Section>
-      <Section heading="Dispatch (Processing Time)">
-        <p>Orders are dispatched from our Australian warehouse within <strong>1 business day</strong> of payment being confirmed. Orders placed on weekends or public holidays are dispatched the next business day.</p>
-      </Section>
-      <Section heading="Delivery (Transit Time)">
-        <p>Once dispatched, delivery typically takes <strong>2–6 business days</strong> depending on your location. Metro areas are usually at the faster end of that range.</p>
-      </Section>
-      <Section heading="Tracking">
-        <p>Every order is sent with tracking. Once your order ships we add the tracking number to your account — view it under <L href="/account/orders">My Orders</L>, or we&apos;ll share it with you on WhatsApp.</p>
-      </Section>
-      <Section heading="Age Verification on Delivery">
-        <p>Our products are for adults 18+ only. A signature may be required on delivery, and the courier may ask for ID to confirm age. Orders can&apos;t be left unattended where age can&apos;t be verified.</p>
-      </Section>
-      <Section heading="Remote Areas & Exceptions">
-        <p>Deliveries to regional and remote areas may take additional time. In rare cases of stock or courier delays we&apos;ll contact you directly to keep you informed.</p>
-      </Section>
-      <Section heading="International Shipping">
-        <p>We currently ship <strong>within Australia only</strong> and do not offer international delivery.</p>
-      </Section>
-      <Section heading="Shipping FAQ">
-        <FaqList items={faqs} />
-      </Section>
+      <div className="mt-8 grid gap-3 sm:grid-cols-3">
+        <StatCard icon={Truck} label="Free AU Shipping" sub="Orders over $300" />
+        <StatCard icon={Clock} label="~1 Business Day" sub="Dispatch after payment" />
+        <StatCard icon={PackageCheck} label="Tracked" sub="Australia-wide" />
+      </div>
+
+      <H2>Costs &amp; delivery</H2>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <IconCard icon={DollarSign} title="Shipping costs">
+          Flat-rate fee on orders under $300; orders over $300 ship free. A $250 minimum order applies.
+        </IconCard>
+        <IconCard icon={Clock} title="Dispatch">
+          Within 1 business day of payment being confirmed. Weekend and public-holiday orders go out the next business day.
+        </IconCard>
+        <IconCard icon={Truck} title="Delivery time">
+          Typically 2–6 business days depending on your location, with metro areas at the faster end.
+        </IconCard>
+        <IconCard icon={PackageCheck} title="Tracking" href="/account/orders" cta="My Orders">
+          A tracking number is added to your account on dispatch, and we can share it on WhatsApp.
+        </IconCard>
+      </div>
+
+      <H2>Good to know</H2>
+      <div className="space-y-4">
+        <Callout icon={ShieldCheck} title="Age verification on delivery">
+          Our products are for adults 18+ only. A signature may be required and the courier may ask for ID — orders can&apos;t be left where age can&apos;t be verified.
+        </Callout>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <IconCard icon={MapPin} title="Remote areas">
+            Regional and remote deliveries may take longer. We&apos;ll contact you directly about any stock or courier delays.
+          </IconCard>
+          <IconCard icon={Globe} title="International">
+            We currently ship within Australia only and do not offer international delivery.
+          </IconCard>
+        </div>
+      </div>
+
+      <H2>Shipping FAQ</H2>
+      <FaqList items={faqs} />
 
       <p className="mt-8 text-xs text-gray-400">For adults 18+ only. Nicotine is an addictive chemical.</p>
-    </InfoPage>
+    </div>
   )
 }

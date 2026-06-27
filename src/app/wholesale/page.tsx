@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { InfoPage, Section, L } from '@/components/common/info-page'
+import { Tag, Package, Truck, Boxes, Store } from 'lucide-react'
 import { PageSchema, FaqList, HowToSteps, type Faq, type HowToStep } from '@/components/common/page-schema'
+import { Crumb, H2, IconCard, Callout } from '@/components/common/page-ui'
 import { SITE_URL } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -20,23 +21,18 @@ const steps: HowToStep[] = [
   { name: 'Place your order', text: 'Confirm your order and pay via PayID or crypto; we dispatch from our Australian warehouse.' },
 ]
 
+const BENEFITS = [
+  { icon: Tag, title: 'Trade pricing', desc: 'Competitive per-unit rates that scale with volume.' },
+  { icon: Package, title: 'Bulk packs', desc: 'Best-sellers in multi-unit packs at a lower per-device price.', href: '/deals', cta: 'Pack deals' },
+  { icon: Truck, title: 'Fast dispatch', desc: 'Orders ship from our Australian warehouse, Australia-wide.' },
+  { icon: Boxes, title: 'Full range', desc: 'Access the same 2,000+ product catalogue, including multi-packs.' },
+]
+
 const faqs: Faq[] = [
-  {
-    q: 'Does Aussie Vape supply vapes to retailers?',
-    a: 'Yes. We supply convenience stores, tobacconists and registered Australian businesses with popular disposable, pod and pouch brands at trade pricing. Email wholesale@aussievape.com.au with your business details for a quote.',
-  },
-  {
-    q: 'How do I apply for a wholesale account?',
-    a: 'Email wholesale@aussievape.com.au with your business name, ABN and the products you’re interested in. We’ll reply with trade pricing and how to place your first order.',
-  },
-  {
-    q: 'What is the minimum order for wholesale?',
-    a: 'Wholesale pricing is tied to volume, so minimums depend on the products and quantities. Tell us what you need in your enquiry and we’ll quote accordingly. (A $250 minimum applies to standard retail orders.)',
-  },
-  {
-    q: 'How do I pay for a wholesale order?',
-    a: 'Wholesale orders are paid by PayID or cryptocurrency, the same as retail orders. We confirm the details with you directly once your quote is accepted.',
-  },
+  { q: 'Does Aussie Vape supply vapes to retailers?', a: 'Yes. We supply convenience stores, tobacconists and registered Australian businesses with popular disposable, pod and pouch brands at trade pricing. Email wholesale@aussievape.com.au with your business details for a quote.' },
+  { q: 'How do I apply for a wholesale account?', a: 'Email wholesale@aussievape.com.au with your business name, ABN and the products you’re interested in. We’ll reply with trade pricing and how to place your first order.' },
+  { q: 'What is the minimum order for wholesale?', a: 'Wholesale pricing is tied to volume, so minimums depend on the products and quantities. Tell us what you need in your enquiry and we’ll quote accordingly. (A $250 minimum applies to standard retail orders.)' },
+  { q: 'How do I pay for a wholesale order?', a: 'Wholesale orders are paid by PayID or cryptocurrency, the same as retail orders. We confirm the details with you directly once your quote is accepted.' },
 ]
 
 const serviceJsonLd = {
@@ -51,52 +47,56 @@ const serviceJsonLd = {
 
 export default function WholesalePage() {
   return (
-    <InfoPage
-      title="Bulk & Wholesale Vapes Australia"
-      intro="Buying for a store or in volume? We offer trade pricing and bulk vape packs with fast Australia-wide dispatch."
-    >
+    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Bulk & Wholesale" slug="/wholesale" faqs={faqs} howTo={{ name: 'How to open an Aussie Vape wholesale account', steps }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <Crumb name="Bulk & Wholesale" />
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Bulk &amp; Wholesale Vapes Australia</h1>
+      <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">
+        Buying for a store or in volume? We offer trade pricing and bulk vape packs with fast Australia-wide dispatch.
+      </p>
 
-      <Section heading="Who it's for">
-        <p>Convenience stores, tobacconists, online resellers and registered Australian businesses looking to stock popular disposable, pod and nicotine-pouch brands at competitive trade rates.</p>
-      </Section>
+      <Callout icon={Store} title="Who it's for">
+        Convenience stores, tobacconists, online resellers and registered Australian businesses looking to stock popular disposable, pod and nicotine-pouch brands at competitive trade rates.
+      </Callout>
 
-      <Section heading="Why buy wholesale with us">
-        <p><strong>Trade pricing</strong> — competitive per-unit rates that scale with volume.</p>
-        <p><strong>Bulk packs</strong> — many best-sellers come in multi-unit packs at a lower per-device price. Browse current <L href="/deals">bulk vape packs</L>.</p>
-        <p><strong>Fast dispatch</strong> — orders ship from our Australian warehouse, Australia-wide.</p>
-        <p><strong>Full range</strong> — access the same 2,000+ product catalogue, including multi-packs.</p>
-      </Section>
+      <H2>Why buy wholesale with us</H2>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {BENEFITS.map(({ icon, title, desc, href, cta }) => (
+          <IconCard key={title} icon={icon} title={title} href={href} cta={cta}>
+            {desc}
+          </IconCard>
+        ))}
+      </div>
 
-      <Section heading="Brands available wholesale">
-        <p>Popular brands we stock include:</p>
-        <div className="flex flex-wrap gap-2">
-          {WHOLESALE_BRANDS.map(b => (
-            <Link
-              key={b}
-              href={`/products?brand=${encodeURIComponent(b)}`}
-              className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
-            >
-              {b}
-            </Link>
-          ))}
-        </div>
-        <p>See the full list on our <L href="/brands">brands</L> page.</p>
-      </Section>
+      <H2>Brands available wholesale</H2>
+      <div className="flex flex-wrap gap-2">
+        {WHOLESALE_BRANDS.map(b => (
+          <Link
+            key={b}
+            href={`/products?brand=${encodeURIComponent(b)}`}
+            className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+          >
+            {b}
+          </Link>
+        ))}
+      </div>
+      <p className="mt-3 text-sm text-gray-500">
+        See the full list on our <Link href="/brands" className="font-medium text-[#1B7A3E] hover:underline">brands</Link> page.
+      </p>
 
-      <Section heading="How to open a wholesale account">
+      <H2>How to open a wholesale account</H2>
+      <div className="rounded-2xl border border-gray-200 bg-white p-5">
         <HowToSteps steps={steps} />
-        <p>
-          Email <a href="mailto:wholesale@aussievape.com.au" className="text-[#1B7A3E] hover:underline">wholesale@aussievape.com.au</a> to get started.
+        <p className="mt-4 text-sm text-gray-500">
+          Email <a href="mailto:wholesale@aussievape.com.au" className="font-medium text-[#1B7A3E] hover:underline">wholesale@aussievape.com.au</a> to get started.
         </p>
-      </Section>
+      </div>
 
-      <Section heading="Wholesale FAQ">
-        <FaqList items={faqs} />
-      </Section>
+      <H2>Wholesale FAQ</H2>
+      <FaqList items={faqs} />
 
       <p className="mt-8 text-xs text-gray-400">For adults 18+ only. Nicotine is an addictive chemical.</p>
-    </InfoPage>
+    </div>
   )
 }
