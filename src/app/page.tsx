@@ -4,6 +4,7 @@ import { ProductCard } from '@/components/shop/product-card'
 import { CategoryIcon } from '@/components/icons/category-icons'
 import { HeroIntro } from '@/components/common/hero-intro'
 import { HeroDeals, type HeroSlide } from '@/components/common/hero-deals'
+import { RecentReviews } from '@/components/shop/recent-reviews'
 import { NewsletterForm } from '@/components/common/newsletter-form'
 import { productImage } from '@/lib/product-image'
 import { products } from '@/data/products'
@@ -277,6 +278,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── Social proof (real approved reviews; hidden until they exist) ── */}
+      <RecentReviews />
 
       {/* ── Newsletter ───────────────────────────────────────── */}
       <section className="border-t border-gray-100 bg-[#1a3a2a] py-14" aria-label="Newsletter signup">

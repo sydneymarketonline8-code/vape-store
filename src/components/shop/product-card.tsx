@@ -10,6 +10,7 @@ import { useCartStore } from '@/lib/store'
 import { useWishlistStore } from '@/lib/wishlist-store'
 import { formatPrice } from '@/lib/utils'
 import { productImage } from '@/lib/product-image'
+import { useReviewStat } from '@/lib/review-stats-store'
 
 type BadgeType = 'top' | 'new' | 'sale'
 
@@ -24,6 +25,7 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
   const { addItem, setOpen }     = useCartStore()
   const { toggle, isWishlisted } = useWishlistStore()
   const wishlisted               = isWishlisted(product.id)
+  const reviewStat               = useReviewStat(product.id)
   const [added, setAdded]        = useState(false)
   const [burst, setBurst]        = useState(0) // bump to retrigger the heart burst
   const discountPct = product.originalPrice
@@ -88,14 +90,17 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
           <p className="mb-0.5 text-[11px] font-medium uppercase tracking-wide text-gray-400">{product.brand}</p>
           <h3 className="mb-1.5 line-clamp-2 text-sm font-semibold leading-snug text-gray-900">{product.name}</h3>
 
-          <div className="mb-2 flex items-center gap-1">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'text-gray-200'}`} />
-              ))}
+          {/* Stars only when there are real, approved customer reviews */}
+          {reviewStat && reviewStat.count > 0 && (
+            <div className="mb-2 flex items-center gap-1">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className={`h-3 w-3 ${i < Math.round(reviewStat.rating) ? 'fill-amber-400 text-amber-400' : 'text-gray-200'}`} />
+                ))}
+              </div>
+              <span className="text-[11px] text-gray-400">({reviewStat.count})</span>
             </div>
-            <span className="text-[11px] text-gray-400">({product.reviewCount})</span>
-          </div>
+          )}
 
           <div className="mb-3 flex items-baseline gap-2">
             <span className={`text-base font-bold ${product.originalPrice ? 'text-red-600' : 'text-gray-900'}`}>{formatPrice(product.price)}</span>
