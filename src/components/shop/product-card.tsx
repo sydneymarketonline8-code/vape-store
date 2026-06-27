@@ -55,7 +55,7 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
         <div className="relative aspect-square overflow-hidden rounded-t-xl bg-gray-50">
           <Image
             src={product.image}
-            alt={product.name}
+            alt={`${product.name} — Buy Online Australia | Aussie Vape`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
