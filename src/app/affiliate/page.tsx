@@ -62,31 +62,26 @@ export default function AffiliatePage() {
         <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
           <div className="mb-4 flex items-center justify-between">
             <span className="text-sm font-bold text-gray-900">Affiliate Dashboard</span>
-            <span className="rounded-full bg-green-50 px-2 py-0.5 text-xs font-semibold text-green-700">Active</span>
+            <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-500">Preview</span>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-xl bg-gray-50 p-4">
               <div className="flex items-center gap-1.5 text-xs text-gray-400"><Users className="h-3.5 w-3.5" /> Referrals</div>
-              <p className="mt-1 text-2xl font-bold text-gray-900">128</p>
+              <p className="mt-1 text-2xl font-bold text-gray-900">0</p>
             </div>
             <div className="rounded-xl bg-gray-50 p-4">
               <div className="flex items-center gap-1.5 text-xs text-gray-400"><DollarSign className="h-3.5 w-3.5" /> Earnings</div>
-              <p className="mt-1 text-2xl font-bold text-gray-900">$1,940</p>
+              <p className="mt-1 text-2xl font-bold text-gray-900">$0.00</p>
             </div>
           </div>
           <div className="mt-3 rounded-xl border border-dashed border-gray-200 p-4">
             <div className="flex items-center gap-1.5 text-xs text-gray-400"><Link2 className="h-3.5 w-3.5" /> Your referral link</div>
-            <p className="mt-1 break-all font-mono text-xs text-primary">aussievape.com.au/register?ref=VAPER128</p>
+            <p className="mt-1 font-mono text-xs text-gray-400">Sign up to generate your unique link</p>
           </div>
-          <div className="mt-3 space-y-2">
-            {[['Order #AV-2041', '+$8.40'], ['Order #AV-2038', '+$31.10'], ['Order #AV-2033', '+$12.90']].map(([o, amt]) => (
-              <div key={o} className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-xs">
-                <span className="text-gray-600">{o}</span>
-                <span className="font-semibold text-green-600">{amt}</span>
-              </div>
-            ))}
+          <div className="mt-3 rounded-xl border border-dashed border-gray-200 p-6 text-center">
+            <p className="text-xs text-gray-400">Your referrals and earnings will appear here once you join.</p>
           </div>
-          <p className="mt-3 text-center text-[11px] text-gray-400">Sample dashboard — figures for illustration.</p>
+          <p className="mt-3 text-center text-[11px] text-gray-400">Preview of your affiliate dashboard.</p>
         </div>
       </div>
     </div>
