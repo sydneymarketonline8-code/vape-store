@@ -5,6 +5,7 @@ import { CategoryIcon } from '@/components/icons/category-icons'
 import { HeroIntro } from '@/components/common/hero-intro'
 import { HeroDeals, type HeroSlide } from '@/components/common/hero-deals'
 import { NewsletterForm } from '@/components/common/newsletter-form'
+import { productImage } from '@/lib/product-image'
 import { products } from '@/data/products'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
@@ -80,7 +81,7 @@ export default function HomePage() {
     slug: p.slug,
     brand: p.brand,
     name: p.name,
-    image: p.image,
+    image: productImage(p),
     price: p.price,
     originalPrice: p.originalPrice ?? null,
     discountPct: discountPct(p) || null,

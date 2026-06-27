@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { formatPrice } from '@/lib/utils'
+import { productImage } from '@/lib/product-image'
 import type { FlavourSibling } from '@/lib/flavours'
 
 /**
@@ -35,7 +36,7 @@ export function FlavourRange({
           >
             <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-50">
               <Image
-                src={product.image}
+                src={productImage(product)}
                 alt={`${product.name} — buy online Australia | Aussie Vape`}
                 fill
                 sizes="(max-width:640px) 30vw, (max-width:1024px) 22vw, 14vw"

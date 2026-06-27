@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Play, X } from 'lucide-react'
 import type { Product } from '@/types'
+import { productImages } from '@/lib/product-image'
 
 /**
  * Desktop: large main image (hover-zoom) + scrollable 80px thumbnail strip;
@@ -13,7 +14,7 @@ import type { Product } from '@/types'
  * last thumb is a play button that opens a modal with an embedded iframe.
  */
 export function ProductGallery({ product }: { product: Product }) {
-  const images = (product.images?.length ? product.images : [product.image]).slice(0, 6)
+  const images = productImages(product).slice(0, 6)
   const [active, setActive] = useState(0)
   const [videoOpen, setVideoOpen] = useState(false)
 

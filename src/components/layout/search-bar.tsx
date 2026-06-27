@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Search, Loader2, X } from 'lucide-react'
 import { formatPrice } from '@/lib/utils'
+import { productImage } from '@/lib/product-image'
 
 interface SearchResult {
   id: string
@@ -201,8 +202,8 @@ export function SearchBar({ expanded = false, autoFocus = false, className = '',
                       }`}
                     >
                       <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md bg-gray-100">
-                        {p.image && (
-                          <Image src={p.image} alt="" fill sizes="40px" className="object-cover" />
+                        {productImage(p) && (
+                          <Image src={productImage(p)} alt="" fill sizes="40px" className="object-cover" />
                         )}
                       </div>
                       <span className="line-clamp-1 flex-1 text-sm text-gray-800">{p.name}</span>

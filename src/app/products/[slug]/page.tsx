@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { products, getProductBySlug, getProductsByCategory } from '@/data/products'
 import { createServiceClient } from '@/lib/supabase/server'
 import { buildProductDescription } from '@/lib/product-copy'
+import { productImages } from '@/lib/product-image'
 import { flavourRange, crossBrandFlavours } from '@/lib/flavours'
 import { FlavourRange } from '@/components/shop/flavour-range'
 import { ProductGallery } from '@/components/shop/product-gallery'
@@ -55,7 +56,7 @@ export async function generateMetadata({
       description,
       type: 'website',
       url: `${SITE_URL}/products/${slug}`,
-      images: [product.image],
+      images: productImages(product),
     },
   }
 }
@@ -127,7 +128,7 @@ export default async function ProductPage({
     '@type': 'Product',
     name: product.name,
     sku: product.sku ?? product.id,
-    image: product.images?.length ? product.images : [product.image],
+    image: productImages(product),
     description: buildProductDescription(product),
     brand: { '@type': 'Brand', name: product.brand },
     ...(reviewCount > 0 && {

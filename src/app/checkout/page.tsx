@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { ChevronLeft, Lock, Loader2, AlertCircle, Landmark, Bitcoin, MessageCircle } from 'lucide-react'
 import { useCartStore } from '@/lib/store'
 import { formatPrice } from '@/lib/utils'
+import { productImage } from '@/lib/product-image'
 import { PAYMENT_METHODS, type PaymentMethod } from '@/lib/site'
 
 const AU_STATES = ['NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT']
@@ -205,7 +206,7 @@ export default function CheckoutPage() {
                   {items.map(item => (
                     <div key={`${item.product.id}-${item.selectedFlavor}`} className="flex items-center gap-3">
                       <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-50">
-                        <Image src={item.product.image} alt={item.product.name} fill className="object-contain p-1" unoptimized />
+                        <Image src={productImage(item.product)} alt={item.product.name} fill className="object-contain p-1" unoptimized />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="truncate text-xs font-medium text-gray-800">{item.product.name}</p>

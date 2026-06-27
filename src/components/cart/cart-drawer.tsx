@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useCartStore } from '@/lib/store'
 import { formatPrice } from '@/lib/utils'
+import { productImage } from '@/lib/product-image'
 
 export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { items, removeItem, updateQuantity } = useCartStore()
@@ -73,7 +74,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                     className="flex gap-3 rounded-xl border border-gray-200 bg-gray-50 p-3"
                   >
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-white border border-gray-100">
-                      <Image src={item.product.image} alt={item.product.name} fill className="object-contain p-1" unoptimized />
+                      <Image src={productImage(item.product)} alt={item.product.name} fill className="object-contain p-1" unoptimized />
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col">
                       <p className="text-[11px] text-gray-400">{item.product.brand}</p>

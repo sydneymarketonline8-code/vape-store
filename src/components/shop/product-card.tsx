@@ -9,6 +9,7 @@ import { Product } from '@/types'
 import { useCartStore } from '@/lib/store'
 import { useWishlistStore } from '@/lib/wishlist-store'
 import { formatPrice } from '@/lib/utils'
+import { productImage } from '@/lib/product-image'
 
 type BadgeType = 'top' | 'new' | 'sale'
 
@@ -54,7 +55,7 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
         {/* Image zone */}
         <div className="relative aspect-square overflow-hidden rounded-t-xl bg-gray-50">
           <Image
-            src={product.image}
+            src={productImage(product)}
             alt={`${product.name} — Buy Online Australia | Aussie Vape`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
