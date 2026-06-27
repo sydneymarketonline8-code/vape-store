@@ -103,13 +103,13 @@ export default function HomePage() {
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="border-b border-gray-100 bg-gradient-to-br from-green-50 via-white to-gray-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid min-h-[400px] grid-cols-1 items-center gap-8 py-16 lg:grid-cols-2">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
+          <div className="max-w-2xl">
             <HeroIntro />
-
-            {/* Rotating deals carousel (data computed server-side, above) */}
-            <HeroDeals slides={heroDeals} />
           </div>
+
+          {/* Full-width rotating deals banner (data computed server-side, above) */}
+          <HeroDeals slides={heroDeals} className="mt-10" />
         </div>
       </section>
 
