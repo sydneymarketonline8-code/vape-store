@@ -69,12 +69,14 @@ export default function HomePage() {
   )
 
   // Hero deals carousel: genuine markdowns (real originalPrice) ranked by discount,
-  // padded with best sellers if there are fewer than 5. Serialisable slides only.
+  // padded with the most popular in-stock products to fill 8 slides. Serialisable only.
   const markdowns = products
     .filter(p => p.inStock && p.originalPrice)
     .sort((a, b) => discountPct(b) - discountPct(a))
-  const heroPool = markdowns.length >= 5 ? markdowns : [...markdowns, ...bestSellers.filter(p => !markdowns.includes(p))]
-  const heroDeals: HeroSlide[] = heroPool.slice(0, 5).map(p => ({
+  const heroFill = products
+    .filter(p => p.inStock && !markdowns.includes(p))
+    .sort((a, b) => popularity(b) - popularity(a))
+  const heroDeals: HeroSlide[] = [...markdowns, ...heroFill].slice(0, 8).map(p => ({
     slug: p.slug,
     brand: p.brand,
     name: p.name,
