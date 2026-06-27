@@ -127,7 +127,7 @@ export default async function OrderDetailPage({
                     }`}>
                       {done ? <Check className="h-4 w-4" /> : i + 1}
                     </span>
-                    <span className={`mt-1.5 text-[11px] capitalize ${done ? 'font-medium text-gray-700' : 'text-gray-400'}`}>
+                    <span className={`mt-1.5 text-xs capitalize ${done ? 'font-medium text-gray-700' : 'text-gray-400'}`}>
                       {step}
                     </span>
                   </div>

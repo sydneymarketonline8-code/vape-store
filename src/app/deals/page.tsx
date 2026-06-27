@@ -125,7 +125,7 @@ export default function DealsPage() {
                 >
                   <p className="text-xs font-medium text-white/70">{t.n}-Pack</p>
                   <p className="mt-1 text-2xl font-bold text-white">~{t.avg}%</p>
-                  <p className="text-[11px] text-white/60">avg saving · {t.count} deals</p>
+                  <p className="text-xs text-white/60">avg saving · {t.count} deals</p>
                 </Link>
               ))}
             </div>

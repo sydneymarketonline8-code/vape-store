@@ -34,7 +34,7 @@ export function CountdownTimer() {
             <span className="font-heading min-w-[3rem] rounded-lg border border-[#1e1e2e] bg-[#12121a] px-3 py-1.5 text-center text-2xl font-bold text-white tabular-nums">
               {pad(val)}
             </span>
-            <span className="mt-1 text-[10px] font-medium uppercase tracking-widest text-slate-600">
+            <span className="mt-1 text-[11px] font-medium uppercase tracking-widest text-slate-600">
               {['HRS', 'MIN', 'SEC'][i]}
             </span>
           </div>

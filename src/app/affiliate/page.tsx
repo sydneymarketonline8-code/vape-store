@@ -37,7 +37,7 @@ export default function AffiliatePage() {
               <li key={title} className="flex gap-4">
                 <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Icon className="h-5 w-5" />
-                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-white">{i + 1}</span>
+                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">{i + 1}</span>
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-gray-900">{title}</h3>
@@ -81,7 +81,7 @@ export default function AffiliatePage() {
           <div className="mt-3 rounded-xl border border-dashed border-gray-200 p-6 text-center">
             <p className="text-xs text-gray-400">Your referrals and earnings will appear here once you join.</p>
           </div>
-          <p className="mt-3 text-center text-[11px] text-gray-400">Preview of your affiliate dashboard.</p>
+          <p className="mt-3 text-center text-xs text-gray-400">Preview of your affiliate dashboard.</p>
         </div>
       </div>
     </div>

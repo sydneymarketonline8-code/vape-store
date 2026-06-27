@@ -115,7 +115,7 @@ export default function BrandsPage() {
               href={`/brands/${brandSlug(b.brand)}`}
               className={`block bg-gradient-to-br ${GRADIENTS[i % GRADIENTS.length]} px-6 py-7 sm:px-8`}
             >
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-white/60">
+              <p className="text-xs font-semibold uppercase tracking-widest text-white/60">
                 {b.count.toLocaleString()} products · from ${b.min.toFixed(2)}
               </p>
               <div className="mt-1 flex items-end justify-between gap-4">

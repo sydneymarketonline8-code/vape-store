@@ -63,7 +63,7 @@ function NavContent({ pathname, onNavigate }: { pathname: string; onNavigate?: (
       <nav className="flex-1 space-y-5 overflow-y-auto px-3 pb-6">
         {SECTIONS.map(section => (
           <div key={section.title}>
-            <p className="px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-neutral-500">
+            <p className="px-3 pb-1.5 text-xs font-semibold uppercase tracking-wider text-neutral-500">
               {section.title}
             </p>
             <ul className="space-y-0.5">

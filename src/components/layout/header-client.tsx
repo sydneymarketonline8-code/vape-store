@@ -18,7 +18,7 @@ function Logo({ className = '' }: { className?: string }) {
   return (
     <Link href="/" className={`flex flex-col leading-none ${className}`} aria-label="Aussie Vape home">
       <span className="text-xl font-black tracking-tight text-primary sm:text-2xl">AUSSIE VAPE</span>
-      <span className="hidden text-[10px] font-medium uppercase tracking-widest text-gray-400 sm:block">
+      <span className="hidden text-[11px] font-medium uppercase tracking-widest text-gray-400 sm:block">
         {SITE_TAGLINE}
       </span>
     </Link>

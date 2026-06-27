@@ -15,9 +15,9 @@ import { useReviewStat } from '@/lib/review-stats-store'
 type BadgeType = 'top' | 'new' | 'sale'
 
 function Badge({ type, discount }: { type: BadgeType; discount?: number }) {
-  if (type === 'top')  return <span className="rounded-full bg-blue-500 px-2.5 py-0.5 text-[11px] font-bold text-white">Top</span>
-  if (type === 'new')  return <span className="rounded-full bg-[#1B7A3E] px-2.5 py-0.5 text-[11px] font-bold text-white">New</span>
-  if (type === 'sale') return <span className="rounded-full bg-red-500 px-2.5 py-0.5 text-[11px] font-bold text-white">{discount ? `-${discount}%` : 'Sale'}</span>
+  if (type === 'top')  return <span className="rounded-full bg-blue-500 px-2.5 py-0.5 text-xs font-bold text-white">Top</span>
+  if (type === 'new')  return <span className="rounded-full bg-[#1B7A3E] px-2.5 py-0.5 text-xs font-bold text-white">New</span>
+  if (type === 'sale') return <span className="rounded-full bg-red-500 px-2.5 py-0.5 text-xs font-bold text-white">{discount ? `-${discount}%` : 'Sale'}</span>
   return null
 }
 
@@ -87,7 +87,7 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
 
         {/* Info zone */}
         <div className="p-3">
-          <p className="mb-0.5 text-[11px] font-medium uppercase tracking-wide text-gray-400">{product.brand}</p>
+          <p className="mb-0.5 text-xs font-medium uppercase tracking-wide text-gray-400">{product.brand}</p>
           <h3 className="mb-1.5 line-clamp-2 text-sm font-semibold leading-snug text-gray-900">{product.name}</h3>
 
           {/* Stars only when there are real, approved customer reviews */}
@@ -98,7 +98,7 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
                   <Star key={i} className={`h-3 w-3 ${i < Math.round(reviewStat.rating) ? 'fill-amber-400 text-amber-400' : 'text-gray-200'}`} />
                 ))}
               </div>
-              <span className="text-[11px] text-gray-400">({reviewStat.count})</span>
+              <span className="text-xs text-gray-400">({reviewStat.count})</span>
             </div>
           )}
 
@@ -109,7 +109,7 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
 
           {/* Low-stock cue — only when real inventory data says so */}
           {product.inventoryQty != null && product.inventoryQty > 0 && product.inventoryQty <= 5 && (
-            <p className="mb-2 text-[11px] font-semibold text-amber-600">Only {product.inventoryQty} left</p>
+            <p className="mb-2 text-xs font-semibold text-amber-600">Only {product.inventoryQty} left</p>
           )}
 
           {/* Quick Add — pulses + swaps to a checkmark on add */}

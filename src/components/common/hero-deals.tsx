@@ -63,7 +63,7 @@ export function HeroDeals({ slides, className = '' }: { slides: HeroSlide[]; cla
             >
               {/* Copy */}
               <div className="order-2 sm:order-1">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-100 ring-1 ring-white/15 backdrop-blur">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 ring-1 ring-white/15 backdrop-blur">
                   <Sparkles className="h-3.5 w-3.5" /> {s.discountPct ? 'Deal of the Day' : 'Featured'}
                 </span>
                 <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300/90">{s.brand}</p>

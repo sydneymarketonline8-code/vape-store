@@ -94,7 +94,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                       <Image src={productImage(item.product)} alt={item.product.name} fill className="object-contain p-1" unoptimized />
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col">
-                      <p className="text-[11px] text-gray-400">{item.product.brand}</p>
+                      <p className="text-xs text-gray-400">{item.product.brand}</p>
                       <p className="truncate text-sm font-semibold text-gray-900">{item.product.name}</p>
                       {item.selectedFlavor && (
                         <p className="text-xs text-gray-400">{item.selectedFlavor}</p>
@@ -150,7 +150,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                         <div className="relative aspect-square overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
                           <Image src={productImage(p)} alt={p.name} fill sizes="112px" className="object-contain p-2" unoptimized />
                         </div>
-                        <p className="mt-1 line-clamp-2 text-[11px] leading-snug text-gray-700">{p.name}</p>
+                        <p className="mt-1 line-clamp-2 text-xs leading-snug text-gray-700">{p.name}</p>
                       </Link>
                       <div className="mt-1 flex items-center justify-between gap-1">
                         <span className="text-xs font-bold text-gray-900">{formatPrice(p.price)}</span>
@@ -158,7 +158,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                           type="button"
                           aria-label={`Add ${p.name} to cart`}
                           onClick={() => addItem(p)}
-                          className="rounded-md bg-[#1B7A3E] px-2 py-1 text-[11px] font-semibold text-white transition-colors hover:bg-[#156331]"
+                          className="rounded-md bg-[#1B7A3E] px-2 py-1 text-xs font-semibold text-white transition-colors hover:bg-[#156331]"
                         >
                           + Add
                         </button>

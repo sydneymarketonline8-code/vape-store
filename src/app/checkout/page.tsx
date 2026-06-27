@@ -210,8 +210,8 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="truncate text-xs font-medium text-gray-800">{item.product.name}</p>
-                        {item.selectedFlavor && <p className="text-[11px] text-gray-400">{item.selectedFlavor}</p>}
-                        <p className="text-[11px] text-gray-400">Qty: {item.quantity}</p>
+                        {item.selectedFlavor && <p className="text-xs text-gray-400">{item.selectedFlavor}</p>}
+                        <p className="text-xs text-gray-400">Qty: {item.quantity}</p>
                       </div>
                       <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">
                         {formatPrice(item.product.price * item.quantity)}
@@ -233,7 +233,7 @@ export default function CheckoutPage() {
                   </span>
                 </div>
                 {subtotal > 0 && subtotal < FREE_SHIP && (
-                  <p className="text-[11px] text-gray-400">
+                  <p className="text-xs text-gray-400">
                     Add {formatPrice(FREE_SHIP - subtotal)} more for free shipping
                   </p>
                 )}

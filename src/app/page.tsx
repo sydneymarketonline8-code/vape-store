@@ -128,7 +128,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-gray-800">{label}</p>
-                  <p className="text-[11px] text-gray-400">{sub}</p>
+                  <p className="text-xs text-gray-400">{sub}</p>
                 </div>
               </div>
             ))}

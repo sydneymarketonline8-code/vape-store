@@ -147,7 +147,7 @@ export function SearchView({
           <div className="flex items-center gap-2">
             <button type="button" onClick={() => setSheetOpen(true)} className="relative flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 hover:border-gray-300 lg:hidden">
               <SlidersHorizontal className="h-4 w-4" /> Filters
-              {activeCount > 0 && <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[11px] font-bold text-white">{activeCount}</span>}
+              {activeCount > 0 && <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-xs font-bold text-white">{activeCount}</span>}
             </button>
             <div className="hidden items-center gap-2 sm:flex">
               <span className="text-sm text-gray-400">Sort by:</span>

@@ -123,7 +123,7 @@ export default function CategoriesPage() {
                 <CategoryIcon slug={c.slug} className="h-9 w-9" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-white/60">
+                <p className="text-xs font-semibold uppercase tracking-widest text-white/60">
                   {c.count.toLocaleString()} products{c.min ? ` · from $${c.min.toFixed(2)}` : ''}
                 </p>
                 <div className="mt-1 flex items-end justify-between gap-4">

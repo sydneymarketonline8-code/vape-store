@@ -33,7 +33,7 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex flex-col leading-none">
               <span className="text-lg font-black tracking-tight text-[#1B7A3E]">AUSSIE VAPE</span>
-              <span className="text-[10px] font-medium uppercase tracking-widest text-gray-400">
+              <span className="text-[11px] font-medium uppercase tracking-widest text-gray-400">
                 {SITE_TAGLINE}
               </span>
             </Link>
@@ -139,7 +139,7 @@ export function Footer() {
               </span>
               <div>
                 <p className="text-xs font-semibold text-gray-800">{label}</p>
-                <p className="text-[11px] text-gray-400">{sub}</p>
+                <p className="text-xs text-gray-400">{sub}</p>
               </div>
             </Link>
           ))}

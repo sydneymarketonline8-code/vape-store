@@ -82,7 +82,7 @@ export default function BeginnersGuidePage() {
           <Link key={d.slug} href={d.href} className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#1B7A3E] hover:shadow-sm">
             <CategoryIcon slug={d.slug} className="h-10 w-10" />
             <p className="mt-3 text-sm font-bold text-gray-900 group-hover:text-[#1B7A3E]">{d.name}</p>
-            <p className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-[#1B7A3E]">{d.best}</p>
+            <p className="mt-0.5 text-xs font-medium uppercase tracking-wide text-[#1B7A3E]">{d.best}</p>
             <p className="mt-2 flex-1 text-sm text-gray-500">{d.desc}</p>
             <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#1B7A3E]">Shop <ArrowRight className="h-3 w-3" /></span>
           </Link>

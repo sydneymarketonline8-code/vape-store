@@ -17,7 +17,7 @@ export function CartIcon({ className = '' }: { className?: string }) {
     >
       <ShoppingBag className="h-5 w-5" />
       {count > 0 && (
-        <span className="absolute -right-0.5 -top-0.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold leading-none text-white">
+        <span className="absolute -right-0.5 -top-0.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary px-1 text-[11px] font-bold leading-none text-white">
           {count > 99 ? '99+' : count}
         </span>
       )}

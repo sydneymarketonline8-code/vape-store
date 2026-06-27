@@ -267,7 +267,7 @@ export function ProductInfo({
           <div key={label} className="flex flex-col items-center gap-1 rounded-xl border border-gray-100 bg-gray-50 p-3 text-center">
             <Icon className="h-5 w-5 text-primary" />
             <p className="text-xs font-semibold text-gray-700">{label}</p>
-            <p className="text-[10px] text-gray-400">{sub}</p>
+            <p className="text-[11px] text-gray-400">{sub}</p>
           </div>
         ))}
       </div>
