@@ -24,7 +24,7 @@ const faqs: Faq[] = [
 
 export default function VapingLawsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Vaping Laws" slug="/vaping-laws" faqs={faqs} />
       <Crumb name="Vaping Laws" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Vaping Laws in Australia</h1>

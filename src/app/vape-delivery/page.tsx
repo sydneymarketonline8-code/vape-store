@@ -33,7 +33,7 @@ const faqs: Faq[] = [
 
 export default function VapeDeliveryPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Vape Delivery Australia" slug="/vape-delivery" faqs={faqs} />
       <Crumb name="Vape Delivery" />
 

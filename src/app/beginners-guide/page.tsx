@@ -61,7 +61,7 @@ export default function BeginnersGuidePage() {
     .slice(0, 4)
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Beginners Guide" slug="/beginners-guide" faqs={faqs} howTo={{ name: 'How to use a disposable vape', steps }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <Crumb name="Beginners Guide" />

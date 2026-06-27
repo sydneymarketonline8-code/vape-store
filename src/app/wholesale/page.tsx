@@ -47,7 +47,7 @@ const serviceJsonLd = {
 
 export default function WholesalePage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Bulk & Wholesale" slug="/wholesale" faqs={faqs} howTo={{ name: 'How to open an Aussie Vape wholesale account', steps }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <Crumb name="Bulk & Wholesale" />

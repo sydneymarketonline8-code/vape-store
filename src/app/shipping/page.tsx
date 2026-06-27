@@ -36,7 +36,7 @@ const faqs: Faq[] = [
 
 export default function ShippingPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Shipping" slug="/shipping" faqs={faqs} />
       <Crumb name="Shipping" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Shipping Policy</h1>

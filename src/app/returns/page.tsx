@@ -43,7 +43,7 @@ const faqs: Faq[] = [
 
 export default function ReturnsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Returns & Refunds" slug="/returns" faqs={faqs} howTo={{ name: 'How to return an item to Aussie Vape', steps }} />
       <Crumb name="Returns & Refunds" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Returns &amp; Refunds</h1>

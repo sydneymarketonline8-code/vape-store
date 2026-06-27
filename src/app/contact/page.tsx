@@ -39,7 +39,7 @@ const HELP = [
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Contact" slug="/contact" faqs={faqs} />
 
       <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs text-gray-400">

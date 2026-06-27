@@ -48,7 +48,7 @@ const faqs: Faq[] = [
 
 export default function OrderTrackingPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Order Tracking" slug="/order-tracking" faqs={faqs} howTo={{ name: 'How to track your Aussie Vape order', steps }} />
       <Crumb name="Order Tracking" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Order Tracking</h1>
