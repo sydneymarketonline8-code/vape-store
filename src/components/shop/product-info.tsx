@@ -76,6 +76,7 @@ export function ProductInfo({
   }
 
   return (
+    <>
     <div className="flex flex-col gap-5">
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb">
@@ -277,6 +278,28 @@ export function ProductInfo({
         )}
       </div>
     </div>
+
+    {/* Sticky mobile add-to-cart bar */}
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 p-3 backdrop-blur lg:hidden">
+      <div className="mx-auto flex max-w-3xl items-center gap-3">
+        <div className="shrink-0 leading-none">
+          <p className="text-lg font-bold text-primary">{formatPrice(product.price)}</p>
+          {product.originalPrice && (
+            <p className="mt-0.5 text-xs text-gray-400 line-through">{formatPrice(product.originalPrice)}</p>
+          )}
+        </div>
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          disabled={soldOut}
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary py-3 font-semibold text-white transition-colors hover:bg-primary-dark active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          <ShoppingCart className="h-4 w-4" />
+          {soldOut ? 'Out of Stock' : 'Add to Cart'}
+        </button>
+      </div>
+    </div>
+    </>
   )
 }
 

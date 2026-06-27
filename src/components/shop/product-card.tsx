@@ -102,6 +102,11 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
             {product.originalPrice && <span className="text-sm text-gray-400 line-through">{formatPrice(product.originalPrice)}</span>}
           </div>
 
+          {/* Low-stock cue — only when real inventory data says so */}
+          {product.inventoryQty != null && product.inventoryQty > 0 && product.inventoryQty <= 5 && (
+            <p className="mb-2 text-[11px] font-semibold text-amber-600">Only {product.inventoryQty} left</p>
+          )}
+
           {/* Quick Add — pulses + swaps to a checkmark on add */}
           <motion.button
             type="button"

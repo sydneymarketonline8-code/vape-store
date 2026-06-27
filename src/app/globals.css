@@ -7,6 +7,7 @@
   --color-surface:       #F9FAFB;
   --color-border:        #E5E7EB;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: var(--font-outfit), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -22,6 +23,12 @@ body {
   color: #111827;
   font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Distinctive display face for all headings (Outfit), body stays Inter. */
+h1, h2, h3, h4 {
+  font-family: var(--font-outfit), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
 }
 
 ::selection {

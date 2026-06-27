@@ -4,6 +4,8 @@ import { ArrowRight, Gauge, Scale, Wrench } from 'lucide-react'
 import { PageSchema, FaqList, HowToSteps, type Faq, type HowToStep } from '@/components/common/page-schema'
 import { Crumb, H2, IconCard, Callout } from '@/components/common/page-ui'
 import { CategoryIcon } from '@/components/icons/category-icons'
+import { ProductCard } from '@/components/shop/product-card'
+import { products } from '@/data/products'
 import { SITE_URL } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -49,7 +51,15 @@ const articleJsonLd = {
   mainEntityOfPage: `${SITE_URL}/beginners-guide`,
 }
 
+const popularity = (p: (typeof products)[number]) => (p.featured ? 1_000_000 : 0) + (p.reviewCount ?? 0)
+
 export default function BeginnersGuidePage() {
+  // Beginner-friendly starter picks: popular, in-stock disposables (no setup needed).
+  const starterPicks = products
+    .filter(p => p.inStock && p.category === 'disposables')
+    .sort((a, b) => popularity(b) - popularity(a))
+    .slice(0, 4)
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Beginners Guide" slug="/beginners-guide" faqs={faqs} howTo={{ name: 'How to use a disposable vape', steps }} />
@@ -109,6 +119,36 @@ export default function BeginnersGuidePage() {
 
       <H2>Beginner FAQ</H2>
       <FaqList items={faqs} />
+
+      {/* Conversion finisher: starter picks + strong CTA */}
+      {starterPicks.length > 0 && (
+        <>
+          <H2>Ready to start? Top beginner picks</H2>
+          <p className="mb-4 max-w-2xl text-sm text-gray-500">
+            Simple, ready-to-use disposables — nothing to charge or refill. A great first vape.
+          </p>
+          <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+            {starterPicks.map(p => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </>
+      )}
+
+      <div className="mt-12 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1B7A3E] to-[#0f4f28] px-6 py-10 text-center">
+        <h2 className="text-2xl font-bold text-white">Find your first vape</h2>
+        <p className="mx-auto mt-2 max-w-md text-sm text-green-100">
+          Browse Australia&apos;s favourite disposables, pods and pouches — fast AU-wide dispatch, free shipping over $300.
+        </p>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <Link href="/collections/disposables" className="rounded-lg bg-white px-6 py-3 text-sm font-bold text-[#0f4f28] transition-transform hover:scale-105">
+            Shop Disposables
+          </Link>
+          <Link href="/products" className="rounded-lg border border-white/30 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
+            Browse All Vapes
+          </Link>
+        </div>
+      </div>
 
       <p className="mt-8 text-xs text-gray-400">For adults 18+ only. Nicotine is an addictive chemical. General information only — not health advice.</p>
     </div>

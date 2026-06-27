@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ShoppingBag, Trash2, Plus, Minus, Check } from 'lucide-react'
+import { X, ShoppingBag, Trash2, Plus, Minus, Check, Truck } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCartStore } from '@/lib/store'
@@ -125,6 +125,22 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
             {/* Footer */}
             {items.length > 0 && (
               <div className="border-t border-gray-200 px-6 py-5 space-y-4">
+                {/* Free-shipping progress nudge (honest — $300 threshold) */}
+                {total >= 300 ? (
+                  <div className="flex items-center gap-1.5 rounded-lg bg-green-50 px-3 py-2 text-xs font-semibold text-green-700">
+                    <Check className="h-3.5 w-3.5" /> You&apos;ve unlocked free AU shipping!
+                  </div>
+                ) : (
+                  <div>
+                    <p className="flex items-center gap-1.5 text-xs text-gray-500">
+                      <Truck className="h-3.5 w-3.5 text-[#1B7A3E]" />
+                      Add <span className="font-semibold text-gray-900">${(300 - total).toFixed(2)}</span> more for free shipping
+                    </p>
+                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-gray-100">
+                      <div className="h-full rounded-full bg-[#1B7A3E] transition-all" style={{ width: `${Math.min(100, (total / 300) * 100)}%` }} />
+                    </div>
+                  </div>
+                )}
                 <div className="flex justify-between text-sm text-gray-500">
                   <span>Minimum order</span>
                   <span className={total >= 250 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'}>

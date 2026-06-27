@@ -165,7 +165,7 @@ export default async function ProductPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 pb-24 sm:px-6 lg:px-8 lg:pb-8">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <ProductGallery product={product} />
           <ProductInfo product={product} rating={rating} reviewCount={reviewCount} breadcrumbs={breadcrumbs} />
