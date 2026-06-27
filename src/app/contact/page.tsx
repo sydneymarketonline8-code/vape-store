@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { InfoPage, Section, L } from '@/components/common/info-page'
+import Link from 'next/link'
+import { MessageCircle, Mail, ShoppingBag, Truck, RotateCcw, Store, Wallet, ChevronRight } from 'lucide-react'
 import { PageSchema, FaqList, type Faq } from '@/components/common/page-schema'
 import { whatsappLink } from '@/lib/site'
 
@@ -29,47 +30,111 @@ const faqs: Faq[] = [
   },
 ]
 
+const HELP = [
+  { icon: ShoppingBag, title: 'Orders & payment', desc: 'Placing an order, PayID or crypto payment, and confirming your order.', href: undefined },
+  { icon: Truck, title: 'Delivery', desc: 'Tracking and delivery questions, Australia-wide.', href: '/order-tracking', cta: 'Order Tracking' },
+  { icon: RotateCcw, title: 'Returns & refunds', desc: 'Faulty items or 30-day returns on unopened products.', href: '/returns', cta: 'Returns & Refunds' },
+  { icon: Store, title: 'Wholesale & bulk', desc: 'Trade pricing and bulk packs for businesses.', href: '/wholesale', cta: 'Bulk & Wholesale' },
+]
+
 export default function ContactPage() {
   return (
-    <InfoPage
-      title="Contact Aussie Vape"
-      intro="Questions about an order, a product, payment or wholesale? Our Australian-based team is here to help by WhatsApp or email."
-    >
+    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PageSchema name="Contact" slug="/contact" faqs={faqs} />
 
-      <Section heading="How to reach us">
-        <p>
-          <strong>WhatsApp</strong> (fastest):{' '}
-          <a href={whatsappLink('Hi Aussie Vape, I have a question.')} target="_blank" rel="noopener noreferrer" className="text-[#1B7A3E] hover:underline">
-            message us on WhatsApp
-          </a>
-        </p>
-        <p>
-          <strong>Email:</strong>{' '}
-          <a href="mailto:support@aussievape.com.au" className="text-[#1B7A3E] hover:underline">support@aussievape.com.au</a>
-        </p>
-        <p>We usually reply within one Australian business day.</p>
-      </Section>
+      <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs text-gray-400">
+        <Link href="/" className="hover:text-[#1B7A3E]">Home</Link>
+        <span>/</span>
+        <span className="text-gray-600">Contact</span>
+      </nav>
 
-      <Section heading="What we can help with">
-        <p><strong>Orders &amp; payment</strong> — placing an order, PayID or crypto payment, and confirming your order. See how payment works below or message us.</p>
-        <p><strong>Delivery</strong> — tracking and delivery questions. Start with <L href="/order-tracking">Order Tracking</L>.</p>
-        <p><strong>Returns &amp; refunds</strong> — faulty items or 30-day returns on unopened products. See <L href="/returns">Returns &amp; Refunds</L>.</p>
-        <p><strong>Wholesale &amp; bulk</strong> — trade pricing and bulk packs. See <L href="/wholesale">Bulk &amp; Wholesale</L>.</p>
-      </Section>
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Contact Aussie Vape</h1>
+      <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">
+        Questions about an order, a product, payment or wholesale? Our Australian-based team is here to help by WhatsApp or email — usually within one business day.
+      </p>
 
-      <Section heading="How payment works">
-        <p>
-          We accept <strong>PayID</strong> and <strong>cryptocurrency</strong>. Place your order, then use the WhatsApp button to get
-          the payment details for your chosen method and lock your order in. For bulk orders, see <L href="/wholesale">wholesale</L>.
-        </p>
-      </Section>
+      {/* Contact method cards */}
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <a
+          href={whatsappLink('Hi Aussie Vape, I have a question.')}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
+        >
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-50">
+            <MessageCircle className="h-5 w-5 text-[#1B7A3E]" />
+          </span>
+          <span>
+            <span className="block text-sm font-semibold text-gray-900">WhatsApp <span className="text-[#1B7A3E]">— fastest</span></span>
+            <span className="mt-0.5 block text-sm text-gray-500 group-hover:text-[#1B7A3E]">Message us on WhatsApp</span>
+          </span>
+        </a>
+        <a
+          href="mailto:support@aussievape.com.au"
+          className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
+        >
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-50">
+            <Mail className="h-5 w-5 text-[#1B7A3E]" />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-sm font-semibold text-gray-900">Email</span>
+            <span className="mt-0.5 block truncate text-sm text-gray-500 group-hover:text-[#1B7A3E]">support@aussievape.com.au</span>
+          </span>
+        </a>
+      </div>
 
-      <Section heading="Common questions">
-        <FaqList items={faqs} />
-      </Section>
+      {/* What we can help with */}
+      <h2 className="mb-4 mt-12 text-xl font-bold text-gray-900">What we can help with</h2>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {HELP.map(({ icon: Icon, title, desc, href, cta }) => {
+          const inner = (
+            <>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-100">
+                <Icon className="h-4 w-4 text-gray-600" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-semibold text-gray-900">{title}</span>
+                <span className="mt-0.5 block text-sm text-gray-500">{desc}</span>
+                {cta && (
+                  <span className="mt-1 inline-flex items-center gap-0.5 text-xs font-medium text-[#1B7A3E]">
+                    {cta} <ChevronRight className="h-3 w-3" />
+                  </span>
+                )}
+              </span>
+            </>
+          )
+          return href ? (
+            <Link key={title} href={href} className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#1B7A3E]">
+              {inner}
+            </Link>
+          ) : (
+            <div key={title} className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4">
+              {inner}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* How payment works — highlighted callout */}
+      <div className="mt-8 flex items-start gap-4 rounded-2xl border border-[#1B7A3E]/20 bg-green-50/60 p-5">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white">
+          <Wallet className="h-5 w-5 text-[#1B7A3E]" />
+        </span>
+        <div>
+          <h2 className="text-sm font-bold text-gray-900">How payment works</h2>
+          <p className="mt-1 text-sm leading-relaxed text-gray-600">
+            We accept <strong>PayID</strong> and <strong>cryptocurrency</strong>. Place your order, then use the WhatsApp button to get the
+            payment details for your chosen method and lock your order in. Buying in volume? See{' '}
+            <Link href="/wholesale" className="font-medium text-[#1B7A3E] hover:underline">wholesale</Link>.
+          </p>
+        </div>
+      </div>
+
+      {/* FAQ */}
+      <h2 className="mb-4 mt-12 text-xl font-bold text-gray-900">Common questions</h2>
+      <FaqList items={faqs} />
 
       <p className="mt-8 text-xs text-gray-400">For adults 18+ only. Nicotine is an addictive chemical.</p>
-    </InfoPage>
+    </div>
   )
 }
