@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { products } from '@/data/products'
 import { COLLECTIONS } from '@/lib/collections'
 import { brandCategoryParams, seriesParams, brandHubParams } from '@/lib/collections-query'
+import { STATES } from '@/data/locations'
 import { createServiceClient } from '@/lib/supabase/server'
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
@@ -11,6 +12,7 @@ const STATIC_PATHS = [
   '', '/products', '/categories', '/deals', '/about', '/affiliate', '/where-to-buy', '/brands',
   '/blog', '/faq', '/shipping', '/returns', '/contact', '/wholesale',
   '/beginners-guide', '/vaping-laws', '/order-tracking', '/login', '/register',
+  '/vape-delivery',
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -81,5 +83,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     blogEntries = []
   }
 
-  return [...staticEntries, ...collectionEntries, ...brandHubEntries, ...brandClusterEntries, ...seriesEntries, ...blogEntries, ...productEntries]
+  // Location delivery pages (one per state/territory).
+  const stateEntries: MetadataRoute.Sitemap = STATES.map(s => ({
+    url: `${SITE}/vape-delivery/${s.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.6,
+  }))
+
+  return [...staticEntries, ...collectionEntries, ...brandHubEntries, ...brandClusterEntries, ...seriesEntries, ...stateEntries, ...blogEntries, ...productEntries]
 }

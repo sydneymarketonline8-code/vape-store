@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Truck, ShieldCheck, RotateCcw, Headphones, Boxes } from 'lucide-react'
 import { SITE_TAGLINE } from '@/lib/site'
+import { STATES } from '@/data/locations'
 
 const SocialIcons = {
   Instagram: () => (
@@ -87,6 +88,7 @@ export function Footer() {
                 { href: '/contact',         label: 'Contact Us' },
                 { href: '/order-tracking',  label: 'Order Tracking' },
                 { href: '/shipping',        label: 'Shipping Policy' },
+                { href: '/vape-delivery',   label: 'Vape Delivery' },
                 { href: '/returns',         label: 'Returns & Refunds' },
                 { href: '/beginners-guide', label: 'Beginners Guide' },
                 { href: '/faq',             label: 'FAQ' },
@@ -157,6 +159,15 @@ export function Footer() {
             <Link href="/wholesale" className="hover:text-[#1B7A3E]">wholesale vapes</Link>. New to vaping or checking the rules? Read our{' '}
             <Link href="/beginners-guide" className="hover:text-[#1B7A3E]">beginners guide</Link> and{' '}
             <Link href="/vaping-laws" className="hover:text-[#1B7A3E]">vaping laws</Link> pages.
+          </p>
+          <p className="mt-3 text-xs text-gray-400">
+            <span className="font-semibold text-gray-500">Vape delivery by state:</span>{' '}
+            {STATES.map((s, i) => (
+              <span key={s.slug}>
+                {i > 0 && <span className="text-gray-300"> · </span>}
+                <Link href={`/vape-delivery/${s.slug}`} className="hover:text-[#1B7A3E]">{s.abbr}</Link>
+              </span>
+            ))}
           </p>
         </div>
 
