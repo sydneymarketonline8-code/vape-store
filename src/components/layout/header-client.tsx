@@ -20,13 +20,18 @@ function Logo({ className = '' }: { className?: string }) {
       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#22934A] to-[#0f5128] shadow-sm sm:h-9 sm:w-9">
         <svg viewBox="0 0 32 32" className="h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true">
           <defs>
-            <linearGradient id="av-drop" x1="16" y1="5.5" x2="16" y2="26.5" gradientUnits="userSpaceOnUse">
+            <linearGradient id="av-cloud" x1="16" y1="8" x2="16" y2="23" gradientUnits="userSpaceOnUse">
               <stop offset="0" stopColor="#ffffff" />
               <stop offset="1" stopColor="#DCF1E4" />
             </linearGradient>
           </defs>
-          <path d="M16 5.5C16 5.5 8.5 13.5 8.5 18.8a7.5 7.5 0 0 0 15 0C23.5 13.5 16 5.5 16 5.5Z" fill="url(#av-drop)" />
-          <circle cx="12.8" cy="17.6" r="2.1" fill="#ffffff" opacity="0.6" />
+          <g fill="url(#av-cloud)">
+            <circle cx="12.3" cy="18.2" r="4.3" />
+            <circle cx="20" cy="18.2" r="4.9" />
+            <circle cx="16" cy="13.8" r="5.2" />
+            <rect x="8.6" y="17.4" width="14.8" height="5" rx="2.5" />
+          </g>
+          <circle cx="13.5" cy="14.5" r="1.6" fill="#ffffff" opacity="0.7" />
         </svg>
       </span>
       <span className="flex flex-col leading-none">

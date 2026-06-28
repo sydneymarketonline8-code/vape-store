@@ -1,15 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 32 32">
   <defs>
-    <linearGradient id="tile" x1="0" y1="0" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+    <linearGradient id="tile" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#22934A"/>
       <stop offset="1" stop-color="#0F5128"/>
     </linearGradient>
-    <linearGradient id="drop" x1="90" y1="38" x2="90" y2="150" gradientUnits="userSpaceOnUse">
+    <linearGradient id="cloud" x1="16" y1="8" x2="16" y2="23" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#ffffff"/>
       <stop offset="1" stop-color="#DCF1E4"/>
     </linearGradient>
   </defs>
-  <rect width="180" height="180" fill="url(#tile)"/>
-  <path d="M90 38C90 38 48 82 48 112a42 42 0 0 0 84 0C132 82 90 38 90 38Z" fill="url(#drop)"/>
-  <circle cx="72" cy="104" r="13" fill="#ffffff" opacity="0.6"/>
+  <rect width="32" height="32" fill="url(#tile)"/>
+  <g fill="url(#cloud)">
+    <circle cx="12.3" cy="18.2" r="4.3"/>
+    <circle cx="20" cy="18.2" r="4.9"/>
+    <circle cx="16" cy="13.8" r="5.2"/>
+    <rect x="8.6" y="17.4" width="14.8" height="5" rx="2.5"/>
+  </g>
+  <circle cx="13.5" cy="14.5" r="1.6" fill="#ffffff" opacity="0.7"/>
 </svg>
