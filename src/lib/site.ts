@@ -11,6 +11,13 @@ export const SITE_TAGLINE = 'Vape Deals, Bundles & Bulk Packs'
 // host can't bring back a previous/banned number. To change it, edit here.
 export const WHATSAPP_NUMBER = '61468228364'
 
+// Social profile links. Only entries with a real URL are rendered (no dead "#"
+// links). Add your handles here, e.g. { name: 'Instagram', url: 'https://instagram.com/aussievape' }.
+export const SOCIAL_LINKS: { name: 'Instagram' | 'Facebook' | 'Twitter'; url: string }[] = [
+  // { name: 'Instagram', url: 'https://instagram.com/yourhandle' },
+  // { name: 'Facebook',  url: 'https://facebook.com/yourpage' },
+]
+
 export type PaymentMethod = 'payid' | 'crypto'
 
 export const PAYMENT_METHODS: { id: PaymentMethod; label: string; blurb: string }[] = [

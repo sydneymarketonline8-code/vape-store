@@ -178,8 +178,8 @@ export default function RegisterPage() {
               />
               <span className="text-sm text-gray-500">
                 I confirm I am <strong>18 years or older</strong> and agree to the{' '}
-                <a href="#" className="text-[#1B7A3E] hover:underline">Terms of Service</a> and{' '}
-                <a href="#" className="text-[#1B7A3E] hover:underline">Privacy Policy</a>.
+                <Link href="/terms" className="text-[#1B7A3E] hover:underline">Terms of Service</Link> and{' '}
+                <Link href="/privacy" className="text-[#1B7A3E] hover:underline">Privacy Policy</Link>.
               </span>
             </label>
 

@@ -12,7 +12,7 @@ const STATIC_PATHS = [
   '', '/products', '/categories', '/deals', '/about', '/affiliate', '/where-to-buy', '/brands',
   '/blog', '/faq', '/shipping', '/returns', '/contact', '/wholesale',
   '/beginners-guide', '/vaping-laws', '/order-tracking', '/login', '/register',
-  '/vape-delivery',
+  '/vape-delivery', '/terms', '/privacy',
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

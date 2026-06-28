@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Truck, ShieldCheck, RotateCcw, Headphones, Boxes } from 'lucide-react'
-import { SITE_TAGLINE } from '@/lib/site'
+import { SITE_TAGLINE, SOCIAL_LINKS } from '@/lib/site'
 import { STATES } from '@/data/locations'
 
 const SocialIcons = {
@@ -40,21 +40,25 @@ export function Footer() {
             <p className="text-sm text-gray-500 leading-relaxed max-w-xs">
               Australia&apos;s leading online vape wholesale supplier. Fast dispatch, Australia-wide.
             </p>
-            <div className="flex gap-2">
-              {(['Instagram', 'Facebook', 'Twitter'] as const).map(name => {
-                const Icon = SocialIcons[name]
-                return (
-                  <a
-                    key={name}
-                    href="#"
-                    aria-label={name}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 transition-all hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
-                  >
-                    <Icon />
-                  </a>
-                )
-              })}
-            </div>
+            {SOCIAL_LINKS.length > 0 && (
+              <div className="flex gap-2">
+                {SOCIAL_LINKS.map(({ name, url }) => {
+                  const Icon = SocialIcons[name]
+                  return (
+                    <a
+                      key={name}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={name}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 transition-all hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                    >
+                      <Icon />
+                    </a>
+                  )
+                })}
+              </div>
+            )}
           </div>
 
           {/* Shop */}
@@ -171,8 +175,22 @@ export function Footer() {
           </p>
         </div>
 
+        {/* Legal links */}
+        <div className="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 border-t border-gray-200 pt-6 text-xs text-gray-400">
+          {[
+            { href: '/terms', label: 'Terms of Service' },
+            { href: '/privacy', label: 'Privacy Policy' },
+            { href: '/vaping-laws', label: 'Vaping Laws' },
+            { href: '/shipping', label: 'Shipping' },
+            { href: '/returns', label: 'Returns' },
+            { href: '/contact', label: 'Contact' },
+          ].map(l => (
+            <Link key={l.href} href={l.href} className="hover:text-[#1B7A3E]">{l.label}</Link>
+          ))}
+        </div>
+
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-6 sm:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 pt-2 sm:flex-row">
           <p className="text-xs text-gray-400">
             © {new Date().getFullYear()} Aussie Vape. All rights reserved. For adults 18+ only.
           </p>
