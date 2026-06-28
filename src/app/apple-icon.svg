@@ -1,4 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
-  <rect width="180" height="180" fill="#1B7A3E"/>
-  <path d="M90 42C90 42 52 80 52 107a38 38 0 0 0 76 0C128 80 90 42 90 42Z" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22934A"/>
+      <stop offset="1" stop-color="#0F5128"/>
+    </linearGradient>
+    <linearGradient id="drop" x1="90" y1="38" x2="90" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#DCF1E4"/>
+    </linearGradient>
+  </defs>
+  <rect width="180" height="180" fill="url(#tile)"/>
+  <path d="M90 38C90 38 48 82 48 112a42 42 0 0 0 84 0C132 82 90 38 90 38Z" fill="url(#drop)"/>
+  <circle cx="72" cy="104" r="13" fill="#ffffff" opacity="0.6"/>
 </svg>

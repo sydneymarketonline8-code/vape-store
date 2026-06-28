@@ -17,9 +17,16 @@ import { MobileMenu } from './mobile-menu'
 function Logo({ className = '' }: { className?: string }) {
   return (
     <Link href="/" className={`flex items-center gap-2 ${className}`} aria-label="Aussie Vape home">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary sm:h-9 sm:w-9">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#22934A] to-[#0f5128] shadow-sm sm:h-9 sm:w-9">
         <svg viewBox="0 0 32 32" className="h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true">
-          <path d="M16 6C16 6 9 13.5 9 18.5a7 7 0 0 0 14 0C23 13.5 16 6 16 6Z" fill="#ffffff" />
+          <defs>
+            <linearGradient id="av-drop" x1="16" y1="5.5" x2="16" y2="26.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="#ffffff" />
+              <stop offset="1" stopColor="#DCF1E4" />
+            </linearGradient>
+          </defs>
+          <path d="M16 5.5C16 5.5 8.5 13.5 8.5 18.8a7.5 7.5 0 0 0 15 0C23.5 13.5 16 5.5 16 5.5Z" fill="url(#av-drop)" />
+          <circle cx="12.8" cy="17.6" r="2.1" fill="#ffffff" opacity="0.6" />
         </svg>
       </span>
       <span className="flex flex-col leading-none">
