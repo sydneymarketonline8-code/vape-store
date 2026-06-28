@@ -16,10 +16,17 @@ import { MobileMenu } from './mobile-menu'
 
 function Logo({ className = '' }: { className?: string }) {
   return (
-    <Link href="/" className={`flex flex-col leading-none ${className}`} aria-label="Aussie Vape home">
-      <span className="text-xl font-black tracking-tight text-primary sm:text-2xl">AUSSIE VAPE</span>
-      <span className="hidden text-[11px] font-medium uppercase tracking-widest text-gray-400 sm:block">
-        {SITE_TAGLINE}
+    <Link href="/" className={`flex items-center gap-2 ${className}`} aria-label="Aussie Vape home">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary sm:h-9 sm:w-9">
+        <svg viewBox="0 0 32 32" className="h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true">
+          <path d="M16 6C16 6 9 13.5 9 18.5a7 7 0 0 0 14 0C23 13.5 16 6 16 6Z" fill="#ffffff" />
+        </svg>
+      </span>
+      <span className="flex flex-col leading-none">
+        <span className="text-xl font-black tracking-tight text-primary sm:text-2xl">AUSSIE VAPE</span>
+        <span className="hidden text-[11px] font-medium uppercase tracking-widest text-gray-400 sm:block">
+          {SITE_TAGLINE}
+        </span>
       </span>
     </Link>
   )

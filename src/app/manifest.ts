@@ -10,5 +10,9 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: '#ffffff',
     theme_color: '#1B7A3E',
     categories: ['shopping'],
+    icons: [
+      { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
+      { src: '/apple-icon.svg', sizes: '180x180', type: 'image/svg+xml' },
+    ],
   }
 }
