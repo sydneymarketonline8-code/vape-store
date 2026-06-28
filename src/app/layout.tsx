@@ -32,7 +32,10 @@ export const metadata: Metadata = {
   description: DEFAULT_DESC,
   applicationName: 'Aussie Vape',
   alternates: { canonical: '/' },
-  verification: { google: '4K_SODPaILw3qSrDxDS3AxJO7Gs3D94pMdgW88jqFQw' },
+  verification: {
+    google: '4K_SODPaILw3qSrDxDS3AxJO7Gs3D94pMdgW88jqFQw',
+    other: { 'msvalidate.01': 'AA4B24BB61805F06694EA15A78224F46' },
+  },
   robots: {
     index: true,
     follow: true,
