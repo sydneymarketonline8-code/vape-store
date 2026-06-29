@@ -8,11 +8,21 @@ export function AgeGate() {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    if (!localStorage.getItem('age-verified')) setShow(true)
+    // Fail safe: if we can't confirm prior consent (storage blocked/unavailable),
+    // show the gate rather than letting someone through unverified.
+    try {
+      if (!localStorage.getItem('age-verified')) setShow(true)
+    } catch {
+      setShow(true)
+    }
   }, [])
 
   function handleConfirm() {
-    localStorage.setItem('age-verified', 'true')
+    try {
+      localStorage.setItem('age-verified', 'true')
+    } catch {
+      /* storage unavailable — still let the confirmed adult through this session */
+    }
     setShow(false)
   }
 
