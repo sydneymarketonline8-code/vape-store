@@ -126,6 +126,9 @@ export default async function ProductPage({
     .sort((a, b) => ((Number(a.id) * 7 + 13) % 97) - ((Number(b.id) * 7 + 13) % 97))
     .slice(0, 4)
 
+  // ISO date ~1 year out for priceValidUntil (recommended for merchant listings).
+  const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)
+
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -156,10 +159,35 @@ export default async function ProductPage({
       '@type': 'Offer',
       priceCurrency: 'AUD',
       price: product.price.toFixed(2),
+      priceValidUntil,
       availability: product.inStock
         ? 'https://schema.org/InStock'
         : 'https://schema.org/OutOfStock',
       url: `${SITE_URL}/products/${slug}`,
+      // Real policy: free over $300, otherwise $15 flat, Australia-wide.
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: product.price >= 300 ? '0.00' : '15.00',
+          currency: 'AUD',
+        },
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'AU' },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 1, unitCode: 'DAY' },
+          transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 6, unitCode: 'DAY' },
+        },
+      },
+      // Real policy: 30-day returns on unopened items; buyer pays return postage.
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'AU',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 30,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/ReturnShippingFees',
+      },
     },
   }
 
