@@ -76,6 +76,8 @@ export default async function ProductPage({
   // page stays statically rendered. 0 reviews → no rating shown, no schema rating.
   let rating = 0
   let reviewCount = 0
+  type ReviewRow = { reviewer_name: string; rating: number; title: string | null; body: string; created_at: string }
+  let reviewRows: ReviewRow[] = []
   // Real admin-entered specs (DB) override the derived ones — see buildProductSpecs.
   let dbSpecs: Record<string, string> | null = null
   try {
@@ -84,12 +86,13 @@ export default async function ProductPage({
     const db = supabase as any
     const { data: rows } = await db
       .from('reviews')
-      .select('rating')
+      .select('reviewer_name, rating, title, body, created_at')
       .eq('product_id', product.id)
       .eq('status', 'approved')
-    const ratings = (rows ?? []) as { rating: number }[]
-    reviewCount = ratings.length
-    rating = reviewCount ? Math.round((ratings.reduce((s, r) => s + r.rating, 0) / reviewCount) * 10) / 10 : 0
+      .order('created_at', { ascending: false })
+    reviewRows = (rows ?? []) as ReviewRow[]
+    reviewCount = reviewRows.length
+    rating = reviewCount ? Math.round((reviewRows.reduce((s, r) => s + r.rating, 0) / reviewCount) * 10) / 10 : 0
 
     const { data: prow } = await db.from('products').select('specs').eq('id', product.id).maybeSingle()
     if (prow?.specs && typeof prow.specs === 'object' && Object.keys(prow.specs).length) {
@@ -131,12 +134,23 @@ export default async function ProductPage({
     image: productImages(product),
     description: buildProductDescription(product),
     brand: { '@type': 'Brand', name: product.brand },
+    // Only emitted with REAL approved reviews — never fabricated rating/review markup.
     ...(reviewCount > 0 && {
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: rating,
         reviewCount,
+        bestRating: 5,
+        worstRating: 1,
       },
+      review: reviewRows.slice(0, 10).map(r => ({
+        '@type': 'Review',
+        reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5, worstRating: 1 },
+        author: { '@type': 'Person', name: r.reviewer_name },
+        datePublished: r.created_at,
+        ...(r.title ? { name: r.title } : {}),
+        reviewBody: r.body,
+      })),
     }),
     offers: {
       '@type': 'Offer',
