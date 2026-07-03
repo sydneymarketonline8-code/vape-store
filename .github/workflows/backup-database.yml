@@ -1,0 +1,125 @@
+name: Nightly Supabase backup
+
+# Runs every night at 03:00 UTC (13:00 AEST / 14:00 AEDT). Can also be
+# triggered manually from the Actions tab (workflow_dispatch).
+#
+# What it does:
+#   1. pg_dump the entire Supabase database over the direct connection.
+#   2. GPG-symmetric-encrypt the dump with AES-256 + a passphrase secret.
+#   3. Push the encrypted file to a separate private backup repo, organised
+#      by YYYY-MM so retention stays browsable.
+#
+# Required repo secrets (Settings → Secrets and variables → Actions):
+#   SUPABASE_DB_URL              postgres://postgres.<ref>:<pwd>@aws-0-<region>.pooler.supabase.com:5432/postgres
+#   BACKUP_ENCRYPTION_PASSPHRASE 32+ character random string — LOSING THIS = backups are unrecoverable
+#   BACKUP_REPO                  e.g. sydneymarketonline8-code/vape-store-backups
+#   BACKUP_REPO_SSH_KEY          private half of a deploy key with write access to BACKUP_REPO
+#
+# See BACKUPS.md for full setup + restore instructions.
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: db-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Install pg_dump + gnupg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client gnupg curl ca-certificates
+          pg_dump --version
+
+      - name: Dump Supabase database
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SUPABASE_DB_URL}" ]; then
+            echo "::error::SUPABASE_DB_URL secret is not set. See BACKUPS.md."
+            exit 1
+          fi
+          TS=$(date -u +%Y-%m-%d_%H%M%S)
+          FILE="vapestore-${TS}.sql"
+          echo "TS=${TS}"                                  >> "$GITHUB_ENV"
+          echo "FILE=${FILE}"                              >> "$GITHUB_ENV"
+          echo "YEAR_MONTH=$(date -u +%Y-%m)"              >> "$GITHUB_ENV"
+
+          # --no-owner + --no-privileges keep the dump portable across
+          # Supabase projects (roles differ between the source and any
+          # target project). --clean + --if-exists let restores replay
+          # over an existing schema without complaint.
+          pg_dump "$SUPABASE_DB_URL" \
+            --no-owner \
+            --no-privileges \
+            --clean \
+            --if-exists \
+            --format=plain \
+            --file="${FILE}"
+
+          ls -lh "${FILE}"
+          # Sanity check: file must be > 1 KB or something went wrong.
+          test "$(stat -c %s "${FILE}")" -gt 1024
+
+      - name: Encrypt dump (AES-256)
+        env:
+          BACKUP_PASSPHRASE: ${{ secrets.BACKUP_ENCRYPTION_PASSPHRASE }}
+        run: |
+          set -euo pipefail
+          if [ -z "${BACKUP_PASSPHRASE}" ]; then
+            echo "::error::BACKUP_ENCRYPTION_PASSPHRASE secret is not set."
+            exit 1
+          fi
+          printf '%s' "$BACKUP_PASSPHRASE" | gpg \
+            --batch --yes \
+            --passphrase-fd 0 \
+            --symmetric --cipher-algo AES256 \
+            --output "${FILE}.gpg" \
+            "${FILE}"
+          # Never keep the plaintext around.
+          shred -u "${FILE}" || rm -f "${FILE}"
+          ls -lh "${FILE}.gpg"
+
+      - name: Push encrypted dump to backup repo
+        env:
+          SSH_KEY:     ${{ secrets.BACKUP_REPO_SSH_KEY }}
+          BACKUP_REPO: ${{ secrets.BACKUP_REPO }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SSH_KEY}" ] || [ -z "${BACKUP_REPO}" ]; then
+            echo "::error::BACKUP_REPO_SSH_KEY or BACKUP_REPO secret is not set."
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
+
+          git config --global user.email "backup-bot@aussievape.com.au"
+          git config --global user.name  "vape-store backup bot"
+
+          git clone --depth=1 "git@github.com:${BACKUP_REPO}.git" backup-repo
+          mkdir -p "backup-repo/${YEAR_MONTH}"
+          mv "${FILE}.gpg" "backup-repo/${YEAR_MONTH}/"
+
+          cd backup-repo
+          git add "${YEAR_MONTH}/${FILE}.gpg"
+          git commit -m "backup: ${TS}"
+          git push origin HEAD:main
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Backup summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Timestamp: ${TS:-unset}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- File: ${FILE:-unset}.gpg" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Destination: ${BACKUP_REPO:-unset}/${YEAR_MONTH:-unset}/" >> "$GITHUB_STEP_SUMMARY"
