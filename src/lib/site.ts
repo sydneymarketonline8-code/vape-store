@@ -9,7 +9,7 @@ export const SITE_TAGLINE = 'Vape Deals, Bundles & Bulk Packs'
 // WhatsApp number in international format, digits only (for wa.me links).
 // Hardcoded (no env override) so a stale NEXT_PUBLIC_WHATSAPP_NUMBER in the
 // host can't bring back a previous/banned number. To change it, edit here.
-export const WHATSAPP_NUMBER = '61485882439'
+export const WHATSAPP_NUMBER = '61468188347'
 
 // Social profile links. Only entries with a real URL are rendered (no dead "#"
 // links). Add your handles here, e.g. { name: 'Instagram', url: 'https://instagram.com/aussievape' }.
