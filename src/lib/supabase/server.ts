@@ -42,16 +42,30 @@ export async function createClient() {
   )
 }
 
+/**
+ * Accounts that are always treated as admin, regardless of their profiles.role.
+ * Add more here, or via the ADMIN_EMAILS env var (comma-separated). The account
+ * must still exist in Supabase Auth (be registered) so it can log in.
+ */
+const ADMIN_EMAILS = new Set(
+  ['admin@vapesau.com.au', ...(process.env.ADMIN_EMAILS?.split(',') ?? [])]
+    .map(e => e.trim().toLowerCase())
+    .filter(Boolean),
+)
+
 /** True if the given user (defaults to the current session user) is an admin. */
 export async function isAdmin(userId?: string): Promise<boolean> {
   const supabase = await createClient()
-  let id = userId
-  if (!id) {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-    id = user?.id
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  // Email allowlist — applies to the current session user.
+  if (user?.email && ADMIN_EMAILS.has(user.email.toLowerCase()) && (!userId || userId === user.id)) {
+    return true
   }
+
+  const id = userId ?? user?.id
   if (!id) return false
   const { data } = await supabase.from('profiles').select('role').eq('id', id).maybeSingle()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
