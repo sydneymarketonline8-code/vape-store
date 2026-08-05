@@ -104,7 +104,7 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
 
-          git config --global user.email "backup-bot@aussievape.com.au"
+          git config --global user.email "backup-bot@vapesau.com.au"
           git config --global user.name  "vape-store backup bot"
 
           git clone --depth=1 "git@github.com:${BACKUP_REPO}.git" backup-repo

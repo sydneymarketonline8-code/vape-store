@@ -1,5 +1,5 @@
 -- ─────────────────────────────────────────────────────────────────────────────
--- Aussie Vapes — Complete e-commerce + admin backend schema
+-- VapesAU — Complete e-commerce + admin backend schema
 --
 -- Self-contained and idempotent. Safe to run on a fresh database or re-run on an
 -- existing one (uses `create ... if not exists`, guarded enums, and
