@@ -6,6 +6,7 @@ import { whatsappLink } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Where to Buy',
   description: 'Buy VapesAU products online with fast Australia-wide delivery, or find our authorised stockists.',
+  alternates: { canonical: '/where-to-buy' },
 }
 
 interface Stockist {

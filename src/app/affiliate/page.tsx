@@ -6,6 +6,7 @@ import { whatsappLink } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Affiliate Program',
   description: 'Earn commission promoting VapesAU. Sign up, share your link, and earn on every qualifying sale.',
+  alternates: { canonical: '/affiliate' },
 }
 
 // Default commission rate (matches affiliates.commission_rate default in the schema).
