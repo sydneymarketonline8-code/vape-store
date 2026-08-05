@@ -6,7 +6,7 @@ import { Crumb, H2 } from '@/components/common/page-ui'
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
-    'Aussie Vape Terms of Service — eligibility (18+), orders and payment (PayID/crypto), pricing, shipping, returns and acceptable use for our Australian online vape store.',
+    'VapesAU Terms of Service — eligibility (18+), orders and payment (PayID/crypto), pricing, shipping, returns and acceptable use for our Australian online vape store.',
   alternates: { canonical: '/terms' },
 }
 
@@ -19,7 +19,7 @@ export default function TermsPage() {
       <Crumb name="Terms of Service" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Terms of Service</h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">
-        These terms govern your use of Aussie Vape and any purchase you make from us. By using this website or placing an
+        These terms govern your use of VapesAU and any purchase you make from us. By using this website or placing an
         order, you agree to them.
       </p>
       <p className="mt-1 text-xs text-gray-400">Last updated: {UPDATED}</p>
@@ -72,14 +72,14 @@ export default function TermsPage() {
 
         <H2>7. Intellectual property</H2>
         <p>
-          The content on this website — including text, graphics, logos and layout — is owned by or licensed to Aussie Vape
+          The content on this website — including text, graphics, logos and layout — is owned by or licensed to VapesAU
           and may not be copied or reused without permission, except brand and product names which belong to their respective
           owners.
         </p>
 
         <H2>8. Limitation of liability</H2>
         <p>
-          To the maximum extent permitted by law, Aussie Vape is not liable for any indirect or consequential loss arising
+          To the maximum extent permitted by law, VapesAU is not liable for any indirect or consequential loss arising
           from your use of the website or products. Vaping is not risk-free; we provide general information only and not
           health or medical advice. Nothing in these terms excludes any liability that cannot be excluded under the
           Australian Consumer Law.
@@ -95,7 +95,7 @@ export default function TermsPage() {
         <p>
           We may update these terms from time to time; the current version always applies. Questions? Visit our{' '}
           <Link href="/contact" className="font-medium text-[#1B7A3E] hover:underline">Contact</Link> page or email{' '}
-          <a href="mailto:support@aussievape.com.au" className="font-medium text-[#1B7A3E] hover:underline">support@aussievape.com.au</a>.
+          <a href="mailto:support@vapesau.com.au" className="font-medium text-[#1B7A3E] hover:underline">support@vapesau.com.au</a>.
         </p>
       </div>
 

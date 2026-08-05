@@ -36,7 +36,7 @@ const faqs: Faq[] = [
   { q: 'How do I use a disposable vape?', a: 'Unpack it, remove any silicone caps, then inhale gently on the mouthpiece — most disposables are draw-activated with no buttons. Draw slowly for a few seconds and pace yourself between puffs.' },
   { q: 'What nicotine strength should a beginner use?', a: 'Nicotine strength is shown in mg/mL. If you are unsure, start lower — you can move up if it is not enough. Nicotine-free options are also available. Strengths are listed on each product page where applicable.' },
   { q: 'Is vaping safe for beginners?', a: 'We cannot give medical advice and vaping is not risk-free. If you have health questions, speak to a doctor or pharmacist. This guide covers device types and how to choose; for the rules in Australia see our Vaping Laws page.' },
-  { q: 'Can I buy vapes online in Australia?', a: 'Australian vaping rules changed in 2024 and are regulated by the TGA, and they continue to change. See our Vaping Laws page and your state or territory health authority for the current position. Aussie Vape is an age-verified store for adults 18+.' },
+  { q: 'Can I buy vapes online in Australia?', a: 'Australian vaping rules changed in 2024 and are regulated by the TGA, and they continue to change. See our Vaping Laws page and your state or territory health authority for the current position. VapesAU is an age-verified store for adults 18+.' },
 ]
 
 const articleJsonLd = {
@@ -44,8 +44,8 @@ const articleJsonLd = {
   '@type': 'Article',
   headline: 'Beginners Guide to Vaping in Australia',
   description: 'A plain-English guide to vape device types, nicotine strengths and how to use a disposable, for adult Australians.',
-  author: { '@type': 'Organization', name: 'Aussie Vape', url: SITE_URL },
-  publisher: { '@type': 'Organization', name: 'Aussie Vape', url: SITE_URL },
+  author: { '@type': 'Organization', name: 'VapesAU', url: SITE_URL },
+  publisher: { '@type': 'Organization', name: 'VapesAU', url: SITE_URL },
   datePublished: '2026-06-01',
   dateModified: UPDATED,
   mainEntityOfPage: `${SITE_URL}/beginners-guide`,

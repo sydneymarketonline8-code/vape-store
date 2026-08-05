@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const WHOLESALE_BRANDS = ['IGET', 'ALFAKHER', 'GUNNPOD', 'HQD', 'ALIBARBAR', 'LOST MARY', 'KUZ', 'JNR']
 
 const steps: HowToStep[] = [
-  { name: 'Email us', text: 'Send your business details and the products you’re after to wholesale@aussievape.com.au.' },
+  { name: 'Email us', text: 'Send your business details and the products you’re after to wholesale@vapesau.com.au.' },
   { name: 'Include your ABN', text: 'Add your ABN and business name so we can confirm you’re a registered Australian business.' },
   { name: 'Get a quote', text: 'Our team replies with trade pricing for the products and quantities you need.' },
   { name: 'Place your order', text: 'Confirm your order and pay via PayID or crypto; we dispatch from our Australian warehouse.' },
@@ -29,8 +29,8 @@ const BENEFITS = [
 ]
 
 const faqs: Faq[] = [
-  { q: 'Does Aussie Vape supply vapes to retailers?', a: 'Yes. We supply convenience stores, tobacconists and registered Australian businesses with popular disposable, pod and pouch brands at trade pricing. Email wholesale@aussievape.com.au with your business details for a quote.' },
-  { q: 'How do I apply for a wholesale account?', a: 'Email wholesale@aussievape.com.au with your business name, ABN and the products you’re interested in. We’ll reply with trade pricing and how to place your first order.' },
+  { q: 'Does VapesAU supply vapes to retailers?', a: 'Yes. We supply convenience stores, tobacconists and registered Australian businesses with popular disposable, pod and pouch brands at trade pricing. Email wholesale@vapesau.com.au with your business details for a quote.' },
+  { q: 'How do I apply for a wholesale account?', a: 'Email wholesale@vapesau.com.au with your business name, ABN and the products you’re interested in. We’ll reply with trade pricing and how to place your first order.' },
   { q: 'What is the minimum order for wholesale?', a: 'Wholesale pricing is tied to volume, so minimums depend on the products and quantities. Tell us what you need in your enquiry and we’ll quote accordingly. (A $250 minimum applies to standard retail orders.)' },
   { q: 'How do I pay for a wholesale order?', a: 'Wholesale orders are paid by PayID or cryptocurrency, the same as retail orders. We confirm the details with you directly once your quote is accepted.' },
 ]
@@ -41,14 +41,14 @@ const serviceJsonLd = {
   name: 'Wholesale Vape Supply',
   serviceType: 'Wholesale vape supply',
   areaServed: { '@type': 'Country', name: 'Australia' },
-  provider: { '@type': 'Organization', name: 'Aussie Vape', url: SITE_URL },
+  provider: { '@type': 'Organization', name: 'VapesAU', url: SITE_URL },
   url: `${SITE_URL}/wholesale`,
 }
 
 export default function WholesalePage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <PageSchema name="Bulk & Wholesale" slug="/wholesale" faqs={faqs} howTo={{ name: 'How to open an Aussie Vape wholesale account', steps }} />
+      <PageSchema name="Bulk & Wholesale" slug="/wholesale" faqs={faqs} howTo={{ name: 'How to open an VapesAU wholesale account', steps }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <Crumb name="Bulk & Wholesale" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Bulk &amp; Wholesale Vapes Australia</h1>
@@ -89,7 +89,7 @@ export default function WholesalePage() {
       <div className="rounded-2xl border border-gray-200 bg-white p-5">
         <HowToSteps steps={steps} />
         <p className="mt-4 text-sm text-gray-500">
-          Email <a href="mailto:wholesale@aussievape.com.au" className="font-medium text-[#1B7A3E] hover:underline">wholesale@aussievape.com.au</a> to get started.
+          Email <a href="mailto:wholesale@vapesau.com.au" className="font-medium text-[#1B7A3E] hover:underline">wholesale@vapesau.com.au</a> to get started.
         </p>
       </div>
 

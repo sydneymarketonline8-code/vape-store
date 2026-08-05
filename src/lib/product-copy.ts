@@ -59,7 +59,7 @@ export function buildProductDescription(p: Product): string {
   const puffs = p.puffCount ? ` rated for ${p.puffCount.toLocaleString()} puffs` : ''
   const article = /^[aeiou]/i.test(noun) ? 'an' : 'a'
 
-  const s1 = `The ${p.name} is ${article} ${noun}${puffs}${brandPrefix}, available now at Aussie Vape.`
+  const s1 = `The ${p.name} is ${article} ${noun}${puffs}${brandPrefix}, available now at VapesAU.`
   const s3 = isPack
     ? `Buy this multi-pack online for $${p.price.toFixed(2)} — pack pricing is already applied, so you pay less per device. Fast Australia-wide shipping, age-verified checkout (18+), and free delivery on orders over $300.`
     : `Buy online for $${p.price.toFixed(2)}, with multi-pack bundle deals available if you want to save more. Fast Australia-wide shipping, age-verified checkout (18+), and free delivery on orders over $300.`

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Aussie Vape — Vape Deals, Bundles & Bulk Packs Australia'
+export const alt = 'VapesAU — Vape Deals, Bundles & Bulk Packs Australia'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -20,7 +20,7 @@ export default function OgImage() {
           fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ fontSize: 92, fontWeight: 800, color: '#ffffff', letterSpacing: -2 }}>AUSSIE VAPE</div>
+        <div style={{ fontSize: 92, fontWeight: 800, color: '#ffffff', letterSpacing: -2 }}>VAPESAU</div>
         <div style={{ marginTop: 16, fontSize: 36, color: 'rgba(255,255,255,0.85)' }}>
           Vape Deals, Bundles &amp; Bulk Packs
         </div>

@@ -28,9 +28,9 @@ export default async function ReferralPage() {
   const totalReferrals = count ?? 0
 
   const referralLink = `${SITE_URL}/register?ref=${code}`
-  const shareMsg = `Join Aussie Vape and shop premium vapes — register with my link: ${referralLink}`
+  const shareMsg = `Join VapesAU and shop premium vapes — register with my link: ${referralLink}`
   const waShare = `https://wa.me/?text=${encodeURIComponent(shareMsg)}`
-  const emailShare = `mailto:?subject=${encodeURIComponent('Shop Aussie Vape')}&body=${encodeURIComponent(shareMsg)}`
+  const emailShare = `mailto:?subject=${encodeURIComponent('Shop VapesAU')}&body=${encodeURIComponent(shareMsg)}`
 
   return (
     <div>

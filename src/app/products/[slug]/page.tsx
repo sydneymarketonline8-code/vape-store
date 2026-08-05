@@ -11,7 +11,7 @@ import { ProductInfo } from '@/components/shop/product-info'
 import { ProductTabs } from '@/components/shop/product-tabs'
 import { ProductCard } from '@/components/shop/product-card'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 
 const CATEGORY_LABELS: Record<string, string> = {
   disposables: 'Disposable Vapes',
@@ -45,8 +45,8 @@ export async function generateMetadata({
   // scraped product copy (differentiation vs aussievapes.com.au). Distinct title
   // structure ("…— Buy Online Australia") + price/bundle-led description.
   const price = `$${product.price.toFixed(2)}`
-  const title = `${product.name} — Buy Online Australia | Aussie Vape`
-  const description = `Buy ${product.name} online at Aussie Vape — ${price}, with fast AU-wide shipping and multi-pack deals. Age-verified (18+).`
+  const title = `${product.name} — Buy Online Australia | VapesAU`
+  const description = `Buy ${product.name} online at VapesAU — ${price}, with fast AU-wide shipping and multi-pack deals. Age-verified (18+).`
   return {
     title: { absolute: title },
     description,

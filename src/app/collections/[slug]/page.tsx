@@ -13,7 +13,7 @@ import {
 } from '@/lib/collections'
 import { queryCollection, categoryStats, brandSlug, flavourCounts } from '@/lib/collections-query'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 
 // Pre-render every collection slug; unknown slugs render on-demand (≈ fallback: 'blocking').
 export const dynamicParams = true
@@ -33,7 +33,7 @@ export async function generateMetadata({
 
   const seo = buildCollectionSeo(slug, collection.name, categoryStats(slug))
   return {
-    // `absolute` avoids the root template appending a second "— Aussie Vape".
+    // `absolute` avoids the root template appending a second "— VapesAU".
     title: { absolute: seo.metaTitle },
     description: seo.metaDescription,
     // Canonical points at the clean URL (no query params) to avoid duplicate
@@ -91,7 +91,7 @@ export default async function CollectionPage({
     name: seo.metaTitle,
     description: seo.metaDescription,
     url: `${SITE_URL}/collections/${slug}`,
-    isPartOf: { '@type': 'WebSite', name: 'Aussie Vape', url: SITE_URL },
+    isPartOf: { '@type': 'WebSite', name: 'VapesAU', url: SITE_URL },
   }
 
   const faqJsonLd = {
@@ -191,7 +191,7 @@ export default async function CollectionPage({
       {/* ── Why buy + FAQ ── */}
       <section aria-label={`About ${collection.name}`} className="py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900">Why buy {collection.name.toLowerCase()} at Aussie Vape?</h2>
+          <h2 className="text-xl font-bold text-gray-900">Why buy {collection.name.toLowerCase()} at VapesAU?</h2>
           <p className="mt-3 text-sm leading-relaxed text-gray-600">{seo.whyBuy}</p>
 
           <h2 className="mb-4 mt-10 text-xl font-bold text-gray-900">{collection.name} — FAQ</h2>

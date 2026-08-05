@@ -178,7 +178,7 @@ export function AdminProductForm({ initial, isNew }: { initial: ProductFormValue
             <div className="rounded-lg border border-neutral-200 p-4">
               <p className="text-xs text-neutral-400">Search preview</p>
               <p className="mt-1 line-clamp-1 text-base text-blue-700">{v.metaTitle || v.name || 'Product title'}</p>
-              <p className="text-xs text-green-700">aussievape.com.au › products › {v.slug || 'slug'}</p>
+              <p className="text-xs text-green-700">vapesau.com.au › products › {v.slug || 'slug'}</p>
               <p className="line-clamp-2 text-sm text-neutral-600">{v.metaDescription || v.shortDescription || v.description}</p>
             </div>
           </>

@@ -58,8 +58,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     image: post.cover_image ? [post.cover_image] : undefined,
     datePublished: post.published_at ?? undefined,
     dateModified: post.updated_at,
-    author: { '@type': post.author ? 'Person' : 'Organization', name: post.author ?? 'Aussie Vape' },
-    publisher: { '@type': 'Organization', name: 'Aussie Vape' },
+    author: { '@type': post.author ? 'Person' : 'Organization', name: post.author ?? 'VapesAU' },
+    publisher: { '@type': 'Organization', name: 'VapesAU' },
     mainEntityOfPage: `${SITE_URL}/blog/${slug}`,
   }
 

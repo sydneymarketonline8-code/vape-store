@@ -58,9 +58,9 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
   <channel>
-    <title>Aussie Vape</title>
+    <title>VapesAU</title>
     <link>${SITE_URL}</link>
-    <description>Aussie Vape product feed</description>
+    <description>VapesAU product feed</description>
 ${items}
   </channel>
 </rss>`

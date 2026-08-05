@@ -5,7 +5,7 @@ import { FAQ_SECTIONS } from '@/data/faqs'
 
 export const metadata: Metadata = {
   title: 'Help & FAQs',
-  description: 'Answers about ordering, PayID/crypto payment, shipping, returns and products at Aussie Vape.',
+  description: 'Answers about ordering, PayID/crypto payment, shipping, returns and products at VapesAU.',
 }
 
 export default function FaqPage() {

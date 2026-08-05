@@ -15,22 +15,22 @@ const inter = Inter({ subsets: ['latin'], display: 'swap', preload: true, variab
 // Distinctive display face for headings (geometric, modern) — paired with Inter for body.
 const outfit = Outfit({ subsets: ['latin'], display: 'swap', variable: '--font-outfit' })
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 // Positioning is deliberately differentiated from the sibling site aussievapes.com.au
 // (which owns the "Australia's #1 / largest range" angle) to avoid SEO cannibalisation.
 // This site leads with deals / bundles / bulk packs.
-const DEFAULT_TITLE = 'Aussie Vape — Vape Deals, Bundles & Bulk Packs Australia'
+const DEFAULT_TITLE = 'VapesAU — Vape Deals, Bundles & Bulk Packs Australia'
 const DEFAULT_DESC =
-  'Save more with multi-pack bundles and bulk vape deals at Aussie Vape — disposables, pods, e-liquids and nicotine pouches. Buy more, save more, with fast AU-wide shipping.'
+  'Save more with multi-pack bundles and bulk vape deals at VapesAU — disposables, pods, e-liquids and nicotine pouches. Buy more, save more, with fast AU-wide shipping.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: DEFAULT_TITLE,
-    template: '%s — Aussie Vape',
+    template: '%s — VapesAU',
   },
   description: DEFAULT_DESC,
-  applicationName: 'Aussie Vape',
+  applicationName: 'VapesAU',
   alternates: { canonical: '/' },
   verification: {
     google: '4K_SODPaILw3qSrDxDS3AxJO7Gs3D94pMdgW88jqFQw',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_AU',
-    siteName: 'Aussie Vape',
+    siteName: 'VapesAU',
     url: SITE_URL,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESC,

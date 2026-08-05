@@ -7,13 +7,13 @@ import { ProductCard } from '@/components/shop/product-card'
 import { BrandQuickNav } from '@/components/shop/brand-quick-nav'
 import { brandSlug } from '@/lib/collections-query'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 const FEATURED_COUNT = 12
 
 export const metadata: Metadata = {
   title: 'Shop Vapes by Brand',
   description:
-    'Browse every vape brand at Aussie Vape — IGET, HQD, GUNNPOD, Lost Mary, Alfakher and more. Real stock, AU-wide shipping, age-verified checkout.',
+    'Browse every vape brand at VapesAU — IGET, HQD, GUNNPOD, Lost Mary, Alfakher and more. Real stock, AU-wide shipping, age-verified checkout.',
   alternates: { canonical: '/brands' },
 }
 
@@ -69,7 +69,7 @@ export default function BrandsPage() {
   const brandListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Vape brands at Aussie Vape',
+    name: 'Vape brands at VapesAU',
     itemListElement: featured.map((b, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -128,7 +128,7 @@ export default function BrandsPage() {
 
             <div className="p-6 sm:p-8">
               <p className="mb-5 max-w-3xl text-sm leading-relaxed text-gray-600">
-                Shop the full {b.brand} range at Aussie Vape — {b.count.toLocaleString()} products from $
+                Shop the full {b.brand} range at VapesAU — {b.count.toLocaleString()} products from $
                 {b.min.toFixed(2)}, with genuine stock and fast dispatch Australia-wide.
               </p>
 

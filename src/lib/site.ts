@@ -1,6 +1,6 @@
 // Store-wide contact + payment config.
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 
 // Brand tagline / logo strapline. Deliberately differentiated from the sibling
 // site aussievapes.com.au (see memory) — do NOT use "Australia's #1 / largest".
@@ -12,7 +12,7 @@ export const SITE_TAGLINE = 'Vape Deals, Bundles & Bulk Packs'
 export const WHATSAPP_NUMBER = '61468188347'
 
 // Social profile links. Only entries with a real URL are rendered (no dead "#"
-// links). Add your handles here, e.g. { name: 'Instagram', url: 'https://instagram.com/aussievape' }.
+// links). Add your handles here, e.g. { name: 'Instagram', url: 'https://instagram.com/vapesau' }.
 export const SOCIAL_LINKS: { name: 'Instagram' | 'Facebook' | 'Twitter'; url: string }[] = [
   // { name: 'Instagram', url: 'https://instagram.com/yourhandle' },
   // { name: 'Facebook',  url: 'https://facebook.com/yourpage' },

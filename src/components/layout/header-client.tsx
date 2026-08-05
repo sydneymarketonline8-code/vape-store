@@ -16,7 +16,7 @@ import { MobileMenu } from './mobile-menu'
 
 function Logo({ className = '' }: { className?: string }) {
   return (
-    <Link href="/" className={`flex items-center gap-2 ${className}`} aria-label="Aussie Vape home">
+    <Link href="/" className={`flex items-center gap-2 ${className}`} aria-label="VapesAU home">
       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#22934A] to-[#0f5128] shadow-sm sm:h-9 sm:w-9">
         <svg viewBox="0 0 32 32" className="h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true">
           <defs>
@@ -35,7 +35,7 @@ function Logo({ className = '' }: { className?: string }) {
         </svg>
       </span>
       <span className="flex flex-col leading-none">
-        <span className="text-xl font-black tracking-tight text-primary sm:text-2xl">AUSSIE VAPE</span>
+        <span className="text-xl font-black tracking-tight text-primary sm:text-2xl">VAPESAU</span>
         <span className="hidden text-[11px] font-medium uppercase tracking-widest text-gray-400 sm:block">
           {SITE_TAGLINE}
         </span>

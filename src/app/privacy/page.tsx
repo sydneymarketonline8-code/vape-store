@@ -6,7 +6,7 @@ import { Crumb, H2 } from '@/components/common/page-ui'
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
-    'How Aussie Vape collects, uses and protects your personal information — orders, delivery, payment (PayID/crypto), cookies and analytics, and your privacy rights under Australian law.',
+    'How VapesAU collects, uses and protects your personal information — orders, delivery, payment (PayID/crypto), cookies and analytics, and your privacy rights under Australian law.',
   alternates: { canonical: '/privacy' },
 }
 
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <Crumb name="Privacy Policy" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Privacy Policy</h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">
-        Your privacy matters. This policy explains what personal information Aussie Vape collects, how we use it, and the
+        Your privacy matters. This policy explains what personal information VapesAU collects, how we use it, and the
         choices you have. It is written to align with the Australian Privacy Principles.
       </p>
       <p className="mt-1 text-xs text-gray-400">Last updated: {UPDATED}</p>
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
         <p>
           We may update this policy from time to time; the current version always applies. To make a privacy request or ask a
           question, visit our <Link href="/contact" className="font-medium text-[#1B7A3E] hover:underline">Contact</Link> page
-          or email <a href="mailto:support@aussievape.com.au" className="font-medium text-[#1B7A3E] hover:underline">support@aussievape.com.au</a>.
+          or email <a href="mailto:support@vapesau.com.au" className="font-medium text-[#1B7A3E] hover:underline">support@vapesau.com.au</a>.
         </p>
       </div>
 

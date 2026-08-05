@@ -7,7 +7,7 @@ import { Crumb, H2, IconCard, StatCard, Callout } from '@/components/common/page
 export const metadata: Metadata = {
   title: 'Returns & Refunds',
   description:
-    'Aussie Vape returns — 30-day returns on unopened products, fast faulty-item replacements, and how to start a return. Australian-based support.',
+    'VapesAU returns — 30-day returns on unopened products, fast faulty-item replacements, and how to start a return. Australian-based support.',
   alternates: { canonical: '/returns' },
 }
 
@@ -20,7 +20,7 @@ const steps: HowToStep[] = [
 
 const faqs: Faq[] = [
   {
-    q: "What is Aussie Vape's return policy?",
+    q: "What is VapesAU's return policy?",
     a: 'Unopened products in their original sealed packaging can be returned within 30 days of delivery for a refund or exchange. Opened disposables, e-liquids and nicotine pouches cannot be returned for hygiene reasons unless they are faulty.',
   },
   {
@@ -28,7 +28,7 @@ const faqs: Faq[] = [
     a: 'For health and hygiene reasons, opened disposables, e-liquids and nicotine pouches cannot be returned unless they are faulty. Unopened items in their original packaging can be returned within 30 days.',
   },
   {
-    q: 'How long does a refund take from Aussie Vape?',
+    q: 'How long does a refund take from VapesAU?',
     a: 'Approved refunds are processed within 1–3 business days of us receiving and inspecting the returned item, via your original payment method (PayID or crypto).',
   },
   {
@@ -44,7 +44,7 @@ const faqs: Faq[] = [
 export default function ReturnsPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <PageSchema name="Returns & Refunds" slug="/returns" faqs={faqs} howTo={{ name: 'How to return an item to Aussie Vape', steps }} />
+      <PageSchema name="Returns & Refunds" slug="/returns" faqs={faqs} howTo={{ name: 'How to return an item to VapesAU', steps }} />
       <Crumb name="Returns & Refunds" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Returns &amp; Refunds</h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">

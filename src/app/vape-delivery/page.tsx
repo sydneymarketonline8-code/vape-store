@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const faqs: Faq[] = [
   {
-    q: 'Does Aussie Vape deliver vapes Australia-wide?',
+    q: 'Does VapesAU deliver vapes Australia-wide?',
     a: 'Yes. We ship to every state and territory in Australia — NSW, VIC, QLD, WA, SA, TAS, ACT and NT — from metro capitals to regional and remote areas.',
   },
   {

@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Order Confirmation',
-  description: 'Thank you for your Aussie Vape order.',
+  description: 'Thank you for your VapesAU order.',
   robots: { index: false },
 }
 
@@ -53,7 +53,7 @@ export default async function OrderConfirmationPage({
   const orderRef = order.order_number ?? id.slice(0, 8).toUpperCase()
   const methodLabel = paymentMethodLabel(address?.paymentMethod)
   const waHref = whatsappLink(
-    `Hi Aussie Vape, I'd like to pay for order ${orderRef} (${formatPrice(order.total)}) via ${methodLabel}. Please send me the payment details to lock my order in.`
+    `Hi VapesAU, I'd like to pay for order ${orderRef} (${formatPrice(order.total)}) via ${methodLabel}. Please send me the payment details to lock my order in.`
   )
 
   return (

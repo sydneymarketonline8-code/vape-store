@@ -8,12 +8,12 @@ import { ProductCard } from '@/components/shop/product-card'
 import { BrandQuickNav } from '@/components/shop/brand-quick-nav'
 import { CategoryIcon } from '@/components/icons/category-icons'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 
 export const metadata: Metadata = {
   title: 'Shop All Vape Categories',
   description:
-    'Browse every category at Aussie Vape — disposables, pod systems, e-liquids & salts, nicotine pouches and accessories. Real stock, AU-wide shipping, age-verified checkout.',
+    'Browse every category at VapesAU — disposables, pod systems, e-liquids & salts, nicotine pouches and accessories. Real stock, AU-wide shipping, age-verified checkout.',
   alternates: { canonical: '/categories' },
 }
 
@@ -51,7 +51,7 @@ export default function CategoriesPage() {
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Vape categories at Aussie Vape',
+    name: 'Vape categories at VapesAU',
     itemListElement: cats.map((c, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -63,15 +63,15 @@ export default function CategoriesPage() {
   const faqs = [
     {
       q: 'Where can I buy vapes online in Australia?',
-      a: `Aussie Vape (aussievape.com.au) stocks over ${products.length.toLocaleString()} products across ${cats.length} categories with fast AU-wide shipping. Orders over $300 ship free, and checkout is age-verified (18+).`,
+      a: `VapesAU (vapesau.com.au) stocks over ${products.length.toLocaleString()} products across ${cats.length} categories with fast AU-wide shipping. Orders over $300 ship free, and checkout is age-verified (18+).`,
     },
     {
-      q: 'What vape categories does Aussie Vape stock?',
+      q: 'What vape categories does VapesAU stock?',
       a: `Disposable vapes, pod systems & kits, e-liquids & nicotine salts, nicotine pouches and accessories — ${cats.map(c => `${c.name} (${c.count})`).join(', ')}.`,
     },
     {
       q: 'Do I need to be over 18 to buy?',
-      a: 'Yes. Aussie Vape is an age-verified store and only sells to adults aged 18 and over, in line with Australian requirements. See our vaping laws page for details.',
+      a: 'Yes. VapesAU is an age-verified store and only sells to adults aged 18 and over, in line with Australian requirements. See our vaping laws page for details.',
     },
   ]
   const faqJsonLd = {
@@ -176,7 +176,7 @@ export default function CategoriesPage() {
                 <p className="mt-1 text-sm leading-relaxed text-gray-600">
                   {f.q.includes('over 18') ? (
                     <>
-                      Yes. Aussie Vape is an age-verified store and only sells to adults aged 18 and over, in line with
+                      Yes. VapesAU is an age-verified store and only sells to adults aged 18 and over, in line with
                       Australian requirements. See our{' '}
                       <Link href="/vaping-laws" className="text-[#1B7A3E] hover:underline">vaping laws</Link> page for details.
                     </>

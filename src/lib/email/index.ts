@@ -9,8 +9,8 @@ import { SITE_TAGLINE } from '@/lib/site'
 // NOTE: these are ready to use but not yet wired into the order/auth flows —
 // call them from /api/orders, the shipment update, signup, etc.
 
-const FROM = process.env.EMAIL_FROM ?? 'Aussie Vape <orders@aussievape.com.au>'
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const FROM = process.env.EMAIL_FROM ?? 'VapesAU <orders@vapesau.com.au>'
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 
 const money = (n: number) => `$${Number(n).toFixed(2)}`
 
@@ -38,14 +38,14 @@ function layout(heading: string, body: string): string {
   return `<!doctype html><html><body style="margin:0;background:#f5f5f5;font-family:Arial,Helvetica,sans-serif;color:#111827">
   <div style="max-width:560px;margin:0 auto;padding:24px">
     <div style="text-align:center;padding:16px 0">
-      <span style="font-size:22px;font-weight:800;letter-spacing:-.5px;color:#1B7A3E">AUSSIE VAPE</span>
+      <span style="font-size:22px;font-weight:800;letter-spacing:-.5px;color:#1B7A3E">VAPESAU</span>
     </div>
     <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:28px">
       <h1 style="margin:0 0 12px;font-size:20px;color:#111827">${heading}</h1>
       ${body}
     </div>
     <p style="text-align:center;color:#9ca3af;font-size:12px;margin:18px 0 0">
-      Aussie Vape · ${SITE_TAGLINE} · For adults 18+ only
+      VapesAU · ${SITE_TAGLINE} · For adults 18+ only
     </p>
   </div></body></html>`
 }
@@ -87,7 +87,7 @@ export async function sendOrderConfirmation(order: OrderLike, items: ItemLike[],
       <tr><td style="padding:12px 0 0;font-weight:700">Total</td><td style="padding:12px 0 0;font-weight:700;text-align:right">${money(order.total)}</td></tr>
     </table>
     <p style="text-align:center;margin:8px 0">${btn(`${SITE}/order-confirmation/${order.id}`, 'View your order')}</p>`
-  return send(user.email, `Order ${ref} received — Aussie Vape`, layout('Order received 🎉', body))
+  return send(user.email, `Order ${ref} received — VapesAU`, layout('Order received 🎉', body))
 }
 
 export async function sendShipmentNotification(order: OrderLike, trackingNumber: string, carrier: string) {
@@ -96,20 +96,20 @@ export async function sendShipmentNotification(order: OrderLike, trackingNumber:
     <p style="font-size:14px;line-height:1.6;color:#4b5563">Good news — your order <strong>${ref}</strong> is on its way!</p>
     <p style="font-size:14px;line-height:1.6;color:#4b5563">Carrier: <strong>${carrier}</strong><br/>Tracking number: <strong>${trackingNumber}</strong></p>
     <p style="text-align:center;margin:8px 0">${btn(`${SITE}/account/orders/${order.id}`, 'Track your order')}</p>`
-  return send(order.email ?? '', `Your Aussie Vape order ${ref} has shipped`, layout('Your order has shipped 🚚', body))
+  return send(order.email ?? '', `Your VapesAU order ${ref} has shipped`, layout('Your order has shipped 🚚', body))
 }
 
 export async function sendPasswordReset(email: string, resetUrl: string) {
   const body = `
-    <p style="font-size:14px;line-height:1.6;color:#4b5563">We received a request to reset your Aussie Vape password. Click below to choose a new one. If you didn't request this, you can ignore this email.</p>
+    <p style="font-size:14px;line-height:1.6;color:#4b5563">We received a request to reset your VapesAU password. Click below to choose a new one. If you didn't request this, you can ignore this email.</p>
     <p style="text-align:center;margin:8px 0">${btn(resetUrl, 'Reset password')}</p>
     <p style="font-size:12px;color:#9ca3af;word-break:break-all">${resetUrl}</p>`
-  return send(email, 'Reset your Aussie Vape password', layout('Reset your password', body))
+  return send(email, 'Reset your VapesAU password', layout('Reset your password', body))
 }
 
 export async function sendWelcomeEmail(user: UserLike) {
   const body = `
-    <p style="font-size:14px;line-height:1.6;color:#4b5563">Welcome${user.name ? `, ${user.name}` : ''}! Your Aussie Vape account is ready. Browse 2,000+ disposables, pods, e-liquids and more, with fast Australia-wide delivery.</p>
+    <p style="font-size:14px;line-height:1.6;color:#4b5563">Welcome${user.name ? `, ${user.name}` : ''}! Your VapesAU account is ready. Browse 2,000+ disposables, pods, e-liquids and more, with fast Australia-wide delivery.</p>
     <p style="text-align:center;margin:8px 0">${btn(`${SITE}/products`, 'Start shopping')}</p>`
-  return send(user.email, 'Welcome to Aussie Vape', layout('Welcome to Aussie Vape 👋', body))
+  return send(user.email, 'Welcome to VapesAU', layout('Welcome to VapesAU 👋', body))
 }

@@ -7,7 +7,7 @@ import { Crumb, H2, IconCard } from '@/components/common/page-ui'
 export const metadata: Metadata = {
   title: 'Order Tracking',
   description:
-    'Track your Aussie Vape order — find your tracking number, understand delivery statuses, and get help if your order is delayed.',
+    'Track your VapesAU order — find your tracking number, understand delivery statuses, and get help if your order is delayed.',
   alternates: { canonical: '/order-tracking' },
 }
 
@@ -29,16 +29,16 @@ const STATUSES: { label: string; desc: string }[] = [
 
 const faqs: Faq[] = [
   {
-    q: 'How do I track my Aussie Vape order?',
+    q: 'How do I track my VapesAU order?',
     a: 'When your order ships, we email a tracking number and a link to the carrier’s tracking page. Signed-in customers can also view order status under My Account. Check your inbox and spam folder for the dispatch email.',
   },
   {
-    q: 'How long does Aussie Vape take to dispatch?',
+    q: 'How long does VapesAU take to dispatch?',
     a: 'Orders are dispatched from our Australian warehouse within one business day of payment being confirmed on WhatsApp. Delivery then typically takes 2–6 business days depending on your location.',
   },
   {
     q: 'Where do I find my tracking number?',
-    a: 'It’s in your dispatch email from Aussie Vape, and on the My Account → Orders page once your order has shipped. We can also share it with you on WhatsApp.',
+    a: 'It’s in your dispatch email from VapesAU, and on the My Account → Orders page once your order has shipped. We can also share it with you on WhatsApp.',
   },
   {
     q: 'My order hasn’t arrived — what should I do?',
@@ -49,7 +49,7 @@ const faqs: Faq[] = [
 export default function OrderTrackingPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <PageSchema name="Order Tracking" slug="/order-tracking" faqs={faqs} howTo={{ name: 'How to track your Aussie Vape order', steps }} />
+      <PageSchema name="Order Tracking" slug="/order-tracking" faqs={faqs} howTo={{ name: 'How to track your VapesAU order', steps }} />
       <Crumb name="Order Tracking" />
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Order Tracking</h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">Keep an eye on your delivery from dispatch to doorstep.</p>

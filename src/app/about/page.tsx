@@ -5,18 +5,18 @@ import { SITE_TAGLINE, SITE_URL } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Aussie Vape is an Australian-owned online vape store — curated range, fast dispatch, and friendly support for adult vapers.',
+  description: 'VapesAU is an Australian-owned online vape store — curated range, fast dispatch, and friendly support for adult vapers.',
   alternates: { canonical: '/about' },
 }
 
 const aboutJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
-  name: 'About Aussie Vape',
+  name: 'About VapesAU',
   url: `${SITE_URL}/about`,
   mainEntity: {
     '@type': 'Organization',
-    name: 'Aussie Vape',
+    name: 'VapesAU',
     url: SITE_URL,
     description:
       'An Australian-owned online vape store — multi-pack bundles and bulk vape deals across disposables, pods, e-liquids and nicotine pouches, with fast AU-wide shipping.',
@@ -46,7 +46,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-widest text-white/70">{SITE_TAGLINE}</p>
-          <h1 className="mt-2 text-4xl font-black tracking-tight text-white sm:text-5xl">About Aussie Vape</h1>
+          <h1 className="mt-2 text-4xl font-black tracking-tight text-white sm:text-5xl">About VapesAU</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-white/85 sm:text-lg">
             An Australian-owned online vape store built for adult vapers who want a reliable range, fair prices, and fast dispatch.
           </p>
@@ -58,7 +58,7 @@ export default function AboutPage() {
         <section className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold text-gray-900">Our Mission</h2>
           <p className="mt-4 leading-relaxed text-gray-600">
-            We started Aussie Vape to make buying vapes online simple, honest and fast for Australian adults. That means a
+            We started VapesAU to make buying vapes online simple, honest and fast for Australian adults. That means a
             tightly curated catalogue, clear product information, fair pricing, and real human support over WhatsApp — never
             pushy upsells or confusing fine print. Whether you&apos;re switching from cigarettes or restocking your favourite
             disposable, we want it to be the easiest part of your day.

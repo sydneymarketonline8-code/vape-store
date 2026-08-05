@@ -5,7 +5,7 @@ import { whatsappLink } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Where to Buy',
-  description: 'Buy Aussie Vape products online with fast Australia-wide delivery, or find our authorised stockists.',
+  description: 'Buy VapesAU products online with fast Australia-wide delivery, or find our authorised stockists.',
 }
 
 interface Stockist {
@@ -18,14 +18,14 @@ interface Stockist {
 const STOCKISTS: Stockist[] = []
 
 export default function WhereToBuyPage() {
-  const stockistWa = whatsappLink('Hi Aussie Vape, I’m a retailer interested in stocking your products.')
+  const stockistWa = whatsappLink('Hi VapesAU, I’m a retailer interested in stocking your products.')
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
       <div className="text-center">
         <h1 className="text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">Where to Buy</h1>
         <p className="mx-auto mt-3 max-w-2xl text-gray-600">
-          Aussie Vape is an online store — shop our full range direct, with fast tracked delivery Australia-wide.
+          VapesAU is an online store — shop our full range direct, with fast tracked delivery Australia-wide.
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export default function WhereToBuyPage() {
 
       {/* Become a stockist */}
       <section className="mt-16 rounded-2xl bg-gray-50 px-6 py-10 text-center">
-        <h2 className="text-xl font-bold text-gray-900">Want to stock Aussie Vape?</h2>
+        <h2 className="text-xl font-bold text-gray-900">Want to stock VapesAU?</h2>
         <p className="mx-auto mt-2 max-w-xl text-sm text-gray-600">
           Retailers — reach out about wholesale and trade pricing.
         </p>

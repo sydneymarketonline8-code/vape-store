@@ -8,7 +8,7 @@ import { resolveBrand, brandHubParams, brandSlug } from '@/lib/collections-query
 import { buildBrandSeo } from '@/lib/collection-seo'
 import { brandDescriptor } from '@/lib/brand-descriptors'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 
 export const dynamicParams = true
 
@@ -55,7 +55,7 @@ export default async function BrandHubPage({ params }: { params: Params }) {
     description: seo.metaDescription,
     url: `${SITE_URL}/brands/${brand}`,
     about: { '@type': 'Brand', name: data.brand },
-    isPartOf: { '@type': 'WebSite', name: 'Aussie Vape', url: SITE_URL },
+    isPartOf: { '@type': 'WebSite', name: 'VapesAU', url: SITE_URL },
   }
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -129,7 +129,7 @@ export default async function BrandHubPage({ params }: { params: Params }) {
       {/* About + FAQ */}
       <section aria-label={`About ${data.brand}`} className="py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-900">About {data.brand} at Aussie Vape</h2>
+          <h2 className="text-xl font-bold text-gray-900">About {data.brand} at VapesAU</h2>
           <p className="mt-3 text-sm leading-relaxed text-gray-600">{seo.whyBuy}</p>
 
           <h2 className="mb-4 mt-10 text-xl font-bold text-gray-900">{data.brand} — FAQ</h2>

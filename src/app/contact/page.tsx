@@ -7,26 +7,26 @@ import { whatsappLink } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Contact Aussie Vape — message us on WhatsApp or email for order help, product questions, returns and wholesale. Australian-based support.',
+    'Contact VapesAU — message us on WhatsApp or email for order help, product questions, returns and wholesale. Australian-based support.',
   alternates: { canonical: '/contact' },
 }
 
 const faqs: Faq[] = [
   {
-    q: 'How do I contact Aussie Vape?',
-    a: 'The fastest way is WhatsApp — tap the WhatsApp button on any page or message us directly. You can also email support@aussievape.com.au. Include your order number if your enquiry is about an existing order so we can help faster.',
+    q: 'How do I contact VapesAU?',
+    a: 'The fastest way is WhatsApp — tap the WhatsApp button on any page or message us directly. You can also email support@vapesau.com.au. Include your order number if your enquiry is about an existing order so we can help faster.',
   },
   {
-    q: 'How quickly does Aussie Vape respond?',
+    q: 'How quickly does VapesAU respond?',
     a: 'We reply to WhatsApp and email enquiries as quickly as we can, usually within one Australian business day. WhatsApp is typically the quickest.',
   },
   {
-    q: 'Does Aussie Vape have a phone number?',
+    q: 'Does VapesAU have a phone number?',
     a: 'We handle support through WhatsApp and email rather than a phone line, so there is a written record of your enquiry and order details. WhatsApp is the best way to reach us quickly.',
   },
   {
     q: 'How do I pay for my order?',
-    a: 'Aussie Vape accepts PayID and cryptocurrency. After you place an order, use the WhatsApp button to confirm your payment method and receive the payment details, and we lock your order in. We do not store card details or offer buy-now-pay-later.',
+    a: 'VapesAU accepts PayID and cryptocurrency. After you place an order, use the WhatsApp button to confirm your payment method and receive the payment details, and we lock your order in. We do not store card details or offer buy-now-pay-later.',
   },
 ]
 
@@ -48,7 +48,7 @@ export default function ContactPage() {
         <span className="text-gray-600">Contact</span>
       </nav>
 
-      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Contact Aussie Vape</h1>
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900">Contact VapesAU</h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">
         Questions about an order, a product, payment or wholesale? Our Australian-based team is here to help by WhatsApp or email — usually within one business day.
       </p>
@@ -56,7 +56,7 @@ export default function ContactPage() {
       {/* Contact method cards */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <a
-          href={whatsappLink('Hi Aussie Vape, I have a question.')}
+          href={whatsappLink('Hi VapesAU, I have a question.')}
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
@@ -70,7 +70,7 @@ export default function ContactPage() {
           </span>
         </a>
         <a
-          href="mailto:support@aussievape.com.au"
+          href="mailto:support@vapesau.com.au"
           className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
         >
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-50">
@@ -78,7 +78,7 @@ export default function ContactPage() {
           </span>
           <span className="min-w-0">
             <span className="block text-sm font-semibold text-gray-900">Email</span>
-            <span className="mt-0.5 block truncate text-sm text-gray-500 group-hover:text-[#1B7A3E]">support@aussievape.com.au</span>
+            <span className="mt-0.5 block truncate text-sm text-gray-500 group-hover:text-[#1B7A3E]">support@vapesau.com.au</span>
           </span>
         </a>
       </div>

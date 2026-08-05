@@ -6,7 +6,7 @@ import { whatsappLink } from '@/lib/site'
  * message prefilled. Sits below modal/drawer overlays (z-40 < z-50).
  */
 export function WhatsAppFab() {
-  const href = whatsappLink("Hi Aussie Vape, I have a question about your products.")
+  const href = whatsappLink("Hi VapesAU, I have a question about your products.")
 
   return (
     <a

@@ -9,7 +9,7 @@ import { getCollection } from '@/lib/collections'
 import { resolveSeries, seriesParams, seriesSlug } from '@/lib/collections-query'
 import { buildSeriesSeo } from '@/lib/collection-seo'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 const PAGE_SIZE = 24
 
 export const dynamicParams = true
@@ -79,7 +79,7 @@ export default async function SeriesPage({
     name: seo.metaTitle,
     description: seo.metaDescription,
     url: `${SITE_URL}/collections/${slug}/${brand}/${series}`,
-    isPartOf: { '@type': 'WebSite', name: 'Aussie Vape', url: SITE_URL },
+    isPartOf: { '@type': 'WebSite', name: 'VapesAU', url: SITE_URL },
   }
   const faqJsonLd = {
     '@context': 'https://schema.org',

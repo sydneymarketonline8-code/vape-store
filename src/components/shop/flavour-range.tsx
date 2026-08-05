@@ -37,7 +37,7 @@ export function FlavourRange({
             <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-50">
               <Image
                 src={productImage(product)}
-                alt={`${product.name} — buy online Australia | Aussie Vape`}
+                alt={`${product.name} — buy online Australia | VapesAU`}
                 fill
                 sizes="(max-width:640px) 30vw, (max-width:1024px) 22vw, 14vw"
                 className="object-contain p-1.5 transition-transform group-hover:scale-105"

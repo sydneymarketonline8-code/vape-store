@@ -42,7 +42,7 @@ export function RecentReviews() {
     <section className="border-t border-gray-100 bg-gray-50 py-14" aria-label="Customer reviews">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-2 text-2xl font-bold text-gray-900">What Our Customers Say</h2>
-        <p className="mb-6 text-sm text-gray-500">Verified, approved reviews from real Aussie Vape customers.</p>
+        <p className="mb-6 text-sm text-gray-500">Verified, approved reviews from real VapesAU customers.</p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.slice(0, 6).map(r => (
             <figure key={r.id} className="flex flex-col rounded-2xl border border-gray-200 bg-white p-5">

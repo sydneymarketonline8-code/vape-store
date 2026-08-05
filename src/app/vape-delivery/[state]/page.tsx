@@ -38,7 +38,7 @@ export default async function StateDeliveryPage({ params }: { params: Promise<{ 
   const faqs: Faq[] = [
     {
       q: `Do you deliver vapes to ${s.name}?`,
-      a: `Yes — Aussie Vape ships Australia-wide, including all of ${s.name}, from ${s.capital} to regional areas like ${s.cities.slice(1, 4).join(', ')}. Orders are dispatched within one business day of payment being confirmed and typically arrive in ${s.deliveryDays}.`,
+      a: `Yes — VapesAU ships Australia-wide, including all of ${s.name}, from ${s.capital} to regional areas like ${s.cities.slice(1, 4).join(', ')}. Orders are dispatched within one business day of payment being confirmed and typically arrive in ${s.deliveryDays}.`,
     },
     {
       q: `How long does vape delivery take to ${s.capital}?`,

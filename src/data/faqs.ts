@@ -8,7 +8,7 @@ export interface FaqSection {
   items: FaqItem[]
 }
 
-// Editable FAQ content (not in the DB). Answers reflect Aussie Vape's real
+// Editable FAQ content (not in the DB). Answers reflect VapesAU's real
 // policies: manual PayID/crypto payment via WhatsApp, $250 min order, free
 // shipping over $300, 18+ only.
 export const FAQ_SECTIONS: FaqSection[] = [
@@ -62,8 +62,8 @@ export const FAQ_SECTIONS: FaqSection[] = [
   {
     title: 'Age & Legal',
     items: [
-      { q: 'What is the legal age to buy vapes in Australia?', a: 'You must be 18 or older. Aussie Vape is an age-verified store and may request ID before dispatch or on delivery.' },
-      { q: 'How does age verification work at Aussie Vape?', a: 'We verify age at checkout, and a signature or ID may be required on delivery. We do not sell to anyone under 18.' },
+      { q: 'What is the legal age to buy vapes in Australia?', a: 'You must be 18 or older. VapesAU is an age-verified store and may request ID before dispatch or on delivery.' },
+      { q: 'How does age verification work at VapesAU?', a: 'We verify age at checkout, and a signature or ID may be required on delivery. We do not sell to anyone under 18.' },
       { q: 'Are nicotine vapes legal in Australia?', a: 'Australian vaping laws changed in 2024 and nicotine vaping products are regulated by the TGA. The rules vary by state and continue to change — see our Vaping Laws page and your state or territory health authority for the current position.' },
       { q: 'Are your products genuine?', a: 'Yes. We source from established suppliers and stock recognised brands. If you ever receive an item you believe is not genuine, contact us on WhatsApp and we will make it right.' },
     ],

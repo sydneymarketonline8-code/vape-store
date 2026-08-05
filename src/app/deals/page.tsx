@@ -6,7 +6,7 @@ import type { Product } from '@/types'
 import { COLLECTIONS } from '@/lib/collections'
 import { ProductCard } from '@/components/shop/product-card'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.aussievape.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
 
 const popularity = (p: Product) => (p.featured ? 1_000_000 : 0) + (p.reviewCount ?? 0)
 const discountPct = (p: Product) => (p.originalPrice ? Math.round((1 - p.price / p.originalPrice) * 100) : 0)
@@ -16,7 +16,7 @@ const maxDiscount = bundles.length ? Math.max(...bundles.map(discountPct)) : 0
 
 export const metadata: Metadata = {
   title: 'Vape Package Deals & Bundle Packs',
-  description: `Save up to ${maxDiscount}% on vape multi-packs at Aussie Vape — IGET, ALFAKHER, GUNNPOD and more in 3, 5, 10 & 20-packs. Fast AU shipping, free over $300.`,
+  description: `Save up to ${maxDiscount}% on vape multi-packs at VapesAU — IGET, ALFAKHER, GUNNPOD and more in 3, 5, 10 & 20-packs. Fast AU shipping, free over $300.`,
   alternates: { canonical: '/deals' },
 }
 
@@ -57,7 +57,7 @@ export default function DealsPage() {
   const dealsJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Vape package deals at Aussie Vape',
+    name: 'Vape package deals at VapesAU',
     itemListElement: deals.map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,

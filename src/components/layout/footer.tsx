@@ -32,7 +32,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex flex-col leading-none">
-              <span className="text-lg font-black tracking-tight text-[#1B7A3E]">AUSSIE VAPE</span>
+              <span className="text-lg font-black tracking-tight text-[#1B7A3E]">VAPESAU</span>
               <span className="text-[11px] font-medium uppercase tracking-widest text-gray-400">
                 {SITE_TAGLINE}
               </span>
@@ -133,7 +133,7 @@ export function Footer() {
           {[
             { Icon: Truck,       label: 'Free AU Shipping',   sub: 'Orders over $300', href: '/shipping',    aria: 'Free Australia-wide shipping on orders over $300' },
             { Icon: ShieldCheck, label: 'Age-Verified Store', sub: '18+ only',         href: '/vaping-laws', aria: 'Age-verified store for adults 18 and over' },
-            { Icon: RotateCcw,   label: '30-Day Returns',     sub: 'Unopened items',   href: '/returns',     aria: '30-day hassle-free returns on unopened Aussie Vape products' },
+            { Icon: RotateCcw,   label: '30-Day Returns',     sub: 'Unopened items',   href: '/returns',     aria: '30-day hassle-free returns on unopened VapesAU products' },
             { Icon: Headphones,  label: 'AU-Based Support',   sub: 'WhatsApp & email', href: '/contact',     aria: 'Australian-based customer support via WhatsApp and email' },
             { Icon: Boxes,       label: '2,000+ Products',    sub: 'In stock now',     href: '/products',    aria: 'Over 2,000 vape products in stock and ready to ship Australia-wide' },
           ].map(({ Icon, label, sub, href, aria }) => (
@@ -153,7 +153,7 @@ export function Footer() {
         <div className="mt-10 border-t border-gray-200 pt-8">
           <h2 className="text-sm font-bold text-gray-800">Buy Vapes &amp; Vape Deals Online in Australia</h2>
           <p className="mt-2 max-w-4xl text-xs leading-relaxed text-gray-400">
-            Aussie Vape is an Australian online vape store specialising in vape deals, multi-pack bundles and bulk packs. Shop{' '}
+            VapesAU is an Australian online vape store specialising in vape deals, multi-pack bundles and bulk packs. Shop{' '}
             <Link href="/collections/disposables" className="hover:text-[#1B7A3E]">disposable vapes</Link>,{' '}
             <Link href="/collections/mods" className="hover:text-[#1B7A3E]">pod systems</Link>,{' '}
             <Link href="/collections/e-liquids" className="hover:text-[#1B7A3E]">e-liquids and nicotine salts</Link> and{' '}
@@ -192,7 +192,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-6 flex flex-col items-center justify-between gap-4 pt-2 sm:flex-row">
           <p className="text-xs text-gray-400">
-            © {new Date().getFullYear()} Aussie Vape. All rights reserved. For adults 18+ only.
+            © {new Date().getFullYear()} VapesAU. All rights reserved. For adults 18+ only.
           </p>
           <p className="text-xs text-gray-400">
             WARNING: Nicotine is an addictive chemical.
