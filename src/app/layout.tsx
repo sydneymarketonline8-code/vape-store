@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   applicationName: 'VapesAU',
   alternates: { canonical: '/' },
   verification: {
-    google: '4K_SODPaILw3qSrDxDS3AxJO7Gs3D94pMdgW88jqFQw',
+    google: 'bJvowwYAaHg1B9Zaa9OiT0PrM0T8gIoi6OmMeYSB2n8',
     other: { 'msvalidate.01': 'AA4B24BB61805F06694EA15A78224F46' },
   },
   robots: {
