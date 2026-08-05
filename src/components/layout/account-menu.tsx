@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { User, ChevronDown, LogOut } from 'lucide-react'
+import { User, ChevronDown, LogOut, LayoutDashboard } from 'lucide-react'
 import { ACCOUNT_LINKS } from '@/lib/nav'
+import { isAdminEmail } from '@/lib/admin'
 
 export interface AccountUser {
   name: string
@@ -74,6 +75,16 @@ export function AccountMenu({ user }: { user: AccountUser | null }) {
             <p className="truncate text-sm font-semibold text-gray-900">{user.name}</p>
             <p className="truncate text-xs text-gray-500">{user.email}</p>
           </div>
+          {isAdminEmail(user.email) && (
+            <Link
+              href="/admin"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 border-b border-gray-100 px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-gray-50"
+            >
+              <LayoutDashboard className="h-4 w-4" /> Admin Panel
+            </Link>
+          )}
           {ACCOUNT_LINKS.map(link => (
             <Link
               key={link.href}

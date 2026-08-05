@@ -2,6 +2,7 @@ import { createServerClient } from '@supabase/ssr'
 import { createClient as createSupabaseJsClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 import type { Database } from './database.types'
+import { ADMIN_EMAILS as ADMIN_EMAIL_LIST } from '@/lib/admin'
 
 /**
  * Service-role client — bypasses RLS. Use ONLY in trusted server code (never
@@ -48,7 +49,7 @@ export async function createClient() {
  * must still exist in Supabase Auth (be registered) so it can log in.
  */
 const ADMIN_EMAILS = new Set(
-  ['admin@vapesau.com.au', ...(process.env.ADMIN_EMAILS?.split(',') ?? [])]
+  [...ADMIN_EMAIL_LIST, ...(process.env.ADMIN_EMAILS?.split(',') ?? [])]
     .map(e => e.trim().toLowerCase())
     .filter(Boolean),
 )

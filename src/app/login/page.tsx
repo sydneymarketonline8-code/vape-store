@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { SITE_TAGLINE } from '@/lib/site'
+import { isAdminEmail } from '@/lib/admin'
 
 export default function LoginPage() {
   const router            = useRouter()
@@ -29,7 +30,10 @@ export default function LoginPage() {
       // Honor ?redirect (e.g. the /admin or /account guard), but only for
       // internal paths to avoid an open-redirect.
       const redirect = new URLSearchParams(window.location.search).get('redirect')
-      router.push(redirect && redirect.startsWith('/') ? redirect : '/')
+      const dest = redirect && redirect.startsWith('/')
+        ? redirect
+        : isAdminEmail(email) ? '/admin' : '/'
+      router.push(dest)
       router.refresh()
     }
   }
