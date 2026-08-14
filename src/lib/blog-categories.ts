@@ -40,6 +40,9 @@ const POST_CATEGORY: Record<string, string> = {
   'fume-vape-australia-guide': 'buying-guides',
   'ibuff-shisha-vapes-australia-guide': 'buying-guides',
   'high-puff-disposable-vapes-australia': 'buying-guides',
+  'hqd-vapes-australia-guide': 'buying-guides',
+  'gunnpod-vapes-australia-guide': 'buying-guides',
+  'lost-mary-alibarbar-australia-guide': 'buying-guides',
 
   'zyn-flavours-strengths-guide-australia': 'nicotine-pouches',
   'nicotine-pouches-australia-guide': 'nicotine-pouches',
@@ -47,9 +50,11 @@ const POST_CATEGORY: Record<string, string> = {
 
   'vape-multi-packs-and-bundles-guide': 'deals-value',
   'disposable-vape-puff-counts-explained': 'deals-value',
+  'cheapest-way-to-buy-vapes-australia': 'deals-value',
 
   'disposable-vapes-vs-pod-systems': 'vaping-basics',
   'e-liquid-nicotine-strengths-explained': 'vaping-basics',
+  'buying-vapes-online-australia-delivery': 'vaping-basics',
 }
 
 export function categoryOf(slug: string): BlogCategory {
