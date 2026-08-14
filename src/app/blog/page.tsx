@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server'
 import { Newspaper, ArrowRight } from 'lucide-react'
 import { PageSchema } from '@/components/common/page-schema'
 import { SITE_URL } from '@/lib/site'
+import { BLOG_CATEGORIES, categoryOf } from '@/lib/blog-categories'
 
 export const metadata: Metadata = {
   title: 'Vaping Blog & Guides',
@@ -75,6 +76,25 @@ export default async function BlogIndexPage() {
         </p>
       </div>
 
+      {/* Browse by category */}
+      {posts.length > 0 && (
+        <div className="mb-10 flex flex-wrap justify-center gap-2">
+          {BLOG_CATEGORIES.map(c => {
+            const n = posts.filter(p => categoryOf(p.slug).slug === c.slug).length
+            if (!n) return null
+            return (
+              <Link
+                key={c.slug}
+                href={`/blog/category/${c.slug}`}
+                className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+              >
+                {c.name} <span className="text-gray-400">({n})</span>
+              </Link>
+            )
+          })}
+        </div>
+      )}
+
       {posts.length === 0 ? (
         <div>
           <div className="mb-8 flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 py-12 text-center">
@@ -106,6 +126,7 @@ export default async function BlogIndexPage() {
                 )}
               </div>
               <div className="flex flex-1 flex-col p-5">
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-[#1B7A3E]">{categoryOf(post.slug).name}</p>
                 <h2 className="line-clamp-2 text-lg font-bold leading-snug text-gray-900 group-hover:text-primary">{post.title}</h2>
                 {post.excerpt && <p className="mt-2 line-clamp-3 flex-1 text-sm text-gray-600">{post.excerpt}</p>}
                 <p className="mt-4 text-xs text-gray-400">

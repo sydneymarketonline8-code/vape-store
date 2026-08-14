@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { ChevronLeft } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { SITE_URL } from '@/lib/site'
+import { categoryOf } from '@/lib/blog-categories'
 import type { Database } from '@/lib/supabase/database.types'
 
 type Post = Database['public']['Tables']['blog_posts']['Row']
@@ -90,6 +91,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <ChevronLeft className="h-4 w-4" /> Back to Blog
       </Link>
 
+      <Link
+        href={`/blog/category/${categoryOf(slug).slug}`}
+        className="mb-2 block text-xs font-semibold uppercase tracking-wide text-[#1B7A3E] hover:underline"
+      >
+        {categoryOf(slug).name}
+      </Link>
       <h1 className="text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">{post.title}</h1>
       <p className="mt-3 text-sm text-gray-400">
         {post.author ? `By ${post.author} · ` : ''}

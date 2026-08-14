@@ -3,6 +3,7 @@ import { products } from '@/data/products'
 import { COLLECTIONS } from '@/lib/collections'
 import { brandCategoryParams, seriesParams, brandHubParams } from '@/lib/collections-query'
 import { STATES } from '@/data/locations'
+import { BLOG_CATEGORIES } from '@/lib/blog-categories'
 import { createServiceClient } from '@/lib/supabase/server'
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
@@ -91,5 +92,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  return [...staticEntries, ...collectionEntries, ...brandHubEntries, ...brandClusterEntries, ...seriesEntries, ...stateEntries, ...blogEntries, ...productEntries]
+  const blogCategoryEntries: MetadataRoute.Sitemap = BLOG_CATEGORIES.map(c => ({
+    url: `${SITE}/blog/category/${c.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.5,
+  }))
+
+  return [...blogCategoryEntries, ...staticEntries, ...collectionEntries, ...brandHubEntries, ...brandClusterEntries, ...seriesEntries, ...stateEntries, ...blogEntries, ...productEntries]
 }
