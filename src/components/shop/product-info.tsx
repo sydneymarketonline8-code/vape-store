@@ -196,6 +196,14 @@ export function ProductInfo({
       {/* Inventory badge */}
       <InventoryBadge product={product} soldOut={soldOut} />
 
+      {/* Honest min-order note — better here than a surprise at checkout */}
+      {product.price < 250 && (
+        <p className="rounded-lg bg-gray-50 px-3 py-2 text-sm text-gray-500">
+          Orders have a <span className="font-semibold text-gray-700">$250 minimum</span> — mix &amp; match any products or grab a{' '}
+          <Link href="/deals" className="font-medium text-primary hover:underline">multi-pack deal</Link> to qualify. Free shipping over $300.
+        </p>
+      )}
+
       {/* Quantity + actions */}
       <div ref={actionsRef} className="flex flex-col gap-3">
         <div className="flex gap-3">

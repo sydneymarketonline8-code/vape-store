@@ -16,6 +16,43 @@ export interface CollectionSeo {
   intro: string
   whyBuy: string
   faqs: Faq[]
+  /** Optional deep-dive sections rendered below "why buy" (pillar content). */
+  extraSections?: { h: string; p: string }[]
+}
+
+// Deep pillar content per collection — factual, targets real query demand seen
+// in Search Console. Extra FAQs are merged into the page FAQ + FAQPage schema.
+const EXTRA: Record<string, { sections: { h: string; p: string }[]; faqs: Faq[] }> = {
+  pouches: {
+    sections: [
+      {
+        h: 'What are nicotine pouches?',
+        p: 'Nicotine pouches are small, tobacco-free pouches you place between your upper lip and gum. The nicotine absorbs through the gum over 20–40 minutes — no smoke, no vapour, no device and no odour, which is why they’ve become a popular discreet option for adult nicotine users in Australia. Used pouches go back in the tin’s catch lid or in the bin.',
+      },
+      {
+        h: 'Choosing a strength (mg guide)',
+        p: 'Pouch strength is measured in mg of nicotine per pouch. As a rule of thumb: 3–6mg suits lighter or first-time pouch users, 9–11mg suits regular users, and 14mg+ is for heavy users who find lower strengths don’t hold. If you’re between two options, start lower — you can always step up. The exact strength is listed on every product page and in each product’s name.',
+      },
+      {
+        h: 'ZYN, VELO, ZIMO and more — the brands we stock',
+        p: 'ZYN is the biggest name in nicotine pouches worldwide and our largest pouch range — from 6mg Smooth and Wintergreen through to 11mg Slim varieties and 16.5mg Cool Mint. Alongside ZYN we stock VELO, ZIMO, JUICE HEAD, MOJO, AMMO, SESH, BERSERKER and more, covering mint, fruit, coffee and cinnamon flavours across every strength band — all in stock in Australia and dispatched within one business day.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Can I buy ZYN nicotine pouches in Australia?',
+        a: 'VapesAU stocks 29 ZYN varieties — Smooth, Wintergreen, Cool Mint, Spearmint, Chill, Peppermint, Coffee and more, in strengths from 6mg to 16.5mg — plus VELO, ZIMO and other pouch brands. Orders are age-verified (18+) and dispatched from Australia within one business day. Australian regulation of nicotine pouches has been changing — see our Vaping Laws page and the TGA for the current position.',
+      },
+      {
+        q: 'What is the strongest nicotine pouch you stock?',
+        a: 'Our range currently tops out around 16.5mg per pouch (for example ZYN Cool Mint 16.5mg), with most of the range between 6mg and 11mg. Each product page lists the exact strength.',
+      },
+      {
+        q: 'Are nicotine pouches discreet to use?',
+        a: 'Yes — that’s their main appeal. A pouch sits invisibly under your lip with no smoke, vapour, smell or spitting, and a tin is about the size of a hockey puck, so they’re easy to use and carry discreetly.',
+      },
+    ],
+  },
 }
 
 // Per-category descriptor used to keep the copy accurate to each product type.
@@ -64,7 +101,15 @@ export function buildCollectionSeo(slug: string, name: string, s: Stats): Collec
     },
   ]
 
-  return { metaTitle, metaDescription, intro, whyBuy, faqs }
+  const extra = EXTRA[slug]
+  return {
+    metaTitle,
+    metaDescription,
+    intro,
+    whyBuy,
+    faqs: extra ? [...faqs, ...extra.faqs] : faqs,
+    extraSections: extra?.sections,
+  }
 }
 
 /** Honest, data-driven SEO content for a Tier-3 series page (brand + exact puff count). */

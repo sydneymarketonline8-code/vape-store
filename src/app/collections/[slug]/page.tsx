@@ -194,6 +194,13 @@ export default async function CollectionPage({
           <h2 className="text-xl font-bold text-gray-900">Why buy {collection.name.toLowerCase()} at VapesAU?</h2>
           <p className="mt-3 text-sm leading-relaxed text-gray-600">{seo.whyBuy}</p>
 
+          {seo.extraSections?.map(s => (
+            <div key={s.h}>
+              <h2 className="mt-10 text-xl font-bold text-gray-900">{s.h}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-gray-600">{s.p}</p>
+            </div>
+          ))}
+
           <h2 className="mb-4 mt-10 text-xl font-bold text-gray-900">{collection.name} — FAQ</h2>
           <FaqList items={seo.faqs} />
 
