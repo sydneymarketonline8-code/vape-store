@@ -1,4 +1,6 @@
 import type { Product } from '@/types'
+import { brandDescriptor } from '@/lib/brand-descriptors'
+import { flavourCategory, significantFlavourTokens } from '@/lib/flavour-classify'
 
 // Generates a unique, spec-driven product description so on-page copy doesn't
 // duplicate the scraped catalogue text (which is shared with the sibling site
@@ -49,22 +51,132 @@ function classify(p: Product): { noun: string; blurb: string } {
   return { noun: CATEGORY_NOUN[p.category] ?? 'vape product', blurb: CATEGORY_BLURB[p.category] ?? '' }
 }
 
+/** Stable per-product number from the slug — picks copy variants deterministically. */
+function hash(s: string): number {
+  let h = 0
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0
+  return h
+}
+
+// Model/series words that appear in product names but aren't flavours.
+const MODEL_WORDS = [
+  'bar', 'plus', 'pro', 'max', 'king', 'legend', 'moon', 'one', 'goat', 'hot', 'xxl', 'box', 'cuvie',
+  'slick', 'moss', 'lume', 'ingot', 'crown', 'shisha', 'mega', 'turbo', 'prime', 'eternity', 'zero',
+  'pod', 'pods', 'only', 'device', 'base', 'battery', 'kit', 'puffs', 'puff', 'pack', 'nicotine',
+  'pouches', 'juice', 'salt', 'salts', 'vape', 'disposable', 'edition', 'series', 'new', 'mix',
+]
+
+const FLAVOUR_PHRASE: Record<string, string> = {
+  fruit: 'a fruit-forward flavour',
+  ice: 'a chilled, menthol-cooled flavour',
+  mint: 'a mint flavour',
+  dessert: 'a sweet, dessert-style flavour',
+  drink: 'a drink-inspired flavour',
+  tobacco: 'a tobacco flavour',
+  candy: 'a sweet, confectionery-style flavour',
+}
+
+/**
+ * Unique, spec-driven product copy. Every product gets a different combination of
+ * real figures (puff rating, days of use, cost per 1,000 puffs, per-device pack
+ * price, saving) and a deterministically chosen sentence structure, so the ~2,000
+ * product pages don't read as one template — near-duplicate copy at scale is a
+ * common reason pages get crawled but not indexed. All numbers are derived from
+ * the product's own data; nothing is invented.
+ */
 export function buildProductDescription(p: Product): string {
   const { noun, blurb } = classify(p)
-  const isPack = /\bpack\b/i.test(p.name)
+  const h = hash(p.slug || p.name)
+  const price = p.price
+  const article = /^[aeiou]/i.test(noun) ? 'an' : 'a'
   const brandPrefix =
     p.brand && !GENERIC_BRANDS.has(p.brand.toUpperCase()) && !p.name.toUpperCase().startsWith(p.brand.toUpperCase())
       ? ` from ${p.brand}`
       : ''
-  const puffs = p.puffCount ? ` rated for ${p.puffCount.toLocaleString()} puffs` : ''
-  const article = /^[aeiou]/i.test(noun) ? 'an' : 'a'
 
-  const s1 = `The ${p.name} is ${article} ${noun}${puffs}${brandPrefix}, available now at VapesAU.`
-  const s3 = isPack
-    ? `Buy this multi-pack online for $${p.price.toFixed(2)} — pack pricing is already applied, so you pay less per device. Fast Australia-wide shipping, age-verified checkout (18+), and free delivery on orders over $300.`
-    : `Buy online for $${p.price.toFixed(2)}, with multi-pack bundle deals available if you want to save more. Fast Australia-wide shipping, age-verified checkout (18+), and free delivery on orders over $300.`
+  // Pack size, if this is a multi-pack.
+  const packMatch = p.name.match(/(\d+)\s*[-\s]?pack\b/i)
+  const packSize = packMatch ? Number(packMatch[1]) : 0
+  const puffs = p.puffCount ?? 0
 
-  return [s1, blurb, s3].filter(Boolean).join(' ')
+  const parts: string[] = []
+
+  // ── Opening: three structures, chosen by hash ──────────────────────────────
+  const puffPhrase = puffs ? ` rated for ${puffs.toLocaleString()} puffs` : ''
+  const opener = h % 3
+  if (opener === 0) {
+    parts.push(`The ${p.name} is ${article} ${noun}${puffPhrase}${brandPrefix}, in stock now at VapesAU.`)
+  } else if (opener === 1) {
+    parts.push(`${p.name} — ${article} ${noun}${brandPrefix}${puffPhrase}, available to order online in Australia.`)
+  } else {
+    parts.push(`Looking for the ${p.name}? It's ${article} ${noun}${puffPhrase}${brandPrefix}, held in stock and dispatched from Australia.`)
+  }
+
+  // ── Brand context (32 brands have a distinct descriptor) ───────────────────
+  const bd = p.brand ? brandDescriptor(p.brand) : null
+  if (bd) parts.push(bd)
+
+  // ── Flavour profile, read from the product name ────────────────────────────
+  const flav = flavourCategory(p.name)
+  const flavPhrase = FLAVOUR_PHRASE[flav]
+  if (flavPhrase) {
+    // Strip brand/model words so we describe the flavour, not the product name.
+    const brandWords = new Set(
+      `${p.brand ?? ''}`.toLowerCase().split(/[^a-z]+/).filter(Boolean).concat(MODEL_WORDS)
+    )
+    const tokens = significantFlavourTokens(p.name).filter(w => !brandWords.has(w))
+    parts.push(
+      tokens.length > 1
+        ? `It's ${flavPhrase} blending ${tokens.slice(0, 3).join(', ')}.`
+        : tokens.length === 1
+          ? `It's ${flavPhrase} built around ${tokens[0]}.`
+          : `It's ${flavPhrase}.`
+    )
+  }
+
+  // ── Category context ───────────────────────────────────────────────────────
+  if (blurb) parts.push(blurb)
+
+  // ── Real, product-specific numbers ─────────────────────────────────────────
+  if (puffs >= 400) {
+    // Longevity at a stated, transparent assumption + cost efficiency.
+    const days = Math.round(puffs / 300)
+    const perK = (price / (puffs * (packSize || 1))) * 1000
+    const life =
+      days >= 60
+        ? `around ${Math.round(days / 30)} months`
+        : days >= 14
+          ? `roughly ${Math.round(days / 7)} weeks`
+          : `about ${days} days`
+    parts.push(
+      `At ${puffs.toLocaleString()} puffs${packSize ? ` per device` : ''}, that's ${life} for a typical user at around 300 puffs a day, and works out to about $${perK.toFixed(2)} per 1,000 puffs.`
+    )
+  }
+
+  // ── Pack maths, or single-unit pricing ─────────────────────────────────────
+  if (packSize > 1) {
+    parts.push(
+      `This ${packSize}-pack is $${price.toFixed(2)} — about $${(price / packSize).toFixed(2)} per device, with pack pricing already applied at checkout (no code needed).`
+    )
+  } else {
+    parts.push(`Priced at $${price.toFixed(2)}${h % 2 === 0 ? ', with multi-pack bundles available if you want a lower price per device' : ' as a single unit — bulk packs are available on many lines'}.`)
+  }
+
+  // ── Genuine saving, only when there's a real original price ────────────────
+  if (p.originalPrice && p.originalPrice > price) {
+    const save = p.originalPrice - price
+    const pct = Math.round((save / p.originalPrice) * 100)
+    parts.push(`Currently reduced from $${p.originalPrice.toFixed(2)}, saving you $${save.toFixed(2)} (${pct}%).`)
+  }
+
+  // ── Closing: two variants ──────────────────────────────────────────────────
+  parts.push(
+    h % 2 === 0
+      ? `Dispatched from our Australian warehouse within one business day, tracked, with free shipping on orders over $300. Age-verified (18+).`
+      : `Ships Australia-wide with tracking, dispatched within one business day of payment. Free delivery over $300, age-verified checkout (18+).`
+  )
+
+  return parts.filter(Boolean).join(' ')
 }
 
 const TYPE_LABEL: Record<string, string> = {
