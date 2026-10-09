@@ -18,6 +18,7 @@ const DESCRIPTORS: Record<string, string> = {
   'X-QLUSIVE': 'X-Qlusive is a high-capacity disposable brand known for its Mega line, offering a broad range of fruit and ice flavours.',
   FASTA: 'FASTA is a disposable brand with a wide, fruit-forward flavour line-up.',
   FUME: 'FUME is a widely-searched US disposable brand known for its Infinity, Extra and Pro lines, with a large selection of fruit and ice flavours.',
+  TOMORO: 'TOMORO builds feature-led disposables — its MAX 15K pairs a 2,730mAh rechargeable battery with dual-coil hardware, switchable 10W/16W output and an LED colour screen.',
   IBUFF: 'iBuff is best known for its shisha-style high-puff disposables, popular for smooth, hookah-inspired flavours.',
   ONYX: 'ONYX offers a compact range of flavour-focused disposables stocked in Australia.',
   FLONQ: 'FLONQ is known for sleek, design-led disposable devices.',

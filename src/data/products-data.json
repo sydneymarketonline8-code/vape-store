@@ -47418,5 +47418,661 @@
       "e-liquids",
       "cloud-nurdz"
     ]
+  },
+  {
+    "id": "10068",
+    "slug": "tomoro-max-15k-strawberry-ice-15000-puffs",
+    "name": "TOMORO MAX 15K - STRAWBERRY ICE - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Strawberry Ice"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Strawberry Ice",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "strawberry-ice"
+    ]
+  },
+  {
+    "id": "10069",
+    "slug": "tomoro-max-15k-blueberry-ice-15000-puffs",
+    "name": "TOMORO MAX 15K - BLUEBERRY ICE - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Blueberry Ice"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Blueberry Ice",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "blueberry-ice"
+    ]
+  },
+  {
+    "id": "10070",
+    "slug": "tomoro-max-15k-blackberry-ice-15000-puffs",
+    "name": "TOMORO MAX 15K - BLACKBERRY ICE - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Blackberry Ice"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Blackberry Ice",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "blackberry-ice"
+    ]
+  },
+  {
+    "id": "10071",
+    "slug": "tomoro-max-15k-watermelon-smash-15000-puffs",
+    "name": "TOMORO MAX 15K - WATERMELON SMASH - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Watermelon Smash"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Watermelon Smash",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "watermelon-smash"
+    ]
+  },
+  {
+    "id": "10072",
+    "slug": "tomoro-max-15k-mango-boom-15000-puffs",
+    "name": "TOMORO MAX 15K - MANGO BOOM - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Mango Boom"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Mango Boom",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "mango-boom"
+    ]
+  },
+  {
+    "id": "10073",
+    "slug": "tomoro-max-15k-kiwi-pineapple-15000-puffs",
+    "name": "TOMORO MAX 15K - KIWI PINEAPPLE - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Kiwi Pineapple"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Kiwi Pineapple",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "kiwi-pineapple"
+    ]
+  },
+  {
+    "id": "10074",
+    "slug": "tomoro-max-15k-strawberry-lychee-15000-puffs",
+    "name": "TOMORO MAX 15K - STRAWBERRY LYCHEE - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Strawberry Lychee"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Strawberry Lychee",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "strawberry-lychee"
+    ]
+  },
+  {
+    "id": "10075",
+    "slug": "tomoro-max-15k-strawberry-coconut-watermelon-15000-puffs",
+    "name": "TOMORO MAX 15K - STRAWBERRY COCONUT WATERMELON - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Strawberry Coconut Watermelon"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Strawberry Coconut Watermelon",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "strawberry-coconut-watermelon"
+    ]
+  },
+  {
+    "id": "10076",
+    "slug": "tomoro-max-15k-passion-fruit-mango-lime-15000-puffs",
+    "name": "TOMORO MAX 15K - PASSION FRUIT MANGO LIME - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Passion Fruit Mango Lime"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Passion Fruit Mango Lime",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "passion-fruit-mango-lime"
+    ]
+  },
+  {
+    "id": "10077",
+    "slug": "tomoro-max-15k-blackberry-cherry-pomegranate-15000-puffs",
+    "name": "TOMORO MAX 15K - BLACKBERRY CHERRY POMEGRANATE - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Blackberry Cherry Pomegranate"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Blackberry Cherry Pomegranate",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "blackberry-cherry-pomegranate"
+    ]
+  },
+  {
+    "id": "10078",
+    "slug": "tomoro-max-15k-grape-lemon-15000-puffs",
+    "name": "TOMORO MAX 15K - GRAPE LEMON - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Grape Lemon"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Grape Lemon",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "grape-lemon"
+    ]
+  },
+  {
+    "id": "10079",
+    "slug": "tomoro-max-15k-skittles-15000-puffs",
+    "name": "TOMORO MAX 15K - SKITTLES - 15000 PUFFS",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Skittles"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 49.99,
+    "originalPrice": 79.99,
+    "shortDescription": "Up to 15,000 puffs — Skittles",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "skittles"
+    ]
+  },
+  {
+    "id": "10080",
+    "slug": "tomoro-max-15k-15000-puffs-3-pack",
+    "name": "TOMORO MAX 15K - 15000 PUFFS - 3 PACK",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Strawberry Ice",
+      "Blueberry Ice",
+      "Blackberry Ice",
+      "Watermelon Smash",
+      "Mango Boom",
+      "Kiwi Pineapple",
+      "Strawberry Lychee",
+      "Strawberry Coconut Watermelon",
+      "Passion Fruit Mango Lime",
+      "Blackberry Cherry Pomegranate",
+      "Grape Lemon",
+      "Skittles"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 137.99,
+    "originalPrice": 149.97,
+    "shortDescription": "3-pack — $46.00 per device",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "bundle",
+      "3-pack"
+    ]
+  },
+  {
+    "id": "10081",
+    "slug": "tomoro-max-15k-15000-puffs-5-pack",
+    "name": "TOMORO MAX 15K - 15000 PUFFS - 5 PACK",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Strawberry Ice",
+      "Blueberry Ice",
+      "Blackberry Ice",
+      "Watermelon Smash",
+      "Mango Boom",
+      "Kiwi Pineapple",
+      "Strawberry Lychee",
+      "Strawberry Coconut Watermelon",
+      "Passion Fruit Mango Lime",
+      "Blackberry Cherry Pomegranate",
+      "Grape Lemon",
+      "Skittles"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 219.99,
+    "originalPrice": 249.95,
+    "shortDescription": "5-pack — $44.00 per device",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "bundle",
+      "5-pack"
+    ]
+  },
+  {
+    "id": "10082",
+    "slug": "tomoro-max-15k-15000-puffs-10-pack",
+    "name": "TOMORO MAX 15K - 15000 PUFFS - 10 PACK",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Strawberry Ice",
+      "Blueberry Ice",
+      "Blackberry Ice",
+      "Watermelon Smash",
+      "Mango Boom",
+      "Kiwi Pineapple",
+      "Strawberry Lychee",
+      "Strawberry Coconut Watermelon",
+      "Passion Fruit Mango Lime",
+      "Blackberry Cherry Pomegranate",
+      "Grape Lemon",
+      "Skittles"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 424.99,
+    "originalPrice": 499.9,
+    "shortDescription": "10-pack — $42.50 per device",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "bundle",
+      "10-pack"
+    ]
+  },
+  {
+    "id": "10083",
+    "slug": "tomoro-max-15k-15000-puffs-20-pack",
+    "name": "TOMORO MAX 15K - 15000 PUFFS - 20 PACK",
+    "brand": "TOMORO",
+    "category": "disposables",
+    "inStock": true,
+    "featured": false,
+    "rating": 0,
+    "reviewCount": 0,
+    "puffCount": 15000,
+    "specs": {
+      "Puff Count": "Up to 15,000 (10W mode) / 10,000 (16W mode)",
+      "Battery": "2730mAh high-density lithium (rechargeable)",
+      "Power Modes": "10W standard / 16W high power",
+      "Coil": "Duo-Ignite dual-coil",
+      "Display": "24 × 24mm LED colour screen",
+      "Dimensions": "104 × 53 × 25 mm",
+      "E-Liquid": "PurePulse nicotine salt formula"
+    },
+    "flavors": [
+      "Strawberry Ice",
+      "Blueberry Ice",
+      "Blackberry Ice",
+      "Watermelon Smash",
+      "Mango Boom",
+      "Kiwi Pineapple",
+      "Strawberry Lychee",
+      "Strawberry Coconut Watermelon",
+      "Passion Fruit Mango Lime",
+      "Blackberry Cherry Pomegranate",
+      "Grape Lemon",
+      "Skittles"
+    ],
+    "description": "",
+    "image": "/placeholders/tomoro.svg",
+    "images": [
+      "/placeholders/tomoro.svg"
+    ],
+    "price": 819.99,
+    "originalPrice": 999.8,
+    "shortDescription": "20-pack — $41.00 per device",
+    "tags": [
+      "disposables",
+      "tomoro",
+      "15000-puffs",
+      "bundle",
+      "20-pack"
+    ]
   }
 ]
