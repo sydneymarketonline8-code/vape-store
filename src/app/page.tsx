@@ -46,10 +46,16 @@ export default function HomePage() {
     .sort((a, b) => popularity(b) - popularity(a))
     .slice(0, 8)
 
-  // Shop by Brand: real top brands with at least 4 products, each showing its top 4.
+  // Shop by Brand: a pinned spotlight brand (new launches, which would otherwise be
+  // buried behind the biggest brands by count) followed by the top brands.
+  const SPOTLIGHT_BRAND = 'TOMORO'
   const brandShowcase = Object.entries(brandCounts)
     .filter(([, n]) => n >= 4)
-    .sort((a, b) => b[1] - a[1])
+    .sort((a, b) => {
+      if (a[0] === SPOTLIGHT_BRAND) return -1
+      if (b[0] === SPOTLIGHT_BRAND) return 1
+      return b[1] - a[1]
+    })
     .slice(0, 6)
     .map(([brand, count]) => ({
       brand,
@@ -66,7 +72,7 @@ export default function HomePage() {
   const bundles = products.filter(p => p.tags?.includes('bundle'))
   const maxDiscount = bundles.length ? Math.max(...bundles.map(discountPct)) : 0
   const topDeals = [...bundles].sort((a, b) => discountPct(b) - discountPct(a)).slice(0, 4)
-  const packSizes = [3, 5, 10, 20].filter(n =>
+  const packSizes = [3, 4, 5, 10, 20].filter(n =>
     bundles.some(p => new RegExp(`\\b${n}\\s*PACK\\b`, 'i').test(p.name))
   )
 
@@ -78,7 +84,14 @@ export default function HomePage() {
   const heroFill = products
     .filter(p => p.inStock && !markdowns.includes(p))
     .sort((a, b) => popularity(b) - popularity(a))
-  const heroDeals: HeroSlide[] = [...markdowns, ...heroFill].slice(0, 8).map(p => ({
+  const perBrand = new Map<string, number>()
+  const heroPool = [...markdowns, ...heroFill].filter(p => {
+    const n = perBrand.get(p.brand) ?? 0
+    if (n >= 2) return false
+    perBrand.set(p.brand, n + 1)
+    return true
+  })
+  const heroDeals: HeroSlide[] = heroPool.slice(0, 8).map(p => ({
     slug: p.slug,
     brand: p.brand,
     name: p.name,
