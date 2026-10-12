@@ -6,6 +6,8 @@ import { ChevronLeft } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { SITE_URL } from '@/lib/site'
 import { categoryOf } from '@/lib/blog-categories'
+import { faqsFor } from '@/lib/blog-faqs'
+import { FaqList } from '@/components/common/page-schema'
 import type { Database } from '@/lib/supabase/database.types'
 
 type Post = Database['public']['Tables']['blog_posts']['Row']
@@ -69,6 +71,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = await getPost(slug)
   if (!post) notFound()
   const related = await getRelated(slug)
+  const faqs = faqsFor(slug)
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -83,9 +86,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     mainEntityOfPage: `${SITE_URL}/blog/${slug}`,
   }
 
+  const faqJsonLd = faqs.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map(f => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      }
+    : null
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      )}
 
       <Link href="/blog" className="mb-6 inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary">
         <ChevronLeft className="h-4 w-4" /> Back to Blog
@@ -115,6 +133,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         className="prose prose-neutral mt-8 max-w-none prose-headings:font-bold prose-a:text-primary"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
+
+      {/* FAQ — also emitted as FAQPage structured data above */}
+      {faqs.length > 0 && (
+        <section className="mt-12 border-t border-gray-200 pt-8" aria-label="Frequently asked questions">
+          <h2 className="mb-4 text-xl font-bold text-gray-900">Frequently asked questions</h2>
+          <FaqList items={faqs} />
+        </section>
+      )}
 
       {/* Shop CTA — turn readers into buyers */}
       <div className="mt-12 rounded-2xl border border-[#7C3AED]/20 bg-violet-50/60 px-6 py-8 text-center">

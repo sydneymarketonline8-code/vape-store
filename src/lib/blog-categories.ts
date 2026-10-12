@@ -43,18 +43,26 @@ const POST_CATEGORY: Record<string, string> = {
   'hqd-vapes-australia-guide': 'buying-guides',
   'gunnpod-vapes-australia-guide': 'buying-guides',
   'lost-mary-alibarbar-australia-guide': 'buying-guides',
+  'tomoro-max-15k-australia-guide': 'buying-guides',
 
   'zyn-flavours-strengths-guide-australia': 'nicotine-pouches',
   'nicotine-pouches-australia-guide': 'nicotine-pouches',
   'nicotine-pouches-beginners-guide-australia': 'nicotine-pouches',
+  'nicotine-pouches-vs-vaping-australia': 'nicotine-pouches',
 
   'vape-multi-packs-and-bundles-guide': 'deals-value',
   'disposable-vape-puff-counts-explained': 'deals-value',
   'cheapest-way-to-buy-vapes-australia': 'deals-value',
+  'best-value-vapes-under-20-australia': 'deals-value',
 
   'disposable-vapes-vs-pod-systems': 'vaping-basics',
   'e-liquid-nicotine-strengths-explained': 'vaping-basics',
   'buying-vapes-online-australia-delivery': 'vaping-basics',
+  'vape-flavours-guide-australia': 'vaping-basics',
+  'mesh-coils-explained-australia': 'vaping-basics',
+  'vape-battery-safety-and-charging-australia': 'vaping-basics',
+  'vape-not-hitting-troubleshooting-guide': 'vaping-basics',
+  'vape-disposal-and-recycling-australia': 'vaping-basics',
 }
 
 export function categoryOf(slug: string): BlogCategory {
