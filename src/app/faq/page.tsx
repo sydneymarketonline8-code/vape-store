@@ -47,7 +47,7 @@ export default function FaqPage() {
         <div className="mt-5 flex flex-wrap justify-center gap-3">
           <Link
             href="/contact"
-            className="rounded-lg bg-[#1B7A3E] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#156331]"
+            className="rounded-lg bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#6D28D9]"
           >
             Contact Support
           </Link>

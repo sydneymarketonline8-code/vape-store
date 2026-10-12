@@ -3,7 +3,7 @@ const STYLES: Record<string, string> = {
   confirmed: 'bg-blue-50 border-blue-200 text-blue-700',
   processing: 'bg-blue-50 border-blue-200 text-blue-700',
   shipped: 'bg-sky-50 border-sky-200 text-sky-700',
-  delivered: 'bg-green-50 border-green-200 text-green-700',
+  delivered: 'bg-violet-50 border-violet-200 text-violet-700',
   cancelled: 'bg-red-50 border-red-200 text-red-700',
   refunded: 'bg-red-50 border-red-200 text-red-700',
 }

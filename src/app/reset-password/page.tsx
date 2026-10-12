@@ -53,7 +53,7 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="mb-4 inline-flex flex-col items-center">
-            <span className="text-2xl font-black tracking-tight text-[#1B7A3E]">VAPEHUB</span>
+            <span className="text-2xl font-black tracking-tight text-[#7C3AED]">VAPEHUB</span>
             <span className="text-xs text-gray-400">{SITE_TAGLINE}</span>
           </Link>
           <h1 className="mt-4 text-2xl font-bold text-gray-900">Set a new password</h1>
@@ -63,8 +63,8 @@ export default function ResetPasswordPage() {
           {done ? (
             <div className="text-center">
               <div className="mb-4 flex justify-center">
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50">
-                  <CheckCircle2 className="h-8 w-8 text-[#1B7A3E]" />
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-violet-50">
+                  <CheckCircle2 className="h-8 w-8 text-[#7C3AED]" />
                 </span>
               </div>
               <h2 className="text-lg font-bold text-gray-900">Password updated</h2>
@@ -75,7 +75,7 @@ export default function ResetPasswordPage() {
           ) : status === 'invalid' ? (
             <div className="text-center">
               <p className="font-medium text-gray-900">This reset link is invalid or has expired.</p>
-              <Link href="/forgot-password" className="mt-4 inline-block rounded-lg bg-[#1B7A3E] px-6 py-3 font-semibold text-white hover:bg-[#156331]">
+              <Link href="/forgot-password" className="mt-4 inline-block rounded-lg bg-[#7C3AED] px-6 py-3 font-semibold text-white hover:bg-[#6D28D9]">
                 Request a new link
               </Link>
             </div>
@@ -96,7 +96,7 @@ export default function ResetPasswordPage() {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     placeholder="Min. 8 characters"
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-11 text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-11 text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors"
                   />
                   <button
                     type="button"
@@ -111,7 +111,7 @@ export default function ResetPasswordPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#1B7A3E] py-3 font-semibold text-white transition-colors hover:bg-[#156331] disabled:opacity-60"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#7C3AED] py-3 font-semibold text-white transition-colors hover:bg-[#6D28D9] disabled:opacity-60"
               >
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Update password'}
               </button>

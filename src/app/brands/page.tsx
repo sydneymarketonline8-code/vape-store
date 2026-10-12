@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 // Cycled gradient bands (no brand banner images exist — consistent with collections).
 const GRADIENTS = [
-  'from-emerald-600 to-green-800',
+  'from-violet-600 to-violet-800',
   'from-sky-700 to-indigo-900',
   'from-purple-700 to-fuchsia-900',
   'from-amber-600 to-orange-800',
@@ -87,7 +87,7 @@ export default function BrandsPage() {
       <div className="border-b border-gray-200 bg-gray-50 py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-2 flex items-center gap-1.5 text-xs text-gray-400">
-            <Link href="/" className="hover:text-[#1B7A3E]">Home</Link>
+            <Link href="/" className="hover:text-[#7C3AED]">Home</Link>
             <span>›</span>
             <span aria-current="page" className="text-gray-600">Brands</span>
           </nav>
@@ -143,7 +143,7 @@ export default function BrandsPage() {
                   <Link
                     key={chip.label}
                     href={chip.href}
-                    className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                    className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                   >
                     {chip.label}
                   </Link>
@@ -169,7 +169,7 @@ export default function BrandsPage() {
               <Link
                 key={brand}
                 href={`/brands/${brandSlug(brand)}`}
-                className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
+                className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all hover:border-[#7C3AED] hover:shadow-sm"
               >
                 <span className="text-sm font-semibold uppercase tracking-wide text-gray-800">{brand}</span>
                 <span className="text-xs text-gray-400">{count}</span>

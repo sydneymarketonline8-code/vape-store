@@ -82,8 +82,8 @@ export default function PrivacyPage() {
         <H2>Contact &amp; changes</H2>
         <p>
           We may update this policy from time to time; the current version always applies. To make a privacy request or ask a
-          question, visit our <Link href="/contact" className="font-medium text-[#1B7A3E] hover:underline">Contact</Link> page
-          or email <a href="mailto:support@vapehubvapesaustralia.com" className="font-medium text-[#1B7A3E] hover:underline">support@vapehubvapesaustralia.com</a>.
+          question, visit our <Link href="/contact" className="font-medium text-[#7C3AED] hover:underline">Contact</Link> page
+          or email <a href="mailto:support@vapehubvapesaustralia.com" className="font-medium text-[#7C3AED] hover:underline">support@vapehubvapesaustralia.com</a>.
         </p>
       </div>
 

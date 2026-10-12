@@ -119,7 +119,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
 
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="border-b border-gray-100 bg-gradient-to-br from-green-50 via-white to-gray-50">
+      <section className="border-b border-gray-100 bg-gradient-to-br from-violet-50 via-white to-gray-50">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
           <div className="max-w-2xl">
             <HeroIntro />
@@ -136,8 +136,8 @@ export default function HomePage() {
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {TRUST_BADGES.map(({ icon: Icon, label, sub }) => (
               <div key={label} className="flex items-center gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green-50">
-                  <Icon className="h-4 w-4 text-[#1B7A3E]" />
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-violet-50">
+                  <Icon className="h-4 w-4 text-[#7C3AED]" />
                 </div>
                 <div>
                   <p className="text-xs font-bold text-gray-800">{label}</p>
@@ -158,10 +158,10 @@ export default function HomePage() {
               <Link
                 key={cat.slug}
                 href={`/collections/${cat.slug}`}
-                className="group flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-white p-5 text-center transition-all hover:border-[#1B7A3E] hover:shadow-sm"
+                className="group flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-white p-5 text-center transition-all hover:border-[#7C3AED] hover:shadow-sm"
               >
                 <CategoryIcon slug={cat.slug} className="h-11 w-11 transition-transform group-hover:scale-110" />
-                <p className="text-sm font-semibold text-gray-900 group-hover:text-[#1B7A3E]">{cat.label}</p>
+                <p className="text-sm font-semibold text-gray-900 group-hover:text-[#7C3AED]">{cat.label}</p>
                 <p className="text-xs text-gray-400">
                   {(categoryCounts[cat.slug] ?? 0).toLocaleString()} {cat.unit}
                 </p>
@@ -176,7 +176,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-gray-900">Best Sellers</h2>
-            <Link href="/collections/disposables" className="flex items-center gap-1 text-sm font-medium text-[#1B7A3E] hover:underline">
+            <Link href="/collections/disposables" className="flex items-center gap-1 text-sm font-medium text-[#7C3AED] hover:underline">
               View all <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -249,7 +249,7 @@ export default function HomePage() {
               </div>
               <Link
                 href={`/products?brand=${encodeURIComponent(brand)}`}
-                className="flex shrink-0 items-center gap-1 text-sm font-medium text-[#1B7A3E] hover:underline"
+                className="flex shrink-0 items-center gap-1 text-sm font-medium text-[#7C3AED] hover:underline"
               >
                 View all {brand} <ArrowRight className="h-3.5 w-3.5" />
               </Link>
@@ -270,23 +270,23 @@ export default function HomePage() {
           <div className="space-y-4 text-sm leading-relaxed text-gray-600">
             <p>
               VapeHub is an Australian online vape store stocking over 2,000 products — from{' '}
-              <Link href="/collections/disposables" className="text-[#1B7A3E] hover:underline">disposable vapes</Link> and{' '}
-              <Link href="/collections/mods" className="text-[#1B7A3E] hover:underline">pod systems</Link> to{' '}
-              <Link href="/collections/e-liquids" className="text-[#1B7A3E] hover:underline">e-liquids and nicotine salts</Link>,{' '}
-              <Link href="/collections/pouches" className="text-[#1B7A3E] hover:underline">nicotine pouches</Link> and{' '}
-              <Link href="/collections/accessories" className="text-[#1B7A3E] hover:underline">accessories</Link>. Browse
+              <Link href="/collections/disposables" className="text-[#7C3AED] hover:underline">disposable vapes</Link> and{' '}
+              <Link href="/collections/mods" className="text-[#7C3AED] hover:underline">pod systems</Link> to{' '}
+              <Link href="/collections/e-liquids" className="text-[#7C3AED] hover:underline">e-liquids and nicotine salts</Link>,{' '}
+              <Link href="/collections/pouches" className="text-[#7C3AED] hover:underline">nicotine pouches</Link> and{' '}
+              <Link href="/collections/accessories" className="text-[#7C3AED] hover:underline">accessories</Link>. Browse
               leading brands including IGET, HQD, GUNNPOD and Lost Mary, with new stock added regularly and fast dispatch
               Australia-wide.
             </p>
             <p>
               Orders over $300 ship free, and every order is age-verified (18+) in line with Australian requirements. New
               to vaping? Our{' '}
-              <Link href="/beginners-guide" className="text-[#1B7A3E] hover:underline">beginners guide</Link> explains the
+              <Link href="/beginners-guide" className="text-[#7C3AED] hover:underline">beginners guide</Link> explains the
               device types and how to choose, and our{' '}
-              <Link href="/vaping-laws" className="text-[#1B7A3E] hover:underline">vaping laws</Link> page covers the
+              <Link href="/vaping-laws" className="text-[#7C3AED] hover:underline">vaping laws</Link> page covers the
               current Australian rules. For bulk orders see{' '}
-              <Link href="/wholesale" className="text-[#1B7A3E] hover:underline">wholesale</Link>, or visit our{' '}
-              <Link href="/faq" className="text-[#1B7A3E] hover:underline">FAQ</Link> for shipping, payment and returns.
+              <Link href="/wholesale" className="text-[#7C3AED] hover:underline">wholesale</Link>, or visit our{' '}
+              <Link href="/faq" className="text-[#7C3AED] hover:underline">FAQ</Link> for shipping, payment and returns.
             </p>
           </div>
         </div>
@@ -296,13 +296,13 @@ export default function HomePage() {
       <RecentReviews />
 
       {/* ── Newsletter ───────────────────────────────────────── */}
-      <section className="border-t border-gray-100 bg-[#1a3a2a] py-14" aria-label="Newsletter signup">
+      <section className="border-t border-gray-100 bg-[#2E1065] py-14" aria-label="Newsletter signup">
         <div className="mx-auto max-w-xl px-4 text-center sm:px-6">
           <div className="mb-3 flex justify-center">
-            <Mail className="h-7 w-7 text-green-300" />
+            <Mail className="h-7 w-7 text-violet-300" />
           </div>
           <h2 className="mb-2 text-2xl font-bold text-white">Join the VapeHub Newsletter</h2>
-          <p className="mb-8 text-green-200">
+          <p className="mb-8 text-violet-200">
             Get new product alerts, restock notifications and member-only discounts.
           </p>
           <NewsletterForm className="mx-auto max-w-md" />

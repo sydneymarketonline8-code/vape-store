@@ -22,7 +22,7 @@ export function WishlistClient() {
         <p className="mt-1 text-sm text-gray-400">Tap the heart on any product to save it here.</p>
         <Link
           href="/products"
-          className="mt-6 rounded-lg bg-[#1B7A3E] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#156331]"
+          className="mt-6 rounded-lg bg-[#7C3AED] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#6D28D9]"
         >
           Browse Products
         </Link>

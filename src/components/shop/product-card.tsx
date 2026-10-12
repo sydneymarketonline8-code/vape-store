@@ -16,7 +16,7 @@ type BadgeType = 'top' | 'new' | 'sale'
 
 function Badge({ type, discount }: { type: BadgeType; discount?: number }) {
   if (type === 'top')  return <span className="rounded-full bg-blue-500 px-2.5 py-0.5 text-xs font-bold text-white">Top</span>
-  if (type === 'new')  return <span className="rounded-full bg-[#1B7A3E] px-2.5 py-0.5 text-xs font-bold text-white">New</span>
+  if (type === 'new')  return <span className="rounded-full bg-[#7C3AED] px-2.5 py-0.5 text-xs font-bold text-white">New</span>
   if (type === 'sale') return <span className="rounded-full bg-red-500 px-2.5 py-0.5 text-xs font-bold text-white">{discount ? `-${discount}%` : 'Sale'}</span>
   return null
 }
@@ -119,7 +119,7 @@ export function ProductCard({ product, badge }: { product: Product; badge?: Badg
             animate={added ? { scale: [1, 1.06, 1] } : { scale: 1 }}
             transition={{ duration: 0.3 }}
             className={`flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition-colors ${
-              added ? 'bg-green-600' : 'bg-[#1B7A3E] hover:bg-[#156331]'
+              added ? 'bg-green-600' : 'bg-[#7C3AED] hover:bg-[#6D28D9]'
             }`}
           >
             <AnimatePresence mode="wait" initial={false}>

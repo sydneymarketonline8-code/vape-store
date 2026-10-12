@@ -56,20 +56,20 @@ export default function VapeDeliveryPage() {
           <Link
             key={s.slug}
             href={`/vape-delivery/${s.slug}`}
-            className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#1B7A3E]"
+            className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#7C3AED]"
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-green-50">
-              <MapPin className="h-4 w-4 text-[#1B7A3E]" />
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-violet-50">
+              <MapPin className="h-4 w-4 text-[#7C3AED]" />
             </span>
             <span className="min-w-0">
-              <span className="block text-sm font-semibold text-gray-900 group-hover:text-[#1B7A3E]">
+              <span className="block text-sm font-semibold text-gray-900 group-hover:text-[#7C3AED]">
                 {s.name} <span className="text-gray-400">({s.abbr})</span>
               </span>
               <span className="mt-0.5 block text-sm text-gray-500">
                 Delivery to {s.capital} — {s.deliveryDays}
               </span>
             </span>
-            <ArrowRight className="ml-auto mt-1 h-4 w-4 shrink-0 text-gray-300 group-hover:text-[#1B7A3E]" />
+            <ArrowRight className="ml-auto mt-1 h-4 w-4 shrink-0 text-gray-300 group-hover:text-[#7C3AED]" />
           </Link>
         ))}
       </div>
@@ -87,7 +87,7 @@ export default function VapeDeliveryPage() {
         </IconCard>
       </div>
       <p className="mt-3 text-sm text-gray-500">
-        See full costs and timings on our <Link href="/shipping" className="font-medium text-[#1B7A3E] hover:underline">shipping policy</Link> page.
+        See full costs and timings on our <Link href="/shipping" className="font-medium text-[#7C3AED] hover:underline">shipping policy</Link> page.
       </p>
 
       <H2>Vape delivery FAQ</H2>
@@ -97,7 +97,7 @@ export default function VapeDeliveryPage() {
         <h2 className="text-lg font-bold text-gray-900">Ready to order?</h2>
         <p className="mx-auto mt-1 max-w-md text-sm text-gray-500">Browse the full range and we&apos;ll get it on the way to your state fast.</p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
-          <Link href="/products" className="rounded-lg bg-[#1B7A3E] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#156331]">
+          <Link href="/products" className="rounded-lg bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#6D28D9]">
             Shop All Vapes
           </Link>
           <Link href="/deals" className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition-colors hover:border-gray-400">

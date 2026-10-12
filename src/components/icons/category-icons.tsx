@@ -23,7 +23,7 @@ export function DisposableVapeIcon(props: IconProps) {
       <defs>
         <linearGradient id="disp-body" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stopColor="#34b364" />
-          <stop offset="0.5" stopColor="#1B7A3E" />
+          <stop offset="0.5" stopColor="#7C3AED" />
           <stop offset="1" stopColor="#125a2d" />
         </linearGradient>
       </defs>
@@ -58,7 +58,7 @@ export function PodSystemIcon(props: IconProps) {
       <rect x="22" y="3" width="4" height="4" rx="1.5" fill="#11151c" />
       <rect x="13" y="16" width="22" height="27" rx="6" fill="url(#pod-body)" />
       <rect x="16.5" y="19" width="2.6" height="20" rx="1.3" fill="#ffffff" opacity="0.18" />
-      <circle cx="24" cy="29" r="3.6" fill="#1B7A3E" />
+      <circle cx="24" cy="29" r="3.6" fill="#7C3AED" />
       <circle cx="24" cy="29" r="1.5" fill="#bbf7d0" />
       <rect x="20" y="35" width="8" height="2" rx="1" fill="#334155" />
     </svg>
@@ -80,9 +80,9 @@ export function ELiquidIcon(props: IconProps) {
       <rect x="22.5" y="2.5" width="3" height="3" rx="1.2" fill="#e63946" />
       <rect x="21" y="11" width="6" height="3" fill="#0b0f17" />
       <rect x="14.5" y="14" width="19" height="28" rx="5" fill="url(#eliq-glass)" />
-      <path d="M14.5 26 h19 v11 a5 5 0 0 1 -5 5 h-9 a5 5 0 0 1 -5 -5 Z" fill="#1B7A3E" opacity="0.85" />
+      <path d="M14.5 26 h19 v11 a5 5 0 0 1 -5 5 h-9 a5 5 0 0 1 -5 -5 Z" fill="#7C3AED" opacity="0.85" />
       <rect x="17.5" y="27.5" width="13" height="10.5" rx="2" fill="#ffffff" opacity="0.94" />
-      <rect x="19.5" y="30" width="9" height="2" rx="1" fill="#1B7A3E" />
+      <rect x="19.5" y="30" width="9" height="2" rx="1" fill="#7C3AED" />
       <rect x="19.5" y="33.5" width="7" height="1.6" rx="0.8" fill="#9ca3af" />
       <rect x="19.5" y="36" width="5" height="1.4" rx="0.7" fill="#cbd5e1" />
       <rect x="16.6" y="16.5" width="2.4" height="22" rx="1.2" fill="#ffffff" opacity="0.22" />
@@ -97,17 +97,17 @@ export function NicotinePouchIcon(props: IconProps) {
       <defs>
         <linearGradient id="pouch-body" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stopColor="#34b364" />
-          <stop offset="0.5" stopColor="#1B7A3E" />
+          <stop offset="0.5" stopColor="#7C3AED" />
           <stop offset="1" stopColor="#125a2d" />
         </linearGradient>
       </defs>
       <rect x="10" y="14" width="28" height="22" fill="url(#pouch-body)" />
       <ellipse cx="24" cy="36" rx="14" ry="5" fill="#0f4d26" />
       <rect x="10" y="20" width="28" height="9" fill="#ffffff" opacity="0.93" />
-      <rect x="14" y="23" width="20" height="2.4" rx="1.2" fill="#1B7A3E" />
+      <rect x="14" y="23" width="20" height="2.4" rx="1.2" fill="#7C3AED" />
       <rect x="14" y="26.5" width="13" height="1.6" rx="0.8" fill="#9ca3af" />
       <ellipse cx="24" cy="14" rx="14" ry="5" fill="#3ec46f" />
-      <ellipse cx="24" cy="13.4" rx="9" ry="3" fill="#1B7A3E" opacity="0.55" />
+      <ellipse cx="24" cy="13.4" rx="9" ry="3" fill="#7C3AED" opacity="0.55" />
       <path d="M11 14 a13 4 0 0 0 4 3.4" stroke="#ffffff" strokeOpacity="0.3" strokeWidth="2" fill="none" strokeLinecap="round" />
     </svg>
   )
@@ -137,8 +137,8 @@ export function AccessoryIcon(props: IconProps) {
         <line x1="21" y1="35" x2="27" y2="35" />
         <line x1="21" y1="37" x2="27" y2="37" />
       </g>
-      <circle cx="20" cy="17.5" r="1.4" fill="#1B7A3E" />
-      <circle cx="28" cy="17.5" r="1.4" fill="#1B7A3E" />
+      <circle cx="20" cy="17.5" r="1.4" fill="#7C3AED" />
+      <circle cx="28" cy="17.5" r="1.4" fill="#7C3AED" />
     </svg>
   )
 }

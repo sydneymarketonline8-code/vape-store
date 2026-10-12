@@ -46,7 +46,7 @@ export function RecentReviews() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.slice(0, 6).map(r => (
             <figure key={r.id} className="flex flex-col rounded-2xl border border-gray-200 bg-white p-5">
-              <Quote className="h-5 w-5 text-[#1B7A3E]/30" aria-hidden />
+              <Quote className="h-5 w-5 text-[#7C3AED]/30" aria-hidden />
               <div className="mt-2 flex">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className={`h-4 w-4 ${i < Math.round(r.rating) ? 'fill-amber-400 text-amber-400' : 'text-gray-200'}`} />
@@ -56,7 +56,7 @@ export function RecentReviews() {
               <blockquote className="mt-1 flex-1 text-sm leading-relaxed text-gray-600 line-clamp-4">{r.body}</blockquote>
               <p className="mt-3 text-xs text-gray-400">
                 {obfuscate(r.reviewerName)} on{' '}
-                <Link href={`/products/${r.product.slug}`} className="font-medium text-[#1B7A3E] hover:underline">
+                <Link href={`/products/${r.product.slug}`} className="font-medium text-[#7C3AED] hover:underline">
                   {r.product.name}
                 </Link>
               </p>

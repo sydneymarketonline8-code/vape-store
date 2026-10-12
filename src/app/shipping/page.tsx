@@ -42,7 +42,7 @@ export default function ShippingPage() {
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">Shipping Policy</h1>
       <p className="mt-3 max-w-2xl leading-relaxed text-gray-500">
         Fast, tracked delivery to{' '}
-        <Link href="/vape-delivery" className="font-medium text-[#1B7A3E] hover:underline">every Australian state and territory</Link>.
+        <Link href="/vape-delivery" className="font-medium text-[#7C3AED] hover:underline">every Australian state and territory</Link>.
       </p>
 
       <div className="mt-8 grid gap-3 sm:grid-cols-3">

@@ -75,21 +75,21 @@ export default function WholesalePage() {
           <Link
             key={b}
             href={`/products?brand=${encodeURIComponent(b)}`}
-            className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+            className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
           >
             {b}
           </Link>
         ))}
       </div>
       <p className="mt-3 text-sm text-gray-500">
-        See the full list on our <Link href="/brands" className="font-medium text-[#1B7A3E] hover:underline">brands</Link> page.
+        See the full list on our <Link href="/brands" className="font-medium text-[#7C3AED] hover:underline">brands</Link> page.
       </p>
 
       <H2>How to open a wholesale account</H2>
       <div className="rounded-2xl border border-gray-200 bg-white p-5">
         <HowToSteps steps={steps} />
         <p className="mt-4 text-sm text-gray-500">
-          Email <a href="mailto:wholesale@vapehubvapesaustralia.com" className="font-medium text-[#1B7A3E] hover:underline">wholesale@vapehubvapesaustralia.com</a> to get started.
+          Email <a href="mailto:wholesale@vapehubvapesaustralia.com" className="font-medium text-[#7C3AED] hover:underline">wholesale@vapehubvapesaustralia.com</a> to get started.
         </p>
       </div>
 

@@ -73,7 +73,7 @@ export default function ReturnsPage() {
       <div className="rounded-2xl border border-gray-200 bg-white p-5">
         <HowToSteps steps={steps} />
         <p className="mt-4 text-sm text-gray-500">
-          Need help? <Link href="/contact" className="font-medium text-[#1B7A3E] hover:underline">Contact us</Link> with your order number.
+          Need help? <Link href="/contact" className="font-medium text-[#7C3AED] hover:underline">Contact us</Link> with your order number.
         </p>
       </div>
 

@@ -51,10 +51,10 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
             {/* Header */}
             <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
               <div className="flex items-center gap-2">
-                <ShoppingBag className="h-5 w-5 text-[#1B7A3E]" />
+                <ShoppingBag className="h-5 w-5 text-[#7C3AED]" />
                 <h2 className="text-base font-bold text-gray-900">Shopping Cart</h2>
                 {count > 0 && (
-                  <span className="rounded-full bg-[#1B7A3E] px-2 py-0.5 text-xs font-bold text-white">
+                  <span className="rounded-full bg-[#7C3AED] px-2 py-0.5 text-xs font-bold text-white">
                     {count}
                   </span>
                 )}
@@ -79,7 +79,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                   <button
                     type="button"
                     onClick={onClose}
-                    className="mt-5 rounded-lg bg-[#1B7A3E] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#156331]"
+                    className="mt-5 rounded-lg bg-[#7C3AED] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#6D28D9]"
                   >
                     Continue Shopping
                   </button>
@@ -158,7 +158,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                           type="button"
                           aria-label={`Add ${p.name} to cart`}
                           onClick={() => addItem(p)}
-                          className="rounded-md bg-[#1B7A3E] px-2 py-1 text-xs font-semibold text-white transition-colors hover:bg-[#156331]"
+                          className="rounded-md bg-[#7C3AED] px-2 py-1 text-xs font-semibold text-white transition-colors hover:bg-[#6D28D9]"
                         >
                           + Add
                         </button>
@@ -174,23 +174,23 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
               <div className="border-t border-gray-200 px-6 py-5 space-y-4">
                 {/* Free-shipping progress nudge (honest — $300 threshold) */}
                 {total >= 300 ? (
-                  <div className="flex items-center gap-1.5 rounded-lg bg-green-50 px-3 py-2 text-xs font-semibold text-green-700">
+                  <div className="flex items-center gap-1.5 rounded-lg bg-violet-50 px-3 py-2 text-xs font-semibold text-violet-700">
                     <Check className="h-3.5 w-3.5" /> You&apos;ve unlocked free AU shipping!
                   </div>
                 ) : (
                   <div>
                     <p className="flex items-center gap-1.5 text-xs text-gray-500">
-                      <Truck className="h-3.5 w-3.5 text-[#1B7A3E]" />
+                      <Truck className="h-3.5 w-3.5 text-[#7C3AED]" />
                       Add <span className="font-semibold text-gray-900">${(300 - total).toFixed(2)}</span> more for free shipping
                     </p>
                     <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-gray-100">
-                      <div className="h-full rounded-full bg-[#1B7A3E] transition-all" style={{ width: `${Math.min(100, (total / 300) * 100)}%` }} />
+                      <div className="h-full rounded-full bg-[#7C3AED] transition-all" style={{ width: `${Math.min(100, (total / 300) * 100)}%` }} />
                     </div>
                   </div>
                 )}
                 <div className="flex justify-between text-sm text-gray-500">
                   <span>Minimum order</span>
-                  <span className={total >= 250 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'}>
+                  <span className={total >= 250 ? 'text-violet-600 font-semibold' : 'text-red-500 font-semibold'}>
                     {total >= 250 ? (
                       <span className="inline-flex items-center gap-1"><Check className="h-3.5 w-3.5" /> Met</span>
                     ) : (
@@ -205,7 +205,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                 <Link
                   href="/checkout"
                   onClick={onClose}
-                  className="flex w-full items-center justify-center rounded-lg bg-[#1B7A3E] py-3.5 font-semibold text-white transition-colors hover:bg-[#156331]"
+                  className="flex w-full items-center justify-center rounded-lg bg-[#7C3AED] py-3.5 font-semibold text-white transition-colors hover:bg-[#6D28D9]"
                 >
                   Proceed to Checkout
                 </Link>

@@ -47,8 +47,8 @@ export function AgeGate() {
             className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-2xl"
           >
             <div className="mb-5 flex justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50 border border-green-200">
-                <ShieldCheck className="h-8 w-8 text-[#1B7A3E]" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-violet-50 border border-violet-200">
+                <ShieldCheck className="h-8 w-8 text-[#7C3AED]" />
               </div>
             </div>
             <h2 className="mb-1 text-2xl font-bold text-gray-900">Age Verification</h2>
@@ -64,7 +64,7 @@ export function AgeGate() {
               <button
                 type="button"
                 onClick={handleConfirm}
-                className="flex-1 rounded-lg bg-[#1B7A3E] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#156331] active:scale-95"
+                className="flex-1 rounded-lg bg-[#7C3AED] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#6D28D9] active:scale-95"
               >
                 Yes, I am 18+
               </button>

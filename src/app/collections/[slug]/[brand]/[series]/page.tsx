@@ -127,7 +127,7 @@ export default async function SeriesPage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-lg font-bold text-gray-900">{data.count.toLocaleString()} {seriesLabel} flavours</h2>
-            <Link href={`/products?brand=${encodeURIComponent(data.brand)}&puffs=${data.puff}`} className="text-sm font-medium text-[#1B7A3E] hover:underline">
+            <Link href={`/products?brand=${encodeURIComponent(data.brand)}&puffs=${data.puff}`} className="text-sm font-medium text-[#7C3AED] hover:underline">
               Filter &amp; sort →
             </Link>
           </div>
@@ -150,12 +150,12 @@ export default async function SeriesPage({
                 <Link
                   key={s.puff}
                   href={`/collections/${slug}/${brand}/${seriesSlug(s.puff)}`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                 >
                   {data.brand} {s.puff.toLocaleString()} <span className="text-xs text-gray-400">{s.count}</span>
                 </Link>
               ))}
-              <Link href={`/collections/${slug}/${brand}`} className="inline-flex items-center rounded-lg border border-[#1B7A3E] bg-white px-3 py-1.5 text-sm font-medium text-[#1B7A3E] hover:bg-green-50">
+              <Link href={`/collections/${slug}/${brand}`} className="inline-flex items-center rounded-lg border border-[#7C3AED] bg-white px-3 py-1.5 text-sm font-medium text-[#7C3AED] hover:bg-violet-50">
                 All {data.brand} →
               </Link>
             </div>
@@ -173,8 +173,8 @@ export default async function SeriesPage({
           <FaqList items={seo.faqs} />
 
           <p className="mt-6 text-xs text-gray-400">
-            Browse all <Link href={`/collections/${slug}/${brand}`} className="text-[#1B7A3E] hover:underline">{data.brand}</Link> or{' '}
-            <Link href={`/collections/${slug}`} className="text-[#1B7A3E] hover:underline">{collection.name.toLowerCase()}</Link>. For adults 18+ only. Nicotine is an addictive chemical.
+            Browse all <Link href={`/collections/${slug}/${brand}`} className="text-[#7C3AED] hover:underline">{data.brand}</Link> or{' '}
+            <Link href={`/collections/${slug}`} className="text-[#7C3AED] hover:underline">{collection.name.toLowerCase()}</Link>. For adults 18+ only. Nicotine is an addictive chemical.
           </p>
         </div>
       </section>

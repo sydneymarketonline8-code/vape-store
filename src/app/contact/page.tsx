@@ -43,7 +43,7 @@ export default function ContactPage() {
       <PageSchema name="Contact" slug="/contact" faqs={faqs} />
 
       <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs text-gray-400">
-        <Link href="/" className="hover:text-[#1B7A3E]">Home</Link>
+        <Link href="/" className="hover:text-[#7C3AED]">Home</Link>
         <span>/</span>
         <span className="text-gray-600">Contact</span>
       </nav>
@@ -59,26 +59,26 @@ export default function ContactPage() {
           href={whatsappLink('Hi VapeHub, I have a question.')}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
+          className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#7C3AED] hover:shadow-sm"
         >
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-50">
-            <MessageCircle className="h-5 w-5 text-[#1B7A3E]" />
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-50">
+            <MessageCircle className="h-5 w-5 text-[#7C3AED]" />
           </span>
           <span>
-            <span className="block text-sm font-semibold text-gray-900">WhatsApp <span className="text-[#1B7A3E]">— fastest</span></span>
-            <span className="mt-0.5 block text-sm text-gray-500 group-hover:text-[#1B7A3E]">Message us on WhatsApp</span>
+            <span className="block text-sm font-semibold text-gray-900">WhatsApp <span className="text-[#7C3AED]">— fastest</span></span>
+            <span className="mt-0.5 block text-sm text-gray-500 group-hover:text-[#7C3AED]">Message us on WhatsApp</span>
           </span>
         </a>
         <a
           href="mailto:support@vapehubvapesaustralia.com"
-          className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
+          className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#7C3AED] hover:shadow-sm"
         >
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-50">
-            <Mail className="h-5 w-5 text-[#1B7A3E]" />
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-50">
+            <Mail className="h-5 w-5 text-[#7C3AED]" />
           </span>
           <span className="min-w-0">
             <span className="block text-sm font-semibold text-gray-900">Email</span>
-            <span className="mt-0.5 block truncate text-sm text-gray-500 group-hover:text-[#1B7A3E]">support@vapehubvapesaustralia.com</span>
+            <span className="mt-0.5 block truncate text-sm text-gray-500 group-hover:text-[#7C3AED]">support@vapehubvapesaustralia.com</span>
           </span>
         </a>
       </div>
@@ -96,7 +96,7 @@ export default function ContactPage() {
                 <span className="block text-sm font-semibold text-gray-900">{title}</span>
                 <span className="mt-0.5 block text-sm text-gray-500">{desc}</span>
                 {cta && (
-                  <span className="mt-1 inline-flex items-center gap-0.5 text-xs font-medium text-[#1B7A3E]">
+                  <span className="mt-1 inline-flex items-center gap-0.5 text-xs font-medium text-[#7C3AED]">
                     {cta} <ChevronRight className="h-3 w-3" />
                   </span>
                 )}
@@ -104,7 +104,7 @@ export default function ContactPage() {
             </>
           )
           return href ? (
-            <Link key={title} href={href} className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#1B7A3E]">
+            <Link key={title} href={href} className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#7C3AED]">
               {inner}
             </Link>
           ) : (
@@ -116,16 +116,16 @@ export default function ContactPage() {
       </div>
 
       {/* How payment works — highlighted callout */}
-      <div className="mt-8 flex items-start gap-4 rounded-2xl border border-[#1B7A3E]/20 bg-green-50/60 p-5">
+      <div className="mt-8 flex items-start gap-4 rounded-2xl border border-[#7C3AED]/20 bg-violet-50/60 p-5">
         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white">
-          <Wallet className="h-5 w-5 text-[#1B7A3E]" />
+          <Wallet className="h-5 w-5 text-[#7C3AED]" />
         </span>
         <div>
           <h2 className="text-sm font-bold text-gray-900">How payment works</h2>
           <p className="mt-1 text-sm leading-relaxed text-gray-600">
             We accept <strong>PayID</strong> and <strong>cryptocurrency</strong>. Place your order, then use the WhatsApp button to get the
             payment details for your chosen method and lock your order in. Buying in volume? See{' '}
-            <Link href="/wholesale" className="font-medium text-[#1B7A3E] hover:underline">wholesale</Link>.
+            <Link href="/wholesale" className="font-medium text-[#7C3AED] hover:underline">wholesale</Link>.
           </p>
         </div>
       </div>

@@ -55,9 +55,9 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ c
       <PageSchema name={cat.name} slug={`/blog/category/${cat.slug}`} />
 
       <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs text-gray-400">
-        <Link href="/" className="hover:text-[#1B7A3E]">Home</Link>
+        <Link href="/" className="hover:text-[#7C3AED]">Home</Link>
         <span>/</span>
-        <Link href="/blog" className="hover:text-[#1B7A3E]">Blog</Link>
+        <Link href="/blog" className="hover:text-[#7C3AED]">Blog</Link>
         <span>/</span>
         <span className="text-gray-600">{cat.name}</span>
       </nav>
@@ -69,14 +69,14 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ c
 
       {/* Other categories */}
       <div className="mb-10 flex flex-wrap justify-center gap-2">
-        <Link href="/blog" className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]">
+        <Link href="/blog" className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]">
           All posts
         </Link>
         {BLOG_CATEGORIES.filter(c => c.slug !== cat.slug).map(c => (
           <Link
             key={c.slug}
             href={`/blog/category/${c.slug}`}
-            className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+            className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
           >
             {c.name}
           </Link>
@@ -93,7 +93,7 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ c
                 {post.cover_image ? (
                   <Image src={post.cover_image} alt="" fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-105" unoptimized />
                 ) : (
-                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-500 to-green-800"><Newspaper className="h-10 w-10 text-white/70" /></div>
+                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-violet-500 to-violet-800"><Newspaper className="h-10 w-10 text-white/70" /></div>
                 )}
               </div>
               <div className="flex flex-1 flex-col p-5">

@@ -32,7 +32,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex flex-col leading-none">
-              <span className="text-lg font-black tracking-tight text-[#1B7A3E]">VAPEHUB</span>
+              <span className="text-lg font-black tracking-tight text-[#7C3AED]">VAPEHUB</span>
               <span className="text-[11px] font-medium uppercase tracking-widest text-gray-400">
                 {SITE_TAGLINE}
               </span>
@@ -51,7 +51,7 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={name}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 transition-all hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 transition-all hover:border-[#7C3AED] hover:text-[#7C3AED]"
                     >
                       <Icon />
                     </a>
@@ -76,7 +76,7 @@ export function Footer() {
                 { href: '/products?sale=true',            label: 'Sale' },
               ].map(l => (
                 <li key={l.label}>
-                  <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#1B7A3E]">
+                  <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#7C3AED]">
                     {l.label}
                   </Link>
                 </li>
@@ -98,7 +98,7 @@ export function Footer() {
                 { href: '/faq',             label: 'FAQ' },
               ].map(l => (
                 <li key={l.label}>
-                  <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#1B7A3E]">
+                  <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#7C3AED]">
                     {l.label}
                   </Link>
                 </li>
@@ -119,7 +119,7 @@ export function Footer() {
                 { href: '/blog',         label: 'Blog' },
               ].map(l => (
                 <li key={l.label}>
-                  <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#1B7A3E]">
+                  <Link href={l.href} className="text-sm text-gray-500 transition-colors hover:text-[#7C3AED]">
                     {l.label}
                   </Link>
                 </li>
@@ -138,8 +138,8 @@ export function Footer() {
             { Icon: Boxes,       label: '2,000+ Products',    sub: 'In stock now',     href: '/products',    aria: 'Over 2,000 vape products in stock and ready to ship Australia-wide' },
           ].map(({ Icon, label, sub, href, aria }) => (
             <Link key={label} href={href} aria-label={aria} title={aria} className="-m-1 flex items-center gap-3 rounded-lg p-1 transition-colors hover:bg-gray-50">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green-50">
-                <Icon className="h-4 w-4 text-[#1B7A3E]" />
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-violet-50">
+                <Icon className="h-4 w-4 text-[#7C3AED]" />
               </span>
               <div>
                 <p className="text-xs font-semibold text-gray-800">{label}</p>
@@ -154,22 +154,22 @@ export function Footer() {
           <h2 className="text-sm font-bold text-gray-800">Buy Vapes &amp; Vape Deals Online in Australia</h2>
           <p className="mt-2 max-w-4xl text-xs leading-relaxed text-gray-400">
             VapeHub is an Australian online vape store specialising in vape deals, multi-pack bundles and bulk packs. Shop{' '}
-            <Link href="/collections/disposables" className="hover:text-[#1B7A3E]">disposable vapes</Link>,{' '}
-            <Link href="/collections/mods" className="hover:text-[#1B7A3E]">pod systems</Link>,{' '}
-            <Link href="/collections/e-liquids" className="hover:text-[#1B7A3E]">e-liquids and nicotine salts</Link> and{' '}
-            <Link href="/collections/pouches" className="hover:text-[#1B7A3E]">nicotine pouches</Link> from brands like{' '}
-            <Link href="/products?brand=ALFAKHER" className="hover:text-[#1B7A3E]">ALFAKHER Crown Bar</Link> and{' '}
-            <Link href="/products?brand=IGET" className="hover:text-[#1B7A3E]">IGET</Link>, with fast AU-wide shipping and free delivery on orders over $300. Buying for a store? See{' '}
-            <Link href="/wholesale" className="hover:text-[#1B7A3E]">wholesale vapes</Link>. New to vaping or checking the rules? Read our{' '}
-            <Link href="/beginners-guide" className="hover:text-[#1B7A3E]">beginners guide</Link> and{' '}
-            <Link href="/vaping-laws" className="hover:text-[#1B7A3E]">vaping laws</Link> pages.
+            <Link href="/collections/disposables" className="hover:text-[#7C3AED]">disposable vapes</Link>,{' '}
+            <Link href="/collections/mods" className="hover:text-[#7C3AED]">pod systems</Link>,{' '}
+            <Link href="/collections/e-liquids" className="hover:text-[#7C3AED]">e-liquids and nicotine salts</Link> and{' '}
+            <Link href="/collections/pouches" className="hover:text-[#7C3AED]">nicotine pouches</Link> from brands like{' '}
+            <Link href="/products?brand=ALFAKHER" className="hover:text-[#7C3AED]">ALFAKHER Crown Bar</Link> and{' '}
+            <Link href="/products?brand=IGET" className="hover:text-[#7C3AED]">IGET</Link>, with fast AU-wide shipping and free delivery on orders over $300. Buying for a store? See{' '}
+            <Link href="/wholesale" className="hover:text-[#7C3AED]">wholesale vapes</Link>. New to vaping or checking the rules? Read our{' '}
+            <Link href="/beginners-guide" className="hover:text-[#7C3AED]">beginners guide</Link> and{' '}
+            <Link href="/vaping-laws" className="hover:text-[#7C3AED]">vaping laws</Link> pages.
           </p>
           <p className="mt-3 text-xs text-gray-400">
             <span className="font-semibold text-gray-500">Vape delivery by state:</span>{' '}
             {STATES.map((s, i) => (
               <span key={s.slug}>
                 {i > 0 && <span className="text-gray-300"> · </span>}
-                <Link href={`/vape-delivery/${s.slug}`} className="hover:text-[#1B7A3E]">{s.abbr}</Link>
+                <Link href={`/vape-delivery/${s.slug}`} className="hover:text-[#7C3AED]">{s.abbr}</Link>
               </span>
             ))}
           </p>
@@ -185,7 +185,7 @@ export function Footer() {
             { href: '/returns', label: 'Returns' },
             { href: '/contact', label: 'Contact' },
           ].map(l => (
-            <Link key={l.href} href={l.href} className="hover:text-[#1B7A3E]">{l.label}</Link>
+            <Link key={l.href} href={l.href} className="hover:text-[#7C3AED]">{l.label}</Link>
           ))}
         </div>
 

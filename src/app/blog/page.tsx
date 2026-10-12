@@ -86,7 +86,7 @@ export default async function BlogIndexPage() {
               <Link
                 key={c.slug}
                 href={`/blog/category/${c.slug}`}
-                className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
               >
                 {c.name} <span className="text-gray-400">({n})</span>
               </Link>
@@ -106,10 +106,10 @@ export default async function BlogIndexPage() {
             {GUIDES.map(g => (
               <Link key={g.href} href={g.href} className="group flex items-start justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-6 transition-shadow hover:shadow-md">
                 <div>
-                  <h2 className="text-lg font-bold text-gray-900 group-hover:text-[#1B7A3E]">{g.title}</h2>
+                  <h2 className="text-lg font-bold text-gray-900 group-hover:text-[#7C3AED]">{g.title}</h2>
                   <p className="mt-1 text-sm text-gray-600">{g.desc}</p>
                 </div>
-                <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-gray-300 group-hover:text-[#1B7A3E]" />
+                <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-gray-300 group-hover:text-[#7C3AED]" />
               </Link>
             ))}
           </div>
@@ -122,11 +122,11 @@ export default async function BlogIndexPage() {
                 {post.cover_image ? (
                   <Image src={post.cover_image} alt="" fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-105" unoptimized />
                 ) : (
-                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-500 to-green-800"><Newspaper className="h-10 w-10 text-white/70" /></div>
+                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-violet-500 to-violet-800"><Newspaper className="h-10 w-10 text-white/70" /></div>
                 )}
               </div>
               <div className="flex flex-1 flex-col p-5">
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-[#1B7A3E]">{categoryOf(post.slug).name}</p>
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-[#7C3AED]">{categoryOf(post.slug).name}</p>
                 <h2 className="line-clamp-2 text-lg font-bold leading-snug text-gray-900 group-hover:text-primary">{post.title}</h2>
                 {post.excerpt && <p className="mt-2 line-clamp-3 flex-1 text-sm text-gray-600">{post.excerpt}</p>}
                 <p className="mt-4 text-xs text-gray-400">

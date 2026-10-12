@@ -158,7 +158,7 @@ export default async function CollectionPage({
                 <Link
                   key={b.name}
                   href={`/collections/${slug}/${brandSlug(b.name)}`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                 >
                   {b.name} <span className="text-xs text-gray-400">{b.count}</span>
                 </Link>
@@ -178,7 +178,7 @@ export default async function CollectionPage({
                 <Link
                   key={f.id}
                   href={`/products?category=${slug}&flavour=${f.id}`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                 >
                   {f.label} <span className="text-xs text-gray-400">{f.count}</span>
                 </Link>

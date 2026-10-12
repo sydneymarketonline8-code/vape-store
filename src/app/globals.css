@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary:       #1B7A3E;
-  --color-primary-dark:  #156331;
-  --color-primary-light: #D1FAE5;
+  --color-primary:       #7C3AED;
+  --color-primary-dark:  #6D28D9;
+  --color-primary-light: #EDE9FE;
   --color-surface:       #F9FAFB;
   --color-border:        #E5E7EB;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: var(--font-outfit), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /* Larger, more legible body/text scale (bumped ~1px each from Tailwind defaults).
      Headings (text-xl and up) keep their defaults. */
@@ -36,24 +36,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Distinctive display face for all headings (Outfit), body stays Inter. */
+/* Distinctive display face for all headings (Sora), body stays Inter. */
 h1, h2, h3, h4 {
-  font-family: var(--font-outfit), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
 
 ::selection {
-  background: #D1FAE5;
-  color: #065F46;
+  background: #EDE9FE;
+  color: #4C1D95;
 }
 
 ::-webkit-scrollbar       { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: #F3F4F6; }
 ::-webkit-scrollbar-thumb { background: #9CA3AF; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #1B7A3E; }
+::-webkit-scrollbar-thumb:hover { background: #7C3AED; }
 
 *:focus-visible {
-  outline: 2px solid #1B7A3E;
+  outline: 2px solid #7C3AED;
   outline-offset: 2px;
 }
 

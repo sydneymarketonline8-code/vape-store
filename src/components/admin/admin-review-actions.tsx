@@ -25,7 +25,7 @@ export function AdminReviewActions({ reviewId, status }: { reviewId: string; sta
   return (
     <div className="flex justify-end gap-2">
       <button type="button" disabled={busy || status === 'approved'} onClick={() => set('approved')}
-        className="inline-flex items-center gap-1 rounded-lg border border-green-200 bg-green-50 px-2.5 py-1.5 text-xs font-semibold text-green-700 hover:bg-green-100 disabled:opacity-40">
+        className="inline-flex items-center gap-1 rounded-lg border border-violet-200 bg-violet-50 px-2.5 py-1.5 text-xs font-semibold text-violet-700 hover:bg-violet-100 disabled:opacity-40">
         {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />} Approve
       </button>
       <button type="button" disabled={busy || status === 'rejected'} onClick={() => set('rejected')}

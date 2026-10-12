@@ -109,7 +109,7 @@ export function ProductsBrowser({ query, heading, total, page, totalPages, items
                     placeholder="Search products..."
                     value={searchInput}
                     onChange={e => setSearchInput(e.target.value)}
-                    className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none"
+                    className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none"
                   />
                   {searchInput && (
                     <button
@@ -129,7 +129,7 @@ export function ProductsBrowser({ query, heading, total, page, totalPages, items
                   aria-label="Sort products"
                   value={query.sort}
                   onChange={e => go({ sort: e.target.value as ProductsSort })}
-                  className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-[#1B7A3E] focus:outline-none"
+                  className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 focus:border-[#7C3AED] focus:outline-none"
                 >
                   <option value="featured">Featured</option>
                   <option value="new">Newest</option>

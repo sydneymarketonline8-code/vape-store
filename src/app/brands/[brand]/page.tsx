@@ -70,7 +70,7 @@ export default async function BrandHubPage({ params }: { params: Params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-emerald-600 to-green-800">
+      <section className="bg-gradient-to-br from-violet-600 to-violet-800">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-3">
             <ol className="flex flex-wrap items-center gap-1 text-sm text-white/80">
@@ -101,7 +101,7 @@ export default async function BrandHubPage({ params }: { params: Params }) {
                 <Link
                   key={c.slug}
                   href={`/collections/${c.slug}/${brandSlug(data.brand)}`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                 >
                   {c.name} <span className="text-xs text-gray-400">{c.count}</span>
                 </Link>
@@ -116,7 +116,7 @@ export default async function BrandHubPage({ params }: { params: Params }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-gray-900">Top {data.brand} Products</h2>
-            <Link href={`/products?brand=${encodeURIComponent(data.brand)}`} className="flex items-center gap-1 text-sm font-medium text-[#1B7A3E] hover:underline">
+            <Link href={`/products?brand=${encodeURIComponent(data.brand)}`} className="flex items-center gap-1 text-sm font-medium text-[#7C3AED] hover:underline">
               View all {data.count} <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -136,8 +136,8 @@ export default async function BrandHubPage({ params }: { params: Params }) {
           <FaqList items={seo.faqs} />
 
           <p className="mt-6 text-xs text-gray-400">
-            Browse <Link href="/brands" className="text-[#1B7A3E] hover:underline">all brands</Link> or our{' '}
-            <Link href="/deals" className="text-[#1B7A3E] hover:underline">pack deals</Link>. For adults 18+ only. Nicotine is an addictive chemical.
+            Browse <Link href="/brands" className="text-[#7C3AED] hover:underline">all brands</Link> or our{' '}
+            <Link href="/deals" className="text-[#7C3AED] hover:underline">pack deals</Link>. For adults 18+ only. Nicotine is an addictive chemical.
           </p>
         </div>
       </section>

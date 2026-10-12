@@ -17,7 +17,7 @@ export const COLLECTIONS: CollectionMeta[] = [
     name: 'Disposable Vapes',
     description:
       'Ready-to-use disposable vapes from the brands Australia loves — huge puff counts, bold flavours, no refills or charging required.',
-    gradient: 'from-emerald-600 to-green-800',
+    gradient: 'from-violet-600 to-violet-800',
   },
   {
     slug: 'mods',

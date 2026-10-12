@@ -40,13 +40,13 @@ export function HeroDeals({ slides, className = '' }: { slides: HeroSlide[]; cla
   return (
     <div className={className}>
       <div
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b4225] via-[#0f5731] to-[#062619] shadow-2xl ring-1 ring-white/10"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#4C1D95] via-[#0f5731] to-[#2E1065] shadow-2xl ring-1 ring-white/10"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
         {/* Ambient glow accents */}
-        <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-28 right-1/4 h-72 w-72 rounded-full bg-lime-300/10 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-violet-400/20 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-28 right-1/4 h-72 w-72 rounded-full bg-fuchsia-300/10 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_120%_at_85%_15%,rgba(255,255,255,0.08),transparent_55%)]" />
 
         <AnimatePresence mode="wait">
@@ -63,15 +63,15 @@ export function HeroDeals({ slides, className = '' }: { slides: HeroSlide[]; cla
             >
               {/* Copy */}
               <div className="order-2 sm:order-1">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100 ring-1 ring-white/15 backdrop-blur">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-violet-100 ring-1 ring-white/15 backdrop-blur">
                   <Sparkles className="h-3.5 w-3.5" /> {s.discountPct ? 'Deal of the Day' : 'Featured'}
                 </span>
-                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300/90">{s.brand}</p>
+                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-violet-300/90">{s.brand}</p>
                 <h2 className="mt-2 text-3xl font-black leading-[1.08] text-white sm:text-4xl">{s.name}</h2>
                 <div className="mt-5 flex flex-wrap items-end gap-3">
                   <span className="text-4xl font-black tracking-tight text-white">${s.price.toFixed(2)}</span>
                   {s.originalPrice && (
-                    <span className="pb-1 text-lg text-emerald-200/60 line-through">${s.originalPrice.toFixed(2)}</span>
+                    <span className="pb-1 text-lg text-violet-200/60 line-through">${s.originalPrice.toFixed(2)}</span>
                   )}
                   {savings > 0 && (
                     <span className="mb-1 rounded-full bg-red-500 px-2.5 py-1 text-xs font-bold text-white shadow">
@@ -79,7 +79,7 @@ export function HeroDeals({ slides, className = '' }: { slides: HeroSlide[]; cla
                     </span>
                   )}
                 </div>
-                <span className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 text-sm font-bold text-[#0b4225] shadow-lg ring-1 ring-black/5 transition-all group-hover:gap-3 group-hover:shadow-xl">
+                <span className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 text-sm font-bold text-[#4C1D95] shadow-lg ring-1 ring-black/5 transition-all group-hover:gap-3 group-hover:shadow-xl">
                   Shop this deal <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
@@ -87,7 +87,7 @@ export function HeroDeals({ slides, className = '' }: { slides: HeroSlide[]; cla
               {/* Product stage */}
               <div className="order-1 flex justify-center sm:order-2 sm:justify-end">
                 <div className="relative">
-                  <div aria-hidden className="absolute inset-0 scale-110 rounded-full bg-emerald-300/25 blur-2xl" />
+                  <div aria-hidden className="absolute inset-0 scale-110 rounded-full bg-violet-300/25 blur-2xl" />
                   <div className="relative aspect-square w-48 rounded-[1.75rem] bg-gradient-to-br from-white to-gray-100 p-2 shadow-2xl ring-1 ring-white/30 sm:w-64">
                     <div className="relative h-full w-full overflow-hidden rounded-[1.4rem] bg-white">
                       <Image
@@ -143,7 +143,7 @@ export function HeroDeals({ slides, className = '' }: { slides: HeroSlide[]; cla
               aria-label={`Go to deal ${i + 1}`}
               aria-current={i === index ? 'true' : 'false'}
               onClick={() => go(i)}
-              className={`h-2 rounded-full transition-all ${i === index ? 'w-7 bg-[#1B7A3E]' : 'w-2 bg-gray-300 hover:bg-gray-400'}`}
+              className={`h-2 rounded-full transition-all ${i === index ? 'w-7 bg-[#7C3AED]' : 'w-2 bg-gray-300 hover:bg-gray-400'}`}
             />
           ))}
         </div>

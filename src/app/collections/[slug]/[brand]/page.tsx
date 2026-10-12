@@ -126,7 +126,7 @@ export default async function BrandCategoryPage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-lg font-bold text-gray-900">{data.count.toLocaleString()} {data.brand} products</h2>
-            <Link href={`/products?brand=${encodeURIComponent(data.brand)}`} className="text-sm font-medium text-[#1B7A3E] hover:underline">
+            <Link href={`/products?brand=${encodeURIComponent(data.brand)}`} className="text-sm font-medium text-[#7C3AED] hover:underline">
               Filter &amp; sort all {data.brand} →
             </Link>
           </div>
@@ -149,7 +149,7 @@ export default async function BrandCategoryPage({
                 <Link
                   key={s.puff}
                   href={`/collections/${slug}/${brand}/${seriesSlug(s.puff)}`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                 >
                   {data.brand} {s.puff.toLocaleString()} Puffs <span className="text-xs text-gray-400">{s.count}</span>
                 </Link>
@@ -169,7 +169,7 @@ export default async function BrandCategoryPage({
                 <Link
                   key={b.slug}
                   href={`/collections/${slug}/${b.slug}`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                 >
                   {b.name} <span className="text-xs text-gray-400">{b.count}</span>
                 </Link>
@@ -189,8 +189,8 @@ export default async function BrandCategoryPage({
           <FaqList items={seo.faqs} />
 
           <p className="mt-6 text-xs text-gray-400">
-            Looking for more? Browse all <Link href={`/collections/${slug}`} className="text-[#1B7A3E] hover:underline">{collection.name.toLowerCase()}</Link> or our{' '}
-            <Link href="/deals" className="text-[#1B7A3E] hover:underline">pack deals</Link>. For adults 18+ only. Nicotine is an addictive chemical.
+            Looking for more? Browse all <Link href={`/collections/${slug}`} className="text-[#7C3AED] hover:underline">{collection.name.toLowerCase()}</Link> or our{' '}
+            <Link href="/deals" className="text-[#7C3AED] hover:underline">pack deals</Link>. For adults 18+ only. Nicotine is an addictive chemical.
           </p>
         </div>
       </section>

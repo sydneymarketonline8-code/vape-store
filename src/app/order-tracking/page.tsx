@@ -63,7 +63,7 @@ export default function OrderTrackingPage() {
       <div className="space-y-2">
         {STATUSES.map((s, i) => (
           <div key={s.label} className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-50 text-xs font-bold text-[#1B7A3E]">{i + 1}</span>
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-50 text-xs font-bold text-[#7C3AED]">{i + 1}</span>
             <div>
               <p className="text-sm font-semibold text-gray-900">{s.label}</p>
               <p className="mt-0.5 text-sm text-gray-500">{s.desc}</p>

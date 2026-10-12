@@ -55,7 +55,7 @@ export function SidebarFilters({ filters, onChange }: SidebarFiltersProps) {
               onClick={() => set({ category: cat.value })}
               className={`w-full rounded-lg px-3 py-2 text-left text-sm transition-colors ${
                 filters.category === cat.value
-                  ? 'bg-green-50 font-medium text-[#1B7A3E]'
+                  ? 'bg-violet-50 font-medium text-[#7C3AED]'
                   : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
               }`}
             >
@@ -79,7 +79,7 @@ export function SidebarFilters({ filters, onChange }: SidebarFiltersProps) {
                 type="checkbox"
                 checked={filters.brands.includes(brand)}
                 onChange={() => toggleBrand(brand)}
-                className="h-4 w-4 rounded border-gray-300 accent-[#1B7A3E]"
+                className="h-4 w-4 rounded border-gray-300 accent-[#7C3AED]"
               />
               <span className="text-sm text-gray-600 group-hover:text-gray-900">
                 {brand}
@@ -104,11 +104,11 @@ export function SidebarFilters({ filters, onChange }: SidebarFiltersProps) {
           step={5}
           value={filters.maxPrice}
           onChange={e => set({ maxPrice: Number(e.target.value) })}
-          className="w-full accent-[#1B7A3E]"
+          className="w-full accent-[#7C3AED]"
         />
         <div className="mt-1 flex justify-between text-xs text-gray-400">
           <span>$0</span>
-          <span className="font-semibold text-[#1B7A3E]">${filters.maxPrice}</span>
+          <span className="font-semibold text-[#7C3AED]">${filters.maxPrice}</span>
         </div>
       </div>
 
@@ -120,7 +120,7 @@ export function SidebarFilters({ filters, onChange }: SidebarFiltersProps) {
           type="checkbox"
           checked={filters.inStockOnly}
           onChange={e => set({ inStockOnly: e.target.checked })}
-          className="h-4 w-4 rounded border-gray-300 accent-[#1B7A3E]"
+          className="h-4 w-4 rounded border-gray-300 accent-[#7C3AED]"
         />
         <span className="text-sm text-gray-600">In Stock Only</span>
       </label>
@@ -130,7 +130,7 @@ export function SidebarFilters({ filters, onChange }: SidebarFiltersProps) {
         <button
           type="button"
           onClick={() => onChange({ category: filters.category, brands: [], minPrice: 0, maxPrice: 400, inStockOnly: false })}
-          className="text-xs text-[#1B7A3E] hover:underline"
+          className="text-xs text-[#7C3AED] hover:underline"
         >
           Clear all filters
         </button>

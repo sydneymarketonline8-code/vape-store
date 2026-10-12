@@ -48,7 +48,7 @@ export default async function AdminCouponsPage() {
                       <td className="px-5 py-3 text-neutral-600">{c.uses_count}{c.max_uses != null ? ` / ${c.max_uses}` : ''}</td>
                       <td className="px-5 py-3 text-neutral-600">{c.expires_at ? new Date(c.expires_at).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }) : 'No expiry'}</td>
                       <td className="px-5 py-3">
-                        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${active ? 'bg-green-50 text-green-700' : 'bg-neutral-100 text-neutral-500'}`}>
+                        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${active ? 'bg-violet-50 text-violet-700' : 'bg-neutral-100 text-neutral-500'}`}>
                           {expired ? 'expired' : c.is_active ? 'active' : 'inactive'}
                         </span>
                       </td>

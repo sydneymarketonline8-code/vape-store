@@ -67,12 +67,12 @@ export default function CheckoutPage() {
     router.push(`/order-confirmation/${data.order.id}`)
   }
 
-  const inputCls = 'w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors'
+  const inputCls = 'w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors'
   const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700'
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
-      <Link href="/products" className="mb-6 inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#1B7A3E] transition-colors">
+      <Link href="/products" className="mb-6 inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#7C3AED] transition-colors">
         <ChevronLeft className="h-4 w-4" /> Continue Shopping
       </Link>
 
@@ -165,13 +165,13 @@ export default function CheckoutPage() {
                       onClick={() => setPaymentMethod(m.id)}
                       className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all ${
                         selected
-                          ? 'border-[#1B7A3E] bg-green-50 ring-1 ring-[#1B7A3E]'
+                          ? 'border-[#7C3AED] bg-violet-50 ring-1 ring-[#7C3AED]'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
-                      <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${selected ? 'text-[#1B7A3E]' : 'text-gray-400'}`} />
+                      <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${selected ? 'text-[#7C3AED]' : 'text-gray-400'}`} />
                       <span>
-                        <span className={`block text-sm font-semibold ${selected ? 'text-[#1B7A3E]' : 'text-gray-900'}`}>
+                        <span className={`block text-sm font-semibold ${selected ? 'text-[#7C3AED]' : 'text-gray-900'}`}>
                           {m.label}
                         </span>
                         <span className="block text-xs text-gray-500">{m.blurb}</span>
@@ -181,7 +181,7 @@ export default function CheckoutPage() {
                 })}
               </div>
               <div className="mt-4 flex items-start gap-2 rounded-xl bg-gray-50 p-3 text-xs text-gray-500">
-                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#1B7A3E]" />
+                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#7C3AED]" />
                 No card needed. Your order is reserved as <strong>pending</strong>, and we confirm
                 payment with you directly on WhatsApp.
               </div>
@@ -228,7 +228,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between text-sm text-gray-500">
                   <span>Shipping</span>
-                  <span className={shipping === 0 ? 'text-[#1B7A3E] font-medium' : 'text-gray-900'}>
+                  <span className={shipping === 0 ? 'text-[#7C3AED] font-medium' : 'text-gray-900'}>
                     {shipping === 0 ? 'Free' : formatPrice(shipping)}
                   </span>
                 </div>
@@ -246,7 +246,7 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 disabled={loading || belowMin || items.length === 0}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-[#1B7A3E] py-3.5 font-semibold text-white transition-colors hover:bg-[#156331] disabled:cursor-not-allowed disabled:opacity-50"
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-[#7C3AED] py-3.5 font-semibold text-white transition-colors hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Lock className="h-4 w-4" />}
                 {loading ? 'Placing order…' : 'Place Order'}

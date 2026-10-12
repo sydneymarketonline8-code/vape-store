@@ -94,7 +94,7 @@ export default function CategoriesPage() {
       <div className="border-b border-gray-200 bg-gray-50 py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-2 flex items-center gap-1.5 text-xs text-gray-400">
-            <Link href="/" className="hover:text-[#1B7A3E]">Home</Link>
+            <Link href="/" className="hover:text-[#7C3AED]">Home</Link>
             <span>›</span>
             <span aria-current="page" className="text-gray-600">Categories</span>
           </nav>
@@ -144,15 +144,15 @@ export default function CategoriesPage() {
                   <Link
                     key={brand}
                     href={`/products?category=${c.slug}&brand=${encodeURIComponent(brand)}`}
-                    className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                    className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                   >
                     {brand}
                   </Link>
                 ))}
-                <Link href={`/products?category=${c.slug}&status=in_stock`} className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]">In stock</Link>
+                <Link href={`/products?category=${c.slug}&status=in_stock`} className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]">In stock</Link>
                 {c.hasSale && <Link href={`/products?category=${c.slug}&sale=true`} className="rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition-colors hover:border-red-400">On sale</Link>}
-                {c.hasPacks && <Link href={`/products?category=${c.slug}&packs=true`} className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]">Multi-packs</Link>}
-                <Link href={`/products?category=${c.slug}&sort=new`} className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]">Newest</Link>
+                {c.hasPacks && <Link href={`/products?category=${c.slug}&packs=true`} className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]">Multi-packs</Link>}
+                <Link href={`/products?category=${c.slug}&sort=new`} className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]">Newest</Link>
               </div>
 
               <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
@@ -178,7 +178,7 @@ export default function CategoriesPage() {
                     <>
                       Yes. VapeHub is an age-verified store and only sells to adults aged 18 and over, in line with
                       Australian requirements. See our{' '}
-                      <Link href="/vaping-laws" className="text-[#1B7A3E] hover:underline">vaping laws</Link> page for details.
+                      <Link href="/vaping-laws" className="text-[#7C3AED] hover:underline">vaping laws</Link> page for details.
                     </>
                   ) : (
                     f.a

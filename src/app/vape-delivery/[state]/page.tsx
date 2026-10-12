@@ -60,9 +60,9 @@ export default async function StateDeliveryPage({ params }: { params: Promise<{ 
 
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1.5 text-xs text-gray-400">
-        <Link href="/" className="hover:text-[#1B7A3E]">Home</Link>
+        <Link href="/" className="hover:text-[#7C3AED]">Home</Link>
         <span>/</span>
-        <Link href="/vape-delivery" className="hover:text-[#1B7A3E]">Vape Delivery</Link>
+        <Link href="/vape-delivery" className="hover:text-[#7C3AED]">Vape Delivery</Link>
         <span>/</span>
         <span className="text-gray-600">{s.name}</span>
       </nav>
@@ -89,7 +89,7 @@ export default async function StateDeliveryPage({ params }: { params: Promise<{ 
       <div className="flex flex-wrap gap-2">
         {s.cities.map(c => (
           <span key={c} className="inline-flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700">
-            <MapPin className="h-3 w-3 text-[#1B7A3E]" /> {c}
+            <MapPin className="h-3 w-3 text-[#7C3AED]" /> {c}
           </span>
         ))}
       </div>
@@ -107,7 +107,7 @@ export default async function StateDeliveryPage({ params }: { params: Promise<{ 
         </IconCard>
       </div>
       <p className="mt-3 text-sm text-gray-500">
-        Full details on our <Link href="/shipping" className="font-medium text-[#1B7A3E] hover:underline">shipping policy</Link> page.
+        Full details on our <Link href="/shipping" className="font-medium text-[#7C3AED] hover:underline">shipping policy</Link> page.
       </p>
 
       <H2>Popular vapes delivered to {s.name}</H2>
@@ -116,7 +116,7 @@ export default async function StateDeliveryPage({ params }: { params: Promise<{ 
           <ProductCard key={p.id} product={p} />
         ))}
       </div>
-      <Link href="/products" className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-[#1B7A3E] hover:underline">
+      <Link href="/products" className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-[#7C3AED] hover:underline">
         Shop all products <ArrowRight className="h-3.5 w-3.5" />
       </Link>
 
@@ -125,9 +125,9 @@ export default async function StateDeliveryPage({ params }: { params: Promise<{ 
         <p>
           You must be 18 or older to buy vaping products in {s.name}. They&apos;re regulated nationally by the TGA, while public and
           indoor vaping (smoke-free area) rules are administered by{' '}
-          <a href={s.health.url} target="_blank" rel="noopener noreferrer" className="font-medium text-[#1B7A3E] hover:underline">{s.health.name}</a>.
+          <a href={s.health.url} target="_blank" rel="noopener noreferrer" className="font-medium text-[#7C3AED] hover:underline">{s.health.name}</a>.
           The rules changed in 2024 and keep evolving — see our{' '}
-          <Link href="/vaping-laws" className="font-medium text-[#1B7A3E] hover:underline">vaping laws</Link> page and {s.health.name} for
+          <Link href="/vaping-laws" className="font-medium text-[#7C3AED] hover:underline">vaping laws</Link> page and {s.health.name} for
           the current position. General information only, not legal advice.
         </p>
       </Callout>
@@ -142,7 +142,7 @@ export default async function StateDeliveryPage({ params }: { params: Promise<{ 
           Dispatched within one business day, tracked all the way to your door in {s.name}.
         </p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
-          <Link href="/products" className="rounded-lg bg-[#1B7A3E] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#156331]">
+          <Link href="/products" className="rounded-lg bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#6D28D9]">
             Shop All Vapes
           </Link>
           <Link href="/deals" className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition-colors hover:border-gray-400">

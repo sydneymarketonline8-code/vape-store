@@ -17,7 +17,7 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
           </p>
           {error.digest && <p style={{ marginTop: 4, fontSize: 12, color: '#d1d5db' }}>Ref: {error.digest}</p>}
           <div style={{ marginTop: 32, display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <button type="button" onClick={() => reset()} style={{ background: '#1B7A3E', color: '#fff', border: 'none', fontWeight: 600, padding: '12px 24px', borderRadius: 8, cursor: 'pointer' }}>
+            <button type="button" onClick={() => reset()} style={{ background: '#7C3AED', color: '#fff', border: 'none', fontWeight: 600, padding: '12px 24px', borderRadius: 8, cursor: 'pointer' }}>
               Reload
             </button>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- global-error renders outside the app tree; a full reload is intentional */}

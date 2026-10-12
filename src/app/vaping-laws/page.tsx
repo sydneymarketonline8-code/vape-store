@@ -50,17 +50,17 @@ export default function VapingLawsPage() {
 
       <H2>Stay informed</H2>
       <div className="grid gap-3 sm:grid-cols-2">
-        <a href="https://www.tga.gov.au" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#1B7A3E]">
-          <ExternalLink className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-[#1B7A3E]" />
-          <span className="text-sm font-medium text-gray-800 group-hover:text-[#1B7A3E]">Therapeutic Goods Administration (TGA)</span>
+        <a href="https://www.tga.gov.au" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#7C3AED]">
+          <ExternalLink className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-[#7C3AED]" />
+          <span className="text-sm font-medium text-gray-800 group-hover:text-[#7C3AED]">Therapeutic Goods Administration (TGA)</span>
         </a>
-        <a href="https://www.health.gov.au" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#1B7A3E]">
-          <ExternalLink className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-[#1B7A3E]" />
-          <span className="text-sm font-medium text-gray-800 group-hover:text-[#1B7A3E]">Australian Department of Health</span>
+        <a href="https://www.health.gov.au" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#7C3AED]">
+          <ExternalLink className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-[#7C3AED]" />
+          <span className="text-sm font-medium text-gray-800 group-hover:text-[#7C3AED]">Australian Department of Health</span>
         </a>
       </div>
       <p className="mt-3 text-sm text-gray-500">
-        New to vaping? See our <Link href="/beginners-guide" className="font-medium text-[#1B7A3E] hover:underline">Beginners Guide</Link>.
+        New to vaping? See our <Link href="/beginners-guide" className="font-medium text-[#7C3AED] hover:underline">Beginners Guide</Link>.
       </p>
 
       <H2>Frequently asked questions</H2>

@@ -5,7 +5,7 @@ import { DisposableVapeIcon } from '@/components/icons/category-icons'
 export default function NotFound() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 py-20 text-center">
-      <p className="bg-gradient-to-br from-emerald-500 to-green-800 bg-clip-text text-7xl font-black tracking-tighter text-transparent sm:text-9xl">
+      <p className="bg-gradient-to-br from-violet-500 to-violet-800 bg-clip-text text-7xl font-black tracking-tighter text-transparent sm:text-9xl">
         404
       </p>
       <DisposableVapeIcon className="mx-auto mt-3 h-16 w-16" aria-hidden />

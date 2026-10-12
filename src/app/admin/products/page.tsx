@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: 'Products' }
 const PAGE_SIZE = 20
 
 const STATUS_STYLES: Record<string, string> = {
-  active: 'bg-green-50 text-green-700',
+  active: 'bg-violet-50 text-violet-700',
   draft: 'bg-neutral-100 text-neutral-500',
   pre_order: 'bg-blue-50 text-blue-700',
   sold_out: 'bg-red-50 text-red-600',

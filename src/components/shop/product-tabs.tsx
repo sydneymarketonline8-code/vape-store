@@ -218,7 +218,7 @@ function ReviewsTab({ product, rating, reviewCount }: { product: Product; rating
                 <div className="mb-1 flex items-center gap-2">
                   <StarRating value={r.rating} showCount={false} size={14} />
                   {r.verified && (
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-green-600">
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-violet-600">
                       <BadgeCheck className="h-3.5 w-3.5" /> Verified Purchase
                     </span>
                   )}

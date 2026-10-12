@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="mb-4 inline-flex flex-col items-center">
-            <span className="text-2xl font-black tracking-tight text-[#1B7A3E]">VAPEHUB</span>
+            <span className="text-2xl font-black tracking-tight text-[#7C3AED]">VAPEHUB</span>
             <span className="text-xs text-gray-400">{SITE_TAGLINE}</span>
           </Link>
           <h1 className="mt-4 text-2xl font-bold text-gray-900">Reset your password</h1>
@@ -44,15 +44,15 @@ export default function ForgotPasswordPage() {
           {sent ? (
             <div className="text-center">
               <div className="mb-4 flex justify-center">
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50">
-                  <Mail className="h-8 w-8 text-[#1B7A3E]" />
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-violet-50">
+                  <Mail className="h-8 w-8 text-[#7C3AED]" />
                 </span>
               </div>
               <h2 className="text-lg font-bold text-gray-900">Check your email</h2>
               <p className="mt-2 text-sm text-gray-500">
                 If an account exists for <strong>{email}</strong>, we&apos;ve sent a password reset link. Open it to choose a new password.
               </p>
-              <Link href="/login" className="mt-6 inline-block rounded-lg bg-[#1B7A3E] px-6 py-3 font-semibold text-white hover:bg-[#156331]">
+              <Link href="/login" className="mt-6 inline-block rounded-lg bg-[#7C3AED] px-6 py-3 font-semibold text-white hover:bg-[#6D28D9]">
                 Back to Login
               </Link>
             </div>
@@ -71,17 +71,17 @@ export default function ForgotPasswordPage() {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors"
                 />
               </div>
               <button
                 type="submit"
                 disabled={loading}
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#1B7A3E] py-3 font-semibold text-white transition-colors hover:bg-[#156331] disabled:opacity-60"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#7C3AED] py-3 font-semibold text-white transition-colors hover:bg-[#6D28D9] disabled:opacity-60"
               >
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Send reset link'}
               </button>
-              <Link href="/login" className="flex items-center justify-center gap-1 text-sm text-gray-500 hover:text-[#1B7A3E]">
+              <Link href="/login" className="flex items-center justify-center gap-1 text-sm text-gray-500 hover:text-[#7C3AED]">
                 <ArrowLeft className="h-3.5 w-3.5" /> Back to login
               </Link>
             </form>

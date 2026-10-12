@@ -16,7 +16,7 @@ export function HeroIntro() {
     <motion.div variants={container} initial="hidden" animate="show">
       <motion.h1 variants={item} className="mb-4 text-4xl font-black leading-tight text-gray-900 sm:text-5xl">
         Vape Deals, Bundles &amp;<br />
-        <span className="text-[#1B7A3E]">Bulk Packs</span>
+        <span className="text-[#7C3AED]">Bulk Packs</span>
       </motion.h1>
       <motion.p variants={item} className="mb-8 max-w-md text-lg text-gray-500">
         Buy more, save more — multi-pack bundles on Australia&apos;s favourite disposables, pods, e-liquids and pouches. Fast AU-wide dispatch.
@@ -24,13 +24,13 @@ export function HeroIntro() {
       <motion.div variants={item} className="flex flex-col gap-3 sm:flex-row">
         <Link
           href="/deals"
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1B7A3E] px-8 py-3.5 font-semibold text-white transition-colors hover:bg-[#156331]"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#7C3AED] px-8 py-3.5 font-semibold text-white transition-colors hover:bg-[#6D28D9]"
         >
           Shop Pack Deals <ArrowRight className="h-4 w-4" />
         </Link>
         <Link
           href="/products"
-          className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#1B7A3E] px-8 py-3.5 font-semibold text-[#1B7A3E] transition-colors hover:bg-green-50"
+          className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#7C3AED] px-8 py-3.5 font-semibold text-[#7C3AED] transition-colors hover:bg-violet-50"
         >
           Browse All Vapes
         </Link>

@@ -159,7 +159,7 @@ export default function DealsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-gray-900">Top Package Deals</h2>
-            <Link href="/products?packs=true" className="flex items-center gap-1 text-sm font-medium text-[#1B7A3E] hover:underline">
+            <Link href="/products?packs=true" className="flex items-center gap-1 text-sm font-medium text-[#7C3AED] hover:underline">
               View all <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -185,7 +185,7 @@ export default function DealsPage() {
                 <Link
                   key={brand}
                   href={`/products?brand=${encodeURIComponent(brand)}&packs=true`}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#1B7A3E] hover:text-[#1B7A3E]"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-[#7C3AED] hover:text-[#7C3AED]"
                 >
                   {brand} <span className="text-xs text-gray-400">{count}</span>
                 </Link>
@@ -204,7 +204,7 @@ export default function DealsPage() {
                 <h2 className="text-2xl font-bold text-gray-900">Top {c.name}</h2>
                 <p className="mt-1 text-sm text-gray-500">{c.count.toLocaleString()} products in stock</p>
               </div>
-              <Link href={`/collections/${c.slug}`} className="flex shrink-0 items-center gap-1 text-sm font-medium text-[#1B7A3E] hover:underline">
+              <Link href={`/collections/${c.slug}`} className="flex shrink-0 items-center gap-1 text-sm font-medium text-[#7C3AED] hover:underline">
                 View all <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -229,7 +229,7 @@ export default function DealsPage() {
                   {f.q.startsWith('Can I buy packs') ? (
                     <>
                       Yes — larger packs give the best per-unit price. See our{' '}
-                      <Link href="/wholesale" className="text-[#1B7A3E] hover:underline">wholesale</Link> page for trade
+                      <Link href="/wholesale" className="text-[#7C3AED] hover:underline">wholesale</Link> page for trade
                       pricing and bulk enquiries.
                     </>
                   ) : (

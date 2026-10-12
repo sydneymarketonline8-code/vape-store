@@ -31,7 +31,7 @@ function KpiCard({ label, value, change, series, icon: Icon }: {
         {change == null ? (
           <span className="text-xs text-neutral-400">vs last month</span>
         ) : (
-          <span className={`flex items-center gap-0.5 text-xs font-medium ${up ? 'text-green-600' : 'text-red-600'}`}>
+          <span className={`flex items-center gap-0.5 text-xs font-medium ${up ? 'text-violet-600' : 'text-red-600'}`}>
             {up ? <ArrowUpRight className="h-3.5 w-3.5" /> : <ArrowDownRight className="h-3.5 w-3.5" />}
             {Math.abs(change)}% <span className="font-normal text-neutral-400">vs last month</span>
           </span>

@@ -24,7 +24,7 @@ function couponStatus(c: Coupon): { label: string; cls: string } {
   if (!c.is_active) return { label: 'inactive', cls: 'bg-gray-100 text-gray-500' }
   if (expired) return { label: 'expired', cls: 'bg-red-50 text-red-600' }
   if (used) return { label: 'used', cls: 'bg-gray-100 text-gray-500' }
-  return { label: 'active', cls: 'bg-green-50 text-green-700' }
+  return { label: 'active', cls: 'bg-violet-50 text-violet-700' }
 }
 
 export default async function CouponsPage() {

@@ -5,7 +5,7 @@ import { ChevronRight, type LucideIcon } from 'lucide-react'
 export function Crumb({ name }: { name: string }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs text-gray-400">
-      <Link href="/" className="hover:text-[#1B7A3E]">Home</Link>
+      <Link href="/" className="hover:text-[#7C3AED]">Home</Link>
       <span>/</span>
       <span className="text-gray-600">{name}</span>
     </nav>
@@ -40,7 +40,7 @@ export function IconCard({
         <span className="block text-sm font-semibold text-gray-900">{title}</span>
         <span className="mt-0.5 block text-sm leading-relaxed text-gray-500">{children}</span>
         {cta && (
-          <span className="mt-1 inline-flex items-center gap-0.5 text-xs font-medium text-[#1B7A3E]">
+          <span className="mt-1 inline-flex items-center gap-0.5 text-xs font-medium text-[#7C3AED]">
             {cta} <ChevronRight className="h-3 w-3" />
           </span>
         )}
@@ -48,7 +48,7 @@ export function IconCard({
     </>
   )
   return href ? (
-    <Link href={href} className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#1B7A3E]">
+    <Link href={href} className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#7C3AED]">
       {inner}
     </Link>
   ) : (
@@ -60,8 +60,8 @@ export function IconCard({
 export function StatCard({ icon: Icon, label, sub }: { icon: LucideIcon; label: string; sub: string }) {
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 text-center">
-      <span className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-green-50">
-        <Icon className="h-5 w-5 text-[#1B7A3E]" />
+      <span className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-violet-50">
+        <Icon className="h-5 w-5 text-[#7C3AED]" />
       </span>
       <p className="text-sm font-bold text-gray-900">{label}</p>
       <p className="mt-0.5 text-xs text-gray-500">{sub}</p>
@@ -84,7 +84,7 @@ export function Callout({
   const styles =
     tone === 'amber'
       ? { border: 'border-amber-200', bg: 'bg-amber-50', chip: 'bg-white', icon: 'text-amber-600' }
-      : { border: 'border-[#1B7A3E]/20', bg: 'bg-green-50/60', chip: 'bg-white', icon: 'text-[#1B7A3E]' }
+      : { border: 'border-[#7C3AED]/20', bg: 'bg-violet-50/60', chip: 'bg-white', icon: 'text-[#7C3AED]' }
   return (
     <div className={`flex items-start gap-4 rounded-2xl border ${styles.border} ${styles.bg} p-5`}>
       <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${styles.chip}`}>

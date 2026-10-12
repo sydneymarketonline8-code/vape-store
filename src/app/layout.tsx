@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Outfit } from 'next/font/google'
+import { Inter, Sora } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
@@ -12,8 +12,8 @@ import { GoogleTagManager, ChatWidget } from '@/components/common/analytics'
 import { SiteJsonLd } from '@/components/common/site-jsonld'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', preload: true, variable: '--font-inter' })
-// Distinctive display face for headings (geometric, modern) — paired with Inter for body.
-const outfit = Outfit({ subsets: ['latin'], display: 'swap', variable: '--font-outfit' })
+// Distinctive display face for headings — paired with Inter for body.
+const sora = Sora({ subsets: ['latin'], display: 'swap', variable: '--font-sora' })
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
 // Positioning is deliberately differentiated from the sibling site aussievapes.com.au
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-AU" className={`h-full ${inter.variable} ${outfit.variable}`}>
+    <html lang="en-AU" className={`h-full ${inter.variable} ${sora.variable}`}>
       <body className="flex min-h-full flex-col bg-white font-sans antialiased">
         <GoogleTagManager />
         <SiteJsonLd />

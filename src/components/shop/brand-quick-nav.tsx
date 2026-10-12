@@ -41,7 +41,7 @@ export function BrandQuickNav({ items }: { items: BrandNavItem[] }) {
             href={`#${i.id}`}
             className={`shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors ${
               active === i.id
-                ? 'border-[#1B7A3E] bg-[#1B7A3E] text-white'
+                ? 'border-[#7C3AED] bg-[#7C3AED] text-white'
                 : 'border-gray-200 bg-gray-50 text-gray-600 hover:border-gray-300 hover:text-gray-900'
             }`}
           >

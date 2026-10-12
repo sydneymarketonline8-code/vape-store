@@ -43,7 +43,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="mb-4 inline-flex flex-col items-center">
-            <span className="text-2xl font-black tracking-tight text-[#1B7A3E]">VAPEHUB</span>
+            <span className="text-2xl font-black tracking-tight text-[#7C3AED]">VAPEHUB</span>
             <span className="text-xs text-gray-400">{SITE_TAGLINE}</span>
           </Link>
           <h1 className="mt-4 text-2xl font-bold text-gray-900">Welcome back</h1>
@@ -70,7 +70,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors"
               />
             </div>
 
@@ -87,7 +87,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-11 text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-11 text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors"
                 />
                 <button
                   type="button"
@@ -101,7 +101,7 @@ export default function LoginPage() {
             </div>
 
             <div className="flex justify-end">
-              <Link href="/forgot-password" className="text-sm text-[#1B7A3E] hover:underline">
+              <Link href="/forgot-password" className="text-sm text-[#7C3AED] hover:underline">
                 Forgot password?
               </Link>
             </div>
@@ -109,7 +109,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#1B7A3E] py-3.5 font-semibold text-white transition-colors hover:bg-[#156331] disabled:opacity-60"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#7C3AED] py-3.5 font-semibold text-white transition-colors hover:bg-[#6D28D9] disabled:opacity-60"
             >
               {loading && <Loader2 className="h-4 w-4 animate-spin" />}
               {loading ? 'Signing in…' : 'Sign In'}
@@ -118,7 +118,7 @@ export default function LoginPage() {
 
           <p className="mt-6 text-center text-sm text-gray-500">
             Don&apos;t have an account?{' '}
-            <Link href="/register" className="font-medium text-[#1B7A3E] hover:underline">
+            <Link href="/register" className="font-medium text-[#7C3AED] hover:underline">
               Create account
             </Link>
           </p>

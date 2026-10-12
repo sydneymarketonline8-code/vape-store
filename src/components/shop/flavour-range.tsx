@@ -31,7 +31,7 @@ export function FlavourRange({
           <Link
             key={product.id}
             href={`/products/${product.slug}`}
-            className="group rounded-xl border border-gray-200 bg-white p-2 transition-all hover:border-[#1B7A3E] hover:shadow-sm"
+            className="group rounded-xl border border-gray-200 bg-white p-2 transition-all hover:border-[#7C3AED] hover:shadow-sm"
             title={product.name}
           >
             <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-50">
@@ -43,7 +43,7 @@ export function FlavourRange({
                 className="object-contain p-1.5 transition-transform group-hover:scale-105"
               />
             </div>
-            <p className="mt-1.5 line-clamp-2 text-xs font-medium text-gray-800 group-hover:text-[#1B7A3E]">{label}</p>
+            <p className="mt-1.5 line-clamp-2 text-xs font-medium text-gray-800 group-hover:text-[#7C3AED]">{label}</p>
             <p className="text-xs font-bold text-gray-900">{formatPrice(product.price)}</p>
           </Link>
         ))}

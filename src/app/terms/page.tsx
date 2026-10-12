@@ -29,7 +29,7 @@ export default function TermsPage() {
         <p>
           You must be at least 18 years of age to use this website or purchase any product. By placing an order you confirm
           that you are 18 or older. We operate an age-verified store and may require proof of age before dispatch or on
-          delivery. See our <Link href="/vaping-laws" className="font-medium text-[#1B7A3E] hover:underline">Vaping Laws</Link> page.
+          delivery. See our <Link href="/vaping-laws" className="font-medium text-[#7C3AED] hover:underline">Vaping Laws</Link> page.
         </p>
 
         <H2>2. Products &amp; pricing</H2>
@@ -46,20 +46,20 @@ export default function TermsPage() {
           place an order, we send the payment details to you (typically via WhatsApp) to confirm and lock in your order. An
           order is only accepted once payment has been confirmed. We may cancel or refuse an order — for example where stock
           is unavailable, where we cannot verify your age, or where we suspect fraud — and will refund any payment made for a
-          cancelled order. See <Link href="/contact" className="font-medium text-[#1B7A3E] hover:underline">how payment works</Link>.
+          cancelled order. See <Link href="/contact" className="font-medium text-[#7C3AED] hover:underline">how payment works</Link>.
         </p>
 
         <H2>4. Shipping</H2>
         <p>
           We deliver within Australia only. Delivery timeframes are estimates, not guarantees. Full details, costs and
-          timings are on our <Link href="/shipping" className="font-medium text-[#1B7A3E] hover:underline">Shipping Policy</Link> and{' '}
-          <Link href="/vape-delivery" className="font-medium text-[#1B7A3E] hover:underline">Vape Delivery</Link> pages.
+          timings are on our <Link href="/shipping" className="font-medium text-[#7C3AED] hover:underline">Shipping Policy</Link> and{' '}
+          <Link href="/vape-delivery" className="font-medium text-[#7C3AED] hover:underline">Vape Delivery</Link> pages.
         </p>
 
         <H2>5. Returns &amp; refunds</H2>
         <p>
           Unopened products may be returned within 30 days, and faulty items are replaced or refunded, as set out in our{' '}
-          <Link href="/returns" className="font-medium text-[#1B7A3E] hover:underline">Returns &amp; Refunds</Link> policy.
+          <Link href="/returns" className="font-medium text-[#7C3AED] hover:underline">Returns &amp; Refunds</Link> policy.
           Nothing in these terms limits any rights you have under the Australian Consumer Law.
         </p>
 
@@ -94,8 +94,8 @@ export default function TermsPage() {
         <H2>10. Changes &amp; contact</H2>
         <p>
           We may update these terms from time to time; the current version always applies. Questions? Visit our{' '}
-          <Link href="/contact" className="font-medium text-[#1B7A3E] hover:underline">Contact</Link> page or email{' '}
-          <a href="mailto:support@vapehubvapesaustralia.com" className="font-medium text-[#1B7A3E] hover:underline">support@vapehubvapesaustralia.com</a>.
+          <Link href="/contact" className="font-medium text-[#7C3AED] hover:underline">Contact</Link> page or email{' '}
+          <a href="mailto:support@vapehubvapesaustralia.com" className="font-medium text-[#7C3AED] hover:underline">support@vapehubvapesaustralia.com</a>.
         </p>
       </div>
 

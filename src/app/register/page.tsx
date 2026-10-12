@@ -53,8 +53,8 @@ export default function RegisterPage() {
       <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center px-4 py-12">
         <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
           <div className="mb-4 flex justify-center">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50">
-              <Mail className="h-8 w-8 text-[#1B7A3E]" />
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-violet-50">
+              <Mail className="h-8 w-8 text-[#7C3AED]" />
             </span>
           </div>
           <h2 className="text-xl font-bold text-gray-900">Check your email</h2>
@@ -64,7 +64,7 @@ export default function RegisterPage() {
           </p>
           <Link
             href="/login"
-            className="mt-6 inline-block rounded-lg bg-[#1B7A3E] px-6 py-3 font-semibold text-white hover:bg-[#156331]"
+            className="mt-6 inline-block rounded-lg bg-[#7C3AED] px-6 py-3 font-semibold text-white hover:bg-[#6D28D9]"
           >
             Back to Login
           </Link>
@@ -78,7 +78,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="mb-4 inline-flex flex-col items-center">
-            <span className="text-2xl font-black tracking-tight text-[#1B7A3E]">VAPEHUB</span>
+            <span className="text-2xl font-black tracking-tight text-[#7C3AED]">VAPEHUB</span>
             <span className="text-xs text-gray-400">{SITE_TAGLINE}</span>
           </Link>
           <h1 className="mt-4 text-2xl font-bold text-gray-900">Create an account</h1>
@@ -106,7 +106,7 @@ export default function RegisterPage() {
                   value={firstName}
                   onChange={e => setFirstName(e.target.value)}
                   placeholder="John"
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors"
                 />
               </div>
               <div>
@@ -121,7 +121,7 @@ export default function RegisterPage() {
                   value={lastName}
                   onChange={e => setLastName(e.target.value)}
                   placeholder="Smith"
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors"
                 />
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function RegisterPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors"
               />
             </div>
 
@@ -156,7 +156,7 @@ export default function RegisterPage() {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   placeholder="Min. 8 characters"
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-11 text-gray-900 placeholder-gray-400 focus:border-[#1B7A3E] focus:outline-none transition-colors"
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-11 text-gray-900 placeholder-gray-400 focus:border-[#7C3AED] focus:outline-none transition-colors"
                 />
                 <button
                   type="button"
@@ -174,19 +174,19 @@ export default function RegisterPage() {
                 type="checkbox"
                 checked={agreed}
                 onChange={e => setAgreed(e.target.checked)}
-                className="mt-0.5 h-4 w-4 rounded border-gray-300 accent-[#1B7A3E]"
+                className="mt-0.5 h-4 w-4 rounded border-gray-300 accent-[#7C3AED]"
               />
               <span className="text-sm text-gray-500">
                 I confirm I am <strong>18 years or older</strong> and agree to the{' '}
-                <Link href="/terms" className="text-[#1B7A3E] hover:underline">Terms of Service</Link> and{' '}
-                <Link href="/privacy" className="text-[#1B7A3E] hover:underline">Privacy Policy</Link>.
+                <Link href="/terms" className="text-[#7C3AED] hover:underline">Terms of Service</Link> and{' '}
+                <Link href="/privacy" className="text-[#7C3AED] hover:underline">Privacy Policy</Link>.
               </span>
             </label>
 
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#1B7A3E] py-3.5 font-semibold text-white transition-colors hover:bg-[#156331] disabled:opacity-60"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#7C3AED] py-3.5 font-semibold text-white transition-colors hover:bg-[#6D28D9] disabled:opacity-60"
             >
               {loading && <Loader2 className="h-4 w-4 animate-spin" />}
               {loading ? 'Creating account…' : 'Create Account'}
@@ -195,7 +195,7 @@ export default function RegisterPage() {
 
           <p className="mt-6 text-center text-sm text-gray-500">
             Already have an account?{' '}
-            <Link href="/login" className="font-medium text-[#1B7A3E] hover:underline">
+            <Link href="/login" className="font-medium text-[#7C3AED] hover:underline">
               Sign in
             </Link>
           </p>

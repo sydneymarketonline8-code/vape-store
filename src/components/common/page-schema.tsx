@@ -82,7 +82,7 @@ export function HowToSteps({ steps }: { steps: HowToStep[] }) {
     <ol className="space-y-3">
       {steps.map((s, i) => (
         <li key={s.name} className="flex gap-3">
-          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-50 text-xs font-bold text-[#1B7A3E]">
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-50 text-xs font-bold text-[#7C3AED]">
             {i + 1}
           </span>
           <span className="text-sm leading-relaxed text-gray-600">

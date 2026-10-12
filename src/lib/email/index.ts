@@ -38,7 +38,7 @@ function layout(heading: string, body: string): string {
   return `<!doctype html><html><body style="margin:0;background:#f5f5f5;font-family:Arial,Helvetica,sans-serif;color:#111827">
   <div style="max-width:560px;margin:0 auto;padding:24px">
     <div style="text-align:center;padding:16px 0">
-      <span style="font-size:22px;font-weight:800;letter-spacing:-.5px;color:#1B7A3E">VAPEHUB</span>
+      <span style="font-size:22px;font-weight:800;letter-spacing:-.5px;color:#7C3AED">VAPEHUB</span>
     </div>
     <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:28px">
       <h1 style="margin:0 0 12px;font-size:20px;color:#111827">${heading}</h1>
@@ -51,7 +51,7 @@ function layout(heading: string, body: string): string {
 }
 
 const btn = (href: string, label: string) =>
-  `<a href="${href}" style="display:inline-block;background:#1B7A3E;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:8px">${label}</a>`
+  `<a href="${href}" style="display:inline-block;background:#7C3AED;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:8px">${label}</a>`
 
 // ── Types ────────────────────────────────────────────────────────────────────
 interface OrderLike {

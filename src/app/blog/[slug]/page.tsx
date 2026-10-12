@@ -93,7 +93,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <Link
         href={`/blog/category/${categoryOf(slug).slug}`}
-        className="mb-2 block text-xs font-semibold uppercase tracking-wide text-[#1B7A3E] hover:underline"
+        className="mb-2 block text-xs font-semibold uppercase tracking-wide text-[#7C3AED] hover:underline"
       >
         {categoryOf(slug).name}
       </Link>
@@ -117,13 +117,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
 
       {/* Shop CTA — turn readers into buyers */}
-      <div className="mt-12 rounded-2xl border border-[#1B7A3E]/20 bg-green-50/60 px-6 py-8 text-center">
+      <div className="mt-12 rounded-2xl border border-[#7C3AED]/20 bg-violet-50/60 px-6 py-8 text-center">
         <h2 className="text-lg font-bold text-gray-900">Ready to shop?</h2>
         <p className="mx-auto mt-1 max-w-md text-sm text-gray-600">
           2,000+ products in stock in Australia, dispatched within one business day. Free shipping over $300.
         </p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
-          <Link href="/products" className="rounded-lg bg-[#1B7A3E] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#156331]">
+          <Link href="/products" className="rounded-lg bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#6D28D9]">
             Shop All Products
           </Link>
           <Link href="/deals" className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 transition-colors hover:border-gray-400">
@@ -141,9 +141,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <Link
                 key={r.slug}
                 href={`/blog/${r.slug}`}
-                className="group rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#1B7A3E]"
+                className="group rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-[#7C3AED]"
               >
-                <p className="text-sm font-semibold text-gray-900 group-hover:text-[#1B7A3E]">{r.title}</p>
+                <p className="text-sm font-semibold text-gray-900 group-hover:text-[#7C3AED]">{r.title}</p>
                 {r.excerpt && <p className="mt-1 line-clamp-2 text-sm text-gray-500">{r.excerpt}</p>}
               </Link>
             ))}

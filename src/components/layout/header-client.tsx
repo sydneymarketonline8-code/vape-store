@@ -17,21 +17,27 @@ import { MobileMenu } from './mobile-menu'
 function Logo({ className = '' }: { className?: string }) {
   return (
     <Link href="/" className={`flex items-center gap-2 ${className}`} aria-label="VapeHub home">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#22934A] to-[#0f5128] shadow-sm sm:h-9 sm:w-9">
-        <svg viewBox="0 0 32 32" className="h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center sm:h-10 sm:w-10">
+        <svg viewBox="0 0 32 32" className="h-full w-full" aria-hidden="true">
           <defs>
-            <linearGradient id="av-cloud" x1="16" y1="8" x2="16" y2="23" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stopColor="#ffffff" />
-              <stop offset="1" stopColor="#DCF1E4" />
+            <linearGradient id="vh-hub" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="#8B5CF6" />
+              <stop offset="1" stopColor="#4C1D95" />
             </linearGradient>
           </defs>
-          <g fill="url(#av-cloud)">
-            <circle cx="12.3" cy="18.2" r="4.3" />
-            <circle cx="20" cy="18.2" r="4.9" />
-            <circle cx="16" cy="13.8" r="5.2" />
-            <rect x="8.6" y="17.4" width="14.8" height="5" rx="2.5" />
+          <path d="M16 1.6 28.1 8.6v14l-12.1 7-12.1-7v-14z" fill="url(#vh-hub)" />
+          <g stroke="#ffffff" strokeWidth="1.1" opacity="0.55">
+            <path d="M16 16 16 8.4M16 16l6.6-3.8M16 16l6.6 3.8M16 16v7.6M16 16l-6.6 3.8M16 16L9.4 12.2" />
           </g>
-          <circle cx="13.5" cy="14.5" r="1.6" fill="#ffffff" opacity="0.7" />
+          <g fill="#ffffff">
+            <circle cx="16" cy="16" r="3.4" />
+            <circle cx="16" cy="8.4" r="1.9" />
+            <circle cx="22.6" cy="12.2" r="1.9" />
+            <circle cx="22.6" cy="19.8" r="1.9" />
+            <circle cx="16" cy="23.6" r="1.9" />
+            <circle cx="9.4" cy="19.8" r="1.9" />
+            <circle cx="9.4" cy="12.2" r="1.9" />
+          </g>
         </svg>
       </span>
       <span className="flex flex-col leading-none">

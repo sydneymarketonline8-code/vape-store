@@ -79,12 +79,12 @@ export default function BeginnersGuidePage() {
       <H2>Which type is right for you?</H2>
       <div className="grid gap-3 sm:grid-cols-3">
         {DEVICES.map(d => (
-          <Link key={d.slug} href={d.href} className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#1B7A3E] hover:shadow-sm">
+          <Link key={d.slug} href={d.href} className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-5 transition-all hover:border-[#7C3AED] hover:shadow-sm">
             <CategoryIcon slug={d.slug} className="h-10 w-10" />
-            <p className="mt-3 text-sm font-bold text-gray-900 group-hover:text-[#1B7A3E]">{d.name}</p>
-            <p className="mt-0.5 text-xs font-medium uppercase tracking-wide text-[#1B7A3E]">{d.best}</p>
+            <p className="mt-3 text-sm font-bold text-gray-900 group-hover:text-[#7C3AED]">{d.name}</p>
+            <p className="mt-0.5 text-xs font-medium uppercase tracking-wide text-[#7C3AED]">{d.best}</p>
             <p className="mt-2 flex-1 text-sm text-gray-500">{d.desc}</p>
-            <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#1B7A3E]">Shop <ArrowRight className="h-3 w-3" /></span>
+            <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#7C3AED]">Shop <ArrowRight className="h-3 w-3" /></span>
           </Link>
         ))}
       </div>
@@ -108,7 +108,7 @@ export default function BeginnersGuidePage() {
       <Callout icon={Scale} title="The rules changed in 2024">
         <p>
           You must be 18 or older. Vaping products are regulated by the TGA and the rules changed in 2024 — and continue to change. For the current
-          position, see our <Link href="/vaping-laws" className="font-medium text-[#1B7A3E] hover:underline">Vaping Laws</Link> page and your state or territory health authority.
+          position, see our <Link href="/vaping-laws" className="font-medium text-[#7C3AED] hover:underline">Vaping Laws</Link> page and your state or territory health authority.
         </p>
       </Callout>
 
@@ -135,9 +135,9 @@ export default function BeginnersGuidePage() {
         </>
       )}
 
-      <div className="mt-12 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1B7A3E] to-[#0f4f28] px-6 py-10 text-center">
+      <div className="mt-12 overflow-hidden rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#0f4f28] px-6 py-10 text-center">
         <h2 className="text-2xl font-bold text-white">Find your first vape</h2>
-        <p className="mx-auto mt-2 max-w-md text-sm text-green-100">
+        <p className="mx-auto mt-2 max-w-md text-sm text-violet-100">
           Browse Australia&apos;s favourite disposables, pods and pouches — fast AU-wide dispatch, free shipping over $300.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">

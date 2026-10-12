@@ -38,7 +38,7 @@ export default async function OrderConfirmationPage({
     return (
       <div className="flex min-h-[50vh] flex-col items-center justify-center px-4 text-center">
         <p className="text-gray-500">Order not found.</p>
-        <Link href="/" className="mt-4 text-sm text-[#1B7A3E] hover:underline">
+        <Link href="/" className="mt-4 text-sm text-[#7C3AED] hover:underline">
           Return home
         </Link>
       </div>
@@ -62,8 +62,8 @@ export default async function OrderConfirmationPage({
       {/* Success header */}
       <div className="mb-10 text-center">
         <div className="mb-4 flex justify-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-50 border-2 border-[#1B7A3E]">
-            <CheckCircle className="h-10 w-10 text-[#1B7A3E]" />
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-violet-50 border-2 border-[#7C3AED]">
+            <CheckCircle className="h-10 w-10 text-[#7C3AED]" />
           </div>
         </div>
         <h1 className="text-3xl font-bold text-gray-900">Order Reserved!</h1>
@@ -79,7 +79,7 @@ export default async function OrderConfirmationPage({
       <div className="space-y-5">
 
         {/* Payment — WhatsApp follow-up */}
-        <div className="rounded-2xl border-2 border-[#1B7A3E] bg-green-50/60 p-6 text-center shadow-sm">
+        <div className="rounded-2xl border-2 border-[#7C3AED] bg-violet-50/60 p-6 text-center shadow-sm">
           <h2 className="text-lg font-bold text-gray-900">Complete Your Payment</h2>
           <p className="mx-auto mt-1 max-w-md text-sm text-gray-600">
             You chose <strong>{methodLabel}</strong>. Message us on WhatsApp and we&apos;ll send your
@@ -161,13 +161,13 @@ export default async function OrderConfirmationPage({
         <div className="flex flex-col gap-3 sm:flex-row">
           <Link
             href="/account"
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-[#1B7A3E] py-3 text-sm font-semibold text-[#1B7A3E] hover:bg-green-50 transition-colors"
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-[#7C3AED] py-3 text-sm font-semibold text-[#7C3AED] hover:bg-violet-50 transition-colors"
           >
             View All Orders
           </Link>
           <Link
             href="/products"
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#1B7A3E] py-3 text-sm font-semibold text-white hover:bg-[#156331] transition-colors"
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#7C3AED] py-3 text-sm font-semibold text-white hover:bg-[#6D28D9] transition-colors"
           >
             Continue Shopping <ArrowRight className="h-4 w-4" />
           </Link>

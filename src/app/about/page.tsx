@@ -42,7 +42,7 @@ export default function AboutPage() {
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }} />
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-emerald-600 to-green-800">
+      <section className="relative bg-gradient-to-br from-violet-600 to-violet-800">
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-widest text-white/70">{SITE_TAGLINE}</p>
