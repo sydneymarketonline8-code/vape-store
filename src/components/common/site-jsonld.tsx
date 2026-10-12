@@ -8,7 +8,7 @@ export function SiteJsonLd() {
   const organization = {
     '@context': 'https://schema.org',
     '@type': 'OnlineStore',
-    name: 'VapesAU',
+    name: 'VapeHub',
     url: SITE_URL,
     slogan: 'Vape deals, bundles & bulk packs',
     description:
@@ -26,7 +26,7 @@ export function SiteJsonLd() {
   const website = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'VapesAU',
+    name: 'VapeHub',
     url: SITE_URL,
     potentialAction: {
       '@type': 'SearchAction',

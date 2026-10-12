@@ -105,7 +105,7 @@ export function buildProductDescription(p: Product): string {
   const puffPhrase = puffs ? ` rated for ${puffs.toLocaleString()} puffs` : ''
   const opener = h % 3
   if (opener === 0) {
-    parts.push(`The ${p.name} is ${article} ${noun}${puffPhrase}${brandPrefix}, in stock now at VapesAU.`)
+    parts.push(`The ${p.name} is ${article} ${noun}${puffPhrase}${brandPrefix}, in stock now at VapeHub.`)
   } else if (opener === 1) {
     parts.push(`${p.name} — ${article} ${noun}${brandPrefix}${puffPhrase}, available to order online in Australia.`)
   } else {

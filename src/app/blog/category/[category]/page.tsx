@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   if (!cat) return {}
   return {
     title: `${cat.name} — Vaping Guides`,
-    description: `${cat.blurb} Expert guides for Australian vapers from VapesAU.`,
+    description: `${cat.blurb} Expert guides for Australian vapers from VapeHub.`,
     alternates: { canonical: `/blog/category/${cat.slug}` },
   }
 }

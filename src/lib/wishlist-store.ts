@@ -23,6 +23,6 @@ export const useWishlistStore = create<WishlistStore>()(
       isWishlisted: (id) => get().items.some(i => i.id === id),
       count: () => get().items.length,
     }),
-    { name: 'vapesau-wishlist' }
+    { name: 'vapehub-wishlist' }
   )
 )

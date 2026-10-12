@@ -10,7 +10,7 @@ import { BLOG_CATEGORIES, categoryOf } from '@/lib/blog-categories'
 export const metadata: Metadata = {
   title: 'Vaping Blog & Guides',
   description:
-    'Vaping guides, product news and tips for Australian vapers from the VapesAU team — device advice, deals and how-tos.',
+    'Vaping guides, product news and tips for Australian vapers from the VapeHub team — device advice, deals and how-tos.',
   alternates: { canonical: '/blog' },
 }
 
@@ -47,7 +47,7 @@ export default async function BlogIndexPage() {
   const blogJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'VapesAU Blog',
+    name: 'VapeHub Blog',
     description: 'Vaping guides, product news and tips for Australian vapers.',
     url: `${SITE_URL}/blog`,
     ...(posts.length
@@ -57,7 +57,7 @@ export default async function BlogIndexPage() {
             headline: p.title,
             url: `${SITE_URL}/blog/${p.slug}`,
             datePublished: p.published_at ?? undefined,
-            author: { '@type': 'Organization', name: 'VapesAU' },
+            author: { '@type': 'Organization', name: 'VapeHub' },
           })),
         }
       : {}),
@@ -69,7 +69,7 @@ export default async function BlogIndexPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }} />
 
       <div className="mb-10 text-center">
-        <h1 className="text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">The VapesAU Blog</h1>
+        <h1 className="text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">The VapeHub Blog</h1>
         <p className="mx-auto mt-3 max-w-2xl text-gray-600">
           Guides, product news and tips for Australian vapers — from choosing your first device to understanding the rules and
           finding the best deals.

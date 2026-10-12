@@ -92,7 +92,7 @@ export function HeroDeals({ slides, className = '' }: { slides: HeroSlide[]; cla
                     <div className="relative h-full w-full overflow-hidden rounded-[1.4rem] bg-white">
                       <Image
                         src={s.image}
-                        alt={`${s.brand} ${s.name} — buy online Australia | VapesAU`}
+                        alt={`${s.brand} ${s.name} — buy online Australia | VapeHub`}
                         fill
                         priority={index === 0}
                         sizes="(max-width: 640px) 192px, 256px"

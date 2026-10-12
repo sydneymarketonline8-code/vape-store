@@ -4,7 +4,7 @@
  * copy lets the UI surface admin entry points — the account-menu link and the
  * post-login redirect — without a server round-trip.
  */
-export const ADMIN_EMAILS = ['admin@vapesau.com.au']
+export const ADMIN_EMAILS = ['admin@vapehubvapesaustralia.com']
 
 export function isAdminEmail(email?: string | null): boolean {
   return !!email && ADMIN_EMAILS.includes(email.trim().toLowerCase())

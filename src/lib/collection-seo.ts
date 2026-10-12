@@ -41,7 +41,7 @@ const EXTRA: Record<string, { sections: { h: string; p: string }[]; faqs: Faq[] 
     faqs: [
       {
         q: 'Can I buy ZYN nicotine pouches in Australia?',
-        a: 'VapesAU stocks 29 ZYN varieties — Smooth, Wintergreen, Cool Mint, Spearmint, Chill, Peppermint, Coffee and more, in strengths from 6mg to 16.5mg — plus VELO, ZIMO and other pouch brands. Orders are age-verified (18+) and dispatched from Australia within one business day. Australian regulation of nicotine pouches has been changing — see our Vaping Laws page and the TGA for the current position.',
+        a: 'VapeHub stocks 29 ZYN varieties — Smooth, Wintergreen, Cool Mint, Spearmint, Chill, Peppermint, Coffee and more, in strengths from 6mg to 16.5mg — plus VELO, ZIMO and other pouch brands. Orders are age-verified (18+) and dispatched from Australia within one business day. Australian regulation of nicotine pouches has been changing — see our Vaping Laws page and the TGA for the current position.',
       },
       {
         q: 'What is the strongest nicotine pouch you stock?',
@@ -72,32 +72,32 @@ export function buildCollectionSeo(slug: string, name: string, s: Stats): Collec
   const fromPrice = s.minPrice ? money(s.minPrice) : ''
   const countStr = s.count.toLocaleString()
 
-  const metaTitle = `Buy ${name} Online Australia | VapesAU`.slice(0, 60)
+  const metaTitle = `Buy ${name} Online Australia | VapeHub`.slice(0, 60)
   const metaDescription =
-    `Shop ${countStr} ${note.noun} at VapesAU — ${s.topBrands.slice(0, 3).join(', ')} and more${fromPrice ? ` from ${fromPrice}` : ''}. Fast AU shipping, free over $300, age-verified.`.slice(0, 160)
+    `Shop ${countStr} ${note.noun} at VapeHub — ${s.topBrands.slice(0, 3).join(', ')} and more${fromPrice ? ` from ${fromPrice}` : ''}. Fast AU shipping, free over $300, age-verified.`.slice(0, 160)
 
   const intro =
-    `Shop our full range of ${note.noun} at VapesAU — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''}${brandList ? `, including ${brandList}` : ''}. ${name} are ${note.trait}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+    `Shop our full range of ${note.noun} at VapeHub — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''}${brandList ? `, including ${brandList}` : ''}. ${name} are ${note.trait}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
 
   const whyBuy =
-    `VapesAU stocks ${countStr} ${note.noun} across the brands Australians actually buy, with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. Want to pay less per device? Many best-sellers come in multi-pack bundles.`
+    `VapeHub stocks ${countStr} ${note.noun} across the brands Australians actually buy, with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. Want to pay less per device? Many best-sellers come in multi-pack bundles.`
 
   const faqs: Faq[] = [
     {
       q: `Where can I buy ${note.noun} online in Australia?`,
-      a: `VapesAU (vapesau.com.au) stocks ${countStr} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} with fast shipping Australia-wide. Orders over $300 ship free, and checkout is age-verified (18+).`,
+      a: `VapeHub (vapehubvapesaustralia.com) stocks ${countStr} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} with fast shipping Australia-wide. Orders over $300 ship free, and checkout is age-verified (18+).`,
     },
     {
       q: `How much do ${note.noun} cost in Australia?`,
-      a: `${name} at VapesAU start${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, and multi-pack bundles lower the price per device again. The current price is shown on each product page.`,
+      a: `${name} at VapeHub start${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, and multi-pack bundles lower the price per device again. The current price is shown on each product page.`,
     },
     {
-      q: `What brands of ${note.noun} does VapesAU stock?`,
+      q: `What brands of ${note.noun} does VapeHub stock?`,
       a: `${brandList || 'A range of leading brands'} and more — see the full list on our brands page. New stock is added regularly.`,
     },
     {
       q: `Do I need to be 18 to buy ${note.noun}?`,
-      a: `Yes. VapesAU only sells to adults aged 18 and over, and orders are age-verified. Australian vaping rules are set by the TGA and vary by state — see our Vaping Laws page for the current position.`,
+      a: `Yes. VapeHub only sells to adults aged 18 and over, and orders are age-verified. Australian vaping rules are set by the TGA and vary by state — see our Vaping Laws page for the current position.`,
     },
   ]
 
@@ -127,12 +127,12 @@ export function buildSeriesSeo(
   const puffStr = `${puff.toLocaleString()}-puff`
   const label = `${brand} ${puff.toLocaleString()} Puffs`
 
-  const metaTitle = `Buy ${brand} ${puff.toLocaleString()} Puffs Online Australia | VapesAU`.slice(0, 60)
+  const metaTitle = `Buy ${brand} ${puff.toLocaleString()} Puffs Online Australia | VapeHub`.slice(0, 60)
   const metaDescription =
-    `Shop ${countStr} ${brand} ${puffStr} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} at VapesAU. Fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
+    `Shop ${countStr} ${brand} ${puffStr} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} at VapeHub. Fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
 
   const intro =
-    `Shop the ${label} range at VapesAU — ${countStr} ${puffStr} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''}, in a choice of flavours. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+    `Shop the ${label} range at VapeHub — ${countStr} ${puffStr} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''}, in a choice of flavours. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
 
   const whyBuy =
     `The ${label} line is rated for around ${puff.toLocaleString()} puffs per device. We stock ${countStr} flavours with fast dispatch from Australia and free shipping on orders over $300, every order age-verified (18+) and backed by 30-day returns on unopened products.`
@@ -144,7 +144,7 @@ export function buildSeriesSeo(
     },
     {
       q: `Where can I buy the ${brand} ${puff.toLocaleString()} in Australia?`,
-      a: `The ${label} range is available at VapesAU — ${countStr} flavours${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free.`,
+      a: `The ${label} range is available at VapeHub — ${countStr} flavours${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free.`,
     },
     {
       q: `How much is the ${brand} ${puff.toLocaleString()}?`,
@@ -174,12 +174,12 @@ export function buildBrandSeo(
         ? ` rated for up to ${puffCounts[0].toLocaleString()} puffs`
         : ''
 
-  const metaTitle = `Buy ${brand} Vapes Online Australia | VapesAU`.slice(0, 60)
+  const metaTitle = `Buy ${brand} Vapes Online Australia | VapeHub`.slice(0, 60)
   const metaDescription =
-    `Shop the full ${brand} range at VapesAU — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
+    `Shop the full ${brand} range at VapeHub — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
 
   const intro =
-    `${descriptor ? descriptor + ' ' : ''}Shop the full ${brand} range at VapesAU — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} across ${catList || 'our catalogue'}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+    `${descriptor ? descriptor + ' ' : ''}Shop the full ${brand} range at VapeHub — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} across ${catList || 'our catalogue'}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
 
   const whyBuy =
     `${descriptor ? descriptor + ' ' : ''}We stock ${countStr} ${brand} products with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. ${brand} multi-packs lower the price per device if you buy a few at once.`
@@ -187,15 +187,15 @@ export function buildBrandSeo(
   const faqs: Faq[] = [
     {
       q: `Where can I buy ${brand} in Australia?`,
-      a: `${brand} is available at VapesAU (vapesau.com.au) — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free, and checkout is age-verified (18+).`,
+      a: `${brand} is available at VapeHub (vapehubvapesaustralia.com) — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free, and checkout is age-verified (18+).`,
     },
     {
       q: `What does ${brand} make?`,
-      a: `At VapesAU, ${brand} covers ${catList || 'a range of products'}. Browse the full ${brand} range on this page, or filter by category below.`,
+      a: `At VapeHub, ${brand} covers ${catList || 'a range of products'}. Browse the full ${brand} range on this page, or filter by category below.`,
     },
     {
       q: `How much do ${brand} products cost?`,
-      a: `${brand} products at VapesAU start${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, with multi-pack bundles bringing the price per device down further. The current price is on each product page.`,
+      a: `${brand} products at VapeHub start${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, with multi-pack bundles bringing the price per device down further. The current price is on each product page.`,
     },
     {
       q: `Are ${brand} products genuine?`,
@@ -226,12 +226,12 @@ export function buildBrandCategorySeo(
         ? ` rated for up to ${puffCounts[0].toLocaleString()} puffs`
         : ''
 
-  const metaTitle = `Buy ${brand} ${categoryName} Online Australia | VapesAU`.slice(0, 60)
+  const metaTitle = `Buy ${brand} ${categoryName} Online Australia | VapeHub`.slice(0, 60)
   const metaDescription =
-    `Shop ${countStr} ${brand} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} at VapesAU. Fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
+    `Shop ${countStr} ${brand} ${note.noun}${fromPrice ? ` from ${fromPrice}` : ''} at VapeHub. Fast AU shipping, free over $300, age-verified (18+).`.slice(0, 160)
 
   const intro =
-    `${descriptor ? descriptor + ' ' : ''}Shop the ${brand} range of ${note.noun} at VapesAU — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
+    `${descriptor ? descriptor + ' ' : ''}Shop the ${brand} range of ${note.noun} at VapeHub — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''}${puffNote}. Fast Australia-wide dispatch, free shipping on orders over $300, and an age-verified (18+) checkout. Buy more and save with multi-pack bundles.`
 
   const whyBuy =
     `${descriptor ? descriptor + ' ' : ''}We stock ${countStr} ${brand} ${note.noun} with fast dispatch from Australia and free shipping on orders over $300. Every order is age-verified (18+) and backed by our 30-day returns on unopened products. ${brand} multi-packs lower the price per device if you buy a few at once.`
@@ -239,15 +239,15 @@ export function buildBrandCategorySeo(
   const faqs: Faq[] = [
     {
       q: `Where can I buy ${brand} ${note.noun} in Australia?`,
-      a: `${brand} ${note.noun} are available at VapesAU (vapesau.com.au) — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free.`,
+      a: `${brand} ${note.noun} are available at VapeHub (vapehubvapesaustralia.com) — ${countStr} products${fromPrice ? ` from ${fromPrice}` : ''} with fast AU-wide shipping. Orders over $300 ship free.`,
     },
     {
       q: `How much do ${brand} ${note.noun} cost?`,
-      a: `${brand} ${note.noun} at VapesAU start${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, and multi-pack bundles bring the price per device down further. The current price is on each product page.`,
+      a: `${brand} ${note.noun} at VapeHub start${fromPrice ? ` from ${fromPrice}` : ' at a range of prices'}, and multi-pack bundles bring the price per device down further. The current price is on each product page.`,
     },
     {
       q: `Is ${brand} available in Australia?`,
-      a: `Yes — VapesAU stocks ${countStr} ${brand} ${note.noun}, with new stock added regularly. See the full ${brand} range on this page or our brands page.`,
+      a: `Yes — VapeHub stocks ${countStr} ${brand} ${note.noun}, with new stock added regularly. See the full ${brand} range on this page or our brands page.`,
     },
   ]
 

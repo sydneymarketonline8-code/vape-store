@@ -33,7 +33,7 @@ export async function generateMetadata({
   const title = productsHeading(q)
   return {
     title,
-    description: `Shop ${title.toLowerCase()} at VapesAU — fast AU-wide shipping, age-verified, and 30-day returns.`,
+    description: `Shop ${title.toLowerCase()} at VapeHub — fast AU-wide shipping, age-verified, and 30-day returns.`,
     alternates: { canonical: canonicalFor(q) },
   }
 }

@@ -9,7 +9,7 @@ import { NewsletterForm } from '@/components/common/newsletter-form'
 import { productImage } from '@/lib/product-image'
 import { products } from '@/data/products'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapesau.com.au'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
 
 // Category tiles link to the canonical /collections/[slug] pages (not the legacy
 // /products?category= filter). Counts are computed from the catalogue, not hardcoded.
@@ -105,7 +105,7 @@ export default function HomePage() {
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Best-selling vapes at VapesAU',
+    name: 'Best-selling vapes at VapeHub',
     itemListElement: bestSellers.map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -131,7 +131,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Trust badges ─────────────────────────────────────── */}
-      <section className="border-b border-gray-100 py-5" aria-label="Why shop with VapesAU">
+      <section className="border-b border-gray-100 py-5" aria-label="Why shop with VapeHub">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {TRUST_BADGES.map(({ icon: Icon, label, sub }) => (
@@ -264,12 +264,12 @@ export default function HomePage() {
       ))}
 
       {/* ── SEO copy (factual, no health claims) ─────────────── */}
-      <section className="border-t border-gray-100 py-14" aria-label="About VapesAU">
+      <section className="border-t border-gray-100 py-14" aria-label="About VapeHub">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-gray-900">Buy Vapes Online in Australia</h2>
           <div className="space-y-4 text-sm leading-relaxed text-gray-600">
             <p>
-              VapesAU is an Australian online vape store stocking over 2,000 products — from{' '}
+              VapeHub is an Australian online vape store stocking over 2,000 products — from{' '}
               <Link href="/collections/disposables" className="text-[#1B7A3E] hover:underline">disposable vapes</Link> and{' '}
               <Link href="/collections/mods" className="text-[#1B7A3E] hover:underline">pod systems</Link> to{' '}
               <Link href="/collections/e-liquids" className="text-[#1B7A3E] hover:underline">e-liquids and nicotine salts</Link>,{' '}
@@ -301,7 +301,7 @@ export default function HomePage() {
           <div className="mb-3 flex justify-center">
             <Mail className="h-7 w-7 text-green-300" />
           </div>
-          <h2 className="mb-2 text-2xl font-bold text-white">Join the VapesAU Newsletter</h2>
+          <h2 className="mb-2 text-2xl font-bold text-white">Join the VapeHub Newsletter</h2>
           <p className="mb-8 text-green-200">
             Get new product alerts, restock notifications and member-only discounts.
           </p>

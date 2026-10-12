@@ -7,21 +7,21 @@ import { Crumb, H2, IconCard, StatCard, Callout } from '@/components/common/page
 export const metadata: Metadata = {
   title: 'Shipping Policy',
   description:
-    'VapesAU shipping — free AU delivery over $300, fast dispatch and tracked delivery to every Australian state. Australia-wide only.',
+    'VapeHub shipping — free AU delivery over $300, fast dispatch and tracked delivery to every Australian state. Australia-wide only.',
   alternates: { canonical: '/shipping' },
 }
 
 const faqs: Faq[] = [
   {
-    q: 'Does VapesAU offer free shipping?',
+    q: 'Does VapeHub offer free shipping?',
     a: 'Yes — orders over $300 ship free, Australia-wide. A flat-rate shipping fee applies to orders under $300, and a minimum order of $250 applies to all purchases.',
   },
   {
-    q: 'How long does VapesAU take to ship?',
+    q: 'How long does VapeHub take to ship?',
     a: 'Orders are dispatched from our Australian warehouse within one business day of payment being confirmed. Delivery then typically takes 2–6 business days depending on your location.',
   },
   {
-    q: 'Does VapesAU ship to all Australian states?',
+    q: 'Does VapeHub ship to all Australian states?',
     a: 'Yes, we deliver to every Australian state and territory. Regional and remote areas may take a little longer than metro areas.',
   },
   {
@@ -29,7 +29,7 @@ const faqs: Faq[] = [
     a: 'Yes, every order is sent with tracking. We add the tracking number to your account once your order ships, and can share it with you on WhatsApp.',
   },
   {
-    q: 'Does VapesAU ship internationally?',
+    q: 'Does VapeHub ship internationally?',
     a: 'No, we currently ship within Australia only and do not offer international delivery.',
   },
 ]

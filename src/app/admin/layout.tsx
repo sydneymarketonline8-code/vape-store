@@ -4,7 +4,7 @@ import { AdminSidebar } from '@/components/admin/admin-sidebar'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: { default: 'Admin', template: '%s · Admin · VapesAU' },
+  title: { default: 'Admin', template: '%s · Admin · VapeHub' },
   robots: { index: false },
 }
 

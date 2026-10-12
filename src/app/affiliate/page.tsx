@@ -5,7 +5,7 @@ import { whatsappLink } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Affiliate Program',
-  description: 'Earn commission promoting VapesAU. Sign up, share your link, and earn on every qualifying sale.',
+  description: 'Earn commission promoting VapeHub. Sign up, share your link, and earn on every qualifying sale.',
   alternates: { canonical: '/affiliate' },
 }
 
@@ -19,7 +19,7 @@ const STEPS = [
 ]
 
 export default function AffiliatePage() {
-  const applyWa = whatsappLink('Hi VapesAU, I’d like to join the affiliate program.')
+  const applyWa = whatsappLink('Hi VapeHub, I’d like to join the affiliate program.')
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
@@ -27,7 +27,7 @@ export default function AffiliatePage() {
         {/* Left */}
         <div>
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">Affiliate Program</p>
-          <h1 className="mt-2 text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">Earn with VapesAU</h1>
+          <h1 className="mt-2 text-3xl font-black tracking-tight text-gray-900 sm:text-4xl">Earn with VapeHub</h1>
           <p className="mt-3 text-gray-600">
             Love our products? Get paid to share them. Earn <strong>{COMMISSION_RATE} on every qualifying sale</strong> from
             customers you refer — no cost to join.

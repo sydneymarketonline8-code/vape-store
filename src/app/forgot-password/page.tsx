@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="mb-4 inline-flex flex-col items-center">
-            <span className="text-2xl font-black tracking-tight text-[#1B7A3E]">VAPESAU</span>
+            <span className="text-2xl font-black tracking-tight text-[#1B7A3E]">VAPEHUB</span>
             <span className="text-xs text-gray-400">{SITE_TAGLINE}</span>
           </Link>
           <h1 className="mt-4 text-2xl font-bold text-gray-900">Reset your password</h1>

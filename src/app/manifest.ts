@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'VapesAU — Vape Deals & Bulk Packs',
-    short_name: 'VapesAU',
+    name: 'VapeHub — Vape Deals & Bulk Packs',
+    short_name: 'VapeHub',
     description: 'Multi-pack bundles and bulk vape deals — disposables, pods, e-liquids & pouches with fast AU shipping.',
     start_url: '/',
     display: 'standalone',
