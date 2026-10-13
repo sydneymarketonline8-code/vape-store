@@ -32,9 +32,26 @@ export const metadata: Metadata = {
   description: DEFAULT_DESC,
   applicationName: 'VapeHub',
   alternates: { canonical: '/' },
-  // Verification tokens belong to a Search Console / Bing property, which is
-  // per-domain. The previous tokens were for the suspended vapesau.com.au
-  // property and are dead — add fresh ones for vapehubvapesaustralia.com here.
+  // Verification tokens are per-property (per-domain). The old ones belonged to
+  // the suspended vapesau.com.au property and are dead, so they were removed.
+  //
+  // These are read from env so a new token needs no code change: set it in the
+  // host and redeploy. Unset = the meta tag is simply omitted, which is the
+  // right default — a wrong token is worse than none.
+  //
+  // Prefer DNS TXT verification for a Search Console *Domain* property: it
+  // needs no deploy at all and covers apex, www and future subdomains. Use
+  // these only for the meta-tag (URL-prefix) route.
+  //   NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION — Search Console HTML tag
+  //   NEXT_PUBLIC_BING_SITE_VERIFICATION   — Bing Webmaster Tools (msvalidate.01)
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { other: { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } }
+      : {}),
+  },
   robots: {
     index: true,
     follow: true,
