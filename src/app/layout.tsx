@@ -10,12 +10,12 @@ import { WhatsAppFab } from '@/components/common/whatsapp-fab'
 import { ChromeGate } from '@/components/layout/chrome-gate'
 import { GoogleTagManager, ChatWidget } from '@/components/common/analytics'
 import { SiteJsonLd } from '@/components/common/site-jsonld'
+import { SITE_URL } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', preload: true, variable: '--font-inter' })
 // Distinctive display face for headings — paired with Inter for body.
 const sora = Sora({ subsets: ['latin'], display: 'swap', variable: '--font-sora' })
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
 // Positioning is deliberately differentiated from the sibling site aussievapes.com.au
 // (which owns the "Australia's #1 / largest range" angle) to avoid SEO cannibalisation.
 // This site leads with deals / bundles / bulk packs.

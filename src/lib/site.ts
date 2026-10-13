@@ -1,6 +1,17 @@
 // Store-wide contact + payment config.
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
+// Canonical origin for canonicals, og:url, JSON-LD, robots.txt and the sitemap.
+//
+// Hardcoded (no env override), for the same reason as WHATSAPP_NUMBER below: a
+// stale NEXT_PUBLIC_SITE_URL in the host silently overrode this and pointed the
+// ENTIRE live site — every canonical, og:url, JSON-LD url, the robots.txt Host
+// and all ~2,300 sitemap URLs — at www.vapesau.com.au, a suspended domain. Two
+// brands have now been suspended (aussievapes.com.au, then vapesau.com.au), so
+// the origin must not be settable from outside the repo.
+//
+// To move domains, change this one line. Note the string contains "vapesau"
+// (vapehub|vapesau|stralia) — never bulk find/replace that token.
+export const SITE_URL = 'https://www.vapehubvapesaustralia.com'
 
 // Brand tagline / logo strapline. Deliberately differentiated from the sibling
 // site aussievapes.com.au (see memory) — do NOT use "Australia's #1 / largest".

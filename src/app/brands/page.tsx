@@ -6,8 +6,8 @@ import type { Product } from '@/types'
 import { ProductCard } from '@/components/shop/product-card'
 import { BrandQuickNav } from '@/components/shop/brand-quick-nav'
 import { brandSlug } from '@/lib/collections-query'
+import { SITE_URL } from '@/lib/site'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
 const FEATURED_COUNT = 12
 
 export const metadata: Metadata = {

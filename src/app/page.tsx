@@ -8,8 +8,7 @@ import { RecentReviews } from '@/components/shop/recent-reviews'
 import { NewsletterForm } from '@/components/common/newsletter-form'
 import { productImage } from '@/lib/product-image'
 import { products } from '@/data/products'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
+import { SITE_URL } from '@/lib/site'
 
 // Category tiles link to the canonical /collections/[slug] pages (not the legacy
 // /products?category= filter). Counts are computed from the catalogue, not hardcoded.

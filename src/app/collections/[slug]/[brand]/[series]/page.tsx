@@ -8,8 +8,8 @@ import { FaqList } from '@/components/common/page-schema'
 import { getCollection } from '@/lib/collections'
 import { resolveSeries, seriesParams, seriesSlug } from '@/lib/collections-query'
 import { buildSeriesSeo } from '@/lib/collection-seo'
+import { SITE_URL } from '@/lib/site'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
 const PAGE_SIZE = 24
 
 export const dynamicParams = true

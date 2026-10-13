@@ -9,8 +9,8 @@ import { getCollection } from '@/lib/collections'
 import { resolveBrandInCategory, brandCategoryParams, seriesSlug } from '@/lib/collections-query'
 import { buildBrandCategorySeo } from '@/lib/collection-seo'
 import { brandDescriptor } from '@/lib/brand-descriptors'
+import { SITE_URL } from '@/lib/site'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
 const PAGE_SIZE = 24
 
 export const dynamicParams = true

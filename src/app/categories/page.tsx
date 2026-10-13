@@ -7,8 +7,7 @@ import { COLLECTIONS } from '@/lib/collections'
 import { ProductCard } from '@/components/shop/product-card'
 import { BrandQuickNav } from '@/components/shop/brand-quick-nav'
 import { CategoryIcon } from '@/components/icons/category-icons'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
+import { SITE_URL } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Shop All Vape Categories',

@@ -10,8 +10,7 @@ import { ProductGallery } from '@/components/shop/product-gallery'
 import { ProductInfo } from '@/components/shop/product-info'
 import { ProductTabs } from '@/components/shop/product-tabs'
 import { ProductCard } from '@/components/shop/product-card'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
+import { SITE_URL } from '@/lib/site'
 
 const CATEGORY_LABELS: Record<string, string> = {
   disposables: 'Disposable Vapes',

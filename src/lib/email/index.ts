@@ -1,5 +1,5 @@
 import { Resend } from 'resend'
-import { SITE_TAGLINE } from '@/lib/site'
+import { SITE_URL as SITE, SITE_TAGLINE } from '@/lib/site'
 
 // Transactional email via Resend. Templates are plain HTML strings (kept
 // dependency-light instead of @react-email/components). All functions no-op
@@ -10,8 +10,6 @@ import { SITE_TAGLINE } from '@/lib/site'
 // call them from /api/orders, the shipment update, signup, etc.
 
 const FROM = process.env.EMAIL_FROM ?? 'VapeHub <orders@vapehubvapesaustralia.com>'
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
-
 const money = (n: number) => `$${Number(n).toFixed(2)}`
 
 function getResend(): Resend | null {

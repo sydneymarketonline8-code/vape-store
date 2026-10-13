@@ -5,8 +5,7 @@ import { brandCategoryParams, seriesParams, brandHubParams } from '@/lib/collect
 import { STATES } from '@/data/locations'
 import { BLOG_CATEGORIES } from '@/lib/blog-categories'
 import { createServiceClient } from '@/lib/supabase/server'
-
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
+import { SITE_URL as SITE } from '@/lib/site'
 
 // Public, indexable routes only (admin/account/checkout/search are excluded).
 const STATIC_PATHS = [

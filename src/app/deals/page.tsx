@@ -5,8 +5,7 @@ import { products } from '@/data/products'
 import type { Product } from '@/types'
 import { COLLECTIONS } from '@/lib/collections'
 import { ProductCard } from '@/components/shop/product-card'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
+import { SITE_URL } from '@/lib/site'
 
 const popularity = (p: Product) => (p.featured ? 1_000_000 : 0) + (p.reviewCount ?? 0)
 const discountPct = (p: Product) => (p.originalPrice ? Math.round((1 - p.price / p.originalPrice) * 100) : 0)

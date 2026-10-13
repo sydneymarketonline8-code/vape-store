@@ -12,8 +12,7 @@ import {
   buildCollectionHref,
 } from '@/lib/collections'
 import { queryCollection, categoryStats, brandSlug, flavourCounts } from '@/lib/collections-query'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
+import { SITE_URL } from '@/lib/site'
 
 // Pre-render every collection slug; unknown slugs render on-demand (≈ fallback: 'blocking').
 export const dynamicParams = true

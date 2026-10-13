@@ -7,8 +7,7 @@ import { FaqList } from '@/components/common/page-schema'
 import { resolveBrand, brandHubParams, brandSlug } from '@/lib/collections-query'
 import { buildBrandSeo } from '@/lib/collection-seo'
 import { brandDescriptor } from '@/lib/brand-descriptors'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.vapehubvapesaustralia.com'
+import { SITE_URL } from '@/lib/site'
 
 export const dynamicParams = true
 
